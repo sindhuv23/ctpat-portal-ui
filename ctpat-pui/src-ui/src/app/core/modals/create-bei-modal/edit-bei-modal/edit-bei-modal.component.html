@@ -1,0 +1,79 @@
+<form [formGroup]="editBeiForm" novalidate>
+
+  <div fxLayout="row" id="header">
+    <h3 mat-dialog-title class="dialog-header">Edit BEI</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+<mat-dialog-content>
+  <div class="required required-text">* Required</div><br>
+  <div fxLayout="column">
+
+    <div fxLayout="row">
+      <label  fxFlex="40" class="label" for="vettedApprovedIndicator">Vetted Approved</label>
+      <mat-form-field fxFlex="60" appearance="outline">
+        <input matInput formControlName="vettedApprovedIndicator" id="vettedApprovedIndicator" aria-label="Vetted Approved">
+      </mat-form-field>
+    </div>
+
+      <div fxLayout="row">
+        <label fxFlex="40" class="label" for="beiType">BEI Type</label>
+        <mat-form-field fxFlex="60" appearance="outline">
+          <mat-select formControlName="beiType" id="beiType" placeholder="--Select--" aria-label="BEI Type">
+              <mat-option>--Select--</mat-option>
+              <ng-container>
+                <mat-option value="IOR">IOR
+                </mat-option>
+              </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <label  fxFlex="40" class="label" for="beiValue">BEI Value<span class="required"> *</span></label>
+        <mat-form-field fxFlex="60" appearance="outline">
+          <input matInput formControlName="beiValue" id="beiValue" aria-label="BEI Value" placeholder="BEI Value">
+          <mat-error *ngIf="submitted && f.beiValue.errors && f.beiValue.errors.required">BEI Value is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <label fxFlex="40" class="label" for="beiBenefit">BEI Benefit<span class="required"> *</span></label>
+        <mat-form-field fxFlex="60" appearance="outline">
+          <mat-select formControlName="beiBenefit" id="beiBenefit" placeholder="--- Select ---" aria-label="BEI Benefit">
+              <mat-option>--Select--</mat-option>
+              <ng-container>
+                <mat-option value="NONE">NONE
+                </mat-option>
+              </ng-container>
+          </mat-select>
+          <mat-error *ngIf="submitted && f.beiBenefit.errors && f.beiBenefit.errors.required">BEI Benefit is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <label fxFlex="40" class="label" for="tradeComplianceIndicator">Trade Compliance</label>
+        <mat-form-field fxFlex="60" appearance="outline">
+          <mat-select formControlName="tradeComplianceIndicator" id="tradeComplianceIndicator" placeholder="--- Select ---" aria-label="Trade Compliance">
+              <mat-option>--Select--</mat-option>
+              <ng-container>
+                <mat-option value="Y">Yes</mat-option>
+                <mat-option value="N">No</mat-option>
+              </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+  </div>
+</mat-dialog-content>
+
+<div id="footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+  </mat-dialog-actions>
+</div>
+</form>
+

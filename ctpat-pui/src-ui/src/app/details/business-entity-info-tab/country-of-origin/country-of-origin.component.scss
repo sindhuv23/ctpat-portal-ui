@@ -1,0 +1,68 @@
+table{
+  border: 1px solid gray;
+}
+
+td {
+  padding-left: 10px !important;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  word-break: normal;
+  background-color: white;
+  max-height: fit-content !important;
+}
+
+th {
+  padding-left: 15px !important;
+  border-right: 1px solid gray;
+  text-align: center !important;
+  background-color: #edf1f5;
+  max-height: fit-content !important;
+}
+
+tr.mat-header-row, tr.mat-row {
+  height: fit-content !important;
+}
+
+td:last-child, th:last-child{
+  border-right: none;
+}
+
+.mat-column-beiValue {
+  flex: 0 0 25% !important;
+  width: 30% !important;
+}
+.mat-column-tradeCompliance {
+  flex: 0 0 12% !important;
+  width: 12% !important;
+}
+.mat-column-vettedApproved {
+  flex: 0 0 12% !important;
+  width: 12% !important;
+}
+
+button{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title, .label{
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.mat-column-suggestedIndicator {
+  flex: 0 0 12% !important;
+  width: 12% !important;
+}
+
+.mat-column-visitDate {
+  flex: 0 0 16% !important;
+  width: 16% !important;
+}
+.mat-column-companyName {
+  flex: 0 0 56% !important;
+  width: 56% !important;
+}

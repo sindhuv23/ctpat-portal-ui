@@ -1,0 +1,42 @@
+<button (click)="addNewBeiRecord()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+aria-label="Add New BEI Record" accesskey="N">Add New</button>
+
+<div name="beiRecordsDiv" id="beiRecordsDiv">
+  <table mat-table title="BeiRecords" id="beiRecordsTable" [dataSource]="dataSourceBeiRecords" name="beiRecordsTable" class="row mat-elevation-z0">
+
+    <ng-container matColumnDef="beiType">
+      <th mat-header-cell *matHeaderCellDef scope="col">BEI Type</th>
+      <td mat-cell *matCellDef="let row">{{row.beiType}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="beiValue">
+      <th mat-header-cell *matHeaderCellDef scope="col">BEI Value</th>
+      <td mat-cell *matCellDef="let row">{{row.beiValue}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="vettedApproved">
+      <th mat-header-cell *matHeaderCellDef scope="col">Vetted Approved</th>
+      <td mat-cell *matCellDef="let row">{{row.vettedApproved}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="beiBenefit">
+      <th mat-header-cell *matHeaderCellDef scope="col">BEI Benefit</th>
+      <td mat-cell *matCellDef="let row">{{row.beiBenefit}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="tradeCompliance">
+      <th mat-header-cell *matHeaderCellDef scope="col">Trade Compliance</th>
+      <td mat-cell *matCellDef="let row">{{row.tradeCompliance}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="entryId">
+      <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+      <td mat-cell *matCellDef="let row" style="text-align:center">
+        <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+        <mat-icon (click)="editBeiRecordEntry(row.entryId)">edit</mat-icon></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsBeiRecords" name="beiRecordsTableHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsBeiRecords"></tr>
+  </table>
+</div>

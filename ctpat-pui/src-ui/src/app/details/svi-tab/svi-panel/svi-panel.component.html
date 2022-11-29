@@ -1,0 +1,37 @@
+<div fxLayout="column" style="margin-top:10px;">
+
+    <div fxLayout="row">
+        The Status Verification Interface (SI) is a tool for monitoring other TPAT business partners for TPAT
+        compliance. Use
+        of this tool will reduce the workload required to meet the minimum security criteria requirements of screening
+        and
+        monitoring business partners, while at the same time enhance the effectiveness of your partner screening process
+    </div>
+    <ng-container *ngIf="isJoinSVI">
+        <div fxLayout="row">
+            To participate in SVI Partner Monitoring, click on Join SVI
+        </div>
+        <div fxLayout="row" style="margin-bottom: 10px;"></div>
+        <div fxLayout="row">
+            <button mat-raised-button type="submit" color="primary" (click)="joinSvi()" aria-label="Join SVI"
+                accesskey="U" class="svi-button">Join SVI</button>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!isJoinSVI">
+        <div fxLayout="row" style="margin-top: 15px;">
+            <div class="margin-right-20">
+                <button mat-raised-button type="submit" color="primary" (click)="viewSviAgreement()" aria-label="Join SVI"
+                class="svi-button" accesskey="U">View SVI Agreement</button>
+            </div>
+            <div class="margin-right-20">
+                <button mat-raised-button type="submit" color="primary" (click)="openSettings()" aria-label="Join SVI"
+                class="svi-button" accesskey="U">Settings</button>
+            </div>
+            <div class="margin-right-20">
+                <button mat-raised-button type="submit" color="primary" (click)="sendCertificarionEmail()" aria-label="Join SVI"
+                class="svi-button" accesskey="U">Send Certificarion Email</button>
+            </div>
+        </div>
+    </ng-container>
+</div>

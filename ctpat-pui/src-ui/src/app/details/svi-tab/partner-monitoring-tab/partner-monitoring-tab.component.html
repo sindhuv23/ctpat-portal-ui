@@ -1,0 +1,80 @@
+<div fxLayout="column" style="margin-top:10px">
+
+    <div fxLayout="row" [formGroup]="patrnerForm">
+        <mat-radio-group formControlName="requestType">
+            <mat-radio-button color="primary" value=""><span style="font-weight: lighter;">All
+                    Documents&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="T"><span style="font-weight: lighter;">Your Requests
+                    Only&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="A"><span style="font-weight: lighter;">Requests by
+                    Companies&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+        </mat-radio-group>
+
+        <button mat-raised-button type="submit" color="primary" (click)="sendRequest()" aria-label="Send Request"
+            accesskey="U" class="sendRequestButton">Send Request</button>
+
+        <button mat-icon-button aria-label="add" class="sendRequestButton">
+            <mat-icon>note_add</mat-icon>
+        </button>
+
+        <div fxFlex></div>
+
+        <div>
+            <mat-form-field>
+                <input matInput formControlName="textInput" placeholder="Filter" (keyup)="doFilter($event)" />
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div name="requestsTableDiv" id="requestsTableDiv">
+        <table mat-table title="Requests" id="requestsTable" [dataSource]="requests" name="requestsTable"
+            class="row mat-elevation-z0" matSort matSortActive="companyName" matSortDirection="desc"
+            [matSortDisableClear]="true">
+
+            <ng-container matColumnDef="companyName">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Company Name, Doing Business As</th>
+                <td mat-cell *matCellDef="let row"> <a (click)="openEmailDetails(row)" href="javascript:void(0)">{{row.companyName}}</a></td>
+            </ng-container>
+
+            <ng-container matColumnDef="businessType">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Business Type</th>
+                <td mat-cell *matCellDef="let row">{{row.businessType}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="accountStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Account Status</th>
+                <td mat-cell *matCellDef="let row">{{row.accountStatus}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="requestStatus">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Request Status</th>
+                <td mat-cell *matCellDef="let row">{{row.requestStatus}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="requestDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Request Date</th>
+                <td mat-cell *matCellDef="let row">{{row.requestDate | date:'medium'}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Action</th>
+                <td mat-cell *matCellDef="let row" style="text-align: center;">
+                    <mat-icon >delete_forever</mat-icon>
+                    <mat-icon >thumb_up</mat-icon>
+                    <mat-icon >thumb_down</mat-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns" name="documentsTableHeader"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="6">No records, Click "Send Request" Button and enter a Partner Search
+                    ctiteria</td>
+            </tr>
+
+        </table>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+</div>

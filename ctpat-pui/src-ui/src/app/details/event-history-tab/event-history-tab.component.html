@@ -1,0 +1,46 @@
+<div name="historyTableDiv" id="historyTableDiv">
+  <div *ngIf="dataSource.data.length >= 500" class="warningText">
+    500 or more events were found. Showing latest 500 events.
+   </div>
+  <div>
+    <mat-form-field class="filter-pos">
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter" />
+    </mat-form-field>
+    <div class="clear"></div>
+  </div>
+  <div>
+    <table mat-table tilte="Event Hisotry" id="historyTable" [dataSource]="dataSource" name="historyTable" matSort matSortActive="updateDate"
+      matSortDirection="desc" [matSortDisableClear]="true" class="row mat-elevation-z0">
+
+      <!-- Date -->
+      <ng-container matColumnDef="updateDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Update Date</th>
+        <td mat-cell *matCellDef="let row">{{row.updateDate}}</td>
+      </ng-container>
+
+      <!-- Changed By -->
+      <ng-container matColumnDef="updateBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Changed By</th>
+        <td mat-cell *matCellDef="let row">{{row.updateBy}}</td>
+      </ng-container>
+
+      <!-- Event Type -->
+      <ng-container matColumnDef="eventType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Type</th>
+        <td mat-cell *matCellDef="let row">{{row.eventType}}</td>
+      </ng-container>
+
+      <!-- New Value -->
+      <ng-container matColumnDef="newValue">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">New Value</th>
+        <td mat-cell *matCellDef="let row">{{row.newValue}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" name="historyTableHeader"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div *ngIf="dataSource.data.length===0" class="no-results">&mdash; No Event History &mdash; </div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>

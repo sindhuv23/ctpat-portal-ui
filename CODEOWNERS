@@ -1,0 +1,5 @@
+[Development Team]
+*           JYOTHSNA.P.CHARAGUNDLA@cbp.dhs.gov norman.w.sheriff@cbp.dhs.gov jason.k.flickinger@associates.cbp.dhs.gov dipti.p.shah@associates.cbp.dhs.gov MARIA.SHAMSHAD@associates.cbp.dhs.gov MOHAMMAD.M.MULK@associates.cbp.dhs.gov ROBERT.NM.BARRETT@cbp.dhs.gov zhijun.wang@associates.cbp.dhs.gov ramesh.b.vemulapalli@cbp.dhs.gov VIVEK.SINDHU@associates.cbp.dhs.gov HARDHIK.V.NADELLA@associates.cbp.dhs.gov Bing.Lu@cbp.dhs.gov ramakrishna.chalasani@cbp.dhs.gov Fangrong.Li@cbp.dhs.gov bruh.a.alemneh@cbp.dhs.gov
+[Administrative]
+CODEOWNERS                @cspd/operations/ace/app-support
+gitlab-ci.yml            @cspd/operations/ace/cicd-approvers

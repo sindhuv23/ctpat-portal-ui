@@ -1,0 +1,114 @@
+spring:
+  application:
+      name: ace-ctpat-pui
+  profiles: cert
+  main:
+    banner-mode: "off"
+server:
+  port: 80
+  servlet:
+    context-path: /ace-ctpat-pui
+    session:
+     cookie:
+      name: UIJSESSION-${random.long[111111111111,999999999999]}
+
+  use-forward-headers: true
+  tomcat:
+# Test trust all for now TODO: Limit in future dcos DEV cluster subnet only ex. 172\\.17\\.\\d{1,3}\\.\\d{1,3}|127\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}
+    internal-proxies:
+    remote-ip-header: X-Forwarded-For
+    protocol-header: X-Forwarded-Proto
+    port-header: X-Forwarded-Port
+  error:
+    include-stacktrace: always
+
+#CBP Common SSO
+sso:
+ environment: cert
+ entitlement:
+  applicationToken: X12Mp$oa
+  systemEnvironment: S
+  supportedSystems: ACE
+  systemName: ACE-CTPAT
+  totalAttempts: 3
+ cookie:
+  name: AuthToken
+  purpose: SSO Cookie
+  domain: .cbp.dhs.gov
+  path: /
+  hasCredentials: true
+ crypto:
+  key: 4d89g13j4j91j27c582ji693
+  iv: 1Unified
+  cipher: DESede/CBC/PKCS5Padding
+  spec: DESede
+ filter:
+  loginPath: /login
+  loginHost: https://apps-cert.cbp.dhs.gov
+  relativeRedirect: false
+  excludePatterns: .*/*.woff2.*|.*/*.woff2|.*/*.woff.*|.*/*.woff|.*/*.eot|.*/*.ttf|.*/*.css|.*/*.js|.*/favicon.ico|.*/css/.*|.*/js/.*|.*/ext/.*|.*/static/.*|.*/webjars\\.css|.*/logout|.*/assets/.*|.*/cbp-theme/.*|.*/health.*|.*/healthCheck|.*/error|.*/logoff
+  respondWith403Patterns: .*/api/.*|.*/access.*
+  preferTokenFromHeader: true
+  authTokenHeaderKey: cbp_dhs_gov_auth_token
+  cors:
+   disabled: false
+   origins: cbp.dhs.gov
+   methods: GET
+   credentials: true
+   optionsContentType: application/json
+
+  webseal:
+   preferForRedirect: true
+   headerKey: iv-user
+   headerTypeKey: aceUserType
+   loginPath: ta/sso/ace/login
+   hostUrl: https://ace.crt.tnc.ace.cbp.dhs.gov
+   junction: /nace
+  proxy:
+    patchPath: /ace/ctpat
+    
+ ace:
+  userservice:
+   url: http://ace-user-service.cspd-ace-accounts-crt.svc.cluster.local:8080/ace/user/service/api/getUserDetails
+ 
+ssl:
+  cert:
+    validation:
+      disable: true    
+rest:
+  client:
+    max-total: 100
+    default-max-per-route: 100
+    connect:
+      timeout: 5000
+    socket:
+      timeout: 600000
+
+# Actuator configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS 
+    metrics:
+      enabled: true  
+  health:
+    db:
+      enabled: false
+                      
+logging:
+ level:
+  org.springframework: INFO
+  org.springframework.security: INFO
+  org.springframework.boot.web: INFO
+  cbp.common.security: INFO
+  gov.dhs.cbp.ace.ctpat.pui.web: INFO
+  cbp.common.security.EntitlementUserDetailsService: INFO
+  cbp.common.security.service.UserService: INFO
+  org.springframework.web.cors: INFO
+  cbp.common.security.SessionAuthenticationFilter: ERROR
+
+accessToken.bypass.all: true

@@ -1,0 +1,58 @@
+<div name="addressDiv" id="addressDiv">
+  <div>
+    <table mat-table title="Addresses" id="addressTable" [dataSource]="dataSource" name="addressTable" matSort matSortActive="type"
+      matSortDirection="asc" [matSortDisableClear]="true" class="row mat-elevation-z0">
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Type</th>
+        <td mat-cell *matCellDef="let row">{{row.type}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="addressLine1">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Address Line 1</th>
+        <td mat-cell *matCellDef="let row">{{row.addressLine1}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="addressLine2">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Address Line 2</th>
+        <td mat-cell *matCellDef="let row">{{row.addressLine2}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="city">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">City</th>
+        <td mat-cell *matCellDef="let row">{{row.city}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">State</th>
+        <td mat-cell *matCellDef="let row">{{row.state}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="postalCode">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Postal Code</th>
+        <td mat-cell *matCellDef="let row">{{row.postalCode}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Country</th>
+        <td mat-cell *matCellDef="let row">{{row.country}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="mailAddrIndicator">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Mail Addr</th>
+        <td mat-cell *matCellDef="let row">{{row.mailAddrIndicator}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="primaryIndicator">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Primary</th>
+        <td mat-cell *matCellDef="let row">{{row.primaryIndicator}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" name="addressTableHeader"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <div *ngIf="dataSource.data.length===0" class="no-results">&mdash; No Address Available &mdash; </div>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+</div>

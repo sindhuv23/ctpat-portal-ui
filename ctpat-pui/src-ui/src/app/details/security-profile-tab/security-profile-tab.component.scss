@@ -1,0 +1,42 @@
+.mat-icon {
+  font-size: 18px;
+}
+
+.profileWarning{
+  font-weight: bold;
+  background-color: #FFF1D2;
+  padding: 5px 20px;
+}
+
+.bigIcon{
+  font-size: 26px;
+}
+
+.mat-expansion-panel-header-title{
+  font-weight: 500;
+}
+
+hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.spinner-container {
+  background: #cfc6c6;
+  opacity: 0.5;
+  height:100%;
+  width:100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: top;
+  padding-top: 200px;
+  justify-content: center;
+  position: absolute;
+}
+
+.actionButtons{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #eeeeff;
+}

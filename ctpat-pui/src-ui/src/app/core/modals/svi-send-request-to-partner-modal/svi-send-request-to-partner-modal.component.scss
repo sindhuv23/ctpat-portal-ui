@@ -1,0 +1,99 @@
+#outerContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#createHeader {
+    top: 0px;
+    height: 40px;
+    background-color: #00416a;
+    color: white;
+}
+
+#midContainer{
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 42px;
+    bottom: 25px;
+  }
+  #footer{
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    bottom: -10px;
+  }
+
+  
+.bold-font {
+   font-weight: bold;
+}
+
+.inline-display {
+    display: contents;
+}
+
+.grey-section {
+    background-color: rgb(222 213 213 / 34%);
+}
+
+.hr-line {
+    height: 2px;
+    background: grey;
+}
+.bottom-margin{
+    margin-bottom: 5px;
+}
+
+
+table{
+    border: 1px solid gray;
+  }
+  
+  td {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray;
+    word-break: normal;
+    background-color: white;
+    max-height: fit-content !important;
+  }
+  
+  th {
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    border-right: 1px solid gray;
+    text-align: center !important;
+    background-color: #edf1f5;
+    max-height: fit-content !important;
+  }
+  
+  tr.mat-header-row, tr.mat-row {
+    height: fit-content !important;
+  }
+  
+  td:last-child, th:last-child{
+    border-right: none;
+  }
+  
+  .mat-column-fileName {
+    flex: 0 0 30% !important;
+    width: 30% !important;
+  }
+  .mat-column-entryId {
+    flex: 0 0 10% !important;
+    width: 10% !important;
+  }
+
+  .searchButton{
+    height: 22px !important;
+    font-size: small;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    margin-bottom: 1.25em;
+  }

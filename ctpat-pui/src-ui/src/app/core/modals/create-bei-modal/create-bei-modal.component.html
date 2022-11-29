@@ -1,0 +1,228 @@
+<div id="outerContainer">
+<form [formGroup]="createBeiForm" novalidate>
+<div fxLayout="column" id="midContainer">
+
+  <div class="createBeiHeader">
+    <h4 mat-dialog-title class="dialog-header">Business Entity Information</h4>
+  </div>
+
+  <div class="normalText">
+    All Additional Business Entity Information (BEI) listed in this application/account must adhere to the same security policies
+    and procedures which will be verified in the CTPAT validation process. If a BEI (SCAC, IOR, MID, etc.) has a unique set of
+    security policies, procedures, or infrastructure related to it, the company should create a separate account as
+    benefits or benefit level may be affected.
+  </div>
+
+  <div name="beiRecordsDiv" id="beiRecordsDiv">
+    <table mat-table title="BeiRecords" id="beiRecordsTable" [dataSource]="dataSourceBeiRecords" name="beiRecordsTable" class="row mat-elevation-z0">
+
+      <ng-container matColumnDef="beiType">
+        <th mat-header-cell *matHeaderCellDef scope="col">BEI Type</th>
+        <td mat-cell *matCellDef="let row">{{row.beiType}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="beiValue">
+        <th mat-header-cell *matHeaderCellDef scope="col">BEI Value</th>
+        <td mat-cell *matCellDef="let row">{{row.beiValue}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="entryId">
+        <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Delete Entry</th>
+        <td mat-cell *matCellDef="let row" style="text-align:center">
+          <mat-icon (click)="deleteBeiRecordEntry(row.entryId)">delete_forever</mat-icon></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsBeiRecords" name="beiRecordsTableHeader"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsBeiRecords"></tr>
+    </table>
+  </div>
+
+  <div fxLayout="row" style="margin-left:30px">
+    <mat-form-field fxFlex="25" appearance="outline">
+      <mat-select formControlName="beiType" id="beiType" placeholder="Select BEI Code*" aria-label="BEI Type">
+          <mat-option>--Select--</mat-option>
+          <ng-container>
+            <mat-option value="test">test
+            </mat-option>
+          </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <div fxFlex="4"></div>
+    <mat-form-field fxFlex="25" appearance="outline">
+      <input matInput formControlName="beiValue" id="beiValue" aria-label="Bei Value" placeholder="BEI Value">
+    </mat-form-field>
+  </div>
+
+  <div style="margin-left:30px; margin-bottom:30px">
+    <button mat-raised-button type="submit" color="primary" (click)="addNewBeiRecord()" aria-label="Add New BEI Record" accesskey="B" class="addButton">+ Add New BEI Record</button>
+  </div>
+
+  <div class="createBeiHeader">
+    <h4 mat-dialog-title class="dialog-header">Center of Excellence and Expertise (CEE)</h4>
+  </div>
+
+  <div fxLayout="row" style="margin-top:10px; margin-bottom:20px;">
+    <div fxFlex="2"></div>
+    <div fxFlex="35">
+      <div fxLayout="column">
+        <div class="title">Are you an approved participant of U.S. Customs and Border Protection's Centers of Excellence and Expertise (CEE)?</div>
+        <mat-form-field fxFlex="25" appearance="outline">
+          <mat-select formControlName="approvedCee" id="approvedCee" aria-label="Approved CEE" placeholder="--- Select ---">
+                <mat-option value="Y">Yes</mat-option>
+                <mat-option value="N">No</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlex="10"></div>
+        <div class="title">To what center are you currently assigned?</div>
+        <mat-form-field fxFlex="25" appearance="outline">
+          <mat-select formControlName="currentCenter" id="currentCenter" aria-label="Current Center" placeholder="--- Select ---">
+                <mat-option value="C01">Agriculture and Prepared Products</mat-option>
+                <mat-option value="C02">Center from Ref Table</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxFlex="20"></div>
+    <div fxFlex="35">
+      <div fxLayout="column">
+        <div class="title">What commodities do you import?</div>
+        <div>
+          <mat-checkbox color="primary" formControlName="agricultureIndicator" aria-label="Agriculture & Prepared Products"
+          for="agriculture indicator"><span style="font-weight: lighter;">Agriculture & Prepared Products</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="apparelIndicator" aria-label="Apparel, Footwear, and Textiles"
+          for="apparel indicator"><span style="font-weight: lighter;">Apparel, Footwear, and Textiles</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="automotiveIndicator" aria-label="Automotive and Aerospace"
+          for="automotive indicator"><span style="font-weight: lighter;">Automotive and Aerospace</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="metalIndicator" aria-label="Base Metals"
+          for="metal indicator"><span style="font-weight: lighter;">Base Metals</span></mat-checkbox>
+        </div>
+       <div>
+          <mat-checkbox color="primary" formControlName="consumerProductIndicator" aria-label="Consumer Products & Mass Merchandising "
+          for="consumerProduct indicator"><span style="font-weight: lighter;">Consumer Products & Mass Merchandising </span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="electronicsIndicator" aria-label="Electronics"
+          for="electronics indicator"><span style="font-weight: lighter;">Electronics</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="materialsIndicator" aria-label="Industrial & Manufacturing Materials"
+          for="materials indicator"><span style="font-weight: lighter;">Industrial & Manufacturing Materials</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="machineryIndicator" aria-label="Machinery"
+          for="machinery indicator"><span style="font-weight: lighter;">Machinery</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="petroleumIndicator" aria-label="Petroleum, Natural Gas & Minerals"
+          for="petroleum indicator"><span style="font-weight: lighter;">Petroleum, Natural Gas & Minerals</span></mat-checkbox>
+        </div>
+        <div>
+          <mat-checkbox color="primary" formControlName="chemicalsIndicator" aria-label="Pharmaceuticals, Health, & Chemicals"
+          for="chemicals indicator"><span style="font-weight: lighter;">Pharmaceuticals, Health, & Chemicals</span></mat-checkbox>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="createBeiHeader">
+    <h4 mat-dialog-title class="dialog-header">Country of Origin - Please List your Top Five Countries of Origin by Value</h4>
+  </div>
+
+  <div fxLayout="row" style="margin-left:30px; margin-top:10px;">
+    <div fxFlex="30">
+      <div fxLayout="column">
+
+          <label class="label" for="percentageImports">% Imports</label>
+          <mat-form-field appearance="outline" style="width:100px">
+            <input matInput formControlName="percentageImports" id="percentageImports" aria-label="% Imports" placeholder="% Imports">
+          </mat-form-field>
+
+          <div class="label">Country of Origin</div>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="countryOfOrigin" id="countryOfOrigin" aria-label="Country of Origin" placeholder="--- Select Country ---"
+            (click)="countrySelected($event)" (selectionChange)="countrySelected($event.value)">
+              <mat-option value="">--- Select Country ---</mat-option>
+              <mat-option value="CA">Canada</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="label">State of Origin</div>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="stateOfOrigin" id="stateOfOrigin" aria-label="State/Province of Origin" placeholder="--- Select State ---"
+            (click)="stateSelected($event)" (selectionChange)="stateSelected($event.value)">
+              <mat-option value="">--- Select State/Province ---</mat-option>
+              <mat-option value="stateId">Some State</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div class="label">City of Origin</div>
+          <mat-form-field appearance="outline">
+            <mat-select formControlName="cityOfOrigin" id="cityOfOrigin" aria-label="City of Origin" placeholder="--- Select City ---">
+              <mat-option value="">--- Select City ---</mat-option>
+              <mat-option value="cityId">Some City</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div>
+            <button mat-raised-button type="submit" color="primary" (click)="addCountryOfOrigin()" aria-label="Add Country of Origin" accesskey="C" class="deleteButton">+ Add</button>
+          </div>
+      </div>
+    </div>
+    <div fxFlex="5"></div>
+
+    <div fxFlex="60" name="countriesOfOriginDiv" id="countriesOfOriginDiv">
+      <table mat-table title="CountriesOfOrigin" id="countriesOfOriginTable" [dataSource]="dataSourceCountriesOfOrigin" name="countriesOfOriginTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="percentageImports">
+          <th mat-header-cell *matHeaderCellDef scope="col">% Imports</th>
+          <td mat-cell *matCellDef="let row">{{row.percentageImports}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="countryOfOrigin">
+          <th mat-header-cell *matHeaderCellDef scope="col">Country of Origin</th>
+          <td mat-cell *matCellDef="let row">{{row.countryOfOrigin}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="stateOfOrigin">
+          <th mat-header-cell *matHeaderCellDef scope="col">State of Origin</th>
+          <td mat-cell *matCellDef="let row">{{row.stateOfOrigin}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="cityOfOrigin">
+          <th mat-header-cell *matHeaderCellDef scope="col">City of Origin</th>
+          <td mat-cell *matCellDef="let row">{{row.cityOfOrigin}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="entryId">
+          <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Delete Entry</th>
+          <td mat-cell *matCellDef="let row" style="text-align:center">
+            <mat-icon (click)="deleteCountryOfOriginEntry(row.entryId)">delete_forever</mat-icon></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsCountriesOfOrigin" name="countriesOfOriginTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsCountriesOfOrigin"></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" aria-label="Save" accesskey="P">Save</button>
+    </mat-dialog-actions>
+  </div>
+
+
+</form>
+</div>

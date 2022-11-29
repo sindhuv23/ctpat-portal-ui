@@ -1,0 +1,57 @@
+<button (click)="addNewCompanyName()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+aria-label="Add New Company Name" accesskey="N">Add New</button>
+
+<div name="companyNameListDiv" id="companyNameListDiv">
+  <table mat-table title="CompanyNameList" id="companyNameListTable" [dataSource]="dataSourceCompanyNameList" name="companyNameListTable" class="row mat-elevation-z0">
+
+    <ng-container matColumnDef="companyName">
+      <th mat-header-cell *matHeaderCellDef scope="col">Company Name</th>
+      <td mat-cell *matCellDef="let row">{{row.companyName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="doingBusinessAs">
+      <th mat-header-cell *matHeaderCellDef scope="col">Doing Business As</th>
+      <td mat-cell *matCellDef="let row">{{row.doingBusinessAs}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="businessPhone">
+      <th mat-header-cell *matHeaderCellDef scope="col">Business Phone</th>
+      <td mat-cell *matCellDef="let row">{{row.businessPhone}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="businessFax">
+      <th mat-header-cell *matHeaderCellDef scope="col">Business Fax</th>
+      <td mat-cell *matCellDef="let row">{{row.businessFax}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="ownershipType">
+      <th mat-header-cell *matHeaderCellDef scope="col">Ownership Type</th>
+      <td mat-cell *matCellDef="let row">{{row.ownershipType}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="yearsInBusiness">
+      <th mat-header-cell *matHeaderCellDef scope="col">Years in Business</th>
+      <td mat-cell *matCellDef="let row">{{row.yearsInBusiness}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="numberOfEmployess">
+      <th mat-header-cell *matHeaderCellDef scope="col">Number of Employees</th>
+      <td mat-cell *matCellDef="let row">{{row.numberOfEmployess}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="businessWebsiteAddress">
+      <th mat-header-cell *matHeaderCellDef scope="col">Business Website Address</th>
+      <td mat-cell *matCellDef="let row">{{row.businessWebsiteAddress}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="entryId">
+      <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+      <td mat-cell *matCellDef="let row" style="text-align:center">
+        <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+        <mat-icon (click)="editCompanyNameEntry(row.entryId)">edit</mat-icon></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsCompanyNameList" name="companyNameListTableHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsCompanyNameList"></tr>
+  </table>
+</div>

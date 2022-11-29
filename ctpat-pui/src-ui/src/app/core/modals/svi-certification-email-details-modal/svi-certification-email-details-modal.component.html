@@ -1,0 +1,59 @@
+<div id="outerContainer">
+    <div fxLayout="row" id="createHeader">
+        <h3 mat-dialog-title class="dialog-header">Certification email for Non-CTPAT partners</h3>
+        <mat-divider class="divider"></mat-divider>
+    </div><br>
+
+    <div id="midContainer">
+        <mat-dialog-content>
+            <div fxLayout="column" style="margin-top: 10px;">
+                <div style="margin-left: 10px;">
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">Trade Account</label>
+                        <span fxFlex="50">{{data?.record?.companyName}}</span>
+                    </div>
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">Doing Business As</label>
+                        <span fxFlex="50"></span>
+                    </div>
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">Primary Contact Name</label>
+                        <span fxFlex="50">User new</span>
+                    </div>
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">Primary Contact Address</label>
+                        <span fxFlex="50">915 Main St Rosefield SK 22129 United States</span>
+                    </div>
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">Primary Contact Email</label>
+                        <span fxFlex="50">user.a@yellowrose.com</span>
+                    </div>
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">Primary Contact Phone Number</label>
+                        <span fxFlex="50">2223333333333</span>
+                    </div>
+                    <hr />
+                    <div fxLayout="row" class="bottom-margin">
+                        <label fxFlex="50" class="label">CTPAT Account Status</label>
+                        <span fxFlex="50">Validated</span>
+                    </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div id="footer">
+        <mat-divider class="divider"></mat-divider>
+        <mat-dialog-actions>
+            <div fxFlex></div>
+            <button mat-raised-button type="submit" color="primary" (click)="close()" accesskey="C"
+                aria-label="Save">Close</button>
+        </mat-dialog-actions>
+    </div>
+</div>

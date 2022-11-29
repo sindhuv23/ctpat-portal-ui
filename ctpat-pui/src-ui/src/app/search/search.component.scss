@@ -1,0 +1,47 @@
+.search-panel-heading {
+  cursor: pointer;
+}
+.searchByLabel {
+  font-weight: 500;
+	color: #000;
+}
+.advancedSearchLink{
+	clear: both;
+	padding-top: 10px;
+}
+
+.padBtn {
+	padding-right: 25px;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.errorText {
+  color: #dd0000 !important;
+  font-size: 0.8em !important;
+  padding-left: 8px !important;
+  margin-top: -20px !important;
+}
+
+.mat-error {
+  color:#A00000 !important;
+}
+
+.btn {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn:hover {text-decoration: underline;}
+.padHeading{
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.mat-button{
+  background-color: gray;
+  color: white;
+}

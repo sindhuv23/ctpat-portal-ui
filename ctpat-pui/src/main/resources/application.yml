@@ -1,0 +1,108 @@
+spring:
+  application:
+    name: ace-ctpat-pui
+  config:
+    activate:
+      on-profile: local
+  security:
+    filter:
+      order: 5
+ 
+# server:
+#  port: 8443
+#  ssl:
+#   key-store-type: PKCS12
+#   key-alias: tomcat
+#   key-store: classpath:key-store/ctpat-ks.p12
+#   key-store-password: 8#xDX%Z29-snPrq>
+#  servlet:
+#   context-path: /ace-ctpat-pui
+#  use-forward-headers: true
+#  tomcat:
+#   remote-ip-header: X-Forwarded-For
+#   protocol-header: X-Forwarded-Proto
+#   port-header: X-Forwarded-Port
+#  error:
+#   include-stacktrace: always
+
+server:
+  port: 9002
+  servlet:
+    context-path: /ace-ctpat-pui
+ 
+#CBP Common SSO
+sso:
+ environment: dev
+ entitlement:
+  applicationToken: X12Mp$oa
+  systemEnvironment: D
+  supportedSystems: ACE
+  systemName: ACE-CTPAT
+  totalAttempts: 3
+ cookie:
+  name: AuthToken
+  purpose: SSO Cookie
+  domain: .cbp.dhs.gov
+  path: /
+  hasCredentials: true
+ crypto:
+  key: 4d89g13j4j91j27c582ji693
+  iv: 1Unified
+  cipher: DESede/CBC/PKCS5Padding
+  spec: DESede
+ filter:
+  loginPath: /login
+  loginHost: https://apps-dev.sat.cbp.dhs.gov
+  relativeRedirect: false
+  excludePatterns: .*/*.woff2.*|.*/*.woff2|.*/*.woff.*|.*/*.woff|.*/*.eot|.*/*.ttf|.*/*.css|.*/*.js|.*/favicon.ico|.*/css/.*|.*/js/.*|.*/ext/.*|.*/static/.*|.*/webjars\\.css|.*/logout|.*/assets/.*|.*/cbp-theme/.*|.*/health.*|.*/healthCheck|.*/error|.*/logoff
+  respondWith403Patterns: .*/api/.*|.*/access.*
+  preferTokenFromHeader: true
+  authTokenHeaderKey: cbp_dhs_gov_auth_token
+  cors:
+   disabled: false
+   origins: '*'
+   methods: OPTIONS,GET,POST,PUT
+   credentials: true
+   optionsContentType: application/json
+
+  webseal:
+   preferForRedirect: true
+   headerKey: iv-user
+   headerTypeKey: aceUserType
+   loginPath: ta/sso/ace/login
+   hostUrl: https://ace.d6.devl.cbp.dhs.gov
+   junction: /nace
+  proxy:
+    patchPath: /ace/ctpat
+    
+ ace:
+  userservice:
+   url: https://apps-dev.sat.cbp.dhs.gov/aceusersvc/getUserDetails
+ 
+ssl:
+  cert:
+    validation:
+      disable: true    
+rest:
+  client:
+    max-total: 100
+    default-max-per-route: 100
+    connect:
+      timeout: 5000
+    socket:
+      timeout: 600000
+
+                
+logging:
+ level:
+  org.springframework: INFO
+  org.springframework.security: INFO
+  org.springframework.boot.web: INFO
+  cbp.common.security: INFO
+  gov.dhs.cbp.ace.ctpat.pui.web: INFO
+  cbp.common.security.EntitlementUserDetailsService: INFO
+  cbp.common.security.service.UserService: INFO
+  org.springframework.web.cors: INFO
+  cbp.common.security.SessionAuthenticationFilter: ERROR
+
+accessToken.bypass.all: true

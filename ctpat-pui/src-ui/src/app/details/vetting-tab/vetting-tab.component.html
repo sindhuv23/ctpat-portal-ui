@@ -1,0 +1,28 @@
+<mat-accordion multi>
+  <mat-expansion-panel class="mat-elevation-z0" #panelA expanded tid="panel-account-info">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelA.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelA.expanded>expand_more</mat-icon>
+        CTPAT Account Information
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-account-information></app-account-information>
+
+  </mat-expansion-panel><hr>
+
+  <mat-expansion-panel class="mat-elevation-z0" #panelB expanded tid="vetting-history">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelB.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelB.expanded>expand_more</mat-icon>
+        Vetting History
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-vetting-history></app-vetting-history>
+
+  </mat-expansion-panel>
+
+</mat-accordion>

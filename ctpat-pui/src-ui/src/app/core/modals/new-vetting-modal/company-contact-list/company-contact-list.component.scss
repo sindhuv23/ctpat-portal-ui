@@ -1,0 +1,96 @@
+table{
+  border: 1px solid gray;
+}
+
+td {
+  padding-left: 5px !important;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  word-break: normal;
+  background-color: white;
+  max-height: fit-content !important;
+}
+
+th {
+  padding: 2px 2px !important;
+  border-right: 1px solid gray;
+  text-align: center !important;
+  align-items: center !important;
+  align-content: center !important;
+  background-color: #edf1f5;
+  max-height: fit-content !important;
+}
+
+tr.mat-header-row, tr.mat-row {
+  height: fit-content !important;
+}
+
+td:last-child, th:last-child{
+  border-right: none !important;
+}
+
+button{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-column-entryId {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+.mat-column-phone {
+  flex: 0 0 8% !important;
+  width: 8% !important;
+}
+.mat-column-idNumbers {
+  flex: 0 0 23% !important;
+  width: 23% !important;
+}
+
+.mat-column-showDocDetail {
+  flex: 0 0 3% !important;
+  width: 3% !important;
+}
+.mat-column-nexus {
+  flex: 0 0 25% !important;
+  width: 25% !important;
+}
+.mat-column-lpr {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+
+#table-container{
+  margin-left: 40px;
+  margin-right: -25px;
+}
+
+#nestedTable th {
+  border-top: 1px solid gray !important;
+  background-color: #ffffdd;
+}
+#nestedTable td {
+  border-bottom: 0;
+}
+#nestedTable {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.newLineInData{
+  white-space: pre-line;
+}
+
+.countryName{
+  font-size: 16px;
+  margin-bottom: -10px;
+}
+::ng-deep .customTooltip {
+  white-space: pre-line;
+  max-width: unset !important;
+  font-size: 1em;
+  margin-left: -6px !important;
+}

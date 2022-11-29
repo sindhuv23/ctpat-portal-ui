@@ -1,0 +1,52 @@
+<form [formGroup]="uploadDocumentForm" novalidate>
+
+  <div fxLayout="row" id="header">
+    <h3 mat-dialog-title class="dialog-header">Upload</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div><br>
+
+<mat-dialog-content>
+  <div class="required required-text">* Required</div><br>
+  <div fxLayout="column">
+
+    <div fxLayout="row" style="margin-bottom:25px">
+      <label fxFlex="35" class="label" for="Select File">Select File<span class="required"> *</span></label>
+      <button mat-raised-button type="submit" color="primary" (click)="fileInput.click()" aria-label="Browse Document" accesskey="B" class="smallButton" [disabled]="isUploading">Browse</button>
+      <input hidden tid="selectedFileField" formControlName="selectedFile" (change)="onFileSelected($event)" #fileInput type="file" id="selectedFile">
+      <div fxFlex="2"></div>
+      <div style="margin-top:10px">{{fileName}}</div>
+      <mat-error class="errorText" *ngIf="submitted && f.selectedFile.errors && f.selectedFile.errors.required">File is required</mat-error>
+    </div>
+
+    <div fxLayout="row">
+      <div fxFlex="35" class="label">Document Type<span class="required"> *</span></div>
+      <mat-form-field  fxFlex="60" appearance="outline">
+        <mat-select formControlName="documentType" id="documentType" aria-label="Document Type" placeholder="--- Select ---">
+          <mat-option value="">--- Select ---</mat-option>
+          <mat-option value="docTypeCd">Some Doc Type</mat-option>
+        </mat-select>
+        <mat-error *ngIf="submitted && f.documentType.errors && f.documentType.errors.required">Document Type is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" style="margin-bottom:30px">
+      <label fxFlex="35" class="label" for="documentLibrary">Document Library<span class="required"> *</span></label>
+      <mat-radio-group formControlName="documentLibrary" id="documentLibrary" aria-label="Document Library" style="margin-top:5px">
+        <mat-radio-button color="primary" value="0"><span style="font-weight: lighter;">Internal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+        <mat-radio-button color="primary" value="1"><span style="font-weight: lighter;">Partner</span></mat-radio-button>
+      </mat-radio-group>
+      <mat-error *ngIf="submitted && f.documentLibrary.errors && f.documentLibrary.errors.required">Document Library is required</mat-error>
+    </div>
+
+  </div>
+</mat-dialog-content>
+
+<div id="footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="S" aria-label="Save">Save</button>
+  </mat-dialog-actions>
+</div>
+</form>

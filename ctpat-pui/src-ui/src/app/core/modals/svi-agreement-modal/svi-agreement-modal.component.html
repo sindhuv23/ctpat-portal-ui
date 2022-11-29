@@ -1,0 +1,49 @@
+<div id="outerContainer">
+    <div fxLayout="row" id="createHeader">
+        <h3 mat-dialog-title class="dialog-header">SVI Agreement</h3>
+        <mat-divider class="divider"></mat-divider>
+    </div><br>
+
+    <div id="midContainer">
+        <mat-dialog-content>
+            <div fxLayout="column">
+                <div style="margin-left: 10px;">
+                    <div fxLayout="row" class="bottom-margin">
+                        We, the undersigned, consent to the addition of our company name to the TPAT application.
+                    </div>
+                    <div fxLayout="row" class="bottom-margin">
+                        The CTPAT application allows consenting certified CTPAT partners to verify the participation
+                        status of
+                        other
+                        consenting certified TAT partners.
+                    </div>
+                    <div fxLayout="row" class="bottom-margin">
+                        <div fxLayout="column">
+                            To gain access, each partner must have consented to the release of their company name among
+                            the CTPAT
+                            membership.The TPAT application is an Internet, web-based point of electronic access limited
+                            to
+                            assenting
+                            certified TAT Partners. The CTPAT application is found on the <a href="http://www.cbp.gov"
+                                target="_blank" class="inline-display">http://www.cbp.gov</a> web site and controlled
+                            and maintained
+                            by CBP.
+                        </div>
+                    </div>
+                    <div fxLayout="row" class="bottom-margin">
+                        In order to participate, a company officer must electronically sign the SVI agreement.
+                    </div>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div id="footer">
+        <mat-divider class="divider"></mat-divider>
+        <mat-dialog-actions>
+            <div fxFlex></div>
+            <button mat-raised-button type="submit" color="primary" (click)="close()" accesskey="C"
+                aria-label="Save">Close</button>
+        </mat-dialog-actions>
+    </div>
+</div>

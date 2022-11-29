@@ -1,0 +1,18 @@
+version: '2.1'
+
+services:
+
+  ace-ctpat-pui:
+    env_file: env_vars.env
+    image: ${DOCKER_IMAGE_UI}
+    ports:
+    - "80:80"
+
+  ace-ctpat-services:
+    env_file: env_vars.env
+    image: ${DOCKER_IMAGE_SERVICES}
+    environment:
+    - "JAVA_OPTS=xms1024m -Xmx7048m"
+    command: -jar ace-ctpat-services-0.0.1-SNAPSHOT.jar
+    ports:
+    - "9001:9001"

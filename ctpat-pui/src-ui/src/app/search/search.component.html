@@ -1,0 +1,36 @@
+<div class="panel-spacing">
+	<mat-expansion-panel class="ctpat-panel" [expanded]="true" aria-controls="search-panel" id="searchpanel" >
+		<mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="40px" expandedHeight="40px">
+			<mat-panel-title class="ctpat-panel-title" accesskey="S" aria-label="Search">
+				<h3 class="padHeading">Search</h3>
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+    <div class="ctpat-panel-body">
+			<form [formGroup]="searchForm" autocomplete="off" novalidate>
+
+				<div fxLayout="column">
+          <label for="accountName" class="searchByLabel">Account Name</label>
+          <mat-form-field appearance="outline" color="outline">
+            <input matInput formControlName="accountName" maxlength="30"
+                tid="account-name-field" id="accountName" aria-label="Account Name">
+					 </mat-form-field>
+
+           <label for="applicationStatus" class="searchByLabel">Application Status</label>
+           <mat-form-field appearance="outline">
+            <mat-select formControlName="applicationStatus" id="applicationStatus" placeholder="--Select--" aria-label="Application Status">
+                <mat-option>--Select--</mat-option>
+            </mat-select>
+          </mat-form-field>
+				</div>
+
+				<div fxLayout="row" fxLayoutAlign="space-between center">
+          <button mat-button type="submit"
+          (click)="clear()" accesskey="C" aria-label="Clear">Clear</button>
+          <button mat-raised-button type="submit" color="primary"
+          (click)="search()" accesskey="S" aria-label="Search">Search</button>
+				</div>
+			</form>
+		</div>
+	</mat-expansion-panel>
+</div>

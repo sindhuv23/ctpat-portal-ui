@@ -1,0 +1,86 @@
+<div id="outerContainer">
+    <form [formGroup]="emailForm" novalidate>
+        <div fxLayout="row" id="createHeader">
+            <h3 mat-dialog-title class="dialog-header">Send Certification Email</h3>
+            <mat-divider class="divider"></mat-divider>
+        </div><br>
+
+        <div id="midContainer">
+            <mat-dialog-content>
+                <div fxLayout="row" fxLayoutAlign="end">
+                    <div class="required required-text">* Required</div><br>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column" fxFlex>
+                        <div fxLayout="row">
+                            <label fxFlex="20" class="label" for="to">TO<span class="required"> *</span></label>
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <input matInput formControlName="to" id="to" aria-label="To"
+                                    placeholder="SomeEmail@apple.com">
+                                <mat-error *ngIf="f.to.errors && f.to.errors.required">Email To is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <label fxFlex="20" class="label" for="cc">CC<span class="required"> *</span></label>
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <input matInput formControlName="cc" id="cc" aria-label="CC"
+                                    placeholder="SomeEmail@apple.com">
+                                <mat-error *ngIf="f.cc.errors && f.cc.errors.required">Email CC is required
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <label fxFlex="20" class="label" for="cc">From<span class="required"> *</span></label>
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <input matInput formControlName="from" id="from" aria-label="From"
+                                    placeholder="Apples Ltd">
+                                <mat-error *ngIf="f.from.errors && f.from.errors.required">Email From is
+                                    required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <label fxFlex="20" class="label" for="subject">Subject<span class="required">
+                                    *</span></label>
+                            <mat-form-field fxFlex="80" appearance="outline">
+                                <input matInput formControlName="subject" id="subject" aria-label="Subject"
+                                    placeholder="CTPAT Partification of Apples Ltd. (Importer) ">
+                                <mat-error *ngIf="f.subject.errors && f.subject.errors.required">Email subject
+                                    is required</mat-error>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <label class="label" for="emailBody">Email Body<span class="required">
+                                    *</span></label>
+                        </div>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex appearance="outline">
+                                <textarea matInput formControlName="emailBody" id="emailBody" aria-label="Email Body"
+                                    placeholder="U.S. Customs" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                    cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+
+                                <mat-error *ngIf="f.emailBody.errors && f.emailBody.errors.required">Email Body
+                                    is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </mat-dialog-content>
+        </div>
+
+        <div id="footer">
+            <mat-divider class="divider"></mat-divider>
+            <mat-dialog-actions>
+                <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C"
+                    aria-label="Cancel">Cancel</button>
+                <div fxFlex></div>
+                <button mat-raised-button type="submit" color="primary" (click)="sendEmail()" accesskey="S"
+                    aria-label="Save">Send Email</button>
+            </mat-dialog-actions>
+        </div>
+    </form>
+</div>

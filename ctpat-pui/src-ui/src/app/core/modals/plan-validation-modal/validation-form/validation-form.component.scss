@@ -1,0 +1,90 @@
+:host ::ng-deep .mat-radio-container{
+  height: 14px;
+  width: 14px;
+}
+:host ::ng-deep .mat-radio-outer-circle{
+  height: 14px;
+  width: 14px;
+}
+:host ::ng-deep .mat-radio-inner-circle{
+  height: 14px;
+  width: 14px;
+}
+
+.smallButton{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+  margin-left: 3px;
+}
+
+.contents{
+  font-size: 1.1em;
+  padding: 10px;
+}
+
+::ng-deep .customTooltip {
+  white-space: pre-line;
+  font-size: 0.9em;
+  margin-top: -3px !important;
+  max-width: 360px !important;
+}
+.help {
+  font-size: 20px !important;
+  margin-left: 5px;
+  margin-bottom: -8px;
+}
+
+.redBg {
+  padding: 0px 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(200, 36, 63);
+  font-weight: 500;
+}
+.blueBg {
+  padding: 0px 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(71, 120, 171);
+  font-weight: 500;
+}
+
+.question{
+  margin-bottom: 10px;
+  font-weight: bold;
+  white-space: pre-line;
+}
+
+.questionTitle{
+  margin-top: 10px;
+  margin-bottom: 5px;
+  text-decoration: underline;
+}
+
+.label{
+  margin-top: 6px;
+}
+
+.spaceReduction{
+  margin-bottom: -18px;
+}
+
+.addButton{
+  margin: 5px;
+}
+
+.pageIcon{
+  font-size: 30px;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.iconTitle{
+  margin-top: 25px;
+  cursor: pointer;
+}
+

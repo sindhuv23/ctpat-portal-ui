@@ -1,0 +1,44 @@
+.header-block {
+  background-color: #00416A !important;
+  margin-bottom: 5px !important;
+}
+
+.disable-cursor {
+  pointer-events: none;
+}
+
+.custom-label {
+  color: #fff;
+  font-family: "Roboto","Calibri",sans-serif;
+  font-size:  90%;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  border: none;
+}
+
+#user-name {
+  display: inline-block;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+#person-icon{
+  margin-top: 10px;
+  display: inline-block;
+}
+
+#account-dropdown{
+  background-color: lightgray;
+  font-weight: bold;
+  height: 65px;
+  margin-top: 0px;
+  margin-bottom: 2px;
+}
+
+#name-dropdown{
+  margin-top: 12px;
+  //background-color: white;
+}
+

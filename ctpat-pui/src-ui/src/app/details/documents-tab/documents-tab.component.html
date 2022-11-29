@@ -1,0 +1,35 @@
+<mat-accordion>
+  <mat-expansion-panel class="mat-elevation-z0" #panelA expanded tid="panel-account-info">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelA.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelA.expanded>expand_more</mat-icon>
+        CTPAT Account Information
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-account-information></app-account-information>
+
+  </mat-expansion-panel><hr>
+</mat-accordion>
+
+<mat-tab-group #docUploadTabSet animationDuration="0ms" [dynamicHeight]="true" [(selectedIndex)]="currentTabIndex">
+
+  <mat-tab #partnerDocumentTab>
+      <ng-template mat-tab-label>
+          <span>Partner Document Exchange</span>
+      </ng-template>
+      <ng-template matTabContent>
+        <app-partner-document-tab></app-partner-document-tab>
+      </ng-template>
+  </mat-tab>
+  <mat-tab #internalDocumentTab>
+    <ng-template mat-tab-label>
+        <span>Internal Document Exchange</span>
+    </ng-template>
+    <ng-template matTabContent>
+        <app-internal-document-tab></app-internal-document-tab>
+    </ng-template>
+  </mat-tab>
+
+</mat-tab-group>

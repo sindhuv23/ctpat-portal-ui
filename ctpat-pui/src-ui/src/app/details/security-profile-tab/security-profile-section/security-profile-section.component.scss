@@ -1,0 +1,93 @@
+.normal-button{
+  min-width: 160px !important;
+  height: 36px !important;
+  border-width: 1px !important;
+  border-color: lightgray !important;
+  border-radius: 3px !important;
+  border-style: solid;
+  background-color: #edf1f5;
+  color: black !important;
+}
+
+button{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+mat-panel-title{
+  min-width: fit-content !important;
+}
+
+.mat-icon {
+  font-size: 18px;
+}
+
+.title{
+  font-size: 12pt;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.incomplete{
+  color: #a00;
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 3px;
+}
+
+.incompleteAllSecs{
+  color: #a00;
+  font-weight: bold;
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.spaceReduction{
+  margin-bottom: -10px;
+}
+
+.warningText {
+  color: #dd0000;
+  font-size: 1em;
+  padding-left: 8px;
+  margin-top: 20px;
+  margin-bottom: -40px;
+}
+
+table{
+  border: 1px solid gray;
+}
+
+td{
+  padding: 5px 5px;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  word-break: normal;
+  background-color: white;
+}
+
+th{
+  padding: 2px 5px;
+  border-right: 1px solid gray;
+  text-align: center !important;
+  background-color: #edf1f5;
+}
+
+td:last-child, th:last-child{
+  border-right: none;
+}
+
+.incompleteTd{
+  color: #a00;
+  font-weight: bold;
+}
+.completeTd{
+  color: #00416a;
+  font-weight: bold;
+}
+
+
+

@@ -1,0 +1,22 @@
+<div fxLayout="row" id="header">
+  <h3 mat-dialog-title class="dialog-header">{{data.title}}</h3>
+  <div fxFlex></div>
+  <button mat-icon-button [mat-dialog-close]="true" (click)="closeDialog()" aria-label="clear">
+    <mat-icon>clear</mat-icon>
+  </button>
+</div>
+<mat-divider class="divider"></mat-divider>
+<br />
+
+<mat-dialog-content>
+  <div class="mat-dialog-content">
+    <h3>{{data.message}}</h3>
+  </div>
+</mat-dialog-content>
+
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onNoClick()" class="cancel-button" aria-label="No" accesskey="N"> No </button>
+  <div fxFlex></div>
+  <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color="primary" aria-label="Yes" accesskey="Y"> Yes </button>
+</div>
+

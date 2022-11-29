@@ -1,0 +1,58 @@
+:host ::ng-deep .mat-radio-container{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-outer-circle{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-inner-circle{
+  height: 15px;
+  width: 15px;
+}
+
+.uploadButton{
+  height: 22px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+table{
+  border: 1px solid gray;
+}
+
+td {
+  padding-left: 10px !important;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  word-break: normal;
+  background-color: white;
+  max-height: fit-content !important;
+}
+
+th {
+  padding-left: 15px !important;
+  border-right: 1px solid gray;
+  text-align: center !important;
+  background-color: #edf1f5;
+  max-height: fit-content !important;
+}
+
+tr.mat-header-row, tr.mat-row {
+  height: fit-content !important;
+}
+
+td:last-child, th:last-child{
+  border-right: none;
+}
+
+.mat-column-fileName {
+  flex: 0 0 30% !important;
+  width: 30% !important;
+}
+.mat-column-entryId {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}

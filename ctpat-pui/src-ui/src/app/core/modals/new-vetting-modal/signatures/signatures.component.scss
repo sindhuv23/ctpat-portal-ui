@@ -1,0 +1,26 @@
+.title{
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+:host ::ng-deep .mat-radio-container{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-outer-circle{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-inner-circle{
+  height: 15px;
+  width: 15px;
+}
+
+#signatureSection{
+  border: 1px solid darkgray;
+  padding: 20px 20px 0px 20px;
+}
+
+.response{
+  width: 100%;
+}

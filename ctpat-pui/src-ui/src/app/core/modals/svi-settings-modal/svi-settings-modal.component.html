@@ -1,0 +1,64 @@
+<div id="outerContainer">
+    <form [formGroup]="sviSettingsForm" novalidate>
+      <div fxLayout="row" id="createHeader">
+        <h3 mat-dialog-title class="dialog-header">Settings</h3>
+        <mat-divider class="divider"></mat-divider>
+      </div><br>
+  
+      <div id="midContainer">
+        <mat-dialog-content>
+          <div fxLayout="column">
+            <div>
+              <div>
+                <hr>
+                <div fxLayout="column">
+                  <div fxLayout="row">
+                    <div fxFlex="95">
+                      <div>
+                        <span class="bold-font"> Auto Accept Request</span>
+                      </div>
+                      <div>
+                        <span>Accept Partner Request Automatically</span>
+                      </div>
+                    </div>
+                    <div fxFlex="5" style="align-self: center;">
+                      <mat-checkbox color="primary" aria-label="Agree" formControlName="autoAcceptRequest"></mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div fxLayout="column">
+                  <div fxLayout="row">
+                    <div fxFlex="95">
+                      <div>
+                        <span class="bold-font">Share More</span>
+                      </div>
+                      <div>
+                        <span>Share primary contact information (Name, Address, Email, Phone) and your company's current
+                          tier
+                          status with SVI partners</span>
+                      </div>
+                    </div>
+                    <div fxFlex="5" style="align-self: center;">
+                      <mat-checkbox color="primary" aria-label="Agree" formControlName="shareMore"></mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+              </div>
+            </div>
+          </div>
+        </mat-dialog-content>
+      </div>
+  
+      <div id="footer">
+        <mat-divider class="divider"></mat-divider>
+        <mat-dialog-actions>
+          <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C"
+            aria-label="Cancel">Cancel</button>
+          <div fxFlex></div>
+          <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="S" aria-label="Save">Save</button>
+        </mat-dialog-actions>
+      </div>
+    </form>
+  </div>

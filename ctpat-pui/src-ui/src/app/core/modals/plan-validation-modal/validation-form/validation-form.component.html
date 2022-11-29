@@ -1,0 +1,143 @@
+<div fxLayout="column" class="contents" id="top">
+
+  <form [formGroup]="validationForm" novalidate>
+  <div *ngFor="let subSection of sections[sectionNumber]; let ii=index">
+
+    <div class="question" id="{{sections[sectionNumber][ii].id}}">
+      {{sections[sectionNumber][ii].question}} ({{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}})
+      <span [ngClass]="sections[sectionNumber][ii].must? 'redBg' : 'blueBg'">{{sections[sectionNumber][ii].must? 'must' : 'should'}}</span>
+      <mat-icon *ngIf="sections[sectionNumber][ii].help" class="help" matTooltip={{sections[sectionNumber][ii].help}} matTooltipClass="customTooltip" matTooltipPosition="below">info</mat-icon>
+    </div>
+
+    <mat-radio-group formControlName="answer{{ii}}">
+      <mat-radio-button color="primary" value="N"><span style="font-weight: lighter">No</span></mat-radio-button><br>
+      <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter">Yes</span></mat-radio-button><br>
+      <mat-radio-button color="primary" value="P"><span style="font-weight: lighter">Yes - Best Practice</span></mat-radio-button><br>
+      <mat-radio-button color="primary" value="A"><span style="font-weight: lighter">Not Applicable</span></mat-radio-button>
+    </mat-radio-group>
+
+    <div class="questionTitle">Internal Findings (Optional)</div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label fxFlex="16" class="label" for="documentVerified">Document Verified</label>
+      <mat-form-field fxFlex="45" appearance="outline">
+        <input matInput formControlName="documentVerified" id="documentVerified" aria-label="Document Verified">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" (click)="upload('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}A')" class="smallButton">Upload</button>
+      <button mat-raised-button type="submit" color="primary" (click)="associate('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}A')" class="smallButton">Associate</button>
+      <button mat-raised-button type="submit" color="primary" (click)="view('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}A')" class="smallButton">View</button>
+      <button mat-raised-button type="submit" color="primary" (click)="remove('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}A')" class="smallButton">Remove</button>
+    </div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label fxFlex="16" class="label" for="observedProcess">Observed Process</label>
+      <mat-form-field fxFlex="80" appearance="outline">
+        <textarea matInput formControlName="observedProcess" id="observedProcess" aria-label="Observed Process"
+          cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label fxFlex="16" class="label" for="descriptionOfProcess">Description of Process</label>
+      <mat-form-field fxFlex="80" appearance="outline">
+        <textarea matInput formControlName="descriptionOfProcess" id="descriptionOfProcess" aria-label="Description of Process"
+          cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label  fxFlex="16" class="label" for="other">Other</label>
+      <mat-form-field fxFlex="80" appearance="outline">
+        <textarea matInput formControlName="other" id="other" aria-label="Other"
+          cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="questionTitle">Public Report Findings/Actions/Recommendations - will appear on the validation report (Mandatory)</div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label fxFlex="16" class="label" for="finding">Finding</label>
+      <mat-form-field fxFlex="45" appearance="outline">
+        <input matInput formControlName="finding" id="finding" aria-label="Finding">
+      </mat-form-field>
+      <button mat-raised-button type="submit" color="primary" (click)="upload('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}B')" class="smallButton">Upload</button>
+      <button mat-raised-button type="submit" color="primary" (click)="associate('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}B')" class="smallButton">Associate</button>
+      <button mat-raised-button type="submit" color="primary" (click)="view('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}B')" class="smallButton">View</button>
+      <button mat-raised-button type="submit" color="primary" (click)="remove('{{sections[sectionNumber][ii].msc}},{{sections[sectionNumber][ii].profile}}B')" class="smallButton">Remove</button>
+    </div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label fxFlex="16" class="label" for="recommendation">Recommendation</label>
+      <mat-form-field fxFlex="78" appearance="outline">
+        <input matInput formControlName="recommendation" id="recommendation" aria-label="Recommendation">
+      </mat-form-field>
+      <mat-icon class="addButton">add</mat-icon>
+    </div>
+
+    <div fxLayout="row" class="spaceReduction">
+      <label fxFlex="16" class="label" for="action">Action</label>
+      <mat-form-field fxFlex="78" appearance="outline">
+        <input matInput formControlName="action" id="action" aria-label="Action">
+      </mat-form-field>
+      <mat-icon class="addButton">add</mat-icon>
+    </div>
+
+    <div id="bestPractices{{ii}}">
+      <div class="questionTitle">Public Best Practices (Mandatory)</div>
+
+      <div fxLayout="row" class="spaceReduction">
+        <label fxFlex="35" class="label" for="Senior Management Support">Senior Management Support</label>
+        <mat-form-field fxFlex="61" appearance="outline">
+          <textarea matInput formControlName="seniorManagementSupport" id="seniorManagementSupport" aria-label="Senior Management Support"
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="spaceReduction">
+        <label fxFlex="35" class="label" for="Innovative Business Process/Technology">Innovative Business Process/Technology</label>
+        <mat-form-field fxFlex="61" appearance="outline">
+          <textarea matInput formControlName="businessProcessTechnology" id="businessProcessTechnolog" aria-label="Innovative Business Process/Technology"
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="spaceReduction">
+        <label  fxFlex="35" class="label" for="Document Process">Document Process</label>
+        <mat-form-field fxFlex="61" appearance="outline">
+          <textarea matInput formControlName="documentProcess" id="documentProcess" aria-label="Document Process"
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="spaceReduction">
+        <label fxFlex="35" class="label" for="Checks, Balances, Accountability and Testing">Checks, Balances, Accountability and Testing</label>
+        <mat-form-field fxFlex="61" appearance="outline">
+          <textarea matInput formControlName="cbat" id="cbat" aria-label="Checks, Balances, Accountability and Testings"
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" class="spaceReduction">
+        <label  fxFlex="35" class="label" for="Evidence of Implementation">Evidence of Implementation</label>
+        <mat-form-field fxFlex="61" appearance="outline">
+          <textarea matInput formControlName="evidenceImplementation" id="evidenceImplementation" aria-label="Evidence of Implementation"
+            cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1" cdkAutosizeMaxRows="30"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <hr>
+
+  </div>
+
+  <div fxLayout="row">
+    <div fxFlex="50"></div>
+    <div class="iconTitle" (click)="prevSection()">{{sectionTitles[(sectionNumber+10)%11]}}</div>
+    <mat-icon class="pageIcon" (click)="prevSection()">skip_previous</mat-icon>
+    <mat-icon class="pageIcon" (click)="nextSection()">skip_next</mat-icon>
+    <div class="iconTitle" (click)="nextSection()">{{sectionTitles[(sectionNumber+1)%11]}}</div>
+  </div>
+
+  </form>
+</div>
+

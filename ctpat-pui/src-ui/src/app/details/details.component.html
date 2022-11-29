@@ -1,0 +1,92 @@
+<div class="panel-spacing">
+  <mat-expansion-panel class="ctpat-panel" [expanded]="true">
+    <mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="40px" expandedHeight="40px">
+      <mat-panel-title class="ctpat-panel-title">
+        <h3 class="padHeading">Details: {{accountName}}
+        </h3>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div class="ctpat-panel-body" id="detailsPanel">
+
+      <div *ngIf="showActionMenu" fxLayout="row" fxLayoutAlign="end">
+        <button tid="actionMenu" mat-raised-button type="button" [matMenuTriggerFor]="actionsMenu" color="primary"
+            class="actionBtn" aria-label="Action">
+            Actions <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #actionsMenu="matMenu">
+            <ng-template matMenuContent>
+                <button id="{{actionItem.action}}" *ngFor="let actionItem of actionMenuItems" (click)="invokeMenuAction(actionItem.action)" aria-label="Menu"
+                    mat-menu-item>{{actionItem.name}}</button>
+            </ng-template>
+        </mat-menu>
+     </div>
+
+      <mat-tab-group #detailsTabSet animationDuration="0ms" [dynamicHeight]="true" style="margin-top:5px" [(selectedIndex)]="currentTabIndex">
+          <mat-tab #businessDetailsTab>
+              <ng-template mat-tab-label>
+                  <span>Business Details</span>
+              </ng-template>
+              <ng-template matTabContent>
+                <app-business-details-tab></app-business-details-tab>
+              </ng-template>
+          </mat-tab>
+          <mat-tab #vettingTab>
+            <ng-template mat-tab-label>
+                <span>Vetting</span>
+            </ng-template>
+            <ng-template matTabContent>
+              <app-vetting-tab></app-vetting-tab>
+            </ng-template>
+        </mat-tab>
+          <mat-tab #businessEntityInfoTab>
+            <ng-template mat-tab-label>
+                <span>Business Entity Info</span>
+            </ng-template>
+            <ng-template matTabContent>
+                <app-business-entity-info-tab></app-business-entity-info-tab>
+            </ng-template>
+          </mat-tab>
+          <mat-tab #securityProfileTab>
+            <ng-template mat-tab-label>
+                <span>Security Profile</span>
+            </ng-template>
+            <ng-template matTabContent>
+                <app-security-profile-tab></app-security-profile-tab>
+            </ng-template>
+          </mat-tab>app-validation-tab
+          <mat-tab #validationTab>
+            <ng-template mat-tab-label>
+                <span>Validation Summary</span>
+            </ng-template>
+            <ng-template matTabContent>
+                <app-validation-tab></app-validation-tab>
+            </ng-template>
+          </mat-tab>
+          <mat-tab #documentsTab>
+            <ng-template mat-tab-label>
+                <span>Documents</span>
+            </ng-template>
+            <ng-template matTabContent>
+                <app-documents-tab></app-documents-tab>
+            </ng-template>
+          </mat-tab>
+          <mat-tab #sviTab>
+            <ng-template mat-tab-label>
+                <span>SVI</span>
+            </ng-template>
+            <ng-template matTabContent>
+                <app-svi-tab></app-svi-tab>
+            </ng-template>
+          </mat-tab>
+          <mat-tab #eventHistoryTab>
+            <ng-template mat-tab-label>
+                <span>Event History</span>
+            </ng-template>
+            <ng-template matTabContent>
+                <app-event-history-tab></app-event-history-tab>
+            </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+  </div>
+  </mat-expansion-panel>

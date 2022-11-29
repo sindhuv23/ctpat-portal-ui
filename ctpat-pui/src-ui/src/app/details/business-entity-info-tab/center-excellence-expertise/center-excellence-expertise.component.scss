@@ -1,0 +1,35 @@
+button{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerItem30{
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+}
+
+.item {
+  padding: 0px 10px 3px 0px;
+  display: flex;
+}
+
+.itemHeader1 {
+  font-weight: bold;
+  padding-right: 5px;
+  display: inline-block;
+  width: 300px;
+}
+
+.blockText {
+  display: inline-block;
+  width: 200px;
+}
+
+i{
+  color:darkblue;
+}
+

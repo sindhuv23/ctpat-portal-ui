@@ -1,0 +1,31 @@
+<button (click)="newVetting()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+aria-label="Pending or Initiate New Vetting" accesskey="N">Pending / Initiate New Vetting</button>
+
+<div name="vettingHistoryDiv" id="vettingHistoryDiv">
+  <table mat-table title="VettingHistory" id="vettingHistoryTable" [dataSource]="dataSourceVettingHistory" name="vettingHistoryTable" class="row mat-elevation-z0">
+
+    <ng-container matColumnDef="vettingDate">
+      <th mat-header-cell *matHeaderCellDef scope="col">Vetting Date</th>
+      <td mat-cell *matCellDef="let row">{{row.vettingDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="scss">
+      <th mat-header-cell *matHeaderCellDef scope="col">SCSS</th>
+      <td mat-cell *matCellDef="let row">{{row.scss}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="results">
+      <th mat-header-cell *matHeaderCellDef scope="col">Results</th>
+      <td mat-cell *matCellDef="let row">{{row.results}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="docId">
+      <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Document Link</th>
+      <td mat-cell *matCellDef="let row" style="text-align:center">
+        <mat-icon (click)="getDocument(row.docId)" id="pdfIcon">picture_as_pdf</mat-icon></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsVettingHistory" name="vettingHistoryTableHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsVettingHistory"></tr>
+  </table>
+</div>

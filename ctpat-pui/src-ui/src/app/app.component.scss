@@ -1,0 +1,32 @@
+
+.app-content {
+  margin: 0px;
+  padding: 0px;
+}
+.ctpat-container {
+position: absolute;
+top: 115px;
+bottom: 0px;
+left: 0;
+right: 0;
+background: #fff;
+overflow-x: auto;
+}
+.ctpat-sidenav {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 250px;
+min-width: 250px;
+background: #eee;
+}
+.ctpat-content-area{
+min-width: 1030px;
+height: 100%;
+align-items: center;
+justify-content: center;
+}
+::ng-deep .mat-select-placeholder {
+  color: #666 !important;
+}
+

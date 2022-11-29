@@ -1,0 +1,47 @@
+<div id="outerContainer">
+  <div fxLayout="row" id="validationHeader" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <button mat-icon-button (click)="showSideNav=!showSideNav"><mat-icon id="toggle-button">menu</mat-icon></button>
+    <h3 mat-dialog-title class="dialog-header">Plan a Validation</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+<div id="midContainer" fxLayout="row">
+  <div id="sideNav" *ngIf="showSideNav" fxLayout="column">
+
+    <div *ngFor="let sectionTitle of sectionTitles; let i=index" [ngClass]="{'secHighlight' : sectionNumber === i}">
+      <div>
+        <mat-icon [ngClass]="sectionDone[i] ? 'greenIcon' : 'redIcon'">{{sectionDone[i] ? "check" : "close"}}</mat-icon>
+        <a routerLink="validation{{i}}" (click)="setValidationSection(i, '', 0)">{{sectionTitle}}</a>
+        <mat-icon (click)="sectionOpens[i]=!sectionOpens[i]" class="stateIcon">{{sectionOpens[i] ? "expand_more":"chevron_left"}}</mat-icon>
+      </div>
+
+      <div *ngIf="sectionOpens[i]" class="levelTwo">
+        <div *ngFor="let subSection of sections[i]; let j=index">
+          <div [ngClass]="{'subsechighlight' : sectionNumber === i && subSectionNumber === j}">
+            <mat-icon [ngClass]="sections[i][j].done ? 'greenIcon' : 'redIcon'">{{sections[i][j].done ? "check" : "close"}}</mat-icon>
+            <a routerLink="validation{{i}}" fragment={{sections[i][j].id}} (click)="setValidationSection(i, sections[i][j].id, j)">
+              {{sections[i][j].criteria}}({{sections[i][j].msc}},{{sections[i][j].profile}})</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div id="navContents" (scroll)="onScroll($event)">
+    <router-outlet *ngIf="showForm"></router-outlet>
+    <div id="contentBottom"></div>
+  </div>
+</div>
+
+<div id="footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="saveDraft()" aria-label="Save Draft" accesskey="D">Save Draft</button>
+    <button mat-raised-button type="submit" color="primary" (click)="submit()" aria-label="Submit" accesskey="S" disabled={{!submitEnabled}}>Submit</button>
+  </mat-dialog-actions>
+</div>
+</div>
+

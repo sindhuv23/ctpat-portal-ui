@@ -1,0 +1,62 @@
+<div fxLayout="column" style="margin-top:10px">
+
+  <div fxLayout="row" [formGroup]="documentForm">
+    <mat-radio-group formControlName="documentCat">
+      <mat-radio-button color="primary" value=""><span style="font-weight: lighter;">All Partner Documents&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+      <mat-radio-button color="primary" value="T"><span style="font-weight: lighter;">Trade Compliance Only&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+      <mat-radio-button color="primary" value="A"><span style="font-weight: lighter;">CTPAT Account Only&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+    </mat-radio-group>
+
+    <button mat-raised-button type="submit" color="primary" (click)="uploadDocument(companyId)" aria-label="Upload Document" accesskey="U" class="uploadButton">Upload</button>
+
+    <div fxFlex></div>
+    <div>
+      <mat-form-field>
+        <input matInput formControlName="textInput" placeholder="Filter" />
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div name="documentsDiv" id="documentsDiv">
+    <table mat-table title="Documents" id="documentsTable" [dataSource]="dataSourceDocuments" name="documentsTable" class="row mat-elevation-z0"
+      matSort matSortActive="uploadedDateTime" matSortDirection="desc" [matSortDisableClear]="true">
+
+      <ng-container matColumnDef="fileName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">File Name</th>
+        <td mat-cell *matCellDef="let row">{{row.fileName}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Type</th>
+        <td mat-cell *matCellDef="let row">{{row.type}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="fileSize">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">File Size</th>
+        <td mat-cell *matCellDef="let row">{{row.fileSize}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="uploadedBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Uploaded By</th>
+        <td mat-cell *matCellDef="let row">{{row.uploadedBy}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="uploadedDateTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Uploaded Date-time</th>
+        <td mat-cell *matCellDef="let row">{{row.uploadedDateTime}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="entryId">
+        <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Delete</th>
+        <td mat-cell *matCellDef="let row" style="text-align:center">
+          <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns" name="documentsTableHeader"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+
+</div>

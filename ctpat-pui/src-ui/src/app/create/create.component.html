@@ -1,0 +1,16 @@
+<div class="panel-spacing">
+	<mat-expansion-panel class="ctpat-panel" [expanded]="true" aria-controls="createpanelbody" id="createpanel" >
+		<mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="40px" expandedHeight="40px">
+			<mat-panel-title class="ctpat-panel-title" accesskey="C" aria-label="Create">
+				<h3 class="padHeading">Create</h3>
+			</mat-panel-title>
+		</mat-expansion-panel-header>
+
+		<div class="ctpat-panel-body" aria-labelledby="createpanel">
+			<div class="btn-group child">
+        <button mat-raised-button type="submit" color="primary"
+        class="create-btn" (click)="createAccount()" accesskey="C" aria-label="Create New Account">New Account</button>
+			</div>
+		</div>
+	</mat-expansion-panel>
+</div>

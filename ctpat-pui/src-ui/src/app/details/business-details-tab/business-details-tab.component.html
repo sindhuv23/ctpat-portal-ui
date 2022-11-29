@@ -1,0 +1,76 @@
+<div fxLayout="row" fxLayoutAlign="start center" [ngClass]="{hideElement: hideProfileWarning}" class="profileWarning">
+  <div><mat-icon class="bigIcon">warning</mat-icon></div><div fxFlex="1"></div>
+  <div>Warning: Complete your profile.</div><div fxFlex="2"></div>
+  <div><a (click)="addBusinessEntityInfo()" aria-label="Add Business Entity Info"
+    (keyup.enter)="addBusinessEntityInfo()" role="button" tabindex="0">Add Business Entity Info</a></div><div fxFlex="2"></div>
+  <div><a (click)="addMrInfo()" aria-label="Add MR Info"
+    (keyup.enter)="addMrInfo()" role="button" tabindex="1"> Add MR Info (Optional)</a></div>
+</div>
+
+<mat-accordion multi>
+  <mat-expansion-panel class="mat-elevation-z0" #panelA expanded tid="panel-account-info">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelA.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelA.expanded>expand_more</mat-icon>
+        CTPAT Account Information
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-account-information></app-account-information>
+
+  </mat-expansion-panel><hr>
+
+  <mat-expansion-panel class="mat-elevation-z0" #panelB expanded tid="panel-business-info">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelB.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelB.expanded>expand_more</mat-icon>
+        Business Information
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-business-information></app-business-information>
+
+  </mat-expansion-panel><hr>
+
+  <mat-expansion-panel class="mat-elevation-z0" #panelC expanded tid="panel-addresses">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelC.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelC.expanded>expand_more</mat-icon>
+        Addresses
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-addresses></app-addresses>
+
+  </mat-expansion-panel><hr>
+
+  <mat-expansion-panel class="mat-elevation-z0" #panelD expanded tid="panel-contacts">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelD.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelD.expanded>expand_more</mat-icon>
+        Contacts/Users
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-contacts></app-contacts>
+
+  </mat-expansion-panel><hr>
+
+  <mat-expansion-panel class="mat-elevation-z0" #panelE expanded tid="panel-agreement">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelE.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelE.expanded>expand_more</mat-icon>
+        Mutual Recognition Agreement
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-agreement></app-agreement>
+
+  </mat-expansion-panel>
+
+</mat-accordion>

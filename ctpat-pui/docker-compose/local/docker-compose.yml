@@ -1,0 +1,43 @@
+version: '2.1'
+
+services:
+
+  ace-ctpat-pui:
+    image: ace-ctpat/ace-ctpat-pui:latest
+#    env_file: env_vars.env
+#    image: ${DOCKER_IMAGE_UI}
+    environment:
+    - "JAVA_OPTS=xms1024m -Xmx7048m"
+    command: -jar ace-ctpat-pui-0.0.1-SNAPSHOT.jar
+    ports:
+    - "8443:8443"
+
+  ace-ctpat-services:
+    image: ace-ctpat/ace-ctpat-services:latest
+    environment:
+    - "JAVA_OPTS=xms1024m -Xmx7048m"
+    command: -jar ace-ctpat-services-0.0.1-SNAPSHOT.jar
+    ports:
+    - "9001:9001"
+  
+#  portainer:
+#    image: portainer/portainer
+#    container_name: portainer
+#    restart: always
+#    ports:
+#      - "9000:9000"
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - portainer_data:/data
+
+  postgres:
+#     build:
+#       context: postgres-docker/
+     image: ctpat/ctpat-postgres:latest
+     container_name: postgres
+     environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=postgres
+       - DB_HOST=postgres
+     ports:
+       - 5433:5433

@@ -1,0 +1,89 @@
+<form [formGroup]="signatureForm" novalidate>
+<div style="margin:10px">
+
+  <div class="title">Signatures:</div><br>
+
+  <div fxLayout="row" fxLayoutGap="30px">
+
+    <div fxFlex="50" fxLayout="column">
+
+      <div fxLayout="row">
+        <div fxFlex="40" class="title">SCSS Name/Signature</div>
+        <mat-form-field fxFlex="40" appearance="outline">
+          <input matInput formControlName="scssNameSignature" aria-label="SCSS Name/Signature">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <label fxFlex="25" class="title" for="vettingDecision">Vetting Decision</label>
+        <mat-form-field fxFlex="25" appearance="outline">
+          <mat-select formControlName="vettingDecision" id="vettingDecision" placeholder="--- Select ---" aria-label="Vetting Decision">
+              <mat-option>--Select--</mat-option>
+              <ng-container>
+                <mat-option value="test">test
+                </mat-option>
+              </ng-container>
+          </mat-select>
+        </mat-form-field>
+        <div fxFlex="5"></div>
+        <label fxFlex="20" class="title" for="subStatus">Sub Status</label>
+        <mat-form-field fxFlex="25" appearance="outline">
+          <mat-select formControlName="subStatus" id="subStatus" placeholder="--- Select ---" aria-label="Sub Status">
+              <mat-option>--Select--</mat-option>
+              <ng-container>
+                <mat-option value="test">test
+                </mat-option>
+              </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <label fxFlex="30" class="title" for="vettingThreshold">Vetting Threshold</label>
+        <mat-form-field fxFlex="70" appearance="outline">
+          <mat-select formControlName="vettingThreshold" id="vettingThreshold" placeholder="Options appear based on sub status" aria-label="Vetting Threshold">
+              <mat-option>--Select--</mat-option>
+              <ng-container>
+                <mat-option value="test">test
+                </mat-option>
+              </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <label class="title" for="SCSS Comments">SCSS Comments</label>
+      <mat-form-field fxFlex appearance="outline" id="scssComments">
+        <textarea matInput class="response" formControlName="scssComments" rows="3"></textarea>
+      </mat-form-field>
+
+    </div>
+
+    <div fxFlex="50" id="signatureSection" fxLayout="column" fxLayoutGap="6px">
+
+      <div fxLayout="row">
+        <div fxFlex="50" class="title">Supervisor Name/Signature</div>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="supervisorNameSignature" aria-label="Supervisor Name/Signature">
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row">
+        <div fxFlex="50" class="title">Supervisor Selection</div>
+        <mat-radio-group formControlName="supervisorSelection" aria-label="Supervisor Selection">
+          <mat-radio-button color="primary" value="A"><span style="font-weight: lighter;">Agree with SCSS Decision</span></mat-radio-button>
+          <mat-radio-button color="primary" value="O"><span style="font-weight: lighter;">Overide SCSS Decision</span></mat-radio-button>
+          <mat-radio-button color="primary" value="R"><span style="font-weight: lighter;">Return to SCSS</span></mat-radio-button>
+        </mat-radio-group>
+      </div>
+
+      <div class="title">Supervisor's Comments</div>
+      <mat-form-field fxFlex appearance="outline" id="supervisorComments">
+        <textarea matInput class="response" formControlName="supervisorComments" rows="3"></textarea>
+      </mat-form-field>
+
+    </div>
+
+  </div>
+
+</div>
+</form>

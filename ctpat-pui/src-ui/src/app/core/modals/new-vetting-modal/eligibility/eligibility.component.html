@@ -1,0 +1,31 @@
+<div fxLayout="column">
+
+  <div name="eligibilityDiv" id="eligibilityDiv">
+    <table mat-table title="EligibilityQuestions" id="eligibilityTable" [dataSource]="dataSourceEligibilityQuestions" name="eligibilityTable" class="row mat-elevation-z0">
+
+      <ng-container matColumnDef="question">
+        <td mat-cell *matCellDef="let row">{{row.question}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="answer">
+        <td mat-cell *matCellDef="let row" style="text-align:center">
+          <mat-radio-group value="">
+            <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </ng-container>
+
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsEligibilityQuestions"></tr>
+    </table>
+  </div>
+
+  <div style="font-size:1.1em; font-weight:500; margin-top:10px">
+    Mandatory if any of the responses is "No"
+  </div>
+  <form [formGroup]="eligibilityForm" autocomplete="off" novalidate>
+    <mat-form-field fxFlex appearance="outline" id="eligibilityNotes">
+      <textarea matInput id="eligibilityNotes" formControlName="eligibilityNotes" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+  </div>

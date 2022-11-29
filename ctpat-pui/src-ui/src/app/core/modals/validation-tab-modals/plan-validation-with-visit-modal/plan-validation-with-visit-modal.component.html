@@ -1,0 +1,21 @@
+<form [formGroup]="planValidationWithVisitForm" novalidate>
+
+  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <h3 mat-dialog-title class="dialog-header">Initiate a Validation</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+<mat-dialog-content>
+Form fields go here
+</mat-dialog-content>
+
+<div class="common-footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="initiate()" accesskey="I" aria-label="Initiate">Initiate</button>
+  </mat-dialog-actions>
+</div>
+</form>
+

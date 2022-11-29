@@ -1,0 +1,505 @@
+
+  <div fxLayout="row">
+    <div class="title">Security Profile&nbsp;</div>
+    <div *ngIf="formStatus==0" class="incompleteAllSecs">(INCOMPLETE)</div><div fxFlex="2"></div>
+    <button class="normal-button" mat-button type="submit" (click)="downloadSummary()" aria-label="Download Summary"
+    accesskey="D">Download Summary</button><div fxFlex="2"></div>
+    <button class="normal-button" mat-button type="submit" (click)="submitSecurityProfile()" aria-label="Submit Security Profile" [disabled]="formStatus==0"
+    [style.background-color]="formStatus==0 ? 'lightgray' : '#edf1f5'"
+    accesskey="S">Submit Security Profile</button>
+  </div>
+
+<form [formGroup]="securityProfileForm">
+  <mat-dialog-content>
+    <mat-accordion multi>
+
+    <mat-expansion-panel #panelA expanded tid="panel-upperManagementResponsibility">
+        <mat-expansion-panel-header>
+          <div fxLayout="row">
+            <mat-panel-title>
+              <mat-icon *ngIf=!panelA.expanded>chevron_right</mat-icon>
+              <mat-icon *ngIf=panelA.expanded>expand_more</mat-icon>
+                Upper Management Responsibility
+            </mat-panel-title>
+            <div *ngIf="sectionStatus[0]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+            <button (click)="editSec00UpperManagementResponsibility();panelA.expanded=false;" mat-raised-button type="button" color="primary"
+              aria-label="Upper Management Responsibility" accesskey="M">Edit Section</button>
+        </div>
+        </mat-expansion-panel-header>
+
+      <div>
+          <table mat-table title="upperManagementResponsibility" id="upperManagementResponsibilityTable" [dataSource]="dataSourceSec00" name="upperManagementResponsibilityTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="criteriaQuestion">
+            <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+            <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+            <td mat-cell *matCellDef="let row" [ngClass]="{
+              incompleteTd: row.status=='Incomplete',
+              completeTd: row.status=='Complete'}">{{row.status}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="attachments">
+            <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+            <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+            <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" name="upperManagementResponsibilityTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelB tid="panel-riskAssessment">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelB.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelB.expanded>expand_more</mat-icon>
+            Risk Assessment
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[1]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec01RiskAssessment();panelB.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Risk Assessment" accesskey="R">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="riskAssessment" id="riskAssessmentTable" [dataSource]="dataSourceSec01" name="riskAssessmentTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="riskAssessmentTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelC tid="panel-businessPartners">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelC.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelC.expanded>expand_more</mat-icon>
+            Business Partners
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[2]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec02BusinessPartners();panelC.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Business Partners" accesskey="P">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="businessPartners" id="businessPartnersTable" [dataSource]="dataSourceSec02" name="businessPartnersTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="businessPartnersTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelD tid="panel-proceduralSecurity">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelD.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelD.expanded>expand_more</mat-icon>
+            Procedural Security
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[3]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec03ProceduralSecurity();panelD.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Procedural Security" accesskey="P">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="proceduralSecurity" id="proceduralSecurityTable" [dataSource]="dataSourceSec03" name="proceduralSecurityTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="proceduralSecurityTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelE tid="panel-conveyanceAndIit">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelE.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelE.expanded>expand_more</mat-icon>
+            Conveyance and IIT
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[4]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec04ConveyanceAndIit();panelE.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Conveyance and IIT" accesskey="C">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="conveyanceAndIit" id="conveyanceAndIitTable" [dataSource]="dataSourceSec04" name="conveyanceAndIitTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="conveyanceAndIitTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelF tid="panel-agriculturalProcedures">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelF.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelF.expanded>expand_more</mat-icon>
+            Agricultural Procedure
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[5]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec05AgriculturalProcedures();panelF.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Agricultural Procedures" accesskey="A">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="agriculturalProcedures" id="agriculturalProceduresTable" [dataSource]="dataSourceSec05" name="agriculturalProceduresTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="agriculturalProceduresTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelG tid="panel-physicalSecurity">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelG.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelG.expanded>expand_more</mat-icon>
+            Physical Security
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[6]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec06PhysicalSecurity();panelG.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Physical Security" accesskey="S">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="physicalSecurity" id="physicalSecurityTable" [dataSource]="dataSourceSec06" name="physicalSecurityTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="physicalSecurityTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelH tid="panel-accessControls">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelH.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelH.expanded>expand_more</mat-icon>
+            Access Controls
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[7]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec07AccessControls();panelH.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Access Controls" accesskey="C">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="accessControls" id="accessControlsTable" [dataSource]="dataSourceSec07" name="accessControlsTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="accessControlsTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelI tid="panel-personnelSecurity">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelI.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelI.expanded>expand_more</mat-icon>
+            Personnel Security
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[8]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec08PersonnelSecurity();panelI.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Personnel Security" accesskey="P">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="personnelSecurity" id="personnelSecurityTable" [dataSource]="dataSourceSec08" name="personnelSecurityTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="personnelSecurityTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelJ tid="panel-educationAndTraining">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelJ.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelJ.expanded>expand_more</mat-icon>
+            Education and Training
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[9]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec09EducationAndTraining();panelJ.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Education and Training" accesskey="E">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="educationAndTraining" id="educationAndTrainingTable" [dataSource]="dataSourceSec09" name="educationAndTrainingTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="educationAndTrainingTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel #panelK tid="panel-cybersecurity">
+      <mat-expansion-panel-header>
+        <div fxLayout="row">
+          <mat-panel-title>
+            <mat-icon *ngIf=!panelK.expanded>chevron_right</mat-icon>
+            <mat-icon *ngIf=panelK.expanded>expand_more</mat-icon>
+            Cybersecurity
+          </mat-panel-title>
+          <div *ngIf="sectionStatus[10]==0" class="incomplete">(INCOMPLETE)</div><div fxFlex="2"></div>
+          <button (click)="editSec10Cybersecurity();panelK.expanded=false;" mat-raised-button type="button" color="primary" aria-label="Cybersecurity" accesskey="C">Edit Section</button>
+      </div>
+      </mat-expansion-panel-header>
+
+    <div>
+        <table mat-table title="cybersecurity" id="cybersecurityTable" [dataSource]="dataSourceSec10" name="cybersecurityTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="criteriaQuestion">
+          <th mat-header-cell *matHeaderCellDef scope="col">Criteria Question</th>
+          <td mat-cell *matCellDef="let row">{{row.criteriaQuestion}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+          <td mat-cell *matCellDef="let row" [ngClass]="{
+            incompleteTd: row.status=='Incomplete',
+            completeTd: row.status=='Complete'}">{{row.status}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="attachments">
+          <th mat-header-cell *matHeaderCellDef scope="col">Attachments</th>
+          <td mat-cell *matCellDef="let row">{{row.attachments}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef scope="col">Action</th>
+          <td mat-cell *matCellDef="let row"><button mat-raised-button type="button" color="primary" (click)="editView(row.action)">Edit/View</button></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="cybersecurityTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+    </mat-expansion-panel>
+
+    </mat-accordion>
+
+  </mat-dialog-content>
+</form>
+

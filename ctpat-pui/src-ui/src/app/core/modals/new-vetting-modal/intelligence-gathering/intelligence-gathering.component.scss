@@ -1,0 +1,31 @@
+.title{
+  font-weight: bold;
+}
+
+:host ::ng-deep .mat-radio-container{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-outer-circle{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-inner-circle{
+  height: 15px;
+  width: 15px;
+}
+
+.response{
+  width: 100%;
+}
+
+hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+  border: 0;
+  width: 100%;
+  background-color:lightgray;
+  height: 1px;
+}
+
+

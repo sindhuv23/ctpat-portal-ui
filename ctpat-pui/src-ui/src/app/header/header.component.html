@@ -1,0 +1,74 @@
+<div class="cbp-header">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href={{rootUrl}} id="cbpRootLink" title="U.S. Customs &amp; Border Protection - U.S. Department of Homeland Security">
+        <span class="visible-md visible-lg">
+          <span class="cbp-brand">U.S. Customs &amp; Border Protection</span>
+        </span>
+        <span class="visible-md visible-lg">
+          <span class="dhs-brand">U.S. Department of Homeland Security</span>
+        </span>
+      </a>
+    </div>
+
+    <div id="navbar-app-info" class="navbar-collapse {{!isOpen ? 'collapse' : ''}}" *ngIf="!isAccessDeniedPage && !isLoggedOutPage">
+      <ul class="nav navbar-nav navbar-left">
+        <li dropdown class="dropdown">
+          <a dropdownToggle class="dropdown-toggle" data-toggle="dropdown" id="ctpatAppDropdown" href="javascript:void(0)" title="{{appName}}">
+            {{appName}}
+          </a>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <!-- <li>
+            <a *ngIf="envName === 'local'" title="Environment" class="disable-cursor" href="javascript:void(0)">
+                <span class="hidden-sm" class="label label-warning custom-label">CTPAT Local</span>
+            </a>
+            <a *ngIf="envName === 'dev'"  title="Environment" class="disable-cursor" href="javascript:void(0)">
+              <span class="hidden-sm" class="label label-warning custom-label">CTPAT Dev</span>
+            </a>
+            <a *ngIf="envName === 'sat'"  title="Environment" class="disable-cursor" href="javascript:void(0)">
+              <span class="hidden-sm" class="label label-info custom-label">CTPAT Sat</span>
+            </a>
+            <a *ngIf="envName === 'cert'"  title="Environment" class="disable-cursor" href="javascript:void(0)">
+              <span class="hidden-sm" class="label label-success custom-label">CTPAT Cert</span>
+            </a>
+        </li> -->
+
+        <li>
+          <button tid="userMenu" mat-raised-button type="button" [matMenuTriggerFor]="userMenu" color="primary"
+                  class="userBtn" aria-label="user name">
+
+                  <div id="person-icon"><mat-icon>person</mat-icon></div>
+                  <div id="user-name"><span>{{userName}}</span><span class="caret"></span></div>
+
+          </button>
+          <mat-menu #userMenu="matMenu">
+              <button mat-menu-item (click)="logout()" aria-label="log out"><span>Logout</span></button>
+          </mat-menu>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="account-dropdown" fxLayout="row" fxLayoutAlign="start center">
+  <div fxFlex="2"></div>
+  <div fxFlex="10">
+    CTPAT External
+  </div>
+  <div fxFlex="10"></div>
+  <div>
+    Home
+  </div>
+  <div fxFlex="64"></div>
+  <div>
+    <form [formGroup]="accountForm">
+    <mat-form-field appearance="outline" id="name-dropdown">
+      <mat-select formControlName="accountName" id="account-name" placeholder="CTPAT Accounts" aria-label="Account Name">
+          <mat-option>Some Account</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  </div>
+</div>

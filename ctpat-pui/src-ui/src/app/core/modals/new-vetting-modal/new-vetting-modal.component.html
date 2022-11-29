@@ -1,0 +1,115 @@
+<div id="outerContainer">
+
+  <form [formGroup]="newVettingForm" novalidate>
+
+  <div fxLayout="row" id="createHeader">
+    <h3 mat-dialog-title class="dialog-header">Vetting Worksheet</h3>
+  <mat-divider class="divider"></mat-divider>
+  </div>
+
+<div id="midContainer">
+  <mat-dialog-content>
+    <mat-accordion multi>
+      <mat-expansion-panel class="mat-elevation-z0" #panelA expanded tid="panel-company-name-list">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelA.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            Company Name List
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-company-name-list></app-company-name-list>
+
+      </mat-expansion-panel><hr>
+
+      <mat-expansion-panel class="mat-elevation-z0" #panelB expanded tid="panel-business-history">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelB.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            Business History
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-business-history></app-business-history>
+
+      </mat-expansion-panel><hr>
+
+      <mat-expansion-panel class="mat-elevation-z0" #panelC expanded tid="panel-address-list">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelC.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            Company Address List
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-company-address-list></app-company-address-list>
+
+      </mat-expansion-panel><hr>
+
+      <mat-expansion-panel class="mat-elevation-z0" #panelD expanded tid="panel-contact-list">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelD.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            Company Contact List
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-company-contact-list></app-company-contact-list>
+
+      </mat-expansion-panel><hr>
+
+      <mat-expansion-panel class="mat-elevation-z0" #panelE expanded tid="panel-bei-list">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelE.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            BEI List
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-bei-list></app-bei-list>
+
+      </mat-expansion-panel><hr>
+
+      <mat-expansion-panel class="mat-elevation-z0" #panelF expanded tid="panel-eligibility">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelF.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            Eligibility
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-eligibility></app-eligibility>
+
+      </mat-expansion-panel><hr>
+
+      <mat-expansion-panel class="mat-elevation-z0" #panelG expanded tid="panel-intelligence-gathering">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>{{panelG.expanded ? "expand_more":"chevron_right"}}</mat-icon>
+            Intelligence Gathering
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <app-intelligence-gathering></app-intelligence-gathering>
+
+      </mat-expansion-panel><hr>
+
+      <app-signatures></app-signatures>
+
+    </mat-accordion>
+
+  </mat-dialog-content>
+</div>
+
+<div id="footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="saveDraft()" aria-label="Save Draft" accesskey="D">Save Draft</button>
+    <button mat-raised-button type="submit" color="primary" (click)="submit()" aria-label="Submit" accesskey="S">Submit</button>
+  </mat-dialog-actions>
+</div>
+</form>
+</div>
+

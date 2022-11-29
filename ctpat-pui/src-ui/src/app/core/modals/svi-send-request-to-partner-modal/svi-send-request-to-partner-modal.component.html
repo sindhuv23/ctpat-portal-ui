@@ -1,0 +1,112 @@
+<div id="outerContainer">
+    <div fxLayout="row" id="createHeader">
+        <h3 mat-dialog-title class="dialog-header">Send Request to Partner</h3>
+        <mat-divider class="divider"></mat-divider>
+    </div><br>
+
+    <div id="midContainer">
+        <mat-dialog-content>
+            <div fxLayout="column" style="margin-top:10px">
+
+                <div fxLayout="row" [formGroup]="patrnerForm">
+
+                    <div>
+                        <div fxLayout="row" fxLayoutAlign="space-between end">
+                            <div>
+                                <mat-form-field>
+                                    <input matInput formControlName="textInput" placeholder="Search" />
+                                </mat-form-field>
+                            </div>
+                            <div> <button mat-raised-button type="submit" color="primary" (click)="search()"
+                                    aria-label="Search" accesskey="U" class="searchButton">Search</button></div>
+
+                        </div>
+                    </div>
+                    <div fxFlex></div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput formControlName="textInput" placeholder="Filter"
+                                (keyup)="doFilter($event)" />
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div name="requestsTableDiv" id="requestsTableDiv">
+                    <table mat-table title="Requests" id="requestsTable" [dataSource]="requestDataSource"
+                        name="requestsTable" class="row mat-elevation-z0" matSort matSortActive="companyName"
+                        matSortDirection="desc" [matSortDisableClear]="true">
+
+                        <!-- Checkbox Column -->
+                        <ng-container matColumnDef="select">
+                            <th mat-header-cell *matHeaderCellDef>
+                                <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                                    [checked]="selection.hasValue() && isAllSelected()"
+                                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                                    [aria-label]="checkboxLabel()">
+                                </mat-checkbox>
+                            </th>
+                            <td mat-cell *matCellDef="let row">
+                                <mat-checkbox (click)="$event.stopPropagation()"
+                                    (change)="$event ? selection.toggle(row) : null"
+                                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                                </mat-checkbox>
+                            </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="companyName">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Company Name, Doing
+                                Business As</th>
+                            <td mat-cell *matCellDef="let row">{{row.companyName}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="businessType">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Business Type</th>
+                            <td mat-cell *matCellDef="let row">{{row.businessType}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="accountStatus">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Account Status</th>
+                            <td mat-cell *matCellDef="let row">{{row.accountStatus}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="requestStatus">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Request Status</th>
+                            <td mat-cell *matCellDef="let row">{{row.requestStatus}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="requestDate">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Request Date</th>
+                            <td mat-cell *matCellDef="let row">{{row.requestDate | date:'medium'}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Action</th>
+                            <td mat-cell *matCellDef="let row">{{row.action}}</td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="documentsTableHeader"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+                        <tr class="mat-row" *matNoDataRow>
+                            <td class="mat-cell" colspan="6">No records</td>
+                        </tr>
+
+                    </table>
+                    <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="true">
+                    </mat-paginator>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div id="footer">
+        <mat-divider class="divider"></mat-divider>
+        <mat-dialog-actions>
+            <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C"
+                aria-label="Cancel">Cancel</button>
+            <div fxFlex></div>
+            <button mat-raised-button type="submit" color="primary" (click)="sendRequest()" accesskey="S"
+                aria-label="Save">Send Request</button>
+        </mat-dialog-actions>
+    </div>
+</div>
