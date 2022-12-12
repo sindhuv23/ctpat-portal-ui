@@ -1,4 +1,4 @@
-.normal-button{
+.normal-button {
   min-width: 160px !important;
   height: 36px !important;
   border-width: 1px !important;
@@ -9,7 +9,19 @@
   color: black !important;
 }
 
-button{
+.approve-button {
+  background-color: green !important;
+  border-color: green !important;
+  color: white !important;
+}
+
+.reject-button {
+  background-color: red !important;
+  border-color: red !important;
+  color: white !important;
+}
+
+button {
   height: 26px !important;
   font-size: small;
   display: flex;
@@ -17,7 +29,7 @@ button{
   justify-content: center;
 }
 
-mat-panel-title{
+mat-panel-title {
   min-width: fit-content !important;
 }
 
@@ -25,27 +37,32 @@ mat-panel-title{
   font-size: 18px;
 }
 
-.title{
+.title {
   font-size: 12pt;
   font-weight: 500;
   margin-top: 8px;
 }
 
-.incomplete{
+.incomplete {
   color: #a00;
   font-weight: bold;
   font-style: italic;
   margin-top: 3px;
 }
 
-.incompleteAllSecs{
+.incompleteAllSecs {
   color: #a00;
   font-weight: bold;
   font-style: italic;
-  margin-top: 8px;
 }
 
-.spaceReduction{
+.pendingAllSecs {
+  color: orange;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.spaceReduction {
   margin-bottom: -10px;
 }
 
@@ -57,11 +74,11 @@ mat-panel-title{
   margin-bottom: -40px;
 }
 
-table{
+table {
   border: 1px solid gray;
 }
 
-td{
+td {
   padding: 5px 5px;
   border-top: 1px solid gray;
   border-right: 1px solid gray;
@@ -69,25 +86,24 @@ td{
   background-color: white;
 }
 
-th{
+th {
   padding: 2px 5px;
   border-right: 1px solid gray;
   text-align: center !important;
   background-color: #edf1f5;
 }
 
-td:last-child, th:last-child{
+td:last-child,
+th:last-child {
   border-right: none;
 }
 
-.incompleteTd{
+.incompleteTd {
   color: #a00;
   font-weight: bold;
 }
-.completeTd{
+
+.completeTd {
   color: #00416a;
   font-weight: bold;
 }
-
-
-

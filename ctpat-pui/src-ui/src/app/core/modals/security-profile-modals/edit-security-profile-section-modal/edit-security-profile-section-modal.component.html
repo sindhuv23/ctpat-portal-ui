@@ -1,0 +1,209 @@
+<div id="outerContainer">
+    <div fxLayout="row" id="createHeader">
+        <h3 mat-dialog-title class="dialog-header">Security Profile - Apples Ltd, Importe</h3>
+        <mat-divider class="divider"></mat-divider>
+    </div><br>
+
+    <div id="midContainer">
+        <mat-dialog-content>
+            <div fxLayout="column">
+                <h2>Upper Management Responsibility</h2>
+            </div>
+
+            <div fxLayout="column">
+                <div fxLayout="column">
+                    <div fxLayout="row">
+                        <span class="bold-font">Corporate Wide Security Measures(1)</span>
+                        <mat-icon>info</mat-icon>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    Have representatives from all of the relevant departments been incorporated into a cross-functional
+                    team to build a robust Supply Chain Security Program? Have these new security measures been
+                    incorporated into existing company procedures to create a more sustainable structure that emphasizes
+                    that supply chain security is everyone’s responsibility?
+                </div>
+            </div>
+
+            <div fxLayout="column" class="m-t-5">
+                <div fxLayout="column">
+                    <span class="bold-font">Partner Respose:</span>
+                </div>
+                <div fxLayout="column">
+                    <mat-form-field fxFlex appearance="outline">
+                        <textarea [disabled]="data.internalUser" matInput id="emailBody" aria-label="Email Body"
+                            placeholder=" There is some response added here and saved before." cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="column" class="m-t-10 m-b-10" *ngIf="!data.internalUser">
+                <div fxLayout="row">
+                    <button mat-raised-button type="submit" color="primary" (click)="upload()" aria-label="Upload"
+                        class="small-button" accesskey="U" style="margin-right: 10px;">Upload</button>
+                    <button mat-raised-button type="submit" color="primary" (click)="associate()" aria-label="Upload"
+                        class="small-button" accesskey="U">Associate</button>
+                </div>
+            </div>
+
+            <div fxLayout="column">
+                <table mat-table title="securityQuestion" id="securityQuestionTable" [dataSource]="dataSource"
+                    name="securityQuestionTable" class="row mat-elevation-z0">
+
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef scope="col">Name</th>
+                        <td mat-cell *matCellDef="let row">
+                            <span *ngIf="!data.internalUser">{{row.name}}</span>
+                            <a *ngIf="data.internalUser" href="#">{{row.name}}</a>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="size">
+                        <th mat-header-cell *matHeaderCellDef scope="col">Size</th>
+                        <td mat-cell *matCellDef="let row">{{row.size}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="uploadedDate">
+                        <th mat-header-cell *matHeaderCellDef scope="col">Uploaded Date</th>
+                        <td mat-cell *matCellDef="let row">{{row.uploadedDate}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="uploadedBy">
+                        <th mat-header-cell *matHeaderCellDef scope="col">Uploaded By</th>
+                        <td mat-cell *matCellDef="let row">{{row.uploadedBy}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef scope="col">Type</th>
+                        <td mat-cell *matCellDef="let row">{{row.type}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="removeAssociation" *ngIf="!data.internalUser">
+                        <th mat-header-cell *matHeaderCellDef scope="col">Remove Association</th>
+                        <td mat-cell *matCellDef="let row"><a href="#">{{row.removeAssociation}}</a></td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns" name="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+            <div fxLayout="column" class="m-t-5" *ngIf="data.internalUser">
+                <div fxLayout="column">
+                    <span class="bold-font">SCSS Comment:</span>
+                </div>
+                <div fxLayout="column">
+                    <mat-form-field fxFlex appearance="outline">
+                        <textarea matInput id="emailBody" aria-label="Email Body"
+                            placeholder=" There is some response added here and saved before." cdkTextareaAutosize
+                            #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="column">
+                    <div fxLayout="row">
+                        <div fxFlex></div>
+                        <mat-radio-group aria-label="Portal Company History">
+                            <mat-radio-button color="primary" value="A"><span
+                                    style="font-weight: lighter;">Approve&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+                            <mat-radio-button color="primary" value="R"><span
+                                    style="font-weight: lighter;">Reject</span>&nbsp;&nbsp;&nbsp;
+                            </mat-radio-button>
+                            <mat-radio-button color="primary" value="P"><span style="font-weight: lighter;">Pending
+                                    Review</span>
+                            </mat-radio-button>
+                        </mat-radio-group>
+                    </div>
+                </div>
+            </div>
+
+            <div class="m-t-10">
+                <ng-container *ngFor="let que of questions; last as last">
+
+                    <div fxLayout="column">
+                        <div fxLayout="column">
+                            <div fxLayout="row">
+                                <span class="bold-font">{{que.header}}</span>
+                                <mat-icon>info</mat-icon>
+                            </div>
+                        </div>
+                        <div fxLayout="column">
+                            {{que.text}}
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" class="m-t-5">
+                        <div fxLayout="column">
+                            <span class="bold-font">Partner Respose:</span>
+                        </div>
+                        <div fxLayout="column">
+                            <mat-form-field fxFlex appearance="outline">
+                                <textarea [disabled]="data.internalUser" matInput id="emailBody" aria-label="Email Body"
+                                    cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"
+                                    cdkAutosizeMaxRows="5"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="column" class="m-t-10 m-b-10" *ngIf="!data.internalUser">
+                        <div fxLayout="row">
+                            <button mat-raised-button type="submit" color="primary" (click)="upload()"
+                                aria-label="Upload" class="small-button" accesskey="U"
+                                style="margin-right: 10px;">Upload</button>
+                            <button mat-raised-button type="submit" color="primary" (click)="associate()"
+                                aria-label="Upload" class="small-button" accesskey="U">Associate</button>
+                        </div>
+                    </div>
+                    <div fxLayout="column" class="m-t-5" *ngIf="data.internalUser">
+                        <div fxLayout="column">
+                            <span class="bold-font">SCSS Comment:</span>
+                        </div>
+                        <div fxLayout="column">
+                            <mat-form-field fxFlex appearance="outline">
+                                <textarea matInput id="emailBody" aria-label="Email Body"
+                                    placeholder=" There is some response added here and saved before."
+                                    cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="3"
+                                    cdkAutosizeMaxRows="5"></textarea>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="column">
+                            <div fxLayout="row">
+                                <div fxFlex></div>
+                                <mat-radio-group aria-label="Portal Company History">
+                                    <mat-radio-button color="primary" value="A"><span
+                                            style="font-weight: lighter;">Approve&nbsp;&nbsp;&nbsp;</span>
+                                    </mat-radio-button>
+                                    <mat-radio-button color="primary" value="R"><span
+                                            style="font-weight: lighter;">Reject</span>&nbsp;&nbsp;&nbsp;
+                                    </mat-radio-button>
+                                    <mat-radio-button color="primary" value="P"><span
+                                            style="font-weight: lighter;">Pending
+                                            Review</span>
+                                    </mat-radio-button>
+                                </mat-radio-group>
+                            </div>
+                        </div>
+                    </div>
+                    <hr *ngIf="!last" />
+                </ng-container>
+            </div>
+
+        </mat-dialog-content>
+    </div>
+
+    <div id="footer">
+        <mat-divider class="divider"></mat-divider>
+        <mat-dialog-actions>
+            <button mat-raised-button type="submit" color="primary" (click)="calcel()" accesskey="C"
+                aria-label="Cancel">Calcel</button>
+            <div fxFlex></div>
+            <ng-container *ngIf="data.internalUser">
+                <button mat-raised-button type="submit" class="approve-button" color="primary" (click)="approveAll()"
+                    accesskey="C" aria-label="Save">Approve All Pending</button>
+                <button mat-raised-button type="submit" class="reject-button" color="primary" (click)="rejectAll()"
+                    accesskey="C" aria-label="Save">Regest All Pending</button>
+            </ng-container>
+            <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="C"
+                aria-label="Save">Save</button>
+        </mat-dialog-actions>
+    </div>
+</div>

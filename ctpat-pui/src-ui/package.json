@@ -13,7 +13,7 @@
     "bundle-analysis": "webpack-bundle-analyzer dist/ace-ctpat/stats.json",
     "test": "ng test",
     "lint": "ng lint",
-    "gc":"ng g c svi-certification-email-details-modal"
+    "gc":"ng g c edit-security-profile-question-modal"
   },
   "private": true,
   "dependencies": {
