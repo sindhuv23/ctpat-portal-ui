@@ -15,7 +15,7 @@ export class SecurityProfileSectionComponent implements OnInit, AfterViewInit, O
 
   private subscriptions = new Subscription();
   public isLoading = false;
-  public internalUser = false;
+  public internalUser = true;
 
   securityProfileForm!: FormGroup;
   sectionStatus = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -177,6 +177,50 @@ export class SecurityProfileSectionComponent implements OnInit, AfterViewInit, O
   // edit questions based on section ID (sec00-10). IDs should come from database.
   editSec00UpperManagementResponsibility(): void {
     console.log('editSec00UpperManagementResponsibility');
+    this.openEditSection();
+  }
+  editSec01RiskAssessment(): void {
+    console.log('editSec01RiskAssessment');
+    this.openEditSection();
+  }
+  editSec02BusinessPartners(): void {
+    console.log('editSec02BusinessPartners');
+    this.openEditSection();
+  }
+  editSec03ProceduralSecurity(): void {
+    console.log('editSec03ProceduralSecurity');
+    this.openEditSection();
+  }
+  editSec04ConveyanceAndIit(): void {
+    console.log('editSec04ConveyanceAndIit');
+    this.openEditSection();
+  }
+  editSec05AgriculturalProcedures(): void {
+    console.log('editSec05AgriculturalProcedures');
+    this.openEditSection();
+  }
+  editSec06PhysicalSecurity(): void {
+    console.log('editSec06PhysicalSecurity');
+    this.openEditSection();
+  }
+  editSec07AccessControls(): void {
+    console.log('editSec07AccessControls');
+    this.openEditSection();
+  }
+  editSec08PersonnelSecurity(): void {
+    console.log('editSec08PersonnelSecurity');
+    this.openEditSection();
+  }
+  editSec09EducationAndTraining(): void {
+    console.log('editSec09EducationAndTraining');
+    this.openEditSection();
+  }
+  editSec10Cybersecurity(): void {
+    console.log('editSec10Cybersecurity');
+    this.openEditSection();
+  }
+
+  private openEditSection(): void {
     const dialogRef = this.dialog.open(EditSecurityProfileSectionModalComponent, {
       data: { internalUser: this.internalUser },
       width: '800px',
@@ -184,16 +228,6 @@ export class SecurityProfileSectionComponent implements OnInit, AfterViewInit, O
       disableClose: true
     });
   }
-  editSec01RiskAssessment(): void { }
-  editSec02BusinessPartners(): void { }
-  editSec03ProceduralSecurity(): void { }
-  editSec04ConveyanceAndIit(): void { }
-  editSec05AgriculturalProcedures(): void { }
-  editSec06PhysicalSecurity(): void { }
-  editSec07AccessControls(): void { }
-  editSec08PersonnelSecurity(): void { }
-  editSec09EducationAndTraining(): void { }
-  editSec10Cybersecurity(): void { }
 
   // edit/view responses based on section ID (sec00-10) and question ID (0-)
   editView(id: any): void {
