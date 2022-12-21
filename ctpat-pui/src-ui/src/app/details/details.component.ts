@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { AddMilestoneModalComponent } from '../core/modals/add-milestone-modal/add-milestone-modal.component';
 
 @Component({
   selector: 'app-details',
@@ -16,24 +18,36 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   private subscriptions = new Subscription();
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.showActionMenu = true;
     this.setActionItems();
   }
 
-  setActionItems(): void{
-    this.actionMenuItems = [{name: 'Generate PDF', action: 'viewPDF'}];
+  setActionItems(): void {
+    this.actionMenuItems = [{ name: 'Generate PDF', action: 'viewPDF' }, { name: 'Add Milestone/Note', action: 'addMilestone' }];
   }
 
-  invokeMenuAction(action: string): void  {
-   if (action === 'viewPdf'){
+  invokeMenuAction(action: string): void {
+    if (action === 'viewPdf') {
       this.viewPdf();
-   }
+    }
+    if (action === 'addMilestone') {
+      this.openAddMilestoneModal();
+    }
   }
 
-  viewPdf(): void{}
+  viewPdf(): void { }
+
+  openAddMilestoneModal(): void {
+    const dialogRef = this.dialog.open(AddMilestoneModalComponent, {
+      data: {},
+      width: '560px',
+      height: '300px',
+      disableClose: true
+    });
+   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

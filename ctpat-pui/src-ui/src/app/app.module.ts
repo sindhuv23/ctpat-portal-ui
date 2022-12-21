@@ -103,6 +103,9 @@ import { SviSendRequestToPartnerModalComponent } from './core/modals/svi-send-re
 import { SviCertificationEmailDetailsModalComponent } from './core/modals/svi-certification-email-details-modal/svi-certification-email-details-modal.component';
 import { EditSecurityProfileSectionModalComponent } from './core/modals/security-profile-modals/edit-security-profile-section-modal/edit-security-profile-section-modal.component';
 import { EditSecurityProfileQuestionModalComponent } from './core/modals/security-profile-modals/edit-security-profile-question-modal/edit-security-profile-question-modal.component';
+import { AddMilestoneModalComponent } from './core/modals/add-milestone-modal/add-milestone-modal.component';
+import { MilestonesTabComponent } from './details/milestones-tab/milestones-tab.component';
+import { MilestoneDetailsComponent } from './details/milestones-tab/milestone-details/milestone-details.component';
 
 @NgModule({
   declarations: [
@@ -173,7 +176,10 @@ import { EditSecurityProfileQuestionModalComponent } from './core/modals/securit
       SviSendRequestToPartnerModalComponent,
       SviCertificationEmailDetailsModalComponent,
       EditSecurityProfileSectionModalComponent,
-      EditSecurityProfileQuestionModalComponent
+      EditSecurityProfileQuestionModalComponent,
+      AddMilestoneModalComponent,
+      MilestonesTabComponent,
+      MilestoneDetailsComponent
    ],
   imports: [
     BrowserModule,

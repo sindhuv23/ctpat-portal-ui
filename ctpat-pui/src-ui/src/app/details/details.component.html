@@ -71,6 +71,14 @@
                 <app-documents-tab></app-documents-tab>
             </ng-template>
           </mat-tab>
+           <mat-tab #documentsTab>
+            <ng-template mat-tab-label>
+                <span>Milestones / Notes</span>
+            </ng-template>
+            <ng-template matTabContent>
+              <app-milestones-tab></app-milestones-tab>
+            </ng-template>
+          </mat-tab>
           <mat-tab #sviTab>
             <ng-template mat-tab-label>
                 <span>SVI</span>
