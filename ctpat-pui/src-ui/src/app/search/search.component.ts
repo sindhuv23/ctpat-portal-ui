@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { AdvanceSearchModalComponent } from '../core/modals/advance-search-modal/advance-search-modal.component';
 
 @Component({
   selector: 'app-search',
@@ -31,5 +32,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   clear(): void {
     this.searchForm.get('accountName')?.setValue('');
     this.searchForm.get('applicationStatus')?.setValue('');
+  }
+
+  openAdvanceSearchModal(): void {
+    const dialogRef = this.dialog.open(AdvanceSearchModalComponent, {
+      data: {},
+      width: '680px',
+      height: '570px',
+      disableClose: true
+    });
   }
 }

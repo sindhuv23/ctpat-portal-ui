@@ -112,6 +112,7 @@ import { EditSiteListModalComponent } from './core/modals/validation-tab-modals/
 import { SubmitToSupervisorModalComponent } from './core/modals/validation-tab-modals/submit-to-supervisor-modal/submit-to-supervisor-modal.component';
 import { ValidationDetailsNoVisitComponent } from './details/validation-tab/validation-summary/validation-details-no-visit/validation-details-no-visit.component';
 import { ValidationDetailsWithVisitComponent } from './details/validation-tab/validation-summary/validation-details-with-visit/validation-details-with-visit.component';
+import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/advance-search-modal.component';
 
 @NgModule({
   declarations: [
@@ -191,7 +192,8 @@ import { ValidationDetailsWithVisitComponent } from './details/validation-tab/va
       EditSecurityProfileQuestionModalComponent,
       AddMilestoneModalComponent,
       MilestonesTabComponent,
-      MilestoneDetailsComponent
+      MilestoneDetailsComponent,
+      AdvanceSearchModalComponent
    ],
   imports:[
     BrowserModule,

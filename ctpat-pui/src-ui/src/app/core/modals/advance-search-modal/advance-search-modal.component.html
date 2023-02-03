@@ -1,0 +1,194 @@
+<div id="outerContainer">
+    <form [formGroup]="sviSettingsForm" novalidate>
+        <div fxLayout="row" id="createHeader">
+            <h3 mat-dialog-title class="dialog-header">Advanced Search</h3>
+            <mat-divider class="divider"></mat-divider>
+        </div><br>
+
+        <div id="midContainer">
+            <mat-dialog-content>
+                <div fxLayout="row">
+                    <div fxLayout="column">
+                        <div class="title">Company Name</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <input matInput formControlName="companyName" id="companyName" aria-label="Company Name"
+                                placeholder="">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">CTPAT Status</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="ctpatStatus" id="ctpatStatus" aria-label="CTPAT Status">
+                                <mat-option *ngFor="let status of ctpatStatusArray" [value]="status.value">
+                                    {{status.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Assigned Office</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="assignedOffice" id="assignedOffice"
+                                aria-label="Assigned Office">
+                                <mat-option *ngFor="let office of assignedOfficeArray" [value]="office.value">
+                                    {{office.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column">
+                        <div class="title">CTPAT Account #</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <input matInput formControlName="ctpatAccount" id="ctpatAccount" aria-label="CTPAT Account"
+                                placeholder="">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Sub-Status</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="subStatus" id="subStatus" aria-label="Sub-Status">
+                                <mat-option *ngFor="let subStatus of subStatusArray" [value]="subStatus.value">
+                                    {{subStatus.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Assigned SCSS</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <input matInput formControlName="assignedScss" id="assignedScss" aria-label="Assigned SCSS"
+                                placeholder="">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column">
+                        <div class="title">Business Type</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="businessType" id="businessType" aria-label="Sub-Status">
+                                <mat-option *ngFor="let businessType of businessTypeArray" [value]="businessType.value">
+                                    {{businessType.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Security Profile Review Status</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="securityProfileReviewStatus" id="securityProfileReviewStatus"
+                                aria-label="Sub-Status">
+                                <mat-option *ngFor="let securityProfileReviewStatus of securityProfileReviewStatusArray"
+                                    [value]="securityProfileReviewStatus.value">
+                                    {{securityProfileReviewStatus.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Supervisor</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <input matInput formControlName="supervisor" id="supervisor" aria-label="Assigned SCSS"
+                                placeholder="">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column">
+                        <div class="title">Business Entity ID Type</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="businessEntityIdType" id="businessEntityIdType"
+                                aria-label="Business Entity ID Type">
+                                <mat-option *ngFor="let businessEntityIdType of businessEntityIdTypeArray"
+                                    [value]="businessEntityIdType.value">
+                                    {{businessEntityIdType.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Harmonization Status</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="harmonizationStatus" id="harmonizationStatus"
+                                aria-label="Harmonization Status">
+                                <mat-option *ngFor="let harmonizationStatus of harmonizationStatusArray"
+                                    [value]="harmonizationStatus.value">
+                                    {{harmonizationStatus.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Country of Primary Address</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="countryOfPrimaryAddress" id="countryOfPrimaryAddress"
+                                aria-label="Country of Primary Address">
+                                <mat-option *ngFor="let countryOfPrimaryAddress of countryOfPrimaryAddressArray"
+                                    [value]="countryOfPrimaryAddress.value">
+                                    {{countryOfPrimaryAddress.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column">
+                        <div class="title">Business Entity ID Value</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <input matInput formControlName="businessEntityIdValue" id="businessEntityIdValue"
+                                aria-label="Business Entity ID Value" placeholder="">
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">Vetting Status</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <mat-select formControlName="vettingStatus" id="vettingStatus" aria-label="Vetting Status">
+                                <mat-option *ngFor="let vettingStatus of vettingStatusArray"
+                                    [value]="vettingStatus.value">
+                                    {{vettingStatus.name}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="5"></div>
+                    <div fxLayout="column">
+                        <div class="title">&nbsp;</div>
+                        <mat-checkbox fxFlex="30" color="primary" formControlName="seaarchPip" aria-label="Search
+                            PIP"><span style="font-weight: lighter;">Search
+                                PIP</span></mat-checkbox>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column">
+                        <div class="title">Trade Email</div>
+                        <mat-form-field fxFlex="30" appearance="outline">
+                            <input matInput formControlName="tradeEmail" id="tradeEmail" aria-label="Trade Email"
+                                placeholder="">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-dialog-content>
+        </div>
+
+        <div id="footer">
+            <mat-divider class="divider"></mat-divider>
+            <mat-dialog-actions>
+                <button mat-raised-button type="button" class="minorButton" (click)="clear()" accesskey="C"
+                    aria-label="Clear">Clear</button>
+                <div fxFlex></div>
+                <button mat-raised-button type="submit" color="primary" (click)="search()" accesskey="S"
+                    aria-label="Search">Search</button>
+            </mat-dialog-actions>
+        </div>
+    </form>
+</div>
