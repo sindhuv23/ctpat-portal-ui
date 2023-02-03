@@ -1,22 +1,33 @@
 <form [formGroup]="approveRejectValidationReportForm" novalidate>
 
-  <div fxLayout="row" class="common-header">
+  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Approve / Reject Validation Report by Supervisor</h3>
     <mat-divider class="divider"></mat-divider>
   </div>
 
 <mat-dialog-content>
-Form fields go here
+<div fxLayout="column">
+  <br>
+  <div><span class="title">SCSS Recommendation Status:</span> {{scssRecommendationStatus}}</div>
+  <div fxLayout="row" id="comments-section" fxLayoutAlign="center center">
+    <div class="title" fxFlex="15">Comments:</div>
+    <div fxFlex="5"></div>
+    <mat-form-field fxFlex="80" appearance="outline">
+      <textarea matInput formControlName="comments" name="comments" rows="10"></textarea>
+    </mat-form-field>
+  </div>
+</div>
 </mat-dialog-content>
 
 <div class="common-footer">
   <mat-divider class="divider"></mat-divider>
   <mat-dialog-actions>
-    <button mat-raised-button type="submit" color="primary" (click)="approve()" accesskey="A" aria-label="Approve">Approve</button>
-    <div fxFlex></div>
-    <button mat-raised-button type="submit" color="primary" (click)="reject()" accesskey="R" aria-label="Reject">Reject</button>
-    <div fxFlex></div>
-    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+    <div fxFlex="25"></div>
+    <button mat-raised-button type="submit" color="darkgreen" (click)="approve()" accesskey="A" aria-label="Approve">Approve</button>
+    <div fxFlex="5"></div>
+    <button mat-raised-button type="submit" color="darkred" (click)="reject()" accesskey="R" aria-label="Reject">Reject</button>
+    <div fxFlex="5"></div>
+    <button mat-raised-button type="button" color="primary" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
   </mat-dialog-actions>
 </div>
 </form>

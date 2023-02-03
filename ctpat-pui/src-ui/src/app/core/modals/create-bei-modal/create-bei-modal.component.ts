@@ -70,7 +70,7 @@ export class CreateBeiModalComponent implements OnInit,  OnDestroy, AfterViewIni
     const formRawValue = this.createBeiForm.getRawValue();
     if (formRawValue.percentageImports && formRawValue.countryOfOrigin){
       this.dataCountriesOfOrigin.push({percentageImports: formRawValue.percentageImports, countryOfOrigin: formRawValue.countryOfOrigin,
-        stateOfOrigin: formRawValue.stateOfOrigin, cityOfOrigin: formRawValue.cityOfOrigin, entryId: this.dataBeiRecords.length});
+        stateOfOrigin: formRawValue.stateOfOrigin, cityOfOrigin: formRawValue.cityOfOrigin, entryId: this.dataCountriesOfOrigin.length});
       this.dataSourceCountriesOfOrigin = new MatTableDataSource<any>(this.dataCountriesOfOrigin);
     }
   }

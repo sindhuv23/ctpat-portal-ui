@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
@@ -13,6 +13,7 @@ export class ApproveRejectValidationReportModalComponent implements OnInit, OnDe
   public approveRejectValidationReportForm!: FormGroup;
   private subscriptions = new Subscription();
   public submitted = false;
+  public scssRecommendationStatus = 'Validated';
 
   constructor(public dialogRef: MatDialogRef<ApproveRejectValidationReportModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { }
@@ -21,8 +22,7 @@ export class ApproveRejectValidationReportModalComponent implements OnInit, OnDe
     this.submitted = false;
 
     this.approveRejectValidationReportForm = this.formBuilder.group({
-      // beiType: new FormControl('', Validators.required),
-      // beiValue: new FormControl('', Validators.required)
+      comments: new FormControl('')
     });
   }
 
@@ -41,7 +41,7 @@ export class ApproveRejectValidationReportModalComponent implements OnInit, OnDe
       return;
     }
 
-    console.log('other validations then save');
+    console.log('other validations then approve');
   }
 
   reject(): void{
@@ -51,7 +51,7 @@ export class ApproveRejectValidationReportModalComponent implements OnInit, OnDe
       return;
     }
 
-    console.log('other validations then save');
+    console.log('other validations then reject');
   }
 
   cancel(): void {

@@ -65,10 +65,11 @@ export class CtpatUserService extends CBPUserService {
               user.lastName = 'Developer';
               user.userId = '';
               user.roles = [
-                //  { authority: 'ROLE_ACE_OBJ_CTPAT_EDIT_USER' },
-                 { authority: 'ROLE_ACE_OBJ_CTPAT_ADMIN' },
-                //  { authority: 'ROLE_ACE_OBJ_CTPAT_READONLY' },
-               //   { authority: 'ROLE_ACE_OBJ_CBP_TRADE_USER' }
+                //  { authority: 'ROLE_OBJ_CTPAT_EDIT_USER' },
+                 { authority: 'OBJ_CTPAT2_READONLY' },
+                 { authority: 'OBJ_CTPAT_READONLY' },
+                //  { authority: 'ROLE_OBJ_CTPAT_READONLY' },
+               //   { authority: 'ROLE_OBJ_CBP_TRADE_USER' }
               ];
               user.emailAddress = 'Test@cbp.dhs.gov';
               user.country = 'US';

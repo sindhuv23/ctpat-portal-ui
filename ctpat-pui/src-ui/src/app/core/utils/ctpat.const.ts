@@ -1,6 +1,6 @@
 export class CtpatConstants {
   static readonly APP_CONTEXT = './';
-  static readonly APP_NAME = 'ACE | CTPAT Application';
+  static readonly APP_NAME = 'CTPAT Application';
   static readonly DEFAULT_TIMEOUT = 60000;
   static readonly MAX_FILE_SIZE = 10485760;
   static readonly alphanumericNoSpacesPattern = '[a-zA-Z0-9]+';

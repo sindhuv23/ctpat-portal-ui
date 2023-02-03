@@ -64,11 +64,33 @@
   <div fxFlex="64"></div>
   <div>
     <form [formGroup]="accountForm">
-    <mat-form-field appearance="outline" id="name-dropdown">
+ <!--    <mat-form-field appearance="outline" id="name-dropdown">
       <mat-select formControlName="accountName" id="account-name" placeholder="CTPAT Accounts" aria-label="Account Name">
           <mat-option>Some Account</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+
+    <button  class="menuTrigger" [matMenuTriggerFor]="acounts_menu">CTPAT Accounts <mat-icon> arrow_drop_down </mat-icon></button>
+    <mat-menu #acounts_menu="matMenu">
+      <button mat-menu-item>Trade Compliance</button>
+      <button mat-menu-item>MR Record Search</button>
+      <button mat-menu-item>Visit Search</button>
+      <button mat-menu-item>Validation Report Approvals</button>
+      <button mat-menu-item>Public Documents</button>
+      <button mat-menu-item>User Management</button>
+      
+        <button mat-menu-item [matMenuTriggerFor]="external_accounts_menu">External Links</button>
+
+    </mat-menu>
+
+    <mat-menu #external_accounts_menu="matMenu">
+
+      <button mat-menu-item>PIA Data Collection</button>
+      <button mat-menu-item>SharePoint SOP's</button>
+      <button mat-menu-item>Travel Itenerary</button>
+      <button mat-menu-item>Issue Papers</button>
+      <button mat-menu-item>Ace Reports</button>
+    </mat-menu>
   </form>
   </div>
 </div>

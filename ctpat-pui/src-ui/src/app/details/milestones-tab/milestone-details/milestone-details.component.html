@@ -9,7 +9,7 @@
         </ng-container>
 
         <ng-container matColumnDef="noteText">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Note Text</th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Milestones/Notes</th>
             <td mat-cell *matCellDef="let row">{{row.noteText}}</td>
         </ng-container>
 
@@ -23,9 +23,11 @@
             <td mat-cell *matCellDef="let row">{{row.createdDate | date:'dd-MM-yyyy'}}</td>
         </ng-container>
 
-        <ng-container matColumnDef="delete">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Delete</th>
-            <td mat-cell *matCellDef="let row"></td>
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+            <td mat-cell *matCellDef="let row" style="text-align:center">
+              <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+              <mat-icon (click)="editMileStoneActionEntry(row.entryId)">edit</mat-icon></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns" name="documentsTableHeader"></tr>

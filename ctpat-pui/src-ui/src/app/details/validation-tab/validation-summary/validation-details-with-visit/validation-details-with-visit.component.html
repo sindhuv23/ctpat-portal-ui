@@ -1,0 +1,362 @@
+<br>
+<mat-expansion-panel class="ctpat-panel" [expanded]="true" #matExpansionPanel>
+  <mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="30px" expandedHeight="30px">
+    <mat-panel-title class="ctpat-panel-title">
+      <h4 class="padHeading">Initial Validation - 10/03/2022 - Not Completed (for Validation ID {{validationId}})
+      </h4>
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+
+  <div fxLayout="row" style="margin-top:5px; margin-bottom:5px;">
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" accesskey="A" [disabled]="false"
+    aria-label="Approve/Reject" (click)="approveRejectValidationReport()">Approve/Reject</button>
+    <div fxFlex="1"></div>
+    <button mat-raised-button type="submit" color="primary" accesskey="D"
+    aria-label="Download Summary">Download Summary</button>
+    <div fxFlex="1"></div>
+    <button mat-raised-button type="submit" color="primary" accesskey="S" [disabled]="true"
+    aria-label="Submit">Submit</button>
+    <div fxFlex="1"></div>
+    <button mat-raised-button type="submit" color="primary" accesskey="V"
+    aria-label="Delete Validation">Delete Validation</button>
+  </div><hr>
+
+  <mat-accordion multi>
+    <mat-expansion-panel class="mat-elevation-z0" #panelA expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon *ngIf=!panelA.expanded>chevron_right</mat-icon>
+          <mat-icon *ngIf=panelA.expanded>expand_more</mat-icon>
+          Timeline
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" style="margin-bottom:5px;">
+        <button mat-raised-button type="submit" color="primary" accesskey="E"
+        aria-label="Edit Timeline" (click)="editTimeline()">Edit Timeline</button>
+      </div>
+
+      <div fxLayout="row" tid="timeline-section">
+
+        <div class="headerItem30">
+          <div class="item enabled-button">
+            <span class="itemHeader">Verification Dates</span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Initiated</span>
+            <span>10/03/2022</span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Domestic Verification</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Foreign Verification</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Close-out Date</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="headerItem30">
+          <div class="item enabled-button">
+            <span class="itemHeader">Report Dates</span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Submitted to Supervisor</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Escalated HQ</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Sent to Partner</span>
+            <span></span>
+          </div>
+        </div>
+
+        <div class="headerItem30">
+          <div class="item">
+            <span class="itemHeader enabled-button">Response Dates</span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Initial Submission</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Subsequent Rejection</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Subsequent Submission</span>
+            <span></span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Approval</span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+
+    </mat-expansion-panel><hr>
+
+    <mat-expansion-panel class="mat-elevation-z0" #panelB expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon *ngIf=!panelB.expanded>chevron_right</mat-icon>
+          <mat-icon *ngIf=panelB.expanded>expand_more</mat-icon>
+          Executive Summary
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" tid="timeline-section">
+
+        <div class="headerItem30">
+          <div class="item">
+            <span class="itemHeader">Worksheet Status</span>
+            <span>Completed</span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Last Modified</span>
+            <span>10/03/2022</span>
+          </div>
+          <div class="item">
+            <span class="itemHeader">Last Modified by</span>
+            <span>John Doe</span>
+          </div>
+        </div>
+
+        <div class="headerItem30">
+          <div class="item">
+            <span class="itemHeader">Executive Summary</span>
+            <div fxLayout="row" style="display:inline-block">
+              <div><a>Edit</a></div> &nbsp;&nbsp;
+              <mat-icon class="enabled-button">cloud_download</mat-icon> &nbsp;&nbsp;
+              <mat-icon class="enabled-button">cloud_upload</mat-icon>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </mat-expansion-panel><hr>
+
+    <mat-expansion-panel class="mat-elevation-z0" #panelC expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon *ngIf=!panelC.expanded>chevron_right</mat-icon>
+          <mat-icon *ngIf=panelC.expanded>expand_more</mat-icon>
+          Visits
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" style="margin-bottom:5px;">
+        <button mat-raised-button type="submit" color="primary" accesskey="V"
+        aria-label="Add New Visit" (click)="addNewVisit()">Add New Visit</button>
+        <div fxFlex="1"></div>
+        <button mat-raised-button type="submit" color="primary" accesskey="P"
+        aria-label="Add Previous Visit Records" (click)="addPreviousVisitRecords()">Add Previous Visit Records</button>
+      </div>
+
+      <div name="visitsDiv" id="visitsDiv">
+        <table mat-table title="visitsRecords" id="visitsTable" [dataSource]="dataSourceVisits" name="visitsTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="visitName">
+            <th mat-header-cell *matHeaderCellDef scope="col">Visit Name</th>
+            <td mat-cell *matCellDef="let row">{{row.visitName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef scope="col">Company Name</th>
+            <td mat-cell *matCellDef="let row">{{row.companyName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef scope="col">Address</th>
+            <td mat-cell *matCellDef="let row">{{row.address}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="visitWorksheet">
+            <th mat-header-cell *matHeaderCellDef scope="col">Visit Worksheet</th>
+            <td mat-cell *matCellDef="let row">{{row.visitWorksheet}}
+              <div fxLayout="row" style="display:inline-block">
+                <div><a (click)="edit()">Edit</a></div> &nbsp;&nbsp;
+                <mat-icon class="enabled-button">cloud_download</mat-icon> &nbsp;&nbsp;
+                <mat-icon class="enabled-button">cloud_upload</mat-icon>
+              </div>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedBy">
+            <th mat-header-cell *matHeaderCellDef scope="col">Updated By</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedBy}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedDate">
+            <th mat-header-cell *matHeaderCellDef scope="col">Updated Date</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="businessProfileWorksheet">
+            <th mat-header-cell *matHeaderCellDef scope="col">Business Profile Worksheet</th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.businessProfileWorksheet!=='N/A'">
+                {{row.businessProfileWorksheet}}<br>
+                <div fxLayout="row" style="display:inline-block">
+                  <div><a>Edit</a></div> &nbsp;&nbsp;
+                  <mat-icon class="enabled-button">cloud_download</mat-icon> &nbsp;&nbsp;
+                  <mat-icon class="enabled-button">cloud_upload</mat-icon>
+                </div>
+              </span>
+              <span *ngIf="row.businessProfileWorksheet==='N/A'">{{row.businessProfileWorksheet}}</span>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="entryId">
+            <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Actions</th>
+            <td mat-cell *matCellDef="let row" style="text-align:center">
+              <mat-icon class="enabled-button" (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+              <mat-icon class="enabled-button">edit</mat-icon>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsVisits" name="visitsTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsVisits"></tr>
+        </table>
+      </div>
+
+    </mat-expansion-panel><hr>
+
+    <mat-expansion-panel class="mat-elevation-z0" #panelD expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon *ngIf=!panelD.expanded>chevron_right</mat-icon>
+          <mat-icon *ngIf=panelD.expanded>expand_more</mat-icon>
+          MR Records
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div fxLayout="row" style="margin-bottom:5px;">
+        <button mat-raised-button type="submit" color="primary" accesskey="M"
+        aria-label="Associate MR Record(s)" (click)="associateMrRecords()">Associate MR Record(s)</button>
+      </div>
+
+      <div name="mrRecordsDiv" id="mrRecordsDiv">
+        <table mat-table title="mrRecordsRecords" id="mrRecordsTable" [dataSource]="dataSourceMrRecords" name="mrRecordsTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="nameAddress">
+            <th mat-header-cell *matHeaderCellDef scope="col">Name, Program Name, Origin Data, and Address</th>
+            <td mat-cell *matCellDef="let row">{{row.nameAddress}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="accountNumber">
+            <th mat-header-cell *matHeaderCellDef scope="col">Account #</th>
+            <td mat-cell *matCellDef="let row">{{row.accountNumber}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef scope="col">Status</th>
+            <td mat-cell *matCellDef="let row">{{row.status}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="certificationDate">
+            <th mat-header-cell *matHeaderCellDef scope="col">Certification Date</th>
+            <td mat-cell *matCellDef="let row">{{row.certificationDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="associatedDate">
+            <th mat-header-cell *matHeaderCellDef scope="col">Associated Date</th>
+            <td mat-cell *matCellDef="let row">{{row.associatedDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="entryId">
+            <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Actions</th>
+            <td mat-cell *matCellDef="let row" style="text-align:center">
+              <mat-icon class="enabled-button">link_off</mat-icon>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsMrRecords" name="mrRecordsTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsMrRecords"></tr>
+        </table>
+      </div>
+
+    </mat-expansion-panel><hr>
+
+    <mat-expansion-panel class="mat-elevation-z0" #panelE expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon *ngIf=!panelE.expanded>chevron_right</mat-icon>
+          <mat-icon *ngIf=panelE.expanded>expand_more</mat-icon>
+          Files
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div name="filesDiv" id="filesDiv">
+        <table mat-table title="filesRecords" id="filesTable" [dataSource]="dataSourceFiles" name="filesTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="fileName">
+            <th mat-header-cell *matHeaderCellDef scope="col">File Name</th>
+            <td mat-cell *matCellDef="let row">{{row.fileName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="size">
+            <th mat-header-cell *matHeaderCellDef scope="col">Size</th>
+            <td mat-cell *matCellDef="let row">{{row.size}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="uploadedBy">
+            <th mat-header-cell *matHeaderCellDef scope="col">Uploaded By</th>
+            <td mat-cell *matCellDef="let row">{{row.uploadedBy}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="updatedDatetime">
+            <th mat-header-cell *matHeaderCellDef scope="col">Updated Date-Time</th>
+            <td mat-cell *matCellDef="let row">{{row.updatedDatetime}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsFiles" name="filesTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsFiles"></tr>
+        </table>
+      </div>
+
+    </mat-expansion-panel><hr>
+
+    <mat-expansion-panel class="mat-elevation-z0" #panelF expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon *ngIf=!panelF.expanded>chevron_right</mat-icon>
+          <mat-icon *ngIf=panelF.expanded>expand_more</mat-icon>
+          Report Comments
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div name="reportCommentsDiv" id="reportCommentsDiv">
+        <table mat-table title="reportCommentsRecords" id="reportCommentsTable" [dataSource]="dataSourceReportComments" name="reportCommentsTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="dateTime">
+            <th mat-header-cell *matHeaderCellDef scope="col">Date-Time</th>
+            <td mat-cell *matCellDef="let row">{{row.dateTime}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef scope="col">Username</th>
+            <td mat-cell *matCellDef="let row">{{row.username}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="comment">
+            <th mat-header-cell *matHeaderCellDef scope="col">Comment</th>
+            <td mat-cell *matCellDef="let row">{{row.comment}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsReportComments" name="reportCommentsTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsReportComments"></tr>
+        </table>
+      </div>
+
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</mat-expansion-panel>

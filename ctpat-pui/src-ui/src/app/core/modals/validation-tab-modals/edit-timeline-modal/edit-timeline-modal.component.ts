@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, Validators, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 
@@ -21,8 +21,19 @@ export class EditTimelineModalComponent implements OnInit, OnDestroy {
     this.submitted = false;
 
     this.editTimelineForm = this.formBuilder.group({
-      // beiType: new FormControl('', Validators.required),
-      // beiValue: new FormControl('', Validators.required)
+      initiatedDate: new FormControl('', Validators.required),
+      domesticVerificationDate: new FormControl(''),
+      foreignVerificationDate: new FormControl(''),
+      closeoutDate: new FormControl(''),
+      canadianImporterIndicator: new FormControl(''),
+      submittedToSupervisorDate: new FormControl(''),
+      escalatedToHqDate: new FormControl(''),
+      approvedDate: new FormControl(''),
+      completionDate: new FormControl(''),
+      initialSubmissionDate: new FormControl(''),
+      subsequentRejectionDate: new FormControl(''),
+      subsequentSubmissionDate: new FormControl(''),
+      approvalDate: new FormControl('')
     });
   }
 
@@ -42,6 +53,32 @@ export class EditTimelineModalComponent implements OnInit, OnDestroy {
     }
 
     console.log('other validations then save');
+  }
+
+  validateDate(controlName: string, dateInput: any): void {
+    const hasDateInput = dateInput && dateInput.trim();
+    const dateControl = this.editTimelineForm.get(controlName);
+
+    if (dateControl){
+      if (hasDateInput) {
+        // check date format error for manual inputs
+        dateControl.setValidators([Validators.required]);
+      } else {
+        dateControl.clearValidators();
+      }
+      dateControl.updateValueAndValidity();
+    }
+  }
+
+  toFullDate(autoCompleteInput: string, dateInput: string): any {
+    if (!autoCompleteInput && !dateInput) {
+      return null;
+    } else if (!autoCompleteInput) {
+      return dateInput;
+    }
+
+    const date = new Date(autoCompleteInput);
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   }
 
   cancel(): void {

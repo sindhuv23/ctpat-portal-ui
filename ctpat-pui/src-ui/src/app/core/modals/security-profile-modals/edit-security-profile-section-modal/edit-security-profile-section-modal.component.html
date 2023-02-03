@@ -27,7 +27,7 @@
 
             <div fxLayout="column" class="m-t-5">
                 <div fxLayout="column">
-                    <span class="bold-font">Partner Respose:</span>
+                    <span class="bold-font">Partner Response:</span>
                 </div>
                 <div fxLayout="column">
                     <mat-form-field fxFlex appearance="outline">
@@ -133,7 +133,7 @@
 
                     <div fxLayout="column" class="m-t-5">
                         <div fxLayout="column">
-                            <span class="bold-font">Partner Respose:</span>
+                            <span class="bold-font">Partner Response:</span>
                         </div>
                         <div fxLayout="column">
                             <mat-form-field fxFlex appearance="outline">
@@ -193,8 +193,8 @@
     <div id="footer">
         <mat-divider class="divider"></mat-divider>
         <mat-dialog-actions>
-            <button mat-raised-button type="submit" color="primary" (click)="calcel()" accesskey="C"
-                aria-label="Cancel">Calcel</button>
+            <button mat-raised-button type="submit" color="primary" (click)="cancel()" accesskey="C"
+                aria-label="Cancel">Cancel</button>
             <div fxFlex></div>
             <ng-container *ngIf="data.internalUser">
                 <button mat-raised-button type="submit" class="approve-button" color="primary" (click)="approveAll()"

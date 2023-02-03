@@ -1,13 +1,242 @@
 <form [formGroup]="editTimelineForm" novalidate>
 
-  <div fxLayout="row" class="common-header">
+  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Edit Timeline</h3>
     <mat-divider class="divider"></mat-divider>
   </div>
 
-<mat-dialog-content>
-Form fields go here
-</mat-dialog-content>
+  <mat-dialog-content>
+    <div fxLayout="column">
+      <div fxLayout="row">
+        <div fxFlex></div>
+        <div class="required required-text">* Required</div>
+      </div>
+
+      <div fxLayout="row">
+
+        <div fxFlex="32" fxLayout="column">
+          <div class="column-header">Verification Dates</div>
+
+          <div fxLayout="row">
+            <label fxFlex="40" class="label" for="initiatedDate">Initiated<span class="required"> *</span></label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="initiatedDate" formControlName="initiatedDate" id="initiatedDate" #initiatedDateInput aria-label="Date Picker for Initiated Date">
+
+              <mat-datepicker-toggle matSuffix [for]="initiatedDate" aria-label="Date Picker for Initiated Date"
+                accesskey="I"></mat-datepicker-toggle>
+              <mat-datepicker #initiatedDate></mat-datepicker>
+
+              <mat-error *ngIf="f.initiatedDate.errors && f.initiatedDate.errors.required">Required/Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="domesticVerificationDate">Domestic Verification</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="domesticVerificationDate" formControlName="domesticVerificationDate" id="domesticVerificationDate" #domesticVerificationDateInput
+                aria-label="Date Picker for Domestic Verification Date"
+                (input)="validateDate('domesticVerificationDate', domesticVerificationDateInput.value)" (dateInput)="validateDate('domesticVerificationDate', domesticVerificationDateInput.value)"
+                (dateChange)="validateDate('domesticVerificationDate', toFullDate($event.value,  domesticVerificationDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="domesticVerificationDate" aria-label="Date Picker for Domestic Verification Date"
+                accesskey="S"></mat-datepicker-toggle>
+              <mat-datepicker #domesticVerificationDate></mat-datepicker>
+
+              <mat-error *ngIf="f.domesticVerificationDate.errors && f.domesticVerificationDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="foreignVerificationDate">Foreign Verification</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="foreignVerificationDate" formControlName="foreignVerificationDate" id="foreignVerificationDate" #foreignVerificationDateInput
+                aria-label="Date Picker for Foreign Verification Date"
+                (input)="validateDate('foreignVerificationDate', foreignVerificationDateInput.value)" (dateInput)="validateDate('foreignVerificationDate', foreignVerificationDateInput.value)"
+                (dateChange)="validateDate('foreignVerificationDate', toFullDate($event.value,  foreignVerificationDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="foreignVerificationDate" aria-label="Date Picker for Foreign Verification Date"
+                accesskey="F"></mat-datepicker-toggle>
+              <mat-datepicker #foreignVerificationDate></mat-datepicker>
+
+              <mat-error *ngIf="f.foreignVerificationDate.errors && f.foreignVerificationDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="closeoutDate">Close-out Date</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="closeoutDate" formControlName="closeoutDate" id="closeoutDate" #closeoutDateInput
+                aria-label="Date Picker for Close-out Date"
+                (input)="validateDate('closeoutDate', closeoutDateInput.value)" (dateInput)="validateDate('closeoutDate', closeoutDateInput.value)"
+                (dateChange)="validateDate('closeoutDate', toFullDate($event.value,  closeoutDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="closeoutDate" aria-label="Date Picker for Close-out Date"
+                accesskey="C"></mat-datepicker-toggle>
+              <mat-datepicker #closeoutDate></mat-datepicker>
+
+              <mat-error *ngIf="f.closeoutDate.errors && f.closeoutDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-checkbox color="primary" formControlName="canadianImporterIndicator" aria-label="Is a Canadian Importer"
+            for="Canadian Importer indicator"><span style="font-weight: lighter;">Is a Canadian Importer</span></mat-checkbox>
+          </div>
+
+        </div>
+
+        <div fxFlex="2"></div>
+        <div fxFlex="32" fxLayout="column">
+          <div class="column-header">Report Dates</div>
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="submittedToSupervisorDate">Submitted to Supervisor</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="submittedToSupervisorDate" formControlName="submittedToSupervisorDate" id="submittedToSupervisorDate" #submittedToSupervisorDateInput
+                aria-label="Date Picker for Submitted to Supervisor Date"
+                (input)="validateDate('submittedToSupervisorDate', submittedToSupervisorDateInput.value)" (dateInput)="validateDate('submittedToSupervisorDate', submittedToSupervisorDateInput.value)"
+                (dateChange)="validateDate('submittedToSupervisorDate', toFullDate($event.value,  submittedToSupervisorDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="submittedToSupervisorDate" aria-label="Date Picker for Submitted to Supervisor Date"
+                accesskey="A"></mat-datepicker-toggle>
+              <mat-datepicker #submittedToSupervisorDate></mat-datepicker>
+
+              <mat-error *ngIf="f.submittedToSupervisorDate.errors && f.submittedToSupervisorDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="escalatedToHqDate">Escalated to HQ</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="escalatedToHqDate" formControlName="escalatedToHqDate" id="escalatedToHqDate" #escalatedToHqDateInput
+                aria-label="Date Picker for Escalated to HQ Date"
+                (input)="validateDate('escalatedToHqDate', escalatedToHqDateInput.value)" (dateInput)="validateDate('escalatedToHqDate', escalatedToHqDateInput.value)"
+                (dateChange)="validateDate('escalatedToHqDate', toFullDate($event.value,  escalatedToHqDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="escalatedToHqDate" aria-label="Date Picker for Escalated to HQ Date"
+                accesskey="D"></mat-datepicker-toggle>
+              <mat-datepicker #escalatedToHqDate></mat-datepicker>
+
+              <mat-error *ngIf="f.escalatedToHqDate.errors && f.escalatedToHqDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="approvedDate">Approved</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="approvedDate" formControlName="approvedDate" id="approvedDate" #approvedDateInput
+                aria-label="Date Picker for Approved Date"
+                (input)="validateDate('approvedDate', approvedDateInput.value)" (dateInput)="validateDate('approvedDate', approvedDateInput.value)"
+                (dateChange)="validateDate('approvedDate', toFullDate($event.value,  approvedDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="approvedDate" aria-label="Date Picker for Approved Date"
+                accesskey="B"></mat-datepicker-toggle>
+              <mat-datepicker #approvedDate></mat-datepicker>
+
+              <mat-error *ngIf="f.approvedDate.errors && f.approvedDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="completionDate">Sent to Partner/ Completion Date</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="completionDate" formControlName="completionDate" id="completionDate" #completionDateInput
+                aria-label="Date Picker for Sent to Partner/Completion Date Date"
+                (input)="validateDate('completionDate', completionDateInput.value)" (dateInput)="validateDate('completionDate', completionDateInput.value)"
+                (dateChange)="validateDate('completionDate', toFullDate($event.value,  completionDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="completionDate" aria-label="Date Picker for Sent to Partner/Completion Date Date"
+                accesskey="M"></mat-datepicker-toggle>
+              <mat-datepicker #completionDate></mat-datepicker>
+
+              <mat-error *ngIf="f.completionDate.errors && f.completionDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div fxFlex="2"></div>
+        <div fxFlex="32" fxLayout="column">
+          <div class="column-header">Response Dates</div>
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="initialSubmissionDate">Initial Submission</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="initialSubmissionDate" formControlName="initialSubmissionDate" id="initialSubmissionDate" #initialSubmissionDateInput
+                aria-label="Date Picker for Initial Submission Date"
+                (input)="validateDate('initialSubmissionDate', initialSubmissionDateInput.value)" (dateInput)="validateDate('initialSubmissionDate', initialSubmissionDateInput.value)"
+                (dateChange)="validateDate('initialSubmissionDate', toFullDate($event.value,  initialSubmissionDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="initialSubmissionDate" aria-label="Date Picker for Initial Submission Date"
+                accesskey="N"></mat-datepicker-toggle>
+              <mat-datepicker #initialSubmissionDate></mat-datepicker>
+
+              <mat-error *ngIf="f.initialSubmissionDate.errors && f.initialSubmissionDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="subsequentRejectionDate">Subsequent Rejection</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="subsequentRejectionDate" formControlName="subsequentRejectionDate" id="subsequentRejectionDate" #subsequentRejectionDateInput
+                aria-label="Date Picker for Subsequent Rejection Date"
+                (input)="validateDate('subsequentRejectionDate', subsequentRejectionDateInput.value)" (dateInput)="validateDate('subsequentRejectionDate', subsequentRejectionDateInput.value)"
+                (dateChange)="validateDate('subsequentRejectionDate', toFullDate($event.value,  subsequentRejectionDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="subsequentRejectionDate" aria-label="Date Picker for Subsequent Rejection Date"
+                accesskey="P"></mat-datepicker-toggle>
+              <mat-datepicker #subsequentRejectionDate></mat-datepicker>
+
+              <mat-error *ngIf="f.subsequentRejectionDate.errors && f.subsequentRejectionDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="subsequentSubmissionDate">Subsequent Submission</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="subsequentSubmissionDate" formControlName="subsequentSubmissionDate" id="subsequentSubmissionDate" #subsequentSubmissionDateInput
+                aria-label="Date Picker for Subsequent Submission Date"
+                (input)="validateDate('subsequentSubmissionDate', subsequentSubmissionDateInput.value)" (dateInput)="validateDate('subsequentSubmissionDate', subsequentSubmissionDateInput.value)"
+                (dateChange)="validateDate('subsequentSubmissionDate', toFullDate($event.value,  subsequentSubmissionDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="subsequentSubmissionDate" aria-label="Date Picker for Subsequent Submission Date"
+                accesskey="Q"></mat-datepicker-toggle>
+              <mat-datepicker #subsequentSubmissionDate></mat-datepicker>
+
+              <mat-error *ngIf="f.subsequentSubmissionDate.errors && f.subsequentSubmissionDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="approvalDate">Approval</label>
+
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput [matDatepicker]="approvalDate" formControlName="approvalDate" id="approvalDate" #approvalDateInput
+                aria-label="Date Picker for Approval Date"
+                (input)="validateDate('approvalDate', approvalDateInput.value)" (dateInput)="validateDate('approvalDate', approvalDateInput.value)"
+                (dateChange)="validateDate('approvalDate', toFullDate($event.value,  approvalDateInput.value))">
+
+              <mat-datepicker-toggle matSuffix [for]="approvalDate" aria-label="Date Picker for Approval Date"
+                accesskey="R"></mat-datepicker-toggle>
+              <mat-datepicker #approvalDate></mat-datepicker>
+
+              <mat-error *ngIf="f.approvalDate.errors && f.approvalDate.errors.required">Wrong date format</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </mat-dialog-content>
 
 <div class="common-footer">
   <mat-divider class="divider"></mat-divider>

@@ -1,0 +1,22 @@
+.title{
+  font-weight: bold;
+  margin-top: -20px;
+}
+
+#status-section{
+  margin: 10px 10px;
+}
+
+.required-text{
+  float: right !important;
+  padding: 5px 5px;
+}
+
+.minor-button {
+  background-color: lightgray !important;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: #a00000 !important;
+  opacity: 0.6 !important;
+}

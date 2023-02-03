@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   envName: 'local',
-  CONTEXT_PATH: '/ctpat-pui/',
-  baseUrl: 'http://localhost:9001'
+  CONTEXT_PATH: '/ctpat-portal-ui/',
+  baseUrl: 'http://localhost:9002'
 };
 
 /*

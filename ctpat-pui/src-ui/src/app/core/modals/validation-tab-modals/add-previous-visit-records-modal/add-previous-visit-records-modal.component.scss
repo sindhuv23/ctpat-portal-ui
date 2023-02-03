@@ -1,3 +1,98 @@
 .minorButton {
   background-color: lightgray !important;
 }
+
+table{
+  border: 1px solid gray;
+}
+
+td {
+  padding-left: 10px !important;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  word-break: normal;
+  background-color: white;
+  max-height: fit-content !important;
+}
+
+th {
+  padding-left: 15px !important;
+  border-right: 1px solid gray;
+  text-align: center !important;
+  background-color: #edf1f5;
+  max-height: fit-content !important;
+}
+
+tr.mat-header-row, tr.mat-row {
+  height: fit-content !important;
+}
+
+td:last-child, th:last-child{
+  border-right: none;
+}
+
+.mat-column-visitName {
+  flex: 0 0 15% !important;
+  width: 15% !important;
+}
+.mat-column-nameAddress {
+  flex: 0 0 30% !important;
+  width: 30% !important;
+}
+.mat-column-leadScss {
+  flex: 0 0 15% !important;
+  width: 15% !important;
+}
+.mat-column-completionDate {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+.mat-column-country {
+  flex: 0 0 15% !important;
+  width: 15% !important;
+}
+.mat-column-status {
+  flex: 0 0 10% !important;
+  width: 10% !important;
+}
+
+#visitRecordsDiv{
+  margin: 0px 10px;
+}
+
+#note{
+  margin: 20px 0px 0px 20px;
+}
+
+.new-line-in-data{
+  white-space: pre-line;
+}
+
+#outer-container{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#header{
+  top: 0px;
+  height: 40px;
+  background-color: #00416a;
+  color: white;
+  cursor: move;
+}
+#mid-container{
+  max-height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: absolute;
+  top: 42px;
+  bottom: 25px;
+}
+#footer{
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  bottom: -10px;
+}
+

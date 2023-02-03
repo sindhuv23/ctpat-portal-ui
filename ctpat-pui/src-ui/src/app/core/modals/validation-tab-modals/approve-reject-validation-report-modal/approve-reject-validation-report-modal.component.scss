@@ -1,3 +1,16 @@
-.minorButton {
-  background-color: lightgray !important;
+.mat-raised-button.mat-darkgreen{
+  background-color: darkgreen !important;
+  color: white !important;
+}
+.mat-raised-button.mat-darkred{
+  background-color: darkred !important;
+  color: white !important;
+}
+
+.title{
+  font-weight: bold;
+}
+
+#comments-section{
+  margin: 10px 10px;
 }

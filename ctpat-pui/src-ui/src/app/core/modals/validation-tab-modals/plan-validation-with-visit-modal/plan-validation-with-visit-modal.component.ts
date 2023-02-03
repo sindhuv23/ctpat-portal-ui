@@ -1,5 +1,5 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
@@ -22,8 +22,11 @@ export class PlanValidationWithVisitModalComponent implements OnInit, OnDestroy 
     this.submitted = false;
 
     this.planValidationWithVisitForm = this.formBuilder.group({
-      // beiType: new FormControl('', Validators.required),
-      // beiValue: new FormControl('', Validators.required)
+        initiatedDate: new FormControl('', Validators.required),
+        domesticVerificationDate: new FormControl(''),
+        foreignVerificationDate: new FormControl(''),
+        closeoutDate: new FormControl(''),
+        canadianImporterIndicator: new FormControl('')
     });
   }
 
@@ -36,6 +39,38 @@ export class PlanValidationWithVisitModalComponent implements OnInit, OnDestroy 
   }
 
   initiate(): void{
+    this.submitted = true;
+    // UI validation before this point
+    if (this.planValidationWithVisitForm.invalid){
+      return;
+    }
+    console.log('initiate');
+  }
+
+  validateDate(controlName: string, dateInput: any): void {
+    const hasDateInput = dateInput && dateInput.trim();
+    const dateControl = this.planValidationWithVisitForm.get(controlName);
+
+    if (dateControl){
+      if (hasDateInput) {
+        // check date format error for manual inputs
+        dateControl.setValidators([Validators.required]);
+      } else {
+        dateControl.clearValidators();
+      }
+      dateControl.updateValueAndValidity();
+    }
+  }
+
+  toFullDate(autoCompleteInput: string, dateInput: string): any {
+    if (!autoCompleteInput && !dateInput) {
+      return null;
+    } else if (!autoCompleteInput) {
+      return dateInput;
+    }
+
+    const date = new Date(autoCompleteInput);
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
   }
 
   cancel(): void {

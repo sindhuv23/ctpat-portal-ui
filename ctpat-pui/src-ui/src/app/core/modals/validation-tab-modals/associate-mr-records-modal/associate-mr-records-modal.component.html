@@ -1,21 +1,100 @@
-<form [formGroup]="associateMrRecordsForm" novalidate>
+<div id="outer-container">
 
-  <div fxLayout="row" class="common-header">
-    <h3 mat-dialog-title class="dialog-header">Associate MR Record(s)</h3>
-    <mat-divider class="divider"></mat-divider>
+  <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h3 mat-dialog-title class="dialog-header">Associate MR Record(s)</h3>
+      <mat-divider class="divider"></mat-divider>
   </div>
 
-<mat-dialog-content>
-Form fields go here
-</mat-dialog-content>
+  <div id="mid-container" fxLayout="column">
 
-<div class="common-footer">
-  <mat-divider class="divider"></mat-divider>
-  <mat-dialog-actions>
-    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
-    <div fxFlex></div>
-    <button mat-raised-button type="submit" color="primary" (click)="associate()" accesskey="A" aria-label="Associate">Associate</button>
-  </mat-dialog-actions>
-</div>
-</form>
+  <div fxLayout="row" [formGroup]="associateMrRecordsForm" id="form-div">
+    <div class="title">Keyword Search</div>
+    <div fxFlex="2"></div>
+    <mat-form-field appearance="outline">
+      <input matInput  formControlName="keyword" aria-label="keyword search">
+    </mat-form-field>
+    <div fxFlex="2"></div>
+    <div>
+      <button mat-raised-button type="submit" color="primary" (click)="search()" aria-label="Search" accesskey="S">Search</button>
+    </div>
+  </div>
+
+  <div fxLayout="row">
+
+    <div fxFlex="49" name="mrRecordsDiv" id="mrRecordsDiv">
+      <table mat-table title="MrRecords" id="mrRecordsTable" [dataSource]="dataSourceMrRecords" name="mrRecordsTable" class="row mat-elevation-z0">
+
+        <ng-container matColumnDef="select">
+          <th mat-header-cell *matHeaderCellDef scope="col">Select</th>
+          <td mat-cell *matCellDef="let row" scope="row">
+            <mat-checkbox color="primary" (click)="$event.stopPropagation();" (change)="$event ? this.selection.toggle(row) : null; getSelectedRecords();"
+            [checked]="selection.isSelected(row)"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="accountInfo">
+          <th mat-header-cell *matHeaderCellDef scope="col">Company #, Name, Progam Name, Data Origin, Address</th>
+          <td mat-cell *matCellDef="let row" class="new-line-in-data">{{row.accountInfo}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="certificationDate">
+          <th mat-header-cell *matHeaderCellDef scope="col">Certification Date</th>
+          <td mat-cell *matCellDef="let row">{{row.certificationDate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="validationDate" style="width:20px">
+          <th mat-header-cell *matHeaderCellDef scope="col">Last Validation Date</th>
+          <td mat-cell *matCellDef="let row">{{row.validationDate}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" name="mrRecordsTableHeader"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [pageSize]="10" [showFirstLastButtons]="true"></mat-paginator>
+    </div>
+
+    <div fxFlex="1"></div>
+    <div fxFlex="49" id="displayDiv">
+        <table mat-table title="SelectedMr Records" id="selectedMrRecordsTable" [dataSource]="dataSourceSelectedMrRecords" name="selectedMrRecordsTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="accountInfo">
+            <th class="selected-header" mat-header-cell *matHeaderCellDef scope="col">Selected MR Record(s)</th>
+            <td class="new-line-in-data" mat-cell *matCellDef="let row">{{row.accountInfo}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="certificationDate">
+            <th class="selected-header" mat-header-cell *matHeaderCellDef scope="col">Certification Date</th>
+            <td mat-cell *matCellDef="let row">{{row.certificationDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="validationDate" style="width:20px">
+            <th class="selected-header" mat-header-cell *matHeaderCellDef scope="col">Last Validation Date</th>
+            <td mat-cell *matCellDef="let row">{{row.validationDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="entryId">
+            <th class="selected-header" mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+            <td mat-cell *matCellDef="let row" style="text-align:center">
+              <mat-icon (click)="deleteSelectedMrRecordEntry(row.entryId, row.mrId)">delete_forever</mat-icon></td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsSelectedMrRecords" name="selectedMrRecordsTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsSelectedMrRecords"></tr>
+        </table>
+    </div>
+
+  </div>
+
+  </div>
+
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="associate()" accesskey="A" aria-label="Associate">Associate</button>
+    </mat-dialog-actions>
+  </div>
+
+  </div>
 

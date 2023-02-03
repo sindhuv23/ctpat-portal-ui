@@ -1,0 +1,154 @@
+<form [formGroup]="siteValidationVisitForm" novalidate>
+<div style="background-color: #00416a; color: white;">Respond - Validation Site Visit - Name of the visit - Date</div>
+<div  style="margin-bottom: 20px;background-color: lightgrey; color:black; background-size: 25%,25%;">  
+    <h3>Container/Trailer/IIT</h3>
+  </div>  
+  <div class="modal-body" style="margin-left: 25px; margin-right: 25px;"> 
+    <div class="form-outline"  style="margin-bottom: 20px;">
+        <div class="form-outline"  style="margin-bottom: 20px;">
+            <table class="form-control" style="padding: 0;border-collapse: collapse;">
+              <thead style="border: 1px solid grey; border-collapse: collapse; background-color: lightgrey;">
+                    <td style="border: 1px lightgrey;border-collapse: collapse;"><div style="text-align: left;"><b>RECOMMENDATION </b></div></td>
+                    <td style="border: 1px lightgrey;border-collapse: collapse;"><div style="text-align: right;"><b>ResponseID : </b>{{responseId}}</div></td>
+              </thead>
+              <tbody>
+              <tr style="border: 1px solid grey; border-collapse: collapse;">
+                <td style="border: 1px solid grey; border-collapse: collapse;" colspan="2">Procedure must be established in order to verify the physical integrity of instruments of international traffic prior to loading</td>
+              </tr>
+            </tbody>
+            </table>
+          </div>
+      </div>
+      <div  style="margin-bottom: 20px;">
+        <p> Please briefly explain how this requirement is being implemented. Click the upload button below to add evidence of implementation such as written procedured, completed logs/checklists, images etc</p>
+      </div>
+      <div style="margin-bottom: 20px;" >
+            <div style="margin-bottom: 25px;">
+                <div><b>Partner Response:</b></div>
+                <div style="float: left; width: 100%;">
+                    <textarea style="width: 100%; max-width:100%;" id="PartnerResponse" rows="2"></textarea>
+                 </div>
+            </div>
+            <div  style="margin-top: 10px;">    
+                <button mat-raised-button type="submit" color="primary"  aria-label="Upload Document" accesskey="U" class="uploadButton">Upload</button>
+                <button mat-raised-button type="submit" color="primary"  aria-label="Associate Document" accesskey="U" class="associateButton">Associate</button>
+            </div> 
+            <div style="margin-bottom: 20px; margin-top: 15px;">
+                <table class="form-control" style="padding: 0; border-collapse: collapse;">
+                    <thead style="background-color: lightgrey; border: 1px solid grey; padding: 1px; border-collapse: collapse;">
+                   
+                    <tr>   
+                        <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Name</td>
+                        <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Size</td>
+                        <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Uploaded Date</td>
+                        <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">Uploaded By</td>
+                        <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Type</td>
+                        <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Remove Association</td>    
+                       
+                    </tr>
+                </thead>
+
+               
+                     
+                <tbody style="border: 0px; column-rule-color: lightgrey;">
+                    <tr >
+                        <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">
+                            <a name=" " href="" ng-model=" " > sample.pdf </a></td>
+                        <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                           33KB </td>
+                        <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                           10/10/2022 </td>
+                        <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                           UserName </td>
+                        <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                           Other </td>
+                        <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                            <a name="" href="" > remove </a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> 
+    </div>
+     <div>
+            <div  style="margin-bottom: 10px;background-color: lightgrey; color:black; border-top-color: grey;">  
+                <h3>Alarm Systems and Video Survellance Cameras</h3>
+              </div>  
+        <div class="modal-body" style="margin-left: 25px; margin-right: 25px;">
+              <div class="form-outline"  style="margin-bottom: 20px;">
+                <table class="form-control" style="padding: 0;border-collapse: collapse;">
+                  <thead style="border: 1px solid grey; border-collapse: collapse; background-color: lightgrey;">
+                        <td style="border: 1px lightgrey;border-collapse: collapse;"><div style="text-align: left;"><b>RECOMMENDATION </b></div></td>
+                        <td style="border: 1px lightgrey;border-collapse: collapse;"><div style="text-align: right;"><b>ResponseID : </b>{{responseId}}</div></td>
+                  </thead>
+                  <tbody>
+                  <tr style="border: 1px solid grey; border-collapse: collapse;">
+                    <td style="border: 1px solid grey; border-collapse: collapse;" colspan="2">video Survellance equipment and/or recording should be secured to prevent unauthorised access/tampering</td>
+                  </tr>
+                </tbody>
+                </table>
+              </div>
+              <div>
+                <form>
+                    <p>Did you implement this?<span style="color:red">   required</span></p> 
+                    <input type="radio" ng-model="myVar" value="Yes">Yes
+                    <input type="radio" ng-model="myVar" value="No">No
+                  </form>
+                </div>
+                <div class="form-outline" style="margin-bottom: 20px; margin-top: 10px;">
+                    <div style="margin-bottom: 25px;">
+                        <div><b style="display:inline-block">Partner Response:  </b> <p style="display:inline-block"><span style="color:red">   required</span></p></div>
+                        <div style="float: left; width: 100%;">
+                            <textarea style="width: 100%; max-width:100%;" id="PartnerResponse" rows="2"></textarea>
+                         </div>
+                    </div>
+                </div>
+                <div  style="margin-bottom: 20px;">
+                    <div  style="margin-top: 10px;">    
+                        <button mat-raised-button type="submit" color="primary"  aria-label="Upload Document" accesskey="U" class="uploadButton">Upload</button>
+                        <button mat-raised-button type="submit" color="primary"  aria-label="Associate Document" accesskey="U" class="associateButton">Associate</button>
+                    </div> 
+              </div> 
+              <div style="margin-bottom: 20px;">
+                <table class="form-control" style="padding: 0; border-collapse: collapse;">
+                    <thead style="background-color: lightgrey; border: 1px solid grey; padding: 1px; border-collapse: collapse;">
+                        <tr>
+                            <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Name</td>
+                            <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Size</td>
+                            <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Uploaded Date</td>
+                            <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">Uploaded By</td>
+                            <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Type</td>
+                            <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">Remove Association</td>    
+                        </tr>
+                    </thead>
+                    <tbody style="border: 1px solid grey; padding: 1px;">
+                        <tr  ng-repeat="personalDetail in personalDetails" style="border: 1px solid grey; padding: 1px;">
+                        
+                            <td style="border: 1px solid grey; padding: 1px; border-collapse: collapse;">
+                                <a name=" " href="" ng-model=" " > sample.pdf </a></td>
+                            <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                               33KB </td>
+                            <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                               10/10/2022 </td>
+                            <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                               UserName </td>
+                            <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                               Other </td>
+                            <td style="border: 1px solid grey; padding: 1px;border-collapse: collapse;">
+                                <a name="" href="" > remove </a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+
+        <div class="common-footer">
+            <mat-divider class="divider"></mat-divider>
+            <mat-dialog-actions>
+              <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+              <div fxFlex></div>
+              <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+            </mat-dialog-actions>
+          </div>
+          </form>

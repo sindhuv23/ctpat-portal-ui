@@ -24,7 +24,7 @@ export class SviPanelComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort) matSort!: MatSort;
 
   constructor(public dialog: MatDialog) { }
-  isJoinSVI = true;
+  isJoinSVI = false;
 
   ngOnInit(): void {
   }

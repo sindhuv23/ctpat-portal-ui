@@ -15,7 +15,7 @@ export class SecurityProfileSectionComponent implements OnInit, AfterViewInit, O
 
   private subscriptions = new Subscription();
   public isLoading = false;
-  public internalUser = true;
+  public internalUser = false;
 
   securityProfileForm!: FormGroup;
   sectionStatus = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];

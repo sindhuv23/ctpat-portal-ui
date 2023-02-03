@@ -20,7 +20,7 @@ export class ValidationService {
   private validationSectionSubject = new ReplaySubject<any>(1);
   public validationSection$ = this.validationSectionSubject.asObservable();
 
-  private validationIdSubject = new ReplaySubject<any>();
+  private validationIdSubject = new Subject<any>();
   public validationId$ = this.validationIdSubject.asObservable();
 
   constructor(private httpClient: HttpClient) {

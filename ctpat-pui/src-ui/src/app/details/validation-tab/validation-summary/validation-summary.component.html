@@ -12,12 +12,19 @@
 
     <ng-container matColumnDef="validationType">
       <th mat-header-cell *matHeaderCellDef scope="col">Validation Type</th>
-      <td mat-cell *matCellDef="let row"><a (click)="showValidationDetails(row.entryId)">{{row.validationType}}</a></td>
+      <td mat-cell *matCellDef="let row"><a (click)="showValidationDetails(row.entryId, row.withVisit)">{{row.validationType}}</a></td>
     </ng-container>
 
     <ng-container matColumnDef="validationStatus">
       <th mat-header-cell *matHeaderCellDef scope="col">Validation Status</th>
-      <td mat-cell *matCellDef="let row">{{row.validationStatus}}</td>
+      <td mat-cell *matCellDef="let row"> 
+          <span *ngIf="row.validationStatus != 'Initiated' ">
+            {{row.validationStatus}}
+        </span>
+        <span *ngIf="row.validationStatus === 'Initiated' ">
+          <a (click)="showSiteValidationVisit(row.entryId)">{{row.validationStatus}}</a> 
+      </span>
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="validationInitiatedDate">
@@ -93,7 +100,12 @@
   </table>
 </div>
 
-<div *ngIf="showDetails">
-  <app-validation-details></app-validation-details>
+<div [ngClass]="{'hideElement' : !showDetails}">
+  <div [ngClass]="{'hideElement' : !validationWithVisit}">
+    <app-validation-details-with-visit></app-validation-details-with-visit>
+  </div>
+  <div [ngClass]="{'hideElement' : validationWithVisit}">
+    <app-validation-details-no-visit></app-validation-details-no-visit>
+  </div>
 </div>
 

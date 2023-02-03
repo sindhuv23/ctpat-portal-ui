@@ -2,11 +2,11 @@ import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { PlanValidationModalComponent } from 'src/app/core/modals/plan-validation-modal/plan-validation-modal.component';
 import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmation-dialog-modal/confirmation-dialog-modal.component';
 import { ValidationService } from 'src/app/core/services/validation.service';
 import { PlanValidationWithVisitModalComponent } from 'src/app/core/modals/validation-tab-modals/plan-validation-with-visit-modal/plan-validation-with-visit-modal.component';
 import { PlanValidationWithNoVisitModalComponent } from 'src/app/core/modals/validation-tab-modals/plan-validation-with-no-visit-modal/plan-validation-with-no-visit-modal.component';
+import { SiteValidationVisitModalComponent } from 'src/app/core/modals/validation-tab-modals/site-validation-visit-modal/site-validation-visit-modal.component';
 
 @Component({
   selector: 'app-validation-summary',
@@ -19,6 +19,7 @@ implements OnInit, OnDestroy, AfterViewInit {
 
  private subscriptions = new Subscription();
  public showDetails = false;
+ public validationWithVisit = true;
 
  displayedColumnsValidationSummary: string[] =
   ['validationType', 'validationStatus', 'validationInitiatedDate', 'closeOutDate', 'reportStatus', 'sentToPartner',
@@ -35,16 +36,17 @@ implements OnInit, OnDestroy, AfterViewInit {
   console.log('row clicked -> ' + id);
  }
 
- showValidationDetails(id: any): void{
+ showValidationDetails(id: any, withVisit: boolean): void{
   this.showDetails = true;
-  this.validationService.broadcastValidationId(id);
+  this.validationWithVisit = withVisit;
+  this.validationService.broadcastValidationId({id, withVisit});
  }
 
  planValidationVisit(): void{
   const dialogRef = this.dialog.open(PlanValidationWithVisitModalComponent, {
     data: {},
-    width: '600px',
-    height: '230px',
+    width: '500px',
+    height: '390px',
     disableClose: true
   });
 }
@@ -52,17 +54,26 @@ implements OnInit, OnDestroy, AfterViewInit {
 planValidationNoVisit(): void{
   const dialogRef = this.dialog.open(PlanValidationWithNoVisitModalComponent, {
     data: {},
-    width: '800px',
-    height: '600px',
+    width: '900px',
+    height: '560px',
     disableClose: true
   });
 }
 
+showSiteValidationVisit(id: any): void{
+  const dialogRef = this.dialog.open(SiteValidationVisitModalComponent, {
+    data: {},
+    width: '1000px',
+    height: '1100px',
+    disableClose: true
+  });
+}
  ngAfterViewInit(): void{
-  this.dataValidationSummary.push({validationType: 'Initial Validation', validationStatus: 'Initiated', validationInitiatedDate: '10/03/2022', closeOutDate: '', reportStatus: '', sentToPartner: '',
+  this.dataValidationSummary.push({validationType: 'Initial Validation', withVisit: true, validationStatus: 'Initiated',
+   validationInitiatedDate: '10/03/2022', closeOutDate: '', reportStatus: '', sentToPartner: '',
     responseStatus: '', responseAcceptedDate: '', responseSummary: '', validationReport: '', executiveSummary: 'Edit',
     worksheetSummary: 'Summary', entryId: this.dataValidationSummary.length});
-  this.dataValidationSummary.push({validationType: 'Not Visiting', validationStatus: 'Rejected', validationInitiatedDate: '09/03/2020',
+  this.dataValidationSummary.push({validationType: 'Not Visiting', withVisit: false, validationStatus: 'Rejected', validationInitiatedDate: '09/03/2020',
     closeOutDate: '10/10/2020', reportStatus: 'N/A', sentToPartner: 'N/A', responseStatus: 'N/A', responseAcceptedDate: 'N/A',
     responseSummary: 'N/A', validationReport: 'N/A', executiveSummary: 'N/A', worksheetSummary: '',
     entryId: this.dataValidationSummary.length});

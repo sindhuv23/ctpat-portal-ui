@@ -1,6 +1,7 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -14,6 +15,10 @@ export class PlanValidationWithNoVisitModalComponent implements OnInit, OnDestro
   private subscriptions = new Subscription();
   public submitted = false;
 
+  displayedColumnsNewSite: string[] = ['noGoZoneIndicator', 'noGoReason', 'otherReason', 'gpsCoordinates', 'address', 'entryId'];
+  private dataNewSite: any[] = [];
+  public dataSourceNewSite = new MatTableDataSource<any>();
+
   constructor(public dialogRef: MatDialogRef<PlanValidationWithNoVisitModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { }
 
@@ -21,8 +26,15 @@ export class PlanValidationWithNoVisitModalComponent implements OnInit, OnDestro
     this.submitted = false;
 
     this.planValidationWithNoVisitForm = this.formBuilder.group({
-      // beiType: new FormControl('', Validators.required),
-      // beiValue: new FormControl('', Validators.required)
+      noGoZoneIndicator: new FormControl(false),
+      noGoReason: new FormControl(''),
+      otherReason: new FormControl(''),
+      gpsCoordinates: new FormControl(''),
+      country: new FormControl(''),
+      state: new FormControl({value: '', disabled: true}),
+      city: new FormControl(''),
+      street: new FormControl(''),
+      postalCode: new FormControl('')
     });
   }
 
@@ -42,6 +54,37 @@ export class PlanValidationWithNoVisitModalComponent implements OnInit, OnDestro
     }
 
     console.log('other validations then save');
+  }
+
+  addNewSite(): void{
+    const formRawValue = this.planValidationWithNoVisitForm.getRawValue();
+    if (formRawValue.state && formRawValue.country){
+      this.dataNewSite.push({noGoZoneIndicator: formRawValue.noGoZoneIndicator, noGoReason: formRawValue.noGoReason,
+        otherReason: formRawValue.otherReason, gpsCoordinates: formRawValue.gpsCoordinates, address: {
+          state: formRawValue.state, city: formRawValue.city, country: formRawValue.country,
+          street: formRawValue.street, postalCode: formRawValue.postalCode,
+        }, entryId: this.dataNewSite.length});
+      this.dataSourceNewSite = new MatTableDataSource<any>(this.dataNewSite);
+
+      this.planValidationWithNoVisitForm.reset();
+    }
+  }
+
+  deleteNewSiteEntry(id: any): void{
+    this.dataNewSite.splice(id, 1);
+    for (let i = 0; i < this.dataNewSite.length; i++) {
+     this.dataNewSite[i].entryId = i;
+    }
+    this.dataSourceNewSite = new MatTableDataSource<any>(this.dataNewSite);
+  }
+
+  countrySelected(event: any): void {
+    if (event){
+      this.planValidationWithNoVisitForm.get('state')?.enable();
+    } else {
+      this.planValidationWithNoVisitForm.get('state')?.disable();
+      this.planValidationWithNoVisitForm.get('state')?.setValue(null);
+    }
   }
 
   cancel(): void {

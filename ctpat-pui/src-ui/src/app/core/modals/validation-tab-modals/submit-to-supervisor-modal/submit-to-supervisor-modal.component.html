@@ -1,0 +1,36 @@
+<form [formGroup]="submitToSupervisorForm" novalidate>
+
+  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <h3 mat-dialog-title class="dialog-header">Submit No-Go Request</h3>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+<mat-dialog-content>
+<div class="required required-text">* Required</div><br>
+<div fxLayout="row" id="status-section" fxLayoutAlign="center center">
+  <div class="title" fxFlex="45">Recommendation Status<span class="required"> *</span></div>
+  <mat-form-field appearance="outline">
+    <mat-select formControlName="status" id="status" aria-label="Status" placeholder="--- Select ---">
+      <mat-option value="">--- Select ---</mat-option>
+      <mat-option value="1">Suspended</mat-option>
+      <mat-option value="2">Revoked</mat-option>
+      <mat-option value="3">Validated</mat-option>
+      <mat-option value="4">Ineligible</mat-option>
+      <mat-option value="5">Certified</mat-option>
+    </mat-select>
+    <mat-error *ngIf="submitted && f.status.errors && f.status.errors.required">Status is required</mat-error>
+  </mat-form-field>
+</div>
+</mat-dialog-content>
+
+<div class="common-footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <div fxFlex="30"></div>
+    <button mat-raised-button type="submit" color="primary" (click)="submit()" accesskey="A" aria-label="Approve">Approve</button>
+    <div fxFlex="5"></div>
+    <button mat-raised-button type="button" class="minor-button" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+  </mat-dialog-actions>
+</div>
+</form>
+

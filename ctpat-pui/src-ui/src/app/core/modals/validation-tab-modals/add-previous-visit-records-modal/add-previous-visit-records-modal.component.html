@@ -1,15 +1,73 @@
-<form [formGroup]="addPreviousVisitRecordsForm" novalidate>
+<div id="outer-container">
 
-  <div fxLayout="row" class="common-header">
+<div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Associate Previous Visits</h3>
     <mat-divider class="divider"></mat-divider>
+</div>
+
+<div id="mid-container">
+
+<div fxLayout="row">
+  <div fxFlex id="note"><span class="dark-red">Note:</span> Only visits that have a validation response status of "Accepted" can be associated.</div>
+  <div [formGroup]="visitRecordForm">
+    <mat-form-field>
+      <input matInput  formControlName="textInput" placeholder="Company Name Filter" />
+    </mat-form-field>
   </div>
 
-<mat-dialog-content>
-Form fields go here
-</mat-dialog-content>
+</div>
 
-<div class="common-footer">
+<div name="visitRecordsDiv" id="visitRecordsDiv">
+  <table mat-table title="VisitRecords" id="visitRecordsTable" [dataSource]="dataSourceVisitRecords" name="visitRecordsTable" class="row mat-elevation-z0"
+    matSort matSortActive="uploadedDateTime" matSortDirection="desc" [matSortDisableClear]="true">
+
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef scope="col">Select</th>
+      <td mat-cell *matCellDef="let row" scope="row">
+        <mat-checkbox color="primary" (click)="$event.stopPropagation()" (change)="$event ? this.selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)" [disabled]="row.status!=='Accepted'"></mat-checkbox>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="visitName">
+      <th mat-header-cell *matHeaderCellDef scope="col">Visit Name</th>
+      <td mat-cell *matCellDef="let row">{{row.visitName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nameAddress">
+      <th mat-header-cell *matHeaderCellDef scope="col">Company Name and Address</th>
+      <td mat-cell *matCellDef="let row" class="new-line-in-data">{{row.nameAddress}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="leadScss">
+      <th mat-header-cell *matHeaderCellDef scope="col">Lead SCSS</th>
+      <td mat-cell *matCellDef="let row">{{row.leadScss}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="completionDate">
+      <th mat-header-cell *matHeaderCellDef scope="col">Visit Completion Date</th>
+      <td mat-cell *matCellDef="let row">{{row.completionDate}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="country">
+      <th mat-header-cell *matHeaderCellDef scope="col">Visited Country</th>
+      <td mat-cell *matCellDef="let row">{{row.country}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef scope="col">Validation Response Status</th>
+      <td mat-cell *matCellDef="let row">{{row.status}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" name="visitRecordsTableHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator [pageSize]="10" [showFirstLastButtons]="true"></mat-paginator>
+</div>
+
+</div>
+
+<div id="footer">
   <mat-divider class="divider"></mat-divider>
   <mat-dialog-actions>
     <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
@@ -17,5 +75,6 @@ Form fields go here
     <button mat-raised-button type="submit" color="primary" (click)="associate()" accesskey="A" aria-label="Associate">Associate</button>
   </mat-dialog-actions>
 </div>
-</form>
+
+</div>
 

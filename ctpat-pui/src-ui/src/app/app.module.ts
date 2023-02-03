@@ -84,7 +84,6 @@ import { PlanValidationModalComponent } from './core/modals/plan-validation-moda
 import { ValidationFormComponent } from './core/modals/plan-validation-modal/validation-form/validation-form.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { ValidationSummaryComponent } from './details/validation-tab/validation-summary/validation-summary.component';
-import { ValidationDetailsComponent } from './details/validation-tab/validation-summary/validation-details/validation-details.component';
 import { PlanValidationWithVisitModalComponent } from './core/modals/validation-tab-modals/plan-validation-with-visit-modal/plan-validation-with-visit-modal.component';
 import { PlanValidationWithNoVisitModalComponent } from './core/modals/validation-tab-modals/plan-validation-with-no-visit-modal/plan-validation-with-no-visit-modal.component';
 import { EditTimelineModalComponent } from './core/modals/validation-tab-modals/edit-timeline-modal/edit-timeline-modal.component';
@@ -94,6 +93,7 @@ import { AssociateMrRecordsModalComponent } from './core/modals/validation-tab-m
 import { ApproveRejectValidationReportModalComponent } from './core/modals/validation-tab-modals/approve-reject-validation-report-modal/approve-reject-validation-report-modal.component';
 import { SviTabComponent } from './details/svi-tab/svi-tab.component';
 import { SviPanelComponent } from './details/svi-tab/svi-panel/svi-panel.component';
+import { MatNativeDateModule } from '@angular/material/core';
 import { JoinSviModalComponent } from './core/modals/join-svi-modal/join-svi-modal.component';
 import { PartnerMonitoringTabComponent } from './details/svi-tab/partner-monitoring-tab/partner-monitoring-tab.component';
 import { SviAgreementModalComponent } from './core/modals/svi-agreement-modal/svi-agreement-modal.component';
@@ -101,11 +101,17 @@ import { SviSettingsModalComponent } from './core/modals/svi-settings-modal/svi-
 import { SviSendCertificationEmailModalComponent } from './core/modals/svi-send-certification-email-modal/svi-send-certification-email-modal.component';
 import { SviSendRequestToPartnerModalComponent } from './core/modals/svi-send-request-to-partner-modal/svi-send-request-to-partner-modal.component';
 import { SviCertificationEmailDetailsModalComponent } from './core/modals/svi-certification-email-details-modal/svi-certification-email-details-modal.component';
+import { SiteValidationVisitModalComponent } from './core/modals/validation-tab-modals/site-validation-visit-modal/site-validation-visit-modal.component';
 import { EditSecurityProfileSectionModalComponent } from './core/modals/security-profile-modals/edit-security-profile-section-modal/edit-security-profile-section-modal.component';
 import { EditSecurityProfileQuestionModalComponent } from './core/modals/security-profile-modals/edit-security-profile-question-modal/edit-security-profile-question-modal.component';
 import { AddMilestoneModalComponent } from './core/modals/add-milestone-modal/add-milestone-modal.component';
 import { MilestonesTabComponent } from './details/milestones-tab/milestones-tab.component';
 import { MilestoneDetailsComponent } from './details/milestones-tab/milestone-details/milestone-details.component';
+import { EditSiteInfoModalComponent } from './core/modals/validation-tab-modals/edit-site-info-modal/edit-site-info-modal.component';
+import { EditSiteListModalComponent } from './core/modals/validation-tab-modals/edit-site-list-modal/edit-site-list-modal.component';
+import { SubmitToSupervisorModalComponent } from './core/modals/validation-tab-modals/submit-to-supervisor-modal/submit-to-supervisor-modal.component';
+import { ValidationDetailsNoVisitComponent } from './details/validation-tab/validation-summary/validation-details-no-visit/validation-details-no-visit.component';
+import { ValidationDetailsWithVisitComponent } from './details/validation-tab/validation-summary/validation-details-with-visit/validation-details-with-visit.component';
 
 @NgModule({
   declarations: [
@@ -158,7 +164,7 @@ import { MilestoneDetailsComponent } from './details/milestones-tab/milestone-de
       PlanValidationModalComponent,
       ValidationFormComponent,
       ValidationSummaryComponent,
-      ValidationDetailsComponent,
+      ValidationDetailsWithVisitComponent,
       PlanValidationWithVisitModalComponent,
       PlanValidationWithNoVisitModalComponent,
       EditTimelineModalComponent,
@@ -168,6 +174,11 @@ import { MilestoneDetailsComponent } from './details/milestones-tab/milestone-de
       ApproveRejectValidationReportModalComponent,
       SviTabComponent,
       SviPanelComponent,
+      ValidationDetailsNoVisitComponent,
+      SubmitToSupervisorModalComponent,
+      EditSiteListModalComponent,
+      EditSiteInfoModalComponent,
+      SiteValidationVisitModalComponent,
       JoinSviModalComponent,
       PartnerMonitoringTabComponent,
       SviAgreementModalComponent,
@@ -175,13 +186,14 @@ import { MilestoneDetailsComponent } from './details/milestones-tab/milestone-de
       SviSendCertificationEmailModalComponent,
       SviSendRequestToPartnerModalComponent,
       SviCertificationEmailDetailsModalComponent,
+      SiteValidationVisitModalComponent,
       EditSecurityProfileSectionModalComponent,
       EditSecurityProfileQuestionModalComponent,
       AddMilestoneModalComponent,
       MilestonesTabComponent,
       MilestoneDetailsComponent
    ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -190,6 +202,7 @@ import { MilestoneDetailsComponent } from './details/milestones-tab/milestone-de
     FlexLayoutModule,
     HttpClientModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -230,6 +243,6 @@ export function get_settings(ctpatUserService: CtpatUserService, ctpatEnvService
                              apiTokenService: ApiTokenService): VoidFunction {
   return () =>  ctpatEnvService.loadBaserUrl()
              .then(() => ctpatUserService.loadUserInfo())
-             .then(() => apiTokenService.loadApiCtpatToken(environment.baseUrl + '/services/authenticate'));
+             .then(() => apiTokenService.loadApiCtpatToken(environment.baseUrl + '/service/portal/authenticate'));
 }
 

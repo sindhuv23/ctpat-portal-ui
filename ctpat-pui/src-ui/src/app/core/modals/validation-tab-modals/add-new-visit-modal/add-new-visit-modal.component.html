@@ -1,15 +1,252 @@
+<div id="outer-container">
 <form [formGroup]="addNewVisitForm" novalidate>
 
-  <div fxLayout="row" class="common-header">
+  <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Visit Details</h3>
     <mat-divider class="divider"></mat-divider>
   </div>
 
-<mat-dialog-content>
-Form fields go here
-</mat-dialog-content>
+  <div id="mid-container">
+    <mat-dialog-content>
+      <div fxLayout="column">
+        <div fxLayout="row">
+          <div fxFlex></div>
+          <div class="required required-text">* Required</div>
+        </div>
 
-<div class="common-footer">
+        <div fxLayout="row">
+
+          <div class="section-box" fxFlex="49" fxLayout="column">
+
+            <div class="title">Visit Information</div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Visit Name<span class="required"> *</span></div>
+              <mat-form-field fxFlex="60" appearance="outline">
+                <input matInput formControlName="visitName" id="visitName" aria-label="Visit Name" placeholder="Visit Name">
+                <mat-error *ngIf="submitted&&f.visitName.errors && f.visitName.errors.required">Required field</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <label fxFlex="30" class="label" for="visitStartDate">Visit Start Date<span class="required"> *</span></label>
+
+              <mat-form-field fxFlex="60" appearance="outline">
+                <input matInput [matDatepicker]="visitStartDate" formControlName="visitStartDate" id="visitStartDate" #visitStartDateInput aria-label="Date Picker for Visit Start Date">
+
+                <mat-datepicker-toggle matSuffix [for]="visitStartDate" aria-label="Date Picker for Visit Start Date"
+                  accesskey="S"></mat-datepicker-toggle>
+                <mat-datepicker #visitStartDate></mat-datepicker>
+
+                <mat-error *ngIf="f.visitStartDate.errors && f.visitStartDate.errors.required">Required/Wrong Date Format</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <label fxFlex="30" class="label" for="visitEndDate">Visit End Date<span class="required"> *</span></label>
+
+              <mat-form-field fxFlex="60" appearance="outline">
+                <input matInput [matDatepicker]="visitEndDate" formControlName="visitEndDate" id="visitEndDate" #visitEndDateInput aria-label="Date Picker for Visit End Date">
+
+                <mat-datepicker-toggle matSuffix [for]="visitEndDate" aria-label="Date Picker for Visit End Date"
+                  accesskey="E"></mat-datepicker-toggle>
+                <mat-datepicker #visitEndDate></mat-datepicker>
+
+                <mat-error *ngIf="f.visitEndDate.errors && f.visitEndDate.errors.required">Required/Wrong Date Format</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Lead SCSS<span class="required"> *</span></div>
+              <mat-form-field fxFlex="60" appearance="outline">
+                <mat-select formControlName="leadScss" id="leadScss" aria-label="Lead SCSS" placeholder="--- Select ---">
+                  <mat-option value="">--- Select ---</mat-option>
+                  <mat-option value="LA">Lead SCSS A</mat-option>
+                </mat-select>
+
+                <mat-error *ngIf="submitted&&f.leadScss.errors && f.leadScss.errors.required">Required field</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Additional SCSS</div>
+              <mat-form-field fxFlex="60" appearance="outline">
+                <input matInput formControlName="additionalScss" id="additionalScss" aria-label="Additional SCSS" placeholder="Additional SCSS">
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">External Audit Team</div>
+              <div fxLayout="column">
+                <div name="consultantRecordsDiv" id="consultantRecordsDiv">
+                  <table mat-table title="ConsultantRecords" id="consultantRecordsTable" [dataSource]="dataSourceConsultantRecords" name="consultantRecordsTable" class="row mat-elevation-z0">
+
+                    <ng-container matColumnDef="name">
+                      <th mat-header-cell *matHeaderCellDef scope="col">Name</th>
+                      <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="type">
+                      <th mat-header-cell *matHeaderCellDef scope="col">Type</th>
+                      <td mat-cell *matCellDef="let row">{{row.type}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="entryId">
+                      <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+                      <td mat-cell *matCellDef="let row" style="text-align:center">
+                        <mat-icon (click)="deleteConsultantRecordEntry(row.entryId)">delete_forever</mat-icon></td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumnsConsultantRecords" name="consultantRecordsTableHeader"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumnsConsultantRecords"></tr>
+                  </table>
+                </div><br>
+
+                <form [formGroup]="consultantForm" novalidate>
+                  <div fxLayout="row">
+                    <mat-form-field appearance="outline">
+                      <input matInput formControlName="name" id="name" aria-label="Name" placeholder="Name">
+                    </mat-form-field>
+                    <div fxFlex="4"></div>
+                    <mat-form-field appearance="outline">
+                      <input matInput formControlName="type" id="type" aria-label="Type" placeholder="Type">
+                    </mat-form-field>
+                  </div>
+
+                  <div>
+                    <button mat-raised-button type="submit" color="primary" (click)="addNewConsultantRecord()" aria-label="Add New Consultant" accesskey="C" class="add-button">+ Add Consultant</button>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+          <div fxFlex="2"></div>
+          <div class="section-box" fxFlex="49" fxLayout="column">
+            <div class="title">Company Visited</div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Company Name<span class="required"> *</span></div>
+              <mat-form-field fxFlex="60" appearance="outline">
+                <input matInput formControlName="companyName" id="companyName" aria-label="Company Name" placeholder="Company Name">
+                <mat-error *ngIf="submitted&&f.companyName.errors && f.companyName.errors.required">Required field</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Web Site</div>
+              <mat-form-field fxFlex="60" appearance="outline">
+                <input matInput formControlName="website" id="website" aria-label="Website" placeholder="Website">
+              </mat-form-field>
+            </div>
+
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Street Address 1<span class="required"> *</span></div>
+              <mat-form-field fxFlex="60"  appearance="outline">
+                <input matInput formControlName="street1" id="street1" aria-label="Street Address 1" placeholder="Street Address 1">
+                <mat-error *ngIf="submitted&&f.street1.errors && f.street1.errors.required">Required field</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Street Address 2</div>
+              <mat-form-field fxFlex="60"  appearance="outline">
+                <input matInput formControlName="street2" id="street2" aria-label="Street Address 2" placeholder="Street Address 2">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">City<span class="required"> *</span></div>
+              <mat-form-field fxFlex="60"  appearance="outline">
+                <input matInput formControlName="city" id="city" aria-label="City" placeholder="City">
+                <mat-error *ngIf="submitted&&f.city.errors && f.city.errors.required">Required field</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Postal Code</div>
+              <mat-form-field fxFlex="60"  appearance="outline">
+                <input matInput formControlName="postalCode" id="postalCode" aria-label="Postal Code" placeholder="Postal Code">
+              </mat-form-field>
+            </div>
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">Country<span class="required"> *</span></div>
+              <mat-form-field fxFlex="60"  appearance="outline">
+                <mat-select formControlName="country" id="country" aria-label="Country" placeholder="--- Select Country ---"
+                (click)="countrySelected($event)" (selectionChange)="countrySelected($event.value)">
+                  <mat-option value="">--- Select Country ---</mat-option>
+                  <mat-option value="CA">Canada</mat-option>
+                </mat-select>
+                <mat-error *ngIf="submitted&&f.country.errors && f.country.errors.required">Required field</mat-error>
+              </mat-form-field>
+            </div>
+            <div fxLayout="row">
+              <div class="label" fxFlex="30">State</div>
+              <mat-form-field fxFlex="60"  appearance="outline">
+                <mat-select formControlName="state" id="state" aria-label="State/Province" placeholder="--- Select State ---">
+                  <mat-option value="">--- Select State ---</mat-option>
+                  <mat-option value="ON">Ontario</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="label">Attendees</div><br>
+
+            <div name="attendeeRecordsDiv" id="attendeeRecordsDiv">
+              <table mat-table title="Attendee Records" id="attendeeRecordsTable" [dataSource]="dataSourceAttendeeRecords" name="attendeeRecordsTable" class="row mat-elevation-z0">
+
+                <ng-container matColumnDef="name">
+                  <th mat-header-cell *matHeaderCellDef scope="col">Name</th>
+                  <td mat-cell *matCellDef="let row">{{row.name}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef scope="col">Title</th>
+                  <td mat-cell *matCellDef="let row">{{row.title}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="company">
+                  <th mat-header-cell *matHeaderCellDef scope="col">Company</th>
+                  <td mat-cell *matCellDef="let row">{{row.company}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="entryId">
+                  <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+                  <td mat-cell *matCellDef="let row" style="text-align:center">
+                    <mat-icon (click)="deleteAttendeeRecordEntry(row.entryId)">delete_forever</mat-icon></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsAttendeeRecords" name="attendeeRecordsTableHeader"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsAttendeeRecords"></tr>
+              </table>
+            </div><br>
+
+            <form [formGroup]="attendeeForm" novalidate>
+              <div fxLayout="row">
+                <mat-form-field appearance="outline">
+                  <input matInput formControlName="name" id="name" aria-label="Name" placeholder="Name">
+                </mat-form-field>
+                <div fxFlex="4"></div>
+                <mat-form-field appearance="outline">
+                  <input matInput formControlName="title" id="title" aria-label="Title" placeholder="Title">
+                </mat-form-field>
+                <div fxFlex="4"></div>
+                <mat-form-field appearance="outline">
+                  <input matInput formControlName="company" id="company" aria-label="Company" placeholder="Company">
+                </mat-form-field>
+              </div>
+
+              <div>
+                <button mat-raised-button type="submit" color="primary" (click)="addNewAttendeeRecord()" aria-label="Add New Attendee" accesskey="C" class="add-button">+ Add Attendee</button>
+              </div>
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+    </mat-dialog-content>
+  </div>
+
+<div id="footer">
   <mat-divider class="divider"></mat-divider>
   <mat-dialog-actions>
     <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
@@ -19,3 +256,4 @@ Form fields go here
 </div>
 </form>
 
+</div>

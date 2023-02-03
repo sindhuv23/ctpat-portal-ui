@@ -1,0 +1,122 @@
+.padHeading{
+  margin-top: 5px;
+  margin-bottom: 0px;
+}
+
+.mat-icon {
+  font-size: 18px;
+}
+
+.profileWarning{
+  font-weight: bold;
+  background-color: #FFF1D2;
+  padding: 5px 20px;
+}
+
+.bigIcon{
+  font-size: 26px;
+}
+
+.mat-expansion-panel-header-title{
+  font-weight: 500;
+}
+
+mat-expansion-panel-header, mat-panel-title{
+  height: fit-content !important;
+}
+
+.headerItem30{
+  display: inline-block;
+  vertical-align: top;
+  width: 33%;
+}
+
+.item {
+  padding: 0px 10px 3px 0px;
+  display: flex;
+}
+
+.itemHeader {
+  font-weight: bold;
+  padding-right: 5px;
+  display: inline-block;
+  width: 160px;
+}
+
+hr{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.spinner-container {
+  background: #cfc6c6;
+  opacity: 0.5;
+  height:100%;
+  width:100%;
+  top: 0%;
+  left: 0%;
+  display: flex;
+  align-items: top;
+  padding-top: 200px;
+  justify-content: center;
+  position: absolute;
+}
+
+.actionButtons{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  background-color: #eeeeff;
+}
+
+a:hover {
+  cursor: pointer;
+}
+a {
+  text-decoration: underline;
+  color: blue;
+}
+
+button{
+  height: 29px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-icon {
+  font-size: 22px;
+}
+
+table{
+  border: 1px solid gray;
+}
+
+td {
+  padding: 2px 5px !important;
+  border-top: 1px solid gray;
+  border-right: 1px solid gray;
+  word-break: normal;
+  background-color: white;
+  max-height: fit-content !important;
+  font-size: 0.9em;
+  white-space: pre-line;
+}
+
+th {
+  padding: 2px 5px !important;
+  border-right: 1px solid gray;
+  text-align: center !important;
+  background-color: #edf1f5;
+  max-height: fit-content !important;
+  font-size: 0.9em;
+}
+
+tr.mat-header-row, tr.mat-row {
+  height: fit-content !important;
+}
+
+td:last-child, th:last-child{
+  border-right: none;
+}
+
