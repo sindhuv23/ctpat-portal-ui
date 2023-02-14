@@ -33,12 +33,11 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.searchForm.get('accountName')?.setValue('');
     this.searchForm.get('applicationStatus')?.setValue('');
   }
-
   openAdvanceSearchModal(): void {
     const dialogRef = this.dialog.open(AdvanceSearchModalComponent, {
       data: {},
       width: '680px',
-      height: '570px',
+      height: '535px',
       disableClose: true
     });
   }

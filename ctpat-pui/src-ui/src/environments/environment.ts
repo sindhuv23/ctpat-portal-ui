@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   envName: 'local',
   CONTEXT_PATH: '/ctpat-portal-ui/',
-  baseUrl: 'http://localhost:9002'
+  baseUrl: 'http://localhost:9002/service-portal'
 };
 
 /*

@@ -47,7 +47,7 @@ export class ApiInterceptor implements HttpInterceptor {
     private  handleRefreshCtpatToken(request: HttpRequest<any>, next: HttpHandler): void{
       if (!this.isRefreshingCtpat) {
         this.isRefreshingCtpat = true;
-        this.apiTokenService.loadApiCtpatToken(environment.baseUrl + '/services/authenticate');
+        this.apiTokenService.loadApiCtpatToken(environment.baseUrl + '/authenticate');
         this.isRefreshingCtpat = false;
       }
     }

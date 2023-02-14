@@ -1,6 +1,6 @@
 export class CtpatConstants {
   static readonly APP_CONTEXT = './';
-  static readonly APP_NAME = 'CTPAT Application';
+  static readonly APP_NAME = 'CTPAT Portal';
   static readonly DEFAULT_TIMEOUT = 60000;
   static readonly MAX_FILE_SIZE = 10485760;
   static readonly alphanumericNoSpacesPattern = '[a-zA-Z0-9]+';
@@ -37,12 +37,6 @@ export class CtpatConstants {
       monthYearA11yLabel: 'MMMM YYYY',
     },
   };
-
-  // non-trade roles
- // static readonly ROLE_ADMIN = 'ROLE_..._ADMN';
-
-  // trade role
-  static readonly ROLE_TRADE = 'ROLE_ACE_OBJ_CBP_TRADE_USER';
 
   // user role groups
   static readonly ROLES_NON_TRADE = [];

@@ -12,7 +12,7 @@ export class AdvanceSearchModalComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AdvanceSearchModalComponent>, private formBuilder: FormBuilder) { }
 
-  public sviSettingsForm!: FormGroup;
+  public advanceSearchForm!: FormGroup;
   public ctpatStatusArray!: any[];
   public assignedOfficeArray!: any[];
   public subStatusArray!: any[];
@@ -28,7 +28,7 @@ export class AdvanceSearchModalComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.sviSettingsForm = this.formBuilder.group({
+    this.advanceSearchForm = this.formBuilder.group({
       companyName: new FormControl(''),
       ctpatStatus: new FormControl(''),
       assignedOffice: new FormControl(''),
@@ -62,7 +62,7 @@ export class AdvanceSearchModalComponent implements OnInit {
   }
 
   clear(): void {
-    this.dialogRef.close();
+    this.ngOnInit();
   }
 
   search(): void {

@@ -245,6 +245,6 @@ export function get_settings(ctpatUserService: CtpatUserService, ctpatEnvService
                              apiTokenService: ApiTokenService): VoidFunction {
   return () =>  ctpatEnvService.loadBaserUrl()
              .then(() => ctpatUserService.loadUserInfo())
-             .then(() => apiTokenService.loadApiCtpatToken(environment.baseUrl + '/service/portal/authenticate'));
+             .then(() => apiTokenService.loadApiCtpatToken(environment.baseUrl + '/authenticate'));
 }
 
