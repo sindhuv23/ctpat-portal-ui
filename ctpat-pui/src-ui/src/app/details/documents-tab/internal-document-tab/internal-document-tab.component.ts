@@ -80,7 +80,7 @@ export class InternalDocumentTabComponent implements OnInit, OnDestroy, AfterVie
    // open upload modal. if new doc saved, publish form the modal and update this display section from backend.
   uploadDocument(id: any): void{
       const dialogRef = this.dialog.open(UploadDocumentModalComponent, {
-        data: {id},
+        data: { id, documentLibrary: '0' },
         width: '600px',
         height: '302px',
         disableClose: true

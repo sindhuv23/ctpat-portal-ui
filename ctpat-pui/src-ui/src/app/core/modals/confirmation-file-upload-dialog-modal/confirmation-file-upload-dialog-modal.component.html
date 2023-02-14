@@ -1,0 +1,41 @@
+<div id="outerContainer">
+    <div fxLayout="row" id="createHeader">
+        <h3 mat-dialog-title class="dialog-header">Confirm File Upload</h3>
+        <div fxFlex></div>
+        <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;" aria-label="clear">
+            <mat-icon>clear</mat-icon>
+        </button>
+        <mat-divider class="divider"></mat-divider>
+    </div><br>
+
+    <div id="midContainer">
+        <mat-dialog-content>
+            <div fxLayout="row">
+                <div fxLayout="column">
+                    <u><span class="red-font">WARNING</span></u>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div fxLayout="column">
+                    The file you are uploading <span class="red-font">WILL BE VISIBLE</span> to the trade partner
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div fxLayout="column">
+                    Do you want to continue?
+                </div>
+            </div>
+        </mat-dialog-content>
+    </div>
+
+    <div id="footer">
+        <mat-divider class="divider"></mat-divider>
+        <mat-dialog-actions>
+            <button mat-raised-button type="button" class="minorButton" (click)="no()" accesskey="C"
+                aria-label="No">No</button>
+            <div fxFlex></div>
+            <button mat-raised-button type="submit" color="primary" (click)="yes()" accesskey="S"
+                aria-label="Yes">Yes</button>
+        </mat-dialog-actions>
+    </div>
+</div>

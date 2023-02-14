@@ -113,6 +113,7 @@ import { SubmitToSupervisorModalComponent } from './core/modals/validation-tab-m
 import { ValidationDetailsNoVisitComponent } from './details/validation-tab/validation-summary/validation-details-no-visit/validation-details-no-visit.component';
 import { ValidationDetailsWithVisitComponent } from './details/validation-tab/validation-summary/validation-details-with-visit/validation-details-with-visit.component';
 import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/advance-search-modal.component';
+import { ConfirmationFileUploadDialogModalComponent } from './core/modals/confirmation-file-upload-dialog-modal/confirmation-file-upload-dialog-modal.component';
 
 @NgModule({
   declarations: [
@@ -193,7 +194,8 @@ import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/
       AddMilestoneModalComponent,
       MilestonesTabComponent,
       MilestoneDetailsComponent,
-      AdvanceSearchModalComponent
+      AdvanceSearchModalComponent,
+      ConfirmationFileUploadDialogModalComponent
    ],
   imports:[
     BrowserModule,

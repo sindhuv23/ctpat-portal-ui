@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, AbstractControl, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { SaveDisMeta } from '../../models/save-dis-meta.model';
 import { DisService } from '../../services/dis.service';
@@ -21,7 +21,7 @@ export class UploadDocumentModalComponent implements OnInit, OnDestroy {
   public fileName = '';
 
   constructor(public dialogRef: MatDialogRef<UploadDocumentModalComponent>, private disService: DisService,
-              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.submitted = false;
@@ -29,7 +29,7 @@ export class UploadDocumentModalComponent implements OnInit, OnDestroy {
     this.uploadDocumentForm = this.formBuilder.group({
       selectedFile: new FormControl('', Validators.required),
       documentType: new FormControl('', Validators.required),
-      documentLibrary: new FormControl('1', Validators.required),
+      documentLibrary: new FormControl((this.data && this.data.documentLibrary) ? this.data.documentLibrary : '1', Validators.required),
     });
 
   }
@@ -38,14 +38,15 @@ export class UploadDocumentModalComponent implements OnInit, OnDestroy {
     return this.uploadDocumentForm.controls[controlName].hasError(errorName);
   }
 
-  get f(): {[key: string]: AbstractControl} {
+  get f(): { [key: string]: AbstractControl } {
     return this.uploadDocumentForm.controls;
   }
 
-  save(): void{
+  save(): void {
+
     this.submitted = true;
     // UI validation before this point
-    if (this.uploadDocumentForm.invalid){
+    if (this.uploadDocumentForm.invalid) {
       return;
     }
 
@@ -55,12 +56,12 @@ export class UploadDocumentModalComponent implements OnInit, OnDestroy {
   }
 
   // refer to DIS. AES loads file and processes/saves data (no DIS-original document)
-  uploadFile(): void{
+  uploadFile(): void {
     const formdata: FormData = new FormData();
-    if (this.documentFile){
+    if (this.documentFile) {
       formdata.append('file', this.documentFile);
       const saveDisMeta: SaveDisMeta = new SaveDisMeta();
-      saveDisMeta.docLblCd = 'CTPATDOC' ;
+      saveDisMeta.docLblCd = 'CTPATDOC';
 
       formdata.set('saveDisMeta', JSON.stringify(saveDisMeta));
 
@@ -82,7 +83,7 @@ export class UploadDocumentModalComponent implements OnInit, OnDestroy {
     this.documentFile = event.target.files.item(0);
 
     const target = event.target as DataTransfer;
-    if (this.documentFile != null){
+    if (this.documentFile != null) {
       this.fileName = this.documentFile.name;
     }
 
@@ -94,7 +95,7 @@ export class UploadDocumentModalComponent implements OnInit, OnDestroy {
     event.target.value = '';
   }
 
-  processAttachmentData(target: any): void{
+  processAttachmentData(target: any): void {
     const reader = new FileReader();
 
     // define reader event handler

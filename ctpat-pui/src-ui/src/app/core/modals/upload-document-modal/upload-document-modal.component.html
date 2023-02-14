@@ -31,7 +31,7 @@
 
     <div fxLayout="row" style="margin-bottom:30px">
       <label fxFlex="35" class="label" for="documentLibrary">Document Library<span class="required"> *</span></label>
-      <mat-radio-group formControlName="documentLibrary" id="documentLibrary" aria-label="Document Library" style="margin-top:5px">
+      <mat-radio-group formControlName="documentLibrary" id="documentLibrary" aria-label="Document Library" style="margin-top:5px" [disabled]="true">
         <mat-radio-button color="primary" value="0"><span style="font-weight: lighter;">Internal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
         <mat-radio-button color="primary" value="1"><span style="font-weight: lighter;">Partner</span></mat-radio-button>
       </mat-radio-group>
