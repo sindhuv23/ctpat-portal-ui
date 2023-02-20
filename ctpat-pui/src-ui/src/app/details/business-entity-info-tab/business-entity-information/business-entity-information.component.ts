@@ -36,7 +36,7 @@ export class BusinessEntityInformationComponent implements OnInit, OnDestroy, Af
     const dialogRef = this.dialog.open(AddNewBeiModalComponent, {
       data: {},
       width: '600px',
-      height: '230px',
+      height: '227px',  
       disableClose: true
     });
   }
@@ -45,6 +45,7 @@ export class BusinessEntityInformationComponent implements OnInit, OnDestroy, Af
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
+      height: '200px',
       data: {
         title: 'Please Confirm Delete Action',
         message: 'This record will be deleted and cannot be recovered. \nContinue to delete?'

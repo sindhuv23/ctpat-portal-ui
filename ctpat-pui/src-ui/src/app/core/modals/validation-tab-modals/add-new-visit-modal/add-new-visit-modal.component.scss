@@ -87,9 +87,10 @@ td.mat-header-cell, td.mat-cell {
 }
 #footer{
   width: 100%;
-  height: 35px;
+  height: 55px;
   position: absolute;
-  bottom: -10px;
+  bottom: 0px;
+  background-color: lightgrey;
 }
 
 .mat-column-entryId {

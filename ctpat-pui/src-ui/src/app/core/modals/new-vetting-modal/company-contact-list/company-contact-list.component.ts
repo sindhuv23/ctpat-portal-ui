@@ -85,6 +85,7 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
+      height: '200px',
       data: {
         title: 'Please Confirm Delete Action',
         message: 'This record will be deleted and cannot be recovered. \nContinue to delete?'

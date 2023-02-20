@@ -32,7 +32,7 @@ export class VettingHistoryComponent implements OnInit, OnDestroy, AfterViewInit
     const dialogRef = this.dialog.open(NewVettingModalComponent, {
       data: {},
       width: '1000px',
-      height: '1100px',
+      height: '1200px',
       disableClose: true
     });
   }

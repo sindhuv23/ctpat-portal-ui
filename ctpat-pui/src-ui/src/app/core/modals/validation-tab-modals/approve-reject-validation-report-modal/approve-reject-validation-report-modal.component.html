@@ -1,10 +1,16 @@
+<div id="DialogOuterContainer">
 <form [formGroup]="approveRejectValidationReportForm" novalidate>
 
-  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <div fxLayout="row" id="DialogHeader" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Approve / Reject Validation Report by Supervisor</h3>
+    <div fxFlex></div>
+                <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+                    aria-label="clear">
+                    <mat-icon>clear</mat-icon>
+                </button>
     <mat-divider class="divider"></mat-divider>
   </div>
-
+  <div id="DialogMidContainer">
 <mat-dialog-content>
 <div fxLayout="column">
   <br>
@@ -18,9 +24,10 @@
   </div>
 </div>
 </mat-dialog-content>
+</div>
 
-<div class="common-footer">
   <mat-divider class="divider"></mat-divider>
+  <div id="DialogFooter">
   <mat-dialog-actions>
     <div fxFlex="25"></div>
     <button mat-raised-button type="submit" color="darkgreen" (click)="approve()" accesskey="A" aria-label="Approve">Approve</button>
@@ -31,4 +38,4 @@
   </mat-dialog-actions>
 </div>
 </form>
-
+</div>

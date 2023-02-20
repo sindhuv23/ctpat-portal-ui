@@ -1,94 +1,109 @@
-<form [formGroup]="planValidationWithVisitForm" novalidate>
+<div id="outer-container">
+  <form [formGroup]="planValidationWithVisitForm" novalidate>
 
-  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
-    <h3 mat-dialog-title class="dialog-header">Initiate a Validation</h3>
+    <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h3 mat-dialog-title class="dialog-header">Initiate a Validation</h3>
+      <div fxFlex></div>
+      <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+          aria-label="clear">
+          <mat-icon>clear</mat-icon>
+      </button>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+
+  <div id="mid-container">
+    <mat-dialog-content>
+      <div class="required required-text">* Required</div><br>
+      <div fxLayout="column">
+
+        <div fxLayout="row">
+          <label fxFlex="40" class="label" for="initiatedDate">Initiated<span class="required"> *</span></label>
+  
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput [matDatepicker]="initiatedDate" formControlName="initiatedDate" id="initiatedDate" #initiatedDateInput aria-label="Date Picker for Initiated Date">
+  
+            <mat-datepicker-toggle matSuffix [for]="initiatedDate" aria-label="Date Picker for Initiated Date"
+              accesskey="I"></mat-datepicker-toggle>
+            <mat-datepicker #initiatedDate></mat-datepicker>
+  
+            <mat-error *ngIf="submitted && f.initiatedDate.errors && f.initiatedDate.errors.required">Initiated date is missing or in wrong format</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="domesticVerificationDate">Domestic Verification</label>
+  
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput [matDatepicker]="domesticVerificationDate" formControlName="domesticVerificationDate" id="domesticVerificationDate" #domesticVerificationDateInput
+              aria-label="Date Picker for Domestic Verification Date"
+              (input)="validateDate('domesticVerificationDate', domesticVerificationDateInput.value)" (dateInput)="validateDate('domesticVerificationDate', domesticVerificationDateInput.value)"
+              (dateChange)="validateDate('domesticVerificationDate', toFullDate($event.value,  domesticVerificationDateInput.value))">
+  
+            <mat-datepicker-toggle matSuffix [for]="domesticVerificationDate" aria-label="Date Picker for Domestic Verification Date"
+              accesskey="D"></mat-datepicker-toggle>
+            <mat-datepicker #domesticVerificationDate></mat-datepicker>
+  
+            <mat-error *ngIf="submitted && f.domesticVerificationDate.errors && f.domesticVerificationDate.errors.required">Wrong date format</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="foreignVerificationDate">Foreign Verification</label>
+  
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput [matDatepicker]="foreignVerificationDate" formControlName="foreignVerificationDate" id="foreignVerificationDate" #foreignVerificationDateInput
+              aria-label="Date Picker for Foreign Verification Date"
+              (input)="validateDate('foreignVerificationDate', foreignVerificationDateInput.value)" (dateInput)="validateDate('foreignVerificationDate', foreignVerificationDateInput.value)"
+              (dateChange)="validateDate('foreignVerificationDate', toFullDate($event.value,  foreignVerificationDateInput.value))">
+  
+            <mat-datepicker-toggle matSuffix [for]="foreignVerificationDate" aria-label="Date Picker for Foreign Verification Date"
+              accesskey="F"></mat-datepicker-toggle>
+            <mat-datepicker #foreignVerificationDate></mat-datepicker>
+  
+            <mat-error *ngIf="submitted && f.foreignVerificationDate.errors && f.foreignVerificationDate.errors.required">Wrong date format</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="closeoutDate">Close-out Date</label>
+  
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput [matDatepicker]="closeoutDate" formControlName="closeoutDate" id="closeoutDate" #closeoutDateInput
+              aria-label="Date Picker for Close-out Date"
+              (input)="validateDate('closeoutDate', closeoutDateInput.value)" (dateInput)="validateDate('closeoutDate', closeoutDateInput.value)"
+              (dateChange)="validateDate('closeoutDate', toFullDate($event.value,  closeoutDateInput.value))">
+  
+            <mat-datepicker-toggle matSuffix [for]="closeoutDate" aria-label="Date Picker for Close-out Date"
+              accesskey="C"></mat-datepicker-toggle>
+            <mat-datepicker #closeoutDate></mat-datepicker>
+  
+            <mat-error *ngIf="submitted && f.closeoutDate.errors && f.closeoutDate.errors.required">Wrong date format</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div>
+          <mat-checkbox color="primary" formControlName="canadianImporterIndicator" aria-label="Is a Canadian Importer"
+          for="Canadian Importer indicator"><span style="font-weight: lighter;">Is a Canadian Importer</span></mat-checkbox>
+        </div>
+  
+    </div>
+
+     
+
+    </mat-dialog-content>
+  </div>
+
+  <div id="footer">
     <mat-divider class="divider"></mat-divider>
-  </div>
-
-<mat-dialog-content>
-  <div class="required required-text">* Required</div><br>
-  <div fxLayout="column">
-
-      <div fxLayout="row">
-        <label fxFlex="40" class="label" for="initiatedDate">Initiated<span class="required"> *</span></label>
-
-        <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput [matDatepicker]="initiatedDate" formControlName="initiatedDate" id="initiatedDate" #initiatedDateInput aria-label="Date Picker for Initiated Date">
-
-          <mat-datepicker-toggle matSuffix [for]="initiatedDate" aria-label="Date Picker for Initiated Date"
-            accesskey="I"></mat-datepicker-toggle>
-          <mat-datepicker #initiatedDate></mat-datepicker>
-
-          <mat-error *ngIf="submitted && f.initiatedDate.errors && f.initiatedDate.errors.required">Initiated date is missing or in wrong format</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row">
-        <label  fxFlex="40" class="label" for="domesticVerificationDate">Domestic Verification</label>
-
-        <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput [matDatepicker]="domesticVerificationDate" formControlName="domesticVerificationDate" id="domesticVerificationDate" #domesticVerificationDateInput
-            aria-label="Date Picker for Domestic Verification Date"
-            (input)="validateDate('domesticVerificationDate', domesticVerificationDateInput.value)" (dateInput)="validateDate('domesticVerificationDate', domesticVerificationDateInput.value)"
-            (dateChange)="validateDate('domesticVerificationDate', toFullDate($event.value,  domesticVerificationDateInput.value))">
-
-          <mat-datepicker-toggle matSuffix [for]="domesticVerificationDate" aria-label="Date Picker for Domestic Verification Date"
-            accesskey="D"></mat-datepicker-toggle>
-          <mat-datepicker #domesticVerificationDate></mat-datepicker>
-
-          <mat-error *ngIf="submitted && f.domesticVerificationDate.errors && f.domesticVerificationDate.errors.required">Wrong date format</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row">
-        <label  fxFlex="40" class="label" for="foreignVerificationDate">Foreign Verification</label>
-
-        <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput [matDatepicker]="foreignVerificationDate" formControlName="foreignVerificationDate" id="foreignVerificationDate" #foreignVerificationDateInput
-            aria-label="Date Picker for Foreign Verification Date"
-            (input)="validateDate('foreignVerificationDate', foreignVerificationDateInput.value)" (dateInput)="validateDate('foreignVerificationDate', foreignVerificationDateInput.value)"
-            (dateChange)="validateDate('foreignVerificationDate', toFullDate($event.value,  foreignVerificationDateInput.value))">
-
-          <mat-datepicker-toggle matSuffix [for]="foreignVerificationDate" aria-label="Date Picker for Foreign Verification Date"
-            accesskey="F"></mat-datepicker-toggle>
-          <mat-datepicker #foreignVerificationDate></mat-datepicker>
-
-          <mat-error *ngIf="submitted && f.foreignVerificationDate.errors && f.foreignVerificationDate.errors.required">Wrong date format</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row">
-        <label  fxFlex="40" class="label" for="closeoutDate">Close-out Date</label>
-
-        <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput [matDatepicker]="closeoutDate" formControlName="closeoutDate" id="closeoutDate" #closeoutDateInput
-            aria-label="Date Picker for Close-out Date"
-            (input)="validateDate('closeoutDate', closeoutDateInput.value)" (dateInput)="validateDate('closeoutDate', closeoutDateInput.value)"
-            (dateChange)="validateDate('closeoutDate', toFullDate($event.value,  closeoutDateInput.value))">
-
-          <mat-datepicker-toggle matSuffix [for]="closeoutDate" aria-label="Date Picker for Close-out Date"
-            accesskey="C"></mat-datepicker-toggle>
-          <mat-datepicker #closeoutDate></mat-datepicker>
-
-          <mat-error *ngIf="submitted && f.closeoutDate.errors && f.closeoutDate.errors.required">Wrong date format</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div>
-        <mat-checkbox color="primary" formControlName="canadianImporterIndicator" aria-label="Is a Canadian Importer"
-        for="Canadian Importer indicator"><span style="font-weight: lighter;">Is a Canadian Importer</span></mat-checkbox>
-      </div>
-
-  </div>
-</mat-dialog-content>
-
-<div class="common-footer">
-  <br>
-  <mat-dialog-actions>
-    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
+    <mat-dialog-actions>
+      
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
     <div fxFlex></div>
     <button mat-raised-button type="submit" color="primary" (click)="initiate()" accesskey="I" aria-label="Initiate">Initiate</button>
-  </mat-dialog-actions>
-</div>
-</form>
+ 
+   
+    </mat-dialog-actions>
+  </div>
+  </form>
 
+</div>

@@ -20,7 +20,7 @@ export class BusinessEntityInfoTabComponent implements OnInit {
     const dialogRef = this.dialog.open(CreateBeiModalComponent, {
       data: {},
       width: '1200px',
-      height: '1020px',
+      height: '900px',
       disableClose: true
     });
   }

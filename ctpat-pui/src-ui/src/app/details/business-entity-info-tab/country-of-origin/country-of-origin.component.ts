@@ -51,7 +51,7 @@ export class CountryOfOriginComponent implements OnInit,  OnDestroy, AfterViewIn
     const dialogRef = this.dialog.open(AddCountryOfOriginModalComponent, {
       data: {id},
       width: '600px',
-      height: '400px',
+      height: '390px',
       disableClose: true
     });
   }
@@ -62,7 +62,7 @@ export class CountryOfOriginComponent implements OnInit,  OnDestroy, AfterViewIn
     const dialogRef = this.dialog.open(EditCountryOfOriginModalComponent, {
       data: {id},
       width: '600px',
-      height: '400px',
+      height: '395px',
       disableClose: true
     });
   }
@@ -71,6 +71,7 @@ export class CountryOfOriginComponent implements OnInit,  OnDestroy, AfterViewIn
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
+      height: '200px',
       data: {
         title: 'Please Confirm Delete Action',
         message: 'This record will be deleted and cannot be recovered. \nContinue to delete?'

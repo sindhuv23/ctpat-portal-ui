@@ -68,13 +68,13 @@ export class SviSendRequestToPartnerModalComponent implements OnInit, AfterViewI
 
   ngAfterViewInit(): void {
     this.requestsData.push({
-      position: 1, companyName: 'Yellow testing Inc', businessType: 'Importer', accountStatus: 'Cetrified', requestStatus: 'Sent',
+      position: 1, companyName: 'Yellow testing Inc', businessType: 'Importer', accountStatus: 'Certified', requestStatus: 'Sent',
       requestDate: new Date('06-02-2022 15:33')
     }, {
-      position: 2, companyName: 'Yellow LTD', businessType: 'Importer', accountStatus: 'Cetrified', requestStatus: '',
+      position: 2, companyName: 'Yellow LTD', businessType: 'Importer', accountStatus: 'Certified', requestStatus: '',
       requestDate: ''
     }, {
-      position: 3, companyName: 'Test Inc', businessType: 'All Carrier', accountStatus: 'Cetrified', requestStatus: '',
+      position: 3, companyName: 'Test Inc', businessType: 'All Carrier', accountStatus: 'Certified', requestStatus: '',
       requestDate: ''
     });
 

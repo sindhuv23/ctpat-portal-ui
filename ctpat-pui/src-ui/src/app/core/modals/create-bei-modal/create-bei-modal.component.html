@@ -1,11 +1,17 @@
 <div id="outerContainer">
 <form [formGroup]="createBeiForm" novalidate>
-<div fxLayout="column" id="midContainer">
 
-  <div class="createBeiHeader">
+  <div id="createHeader">
     <h4 mat-dialog-title class="dialog-header">Business Entity Information</h4>
+    <div fxFlex></div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true" aria-label="clear">
+      <mat-icon>clear</mat-icon>
+    </button>
   </div>
 
+
+  <div fxLayout="column" id="midContainer">
+    <mat-dialog-content>
   <div class="normalText">
     All Additional Business Entity Information (BEI) listed in this application/account must adhere to the same security policies
     and procedures which will be verified in the CTPAT validation process. If a BEI (SCAC, IOR, MID, etc.) has a unique set of
@@ -59,6 +65,7 @@
 
   <div class="createBeiHeader">
     <h4 mat-dialog-title class="dialog-header">Center of Excellence and Expertise (CEE)</h4>
+    
   </div>
 
   <div fxLayout="row" style="margin-top:10px; margin-bottom:20px;">
@@ -86,7 +93,7 @@
     <div fxFlex="35">
       <div fxLayout="column">
         <div class="title">What commodities do you import?</div>
-        <div>
+        <div> 
           <mat-checkbox color="primary" formControlName="agricultureIndicator" aria-label="Agriculture & Prepared Products"
           for="agriculture indicator"><span style="font-weight: lighter;">Agriculture & Prepared Products</span></mat-checkbox>
         </div>
@@ -212,6 +219,7 @@
     </div>
 
   </div>
+</mat-dialog-content>
 </div>
 
   <div id="footer">

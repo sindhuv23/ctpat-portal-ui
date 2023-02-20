@@ -1,10 +1,16 @@
+<div id="outerContainer">
 <form [formGroup]="addNewBeiForm" novalidate>
 
   <div fxLayout="row" id="createHeader">
     <h3 mat-dialog-title class="dialog-header">Add New BEI</h3>
+    <div fxFlex></div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+        aria-label="clear">
+        <mat-icon>clear</mat-icon>
+    </button>
     <mat-divider class="divider"></mat-divider>
   </div>
-
+  <div id="midContainer">
 <mat-dialog-content>
   <div class="required required-text">* Required</div><br>
   <div fxLayout="column">
@@ -33,7 +39,7 @@
 
   </div>
 </mat-dialog-content>
-
+</div>
 <div id="footer">
   <mat-divider class="divider"></mat-divider>
   <mat-dialog-actions>
@@ -43,4 +49,4 @@
   </mat-dialog-actions>
 </div>
 </form>
-
+</div>

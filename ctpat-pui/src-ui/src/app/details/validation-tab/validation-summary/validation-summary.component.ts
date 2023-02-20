@@ -45,8 +45,8 @@ implements OnInit, OnDestroy, AfterViewInit {
  planValidationVisit(): void{
   const dialogRef = this.dialog.open(PlanValidationWithVisitModalComponent, {
     data: {},
-    width: '500px',
-    height: '390px',
+    width: '525px',
+    height: '400px',
     disableClose: true
   });
 }
@@ -64,7 +64,7 @@ showSiteValidationVisit(id: any): void{
   const dialogRef = this.dialog.open(SiteValidationVisitModalComponent, {
     data: {},
     width: '1000px',
-    height: '1100px',
+    height: '822px',
     disableClose: true
   });
 }
@@ -84,6 +84,7 @@ showSiteValidationVisit(id: any): void{
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
+      height: '200px',
       data: {
         title: 'Please Confirm Delete Action',
         message: 'This record will be deleted and cannot be recovered. \nContinue to delete?'

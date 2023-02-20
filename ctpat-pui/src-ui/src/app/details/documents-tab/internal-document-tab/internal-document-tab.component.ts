@@ -80,9 +80,9 @@ export class InternalDocumentTabComponent implements OnInit, OnDestroy, AfterVie
    // open upload modal. if new doc saved, publish form the modal and update this display section from backend.
   uploadDocument(id: any): void{
       const dialogRef = this.dialog.open(UploadDocumentModalComponent, {
-        data: { id, documentLibrary: '0' },
+        data: {id},
         width: '600px',
-        height: '302px',
+        height: '300px',
         disableClose: true
       });
   }
@@ -91,6 +91,7 @@ export class InternalDocumentTabComponent implements OnInit, OnDestroy, AfterVie
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
+      height: '200px',
       data: {
         title: 'Please Confirm Delete Action',
         message: 'This record will be deleted and cannot be recovered. \nContinue to delete?'

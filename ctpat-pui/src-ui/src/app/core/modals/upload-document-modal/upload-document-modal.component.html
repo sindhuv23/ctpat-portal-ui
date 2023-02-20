@@ -1,10 +1,16 @@
+<div id="outerContainer">
 <form [formGroup]="uploadDocumentForm" novalidate>
 
   <div fxLayout="row" id="header">
     <h3 mat-dialog-title class="dialog-header">Upload</h3>
+    <div fxFlex></div>
+  <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+      aria-label="clear">
+      <mat-icon>clear</mat-icon>
+  </button>
     <mat-divider class="divider"></mat-divider>
   </div><br>
-
+  <div id="midContainer">
 <mat-dialog-content>
   <div class="required required-text">* Required</div><br>
   <div fxLayout="column">
@@ -31,7 +37,7 @@
 
     <div fxLayout="row" style="margin-bottom:30px">
       <label fxFlex="35" class="label" for="documentLibrary">Document Library<span class="required"> *</span></label>
-      <mat-radio-group formControlName="documentLibrary" id="documentLibrary" aria-label="Document Library" style="margin-top:5px" [disabled]="true">
+      <mat-radio-group formControlName="documentLibrary" id="documentLibrary" aria-label="Document Library" style="margin-top:5px">
         <mat-radio-button color="primary" value="0"><span style="font-weight: lighter;">Internal&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
         <mat-radio-button color="primary" value="1"><span style="font-weight: lighter;">Partner</span></mat-radio-button>
       </mat-radio-group>
@@ -40,7 +46,7 @@
 
   </div>
 </mat-dialog-content>
-
+</div>
 <div id="footer">
   <mat-divider class="divider"></mat-divider>
   <mat-dialog-actions>
@@ -50,3 +56,4 @@
   </mat-dialog-actions>
 </div>
 </form>
+</div>

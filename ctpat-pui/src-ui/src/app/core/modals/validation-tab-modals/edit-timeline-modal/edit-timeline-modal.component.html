@@ -1,10 +1,16 @@
-<form [formGroup]="editTimelineForm" novalidate>
+<div id="DialogOuterContainer">
+<form [formGroup]="editTimelineForm" novalidate>  
 
-  <div fxLayout="row" class="common-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+  <div fxLayout="row" id="DialogHeader" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Edit Timeline</h3>
-    <mat-divider class="divider"></mat-divider>
+    <div fxFlex></div>
+                <button mat-icon-button class="close-button" [mat-dialog-close]="true"
+                    aria-label="clear">
+                    <mat-icon>clear</mat-icon>
+                </button>
   </div>
-
+  <mat-divider class="divider"></mat-divider>
+  <div id="DialogMidContainer">
   <mat-dialog-content>
     <div fxLayout="column">
       <div fxLayout="row">
@@ -237,9 +243,9 @@
       </div>
     </div>
   </mat-dialog-content>
-
-<div class="common-footer">
-  <mat-divider class="divider"></mat-divider>
+</div>
+<mat-divider class="divider"></mat-divider>
+<div id="DialogFooter">
   <mat-dialog-actions>
     <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C" aria-label="Cancel">Cancel</button>
     <div fxFlex></div>
@@ -248,3 +254,4 @@
 </div>
 </form>
 
+</div>

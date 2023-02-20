@@ -69,7 +69,7 @@ export class SviPanelComponent implements OnInit, AfterViewInit {
     });
   }
 
-  sendCertificarionEmail(): void {
+  sendCertificationEmail(): void {
     const dialogRef = this.dialog.open(SviSendCertificationEmailModalComponent, {
       data: {},
       width: '560px',

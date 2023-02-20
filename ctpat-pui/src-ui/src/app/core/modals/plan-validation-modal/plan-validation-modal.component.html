@@ -2,6 +2,11 @@
   <div fxLayout="row" id="validationHeader" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <button mat-icon-button (click)="showSideNav=!showSideNav"><mat-icon id="toggle-button">menu</mat-icon></button>
     <h3 mat-dialog-title class="dialog-header">Plan a Validation</h3>
+    <div fxFlex></div>
+                <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+                    aria-label="clear">
+                    <mat-icon>clear</mat-icon>
+                </button>
     <mat-divider class="divider"></mat-divider>
   </div>
 
