@@ -4,6 +4,11 @@
 
     <div fxLayout="row" id="createHeader">
       <h3 mat-dialog-title class="dialog-header">Create New CTPAT Account</h3>
+      <div fxFlex></div>
+                <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+                    aria-label="clear">
+                    <mat-icon>clear</mat-icon>
+                </button>
     <mat-divider class="divider"></mat-divider>
     </div>
 
@@ -52,9 +57,10 @@
             <mat-form-field fxFlex="60" appearance="outline">
               <mat-select formControlName="businessType" id="businessType" placeholder="--- Select ---" aria-label="Business Type"
                 (click)="businessTypeSelected($event)" (selectionChange)="businessTypeSelected($event.value)">
-                  <mat-option>--Select--</mat-option>
+                  <mat-option value="-1">--Select--</mat-option>
                   <ng-container>
-                    <mat-option value="importer">Importer
+                    <mat-option [value]="refData.businessTypeId" *ngFor="let refData of getRefData('getBusinessTypeList') | async">
+                      {{refData.name}}
                     </mat-option>
                   </ng-container>
               </mat-select>
@@ -141,9 +147,10 @@
             <div fxFlex="10"></div>
             <mat-form-field fxFlex="60" appearance="outline">
               <mat-select formControlName="typeAddress" id="typeAddress" placeholder="--- Select ---" aria-label="Type">
-                  <mat-option>--Select--</mat-option>
+                  <mat-option value="-1">--Select--</mat-option>
                   <ng-container>
-                    <mat-option value="test">test
+                    <mat-option [value]="refData.id" *ngFor="let refData of getRefData('getAddressTypeList') | async">
+                      {{refData.type}}
                     </mat-option>
                   </ng-container>
               </mat-select>
@@ -225,9 +232,10 @@
             <div fxFlex="5"></div>
             <mat-form-field fxFlex="60" appearance="outline">
               <mat-select formControlName="state" id="state" placeholder="--- Select ---" aria-label="State">
-                  <mat-option>--Select--</mat-option>
+                  <mat-option value="-1">--Select--</mat-option>
                   <ng-container>
-                    <mat-option value="test">test
+                    <mat-option [value]="refData.stateIsoCode" *ngFor="let refData of getRefData('getStateList') | async">
+                      {{refData.stateName}}
                     </mat-option>
                   </ng-container>
               </mat-select>

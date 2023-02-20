@@ -2,7 +2,8 @@ import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
+import { AccountService } from '../../services/account.service';
 
 @Component({
   selector: 'app-create-account-modal',
@@ -20,7 +21,7 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
   public dataSourceQuestions = new MatTableDataSource<any>();
 
   constructor(public dialogRef: MatDialogRef<CreateAccountModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.submitted = false;
@@ -79,6 +80,10 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
 
   get f(): {[key: string]: AbstractControl} {
     return this.createAccountForm.controls;
+  }
+
+  public getRefData(refType: string) : Observable<any> {
+    return this.accountService.getRefData(refType);
   }
 
   save(): void{
