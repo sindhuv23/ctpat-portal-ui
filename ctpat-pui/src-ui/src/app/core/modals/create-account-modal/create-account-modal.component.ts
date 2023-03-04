@@ -19,6 +19,13 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
 
   displayedColumns: string[] = ['selectionId', 'question'];
   public dataSourceQuestions = new MatTableDataSource<any>();
+  public businessTypeList$!: Observable<any>;
+  public addressTypeList$!: Observable<any>;
+  public stateList!: Array<any>;
+  public stateDisplayList: Array<any> = [];
+  public countryList$!: Observable<any>;
+  public salutation$!: Observable<any>;
+  public ownershipType$!: Observable<any>;
 
   constructor(public dialogRef: MatDialogRef<CreateAccountModalComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private accountService: AccountService) { }
@@ -29,32 +36,37 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
     this.createAccountForm = this.formBuilder.group({
       companyName: new FormControl('', Validators.required),
       doingBusinessAs: new FormControl(''),
-      ownershipType: new FormControl('', Validators.required),
-      businessType: new FormControl('', Validators.required),
+      ownershipTypeId: new FormControl('', Validators.required),
+      businessTypeId: new FormControl('', Validators.required),
       businessStartDate: new FormControl('', Validators.required),
       telephoneNumber: new FormControl('', Validators.required),
       faxNumber: new FormControl(''),
-      website: new FormControl(''),
-      numberOfEmployees: new FormControl('', Validators.required),
+      webSiteAddress: new FormControl(''),
+      numberOfEmployees: new FormControl('', [Validators.required, Validators.maxLength(10)]),
       briefCompanyHistory: new FormControl('', Validators.required),
-      typeAddress: new FormControl('', Validators.required),
-      typeContact: new FormControl('', Validators.required),
-      addressLineOne: new FormControl('', Validators.required),
+      typeName: new FormControl('', Validators.required),
+      street1: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       postalCode: new FormControl('', Validators.required),
-      addressLineTwo: new FormControl(''),
-      country: new FormControl('', Validators.required),
-      state: new FormControl(''),
-      salutation: new FormControl('', Validators.required),
+      street2: new FormControl(''),
+      countryId: new FormControl('', Validators.required),
+      stateId: new FormControl(''),
+      salutationId: new FormControl('', Validators.required),
       firstName: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
-      telephone: new FormControl('', Validators.required),
+      phoneNumber: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
-      initial: new FormControl(''),
+      middleNameInitial: new FormControl('', Validators.maxLength(1)),
       contactType: new FormControl('', Validators.required),
       fax: new FormControl('')
     });
+    this.businessTypeList$ = this.accountService.getRefData('getBusinessTypeList');
+    this.addressTypeList$ = this.accountService.getRefData('getAddressTypeList');
+    this.accountService.getAccountData('getStateList').subscribe(states=> this.stateList = states);
+    this.countryList$ = this.accountService.getAccountData('getCountryList'); 
+    this.salutation$ = this.accountService.getAccountData('getSalutationList'); 
+    this.ownershipType$ = this.accountService.getAccountData('getOwnershipTypeLkpList'); 
   }
 
   businessTypeSelected(event: any): void {
@@ -73,7 +85,10 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
       this.dataSourceQuestions = new MatTableDataSource<any>(data);
     }
   }
-
+  
+  populateStates(countryId: any): void {
+    this.stateDisplayList = this.stateList.filter(state => state.countryId == countryId);
+  }
   public hasError = (controlName: string, errorName: string) => {
     return this.createAccountForm.controls[controlName].hasError(errorName);
   }
@@ -82,18 +97,18 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
     return this.createAccountForm.controls;
   }
 
-  public getRefData(refType: string) : Observable<any> {
-    return this.accountService.getRefData(refType);
-  }
 
   save(): void{
     this.submitted = true;
     // UI validation before this point
     if (this.createAccountForm.invalid){
       return;
-    }
+   }
 
-    console.log('other validations then save');
+    this.accountService.saveAccountData(this.createAccountForm.getRawValue()).subscribe(res => {
+      console.log('Ctpat Account data saved, response => '+ res);
+      this.dialogRef.close();
+    });
   }
 
   cancel(): void {
@@ -107,4 +122,4 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
   }
-}
+} 

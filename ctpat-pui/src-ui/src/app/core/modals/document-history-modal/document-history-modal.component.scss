@@ -1,0 +1,129 @@
+.errorText {
+  color: #a00000;
+  font-size: 0.8em;
+  margin-top: 10px;
+  padding-left: 10px;
+}
+
+.minorButton {
+  background-color: lightgray !important;
+}
+
+#header{
+  height: 40px;
+  background-color: #00416a;
+  color: white;
+}
+
+#footer{
+  width: 100%;
+  height: 52px;
+  margin-bottom: 0px;
+  background-color: lightgrey;
+}
+
+.label{
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+mat-dialog-actions{
+  background-color: #eee;
+}
+
+.required-text{
+  float: right !important;
+  padding: 5px 5px;
+}
+
+.smallButton{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+:host ::ng-deep .mat-radio-container{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-outer-circle{
+  height: 15px;
+  width: 15px;
+}
+:host ::ng-deep .mat-radio-inner-circle{
+  height: 15px;
+  width: 15px;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: #a00000 !important;
+  opacity: 0.6 !important;
+}
+
+#outerContainer{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#createHeader{
+  top: 0px;
+  height: 40px;
+  background-color: #00416a;
+  color: white;
+}
+#midContainer{
+  max-height: 100%;
+  width: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 40px;
+  bottom: 55px;
+}
+#footer{
+  width: 100%;
+  height: 55px;
+  position: absolute;
+  bottom: 0px;
+  background-color: lightgrey;
+}
+.versionButtonActive{
+  color: #0000EE;
+  text-decoration: underline;
+}
+.versionButton{
+  border: none;
+  background: none;
+  text-align: left;
+  padding: 0px;
+}
+.item {
+  padding: 10px 10px 0px 0px;
+  display: flex;
+}
+
+.itemHeader1 {
+  font-weight: bold;
+  padding-right: 5px;
+  display: inline-block;
+}
+
+.itemHeader2 {
+  font-weight: bold;
+  padding-right: 5px;
+  display: inline-block;
+  width: 200px;
+}
+.versionTable{
+  border: 1px solid #dedede;
+  margin-top: 25px;
+}
+.versionCell{
+  border: 1px solid #dedede;
+  padding: 3px 10px 3px 10px;
+}
+.versionHeader{
+  background-color: #efefef;
+}

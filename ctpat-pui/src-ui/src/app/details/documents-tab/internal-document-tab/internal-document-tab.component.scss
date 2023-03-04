@@ -56,3 +56,13 @@ td:last-child, th:last-child{
   flex: 0 0 10% !important;
   width: 10% !important;
 }
+
+.versionButtonActive{
+  color: #0000EE;
+  text-decoration: underline;
+}
+.versionButton{
+  border: none;
+  background: none;
+  margin-left: 20px;
+}

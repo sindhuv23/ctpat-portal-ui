@@ -1,0 +1,52 @@
+<div id="outerContainer">
+
+  <form [formGroup]="eligibilityForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <div fxLayout="row" id="createHeader">
+      <h3 mat-dialog-title class="dialog-header">Eligibility Questionnaire</h3>
+      <div fxFlex></div>
+      <button mat-icon-button class="close-button" [mat-dialog-close]="true" aria-label="clear">
+        <mat-icon>clear</mat-icon> </button>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+
+    <div id="midContainer">
+      <div fxLayout="column">
+        <mat-error fxLayoutAlign="center" *ngIf="isSubmitted && !validAnswer">Sorry you are currently not eligible to participate</mat-error>
+        <div name="eligibilityDiv" id="eligibilityDiv">
+          <div formArrayName="questionArray">
+            <div *ngFor="let question of questions.controls; let i=index">
+              <div [formGroupName]="i" fxLayout="row" class="questionRow">
+                <div fxLayout="column" fxFlex="85" class="question">
+                  {{question.get("question")!.value}}
+                </div>
+                <div fxLayout="column" fxFlex="15">
+                  <mat-radio-group value="" formControlName="answer" class="radio-answer">
+                    <mat-radio-button color="primary" value="Y"><span
+                        style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+                    <mat-radio-button color="primary" value="N"><span
+                        style="font-weight: lighter;">No</span></mat-radio-button>
+                  </mat-radio-group>
+                  <mat-error fxLayoutAlign="center" *ngIf="isSubmitted && question.get('answer')!.errors && question.get('answer')!.errors!.required">Required</mat-error>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <mat-divider class="divider"></mat-divider>
+      <mat-dialog-actions>
+        <button mat-raised-button type="button" class="minorButton" accesskey="I" aria-label="Cancel"
+          [mat-dialog-close]="true">Cancel</button>
+        <div fxFlex></div>
+        <button mat-raised-button type="submit" color="primary" accesskey="S" aria-label="Submit">Submit</button>
+      </mat-dialog-actions>
+    </div>
+
+  </form>
+</div>

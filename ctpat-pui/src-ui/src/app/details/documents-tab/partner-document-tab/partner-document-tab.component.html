@@ -47,6 +47,11 @@
         <td mat-cell *matCellDef="let row">{{row.uploadedDateTime}}</td>
       </ng-container>
 
+      <ng-container matColumnDef="version">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Version</th>
+        <td mat-cell *matCellDef="let row"><button class="versionButton" [ngClass]="{'versionButtonActive' : row.version>1}" (click)="openDocumentHistory(row.version)">{{row.version}}</button></td>
+      </ng-container>
+
       <ng-container matColumnDef="entryId">
         <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Delete</th>
         <td mat-cell *matCellDef="let row" style="text-align:center">

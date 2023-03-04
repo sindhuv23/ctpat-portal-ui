@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { AddMilestoneModalComponent } from '../core/modals/add-milestone-modal/add-milestone-modal.component';
+import { EligibilityModalComponent } from '../core/modals/eligibility-modal/eligibility-modal.component';
+import { DetailsService } from '../core/services/details.service';
 
 @Component({
   selector: 'app-details',
@@ -13,12 +15,15 @@ export class DetailsComponent implements OnInit, OnDestroy {
   currentTabIndex = 0;
   showActionMenu!: boolean;
   actionMenuItems: any;
+  //to be replaced with ctpat_account.business_type_id from the database
+  public buisiness_type_id = '5';
+  public ctpat_account_id = '123124'
 
   public accountName = 'Apples Ltd.';
 
-  private subscriptions = new Subscription();
+  private subscriptions: Subscription[] = [];
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public detailsService: DetailsService) { }
 
   ngOnInit(): void {
     this.showActionMenu = true;
@@ -26,7 +31,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   setActionItems(): void {
-    this.actionMenuItems = [{ name: 'Generate PDF', action: 'viewPDF' }, { name: 'Add Milestone/Note', action: 'addMilestone' }];
+    var baseActionMenuItems = [{ name: 'Generate PDF', action: 'viewPDF' }, { name: 'Add Milestone/Note', action: 'addMilestone' }];
+    if (this.buisiness_type_id == "5") {
+      baseActionMenuItems.push({ name: 'Launch Trade Compliance', action: 'launchTradeCompliance' });
+    }
+    this.actionMenuItems = baseActionMenuItems;
   }
 
   invokeMenuAction(action: string): void {
@@ -35,6 +44,9 @@ export class DetailsComponent implements OnInit, OnDestroy {
     }
     if (action === 'addMilestone') {
       this.openAddMilestoneModal();
+    }
+    if (action === 'launchTradeCompliance') {
+      this.launchTradeCompliance();
     }
   }
 
@@ -47,9 +59,30 @@ export class DetailsComponent implements OnInit, OnDestroy {
       height: '300px',
       disableClose: true
     });
-   }
+  }
+  launchTradeCompliance(): void {
+
+    //TODO: check for existing account by id
+    // this.subscriptions.push(this.detailsService.getTradeComplianceAccount(this.ctpat_account_id).subscribe(account => {
+    //   if (account != null && account !== ''){
+    //     //link straight to tc
+    //   }else{
+    //     this.openEligibilityModal();
+    //   }
+    // }));
+
+    this.openEligibilityModal();
+  }
+  openEligibilityModal(): void {
+    const dialogRef = this.dialog.open(EligibilityModalComponent, {
+      data: {},
+      width: '850px',
+      height: '830px',
+      disableClose: true
+    });
+  }
 
   ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

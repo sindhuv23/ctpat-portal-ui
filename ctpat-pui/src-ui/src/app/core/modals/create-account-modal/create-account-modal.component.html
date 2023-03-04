@@ -1,403 +1,398 @@
 <div id="outerContainer">
 
-    <form [formGroup]="createAccountForm" novalidate>
+  <form [formGroup]="createAccountForm" novalidate>
 
-    <div fxLayout="row" id="createHeader">
-      <h3 mat-dialog-title class="dialog-header">Create New CTPAT Account</h3>
-      <div fxFlex></div>
-                <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
-                    aria-label="clear">
-                    <mat-icon>clear</mat-icon>
-                </button>
-    <mat-divider class="divider"></mat-divider>
-    </div>
-
-  <div id="midContainer">
-  <mat-dialog-content>
-    <div class="required required-text">* Required</div><br>
-    <div fxLayout="column">
-      <div id="section1" fxLayout="row">
-        <div fxLayout="column" fxFlex="43">
-
-          <div fxLayout="row">
-              <label  fxFlex="30" class="label" for="companyName">Company Name<span class="required"> *</span></label>
-              <div fxFlex="10"></div>
-              <mat-form-field fxFlex="60" appearance="outline">
-                <input matInput formControlName="companyName" id="companyName" aria-label="Company Name" placeholder="Company Name">
-                <mat-error *ngIf="submitted && f.companyName.errors && f.companyName.errors.required">Company Name is required</mat-error>
-              </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="doingBusinessAs">Doing Business As</label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="doingBusinessAs" id="doingBusinessAs" aria-label="Doing Business As" placeholder="Doing Business As">
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="ownershipType">Ownership Type<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="ownershipType" id="ownershipType" placeholder="--- Select ---" aria-label="Ownership Type">
-                  <mat-option>--Select--</mat-option>
-                  <ng-container>
-                    <mat-option value="test">test
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.ownershipType.errors && f.ownershipType.errors.required">Ownership Type is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="businessType">Business Type<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="businessType" id="businessType" placeholder="--- Select ---" aria-label="Business Type"
-                (click)="businessTypeSelected($event)" (selectionChange)="businessTypeSelected($event.value)">
-                  <mat-option value="-1">--Select--</mat-option>
-                  <ng-container>
-                    <mat-option [value]="refData.businessTypeId" *ngFor="let refData of getRefData('getBusinessTypeList') | async">
-                      {{refData.name}}
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.businessType.errors && f.businessType.errors.required">Business Type is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="businessStartDate">Business Start Date<span class="required"> *</span></label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="businessStartDate" id="businessStartDate" aria-label="Business Start Date" placeholder="Business Start Date">
-              <mat-error *ngIf="submitted && f.businessStartDate.errors && f.businessStartDate.errors.required">Business Start Date is required</mat-error>
-            </mat-form-field>
-          </div>
-
-        </div>
-
-        <div fxFlex="10"></div>
-        <div fxLayout="column"  fxFlex="43">
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="telephoneNumber">Telephone Number<span class="required"> *</span></label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="telephoneNumber" id="telephoneNumber" aria-label="Telephone Number" placeholder="Telephone Number">
-              <mat-error *ngIf="submitted && f.telephoneNumber.errors && f.telephoneNumber.errors.required">Telephone Number is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="faxNumber">Fax Number</label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="faxNumber" id="faxNumber" aria-label="Fax Number" placeholder="Fax Number">
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="website">Website</label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="website" id="website" aria-label="Website" placeholder="Website">
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="numberOfEmployees">Number of Employees<span class="required"> *</span></label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="numberOfEmployees" id="numberOfEmployees" placeholder="--- Select ---" aria-label="Number of Employees">
-                  <mat-option>--Select--</mat-option>
-                  <ng-container>
-                    <mat-option value="test">test
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.numberOfEmployees.errors && f.numberOfEmployees.errors.required">Number of Employees is required</mat-error>
-            </mat-form-field>
-          </div>
-
-        </div>
-      </div>
-
-      <div id="section2" fxLayout="column">
-        <div class="label">
-          Brief Company History<span class="required"> *</span>
-        </div>
-        <mat-form-field appearance="outline">
-          <textarea matInput formControlName="briefCompanyHistory" maxlength="300" name="briefCompanyHistory"></textarea>
-          <mat-error *ngIf="submitted && f.briefCompanyHistory.errors && f.briefCompanyHistory.errors.required">Brief Company History is required</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div class="label">
-        Primary Address
-      </div><br>
-      <div id="section3" fxLayout="row">
-
-        <div fxLayout="column"  fxFlex="43">
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="typeAddress">Type<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="typeAddress" id="typeAddress" placeholder="--- Select ---" aria-label="Type">
-                  <mat-option value="-1">--Select--</mat-option>
-                  <ng-container>
-                    <mat-option [value]="refData.id" *ngFor="let refData of getRefData('getAddressTypeList') | async">
-                      {{refData.type}}
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.typeAddress.errors && f.typeAddress.errors.required">Type is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="addressLineOne">Address Line 1<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="addressLineOne" id="addressLineOne" aria-label="Address Line 1" placeholder="Address Line 1">
-              <mat-error *ngIf="submitted && f.addressLineOne.errors && f.addressLineOne.errors.required">Address Line 1 is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="city">City<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="city" id="city" placeholder="--- Select ---" aria-label="City">
-                  <mat-option>--Select--</mat-option>
-                  <ng-container>
-                    <mat-option value="test">test
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.city.errors && f.city.errors.required">City is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="postalCode">Postal Code<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="postalCode" id="postalCode" aria-label="Postal Code" placeholder="Postal Code">
-              <mat-error *ngIf="submitted && f.postalCode.errors && f.postalCode.errors.required">Postal Code is required</mat-error>
-            </mat-form-field>
-          </div>
-
-        </div>
-
-        <div fxFlex="10"></div>
-        <div fxLayout="column"  fxFlex="43">
-
-          <div fxLayout="row" style="margin-bottom:25px">
-            <label  fxFlex="35" class="label" for="mailingaddressIndicator">Mailing Address</label>
-            <div fxFlex="5"></div>
-            <div fxFlex="60" style="margin-top:5px">
-              <input type="checkbox" id="mailingaddressIndicator" aria-label="Mailing Address">
-            </div>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="addressLineTwo">Address Line 2</label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="addressLineTwo" id="addressLineTwo" aria-label="Address Line 2" placeholder="Address Line 2">
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="country">Country<span class="required"> *</span></label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="country" id="country" placeholder="--- Select ---" aria-label="Country">
-                  <mat-option>--Select--</mat-option>
-                  <ng-container>
-                    <mat-option value="test">test
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.country.errors && f.country.errors.required">Country is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="state">State</label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="state" id="state" placeholder="--- Select ---" aria-label="State">
-                  <mat-option value="-1">--Select--</mat-option>
-                  <ng-container>
-                    <mat-option [value]="refData.stateIsoCode" *ngFor="let refData of getRefData('getStateList') | async">
-                      {{refData.stateName}}
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div *ngIf="showEligibilityQuestions" fxLayout="column" id="eligibilityQuestions">
-        <div class="label" style="margin-bottom: 15px">
-          Eligibility Questions
-        </div>
-        <div style="margin-bottom: 15px">
-          <table mat-table title="eligibilityQuestions" id="eligibilityQuestionsTable" [dataSource]="dataSourceQuestions" name="eligibilityQuestionsTable" class="row mat-elevation-z0">
-
-            <ng-container matColumnDef="selectionId">
-              <td mat-cell *matCellDef="let row">
-                <fieldset style="display:inline; border:none">
-                  <div fxLayout="row" style="margin-left: -20px">
-                    <div fxLayout="row">
-                      <div><input type="radio" value="{{row.selectionId}}true" name="{{row.selectionId}}" aria-label="Yes"></div>
-                      <div><label for="radioYes">&nbsp;Yes&nbsp;&nbsp;&nbsp;</label></div>
-                    </div>
-                    <div fxLayout="row">
-                      <div><input type="radio" value="{{row.selectionId}}false" name="{{row.selectionId}}" aria-label="No"></div>
-                      <div><label for="radioNo">&nbsp;No</label></div>
-                    </div>
-                  </div>
-                </fieldset>
-              </td>
-            </ng-container>
-
-            <ng-container matColumnDef="question">
-              <td mat-cell *matCellDef="let row">{{row.question}}</td>
-            </ng-container>
-
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-          </table>
-        </div>
-      </div>
-
-      <div class="label">
-        Administrator Contact
-      </div><br>
-      <div id="section4" fxLayout="row">
-
-        <div fxLayout="column"  fxFlex="43">
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="salutation">Salutation<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="salutation" id="salutation" placeholder="--- Select ---" aria-label="Salutation">
-                  <mat-option>--Select--</mat-option>
-                  <ng-container>
-                    <mat-option value="test">test
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.salutation.errors && f.salutation.errors.required">Salutation is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="firstName">First Name<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="firstName" id="firstName" aria-label="First Name" placeholder="First Name">
-              <mat-error *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">First Name is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="title">Title<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="title" id="title" aria-label="Title" placeholder="Title">
-              <mat-error *ngIf="submitted && f.title.errors && f.title.errors.required">Title is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="telephone">Telephone<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="telephone" id="telephone" aria-label="Telephone" placeholder="Telephone">
-              <mat-error *ngIf="submitted && f.telephone.errors && f.telephone.errors.required">Telephone is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="email">Email<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="email" id="email" aria-label="Email" placeholder="Email">
-              <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required</mat-error>
-            </mat-form-field>
-          </div>
-
-        </div>
-
-        <div fxFlex="10"></div>
-        <div fxLayout="column"  fxFlex="43">
-
-          <div style="height:55px"></div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="lastName">Last Name<span class="required"> *</span></label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="lastName" id="lastName" aria-label="Last Name" placeholder="Last Name">
-              <mat-error *ngIf="submitted && f.lastName.errors && f.lastName.errors.required">Last Name is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="initial">Initial</label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="initial" id="initial" aria-label="Initial" placeholder="Initial">
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="contactType">Type<span class="required"> *</span></label>
-            <div fxFlex="10"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="contactType" id="contactType" placeholder="--- Select ---" aria-label="Contact Type">
-                  <mat-option>--Select--</mat-option>
-                  <ng-container>
-                    <mat-option value="test">test
-                    </mat-option>
-                  </ng-container>
-              </mat-select>
-              <mat-error *ngIf="submitted && f.contactType.errors && f.contactType.errors.required">Type is required</mat-error>
-            </mat-form-field>
-          </div>
-
-          <div fxLayout="row">
-            <label  fxFlex="35" class="label" for="fax">Fax</label>
-            <div fxFlex="5"></div>
-            <mat-form-field fxFlex="60" appearance="outline">
-              <input matInput formControlName="fax" id="fax" aria-label="Fax" placeholder="Fax">
-            </mat-form-field>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-  </mat-dialog-content></div>
-
-  <div id="footer">
-    <mat-divider class="divider"></mat-divider>
-    <mat-dialog-actions>
-      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
-      <div fxFlex></div>
-      <button mat-raised-button type="submit" color="primary" (click)="save()" aria-label="Save" accesskey="P">Save</button>
-    </mat-dialog-actions>
+  <div fxLayout="row" id="createHeader">
+    <h3 mat-dialog-title class="dialog-header">Create New CTPAT Account</h3>
+    <div fxFlex></div>
+              <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+                  aria-label="clear">
+                  <mat-icon>clear</mat-icon>
+              </button>
+  <mat-divider class="divider"></mat-divider>
   </div>
+
+<div id="midContainer">
+<mat-dialog-content>
+  <div class="required required-text">* Required</div><br>
+  <div fxLayout="column">
+    <div id="section1" fxLayout="row">
+      <div fxLayout="column" fxFlex="43">
+
+        <div fxLayout="row">
+            <label  fxFlex="30" class="label" for="companyName">Company Name<span class="required"> *</span></label>
+            <div fxFlex="10"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="companyName" id="companyName" aria-label="Company Name" placeholder="Company Name">
+              <mat-error *ngIf="submitted && f.companyName.errors && f.companyName.errors.required">Company Name is required</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="doingBusinessAs">Doing Business As</label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="doingBusinessAs" id="doingBusinessAs" aria-label="Doing Business As" placeholder="Doing Business As">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="ownershipTypeId">Ownership Type<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="ownershipTypeId" id="ownershipTypeId" placeholder="--- Select ---" aria-label="Ownership Type">       
+            <mat-option value="-1">--Select--</mat-option>
+              <ng-container>
+                <mat-option [value]="refData.id" *ngFor="let refData of ownershipType$ | async">
+                  {{refData.ownerType}}
+                </mat-option>
+              </ng-container>
+          </mat-select>
+            <mat-error *ngIf="submitted && f.ownershipTypeId.errors && f.ownershipTypeId.errors.required">Ownership Type is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="businessTypeId">Business Type<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="businessTypeId" id="businessTypeId" placeholder="--- Select ---" aria-label="Business Type"
+              (click)="businessTypeSelected($event)" (selectionChange)="businessTypeSelected($event.value)">
+                <mat-option value="-1">--Select--</mat-option>
+                <ng-container>
+                  <mat-option [value]="refData.businessTypeId" *ngFor="let refData of businessTypeList$ | async">
+                    {{refData.name}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.businessTypeId.errors && f.businessTypeId.errors.required">Business Type is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="businessStartDate">Business Start Date<span class="required"> *</span></label>
+          <div fxFlex="5"></div>
+
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput [matDatepicker]="businessStartDate" formControlName="businessStartDate" id="businessStartDate" #businessStartDateInput aria-label="Business Start Date" placeholder="Business Start Date">
+            <mat-datepicker-toggle matSuffix [for]="businessStartDate" aria-label="Date Picker for Business Start Date"
+              accesskey="S"></mat-datepicker-toggle>
+            <mat-datepicker #businessStartDate></mat-datepicker>
+
+            <mat-error *ngIf="f.businessStartDate.errors && f.businessStartDate.errors.required">Business Start Date is required</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div fxFlex="10"></div>
+      <div fxLayout="column"  fxFlex="43">
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="telephoneNumber">Telephone Number<span class="required"> *</span></label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="telephoneNumber" id="telephoneNumber" aria-label="Telephone Number" placeholder="Telephone Number">
+            <mat-error *ngIf="submitted && f.telephoneNumber.errors && f.telephoneNumber.errors.required">Telephone Number is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="faxNumber">Fax Number</label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="faxNumber" id="faxNumber" aria-label="Fax Number" placeholder="Fax Number">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="webSiteAddress">Website</label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="webSiteAddress" id="webSiteAddress" aria-label="Website" placeholder="Website">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="numberOfEmployees">Number of Employees<span class="required"> *</span></label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput type="number" formControlName="numberOfEmployees" id="numberOfEmployees" aria-label="Number of Employees" placeholder="Number of Employees" maxlength="10">
+            <mat-error *ngIf="submitted && f.numberOfEmployees.errors && f.numberOfEmployees.errors.required">Number of Employees is required</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+    </div>
+
+    <div id="section2" fxLayout="column">
+      <div class="label">
+        Brief Company History<span class="required"> *</span>
+      </div>
+      <mat-form-field appearance="outline">
+        <textarea matInput formControlName="briefCompanyHistory" maxlength="300" name="briefCompanyHistory"></textarea>
+        <mat-error *ngIf="submitted && f.briefCompanyHistory.errors && f.briefCompanyHistory.errors.required">Brief Company History is required</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="label">
+      Primary Address
+    </div><br>
+    <div id="section3" fxLayout="row">
+
+      <div fxLayout="column"  fxFlex="43">
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="typeName">Type<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="typeName" id="typeName" placeholder="--- Select ---" aria-label="Type">
+                <mat-option value="-1">--Select--</mat-option>
+                <ng-container>
+                  <mat-option [value]="refData.id" *ngFor="let refData of addressTypeList$ | async">
+                    {{refData.type}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.typeName.errors && f.typeName.errors.required">Type is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="street1">Address Line 1<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="street1" id="street1" aria-label="Address Line 1" placeholder="Address Line 1">
+            <mat-error *ngIf="submitted && f.street1.errors && f.street1.errors.required">Address Line 1 is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="city">City<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="city" id="city" aria-label="City" placeholder="City">
+            <mat-error *ngIf="submitted && f.city.errors && f.city.errors.required">City is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="postalCode">Postal Code<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="postalCode" id="postalCode" aria-label="Postal Code" placeholder="Postal Code">
+            <mat-error *ngIf="submitted && f.postalCode.errors && f.postalCode.errors.required">Postal Code is required</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div fxFlex="10"></div>
+      <div fxLayout="column"  fxFlex="43">
+
+        <div fxLayout="row" style="margin-bottom:25px">
+          <label  fxFlex="35" class="label" for="mailingaddressIndicator">Mailing Address</label>
+          <div fxFlex="5"></div>
+          <div fxFlex="60" style="margin-top:5px">
+            <input type="checkbox" id="mailingaddressIndicator" aria-label="Mailing Address">
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="street2">Address Line 2</label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="street2" id="street2" aria-label="Address Line 2" placeholder="Address Line 2">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="countryId">Country<span class="required"> *</span></label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="countryId" id="countryId" placeholder="--- Select ---" aria-label="Country" (selectionChange)="populateStates($event.value)">
+                <mat-option value="-1">--Select--</mat-option>
+                <ng-container>
+                  <mat-option [value]="refData.id" *ngFor="let refData of countryList$  | async">
+                    {{refData.countryName}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.countryId.errors && f.countryId.errors.required">Country is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="stateId">State</label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="stateId" id="stateId" placeholder="--- Select ---" aria-label="State">
+                <mat-option value="-1">--Select--</mat-option>
+                <ng-container>
+                  <mat-option [value]="refData.id" *ngFor="let refData of stateDisplayList">
+                    {{refData.stateName}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div *ngIf="showEligibilityQuestions" fxLayout="column" id="eligibilityQuestions">
+      <div class="label" style="margin-bottom: 15px">
+        Eligibility Questions
+      </div>
+      <div style="margin-bottom: 15px">
+        <table mat-table title="eligibilityQuestions" id="eligibilityQuestionsTable" [dataSource]="dataSourceQuestions" name="eligibilityQuestionsTable" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="selectionId">
+            <td mat-cell *matCellDef="let row">
+              <fieldset style="display:inline; border:none">
+                <div fxLayout="row" style="margin-left: -20px">
+                  <div fxLayout="row">
+                    <div><input type="radio" value="{{row.selectionId}}true" name="{{row.selectionId}}" aria-label="Yes"></div>
+                    <div><label for="radioYes">&nbsp;Yes&nbsp;&nbsp;&nbsp;</label></div>
+                  </div>
+                  <div fxLayout="row">
+                    <div><input type="radio" value="{{row.selectionId}}false" name="{{row.selectionId}}" aria-label="No"></div>
+                    <div><label for="radioNo">&nbsp;No</label></div>
+                  </div>
+                </div>
+              </fieldset>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="question">
+            <td mat-cell *matCellDef="let row">{{row.question}}</td>
+          </ng-container>
+
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="label">
+      Administrator Contact
+    </div><br>
+    <div id="section4" fxLayout="row">
+
+      <div fxLayout="column"  fxFlex="43">
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="salutationId">Salutation<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="salutationId" id="salutationId" placeholder="--- Select ---" aria-label="Salutation">
+                <mat-option>--Select--</mat-option>
+                <ng-container>
+                  <mat-option [value]="refData.id" *ngFor="let refData of salutation$ | async">
+                    {{refData.description}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.salutationId.errors && f.salutationId.errors.required">Salutation is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="firstName">First Name<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="firstName" id="firstName" aria-label="First Name" placeholder="First Name">
+            <mat-error *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">First Name is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="title">Title<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="title" id="title" aria-label="Title" placeholder="Title">
+            <mat-error *ngIf="submitted && f.title.errors && f.title.errors.required">Title is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="phoneNumber">Telephone<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="phoneNumber" id="phoneNumber" aria-label="Telephone" placeholder="Telephone">
+            <mat-error *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Telephone is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="email">Email<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="email" id="email" aria-label="Email" placeholder="Email">
+            <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+
+      <div fxFlex="10"></div>
+      <div fxLayout="column"  fxFlex="43">
+
+        <div style="height:55px"></div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="lastName">Last Name<span class="required"> *</span></label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="lastName" id="lastName" aria-label="Last Name" placeholder="Last Name">
+            <mat-error *ngIf="submitted && f.lastName.errors && f.lastName.errors.required">Last Name is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="middleNameInitial">Initial</label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="middleNameInitial" id="middleNameInitial" aria-label="Initial" placeholder="Initial" maxlength="1">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="30" class="label" for="contactType">Type<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="contactType" id="contactType" placeholder="--- Select ---" aria-label="Contact Type">
+                <mat-option>--Select--</mat-option>
+                <ng-container>
+                  <mat-option value="Officer">Officer
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.contactType.errors && f.contactType.errors.required">Type is required</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="35" class="label" for="fax">Fax</label>
+          <div fxFlex="5"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="fax" id="fax" aria-label="Fax" placeholder="Fax">
+          </mat-form-field>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</mat-dialog-content></div>
+
+<div id="footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="save()" aria-label="Save" accesskey="P" [disabled]="createAccountForm.invalid">Save</button>
+  </mat-dialog-actions>
+</div>
 </form>
 </div>
-

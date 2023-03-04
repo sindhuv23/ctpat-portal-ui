@@ -9,15 +9,22 @@ import { environment } from 'src/environments/environment';
 
 export class AccountService {
 
-  baseUrl = environment.baseUrl.split('/service-portal')[0];
+  refBaseUrl = environment.refBaseUrl;
+  baseUrl = environment.baseUrl
 
   constructor(private httpClient: HttpClient) {
   }
 
   getRefData(refType: string): Observable<any> {
-    return this.httpClient.get(this.baseUrl + `/ctpat-service-ref-data/api/${refType}`) ;
+    return this.httpClient.get(this.refBaseUrl + `/api/${refType}`) ;
   }
 
-  
+  getAccountData(refType: string): Observable<any> {
+    return this.httpClient.get(this.baseUrl + `/service-portal/${refType}`) ;
+  }
+
+  saveAccountData(ctpatAccount: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + `/service-portal/createOrUpdateCtpatAccount`, ctpatAccount) ;
+  }
 
 }

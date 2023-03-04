@@ -1,0 +1,253 @@
+.raisePadding{
+    padding-bottom: 10px;
+  }
+  .darkFont{
+    color: black;
+  }
+  .errorText{
+    color: #AA0000;
+    font-size: 0.8em;
+    padding-left: 8px;
+  }
+  .headerDiv {
+    top: 0px;
+    height: 40px;
+    color: white;
+    background-color: #00416A !important;
+    margin-bottom: 5px !important;
+  }
+  .contentDiv {
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 42px;
+    bottom: 55px;
+  }
+  .footerDiv {
+    width: 100%;
+    height: 30px;
+    bottom: 0px;
+  }
+  .addButton{
+    display: inline-block;
+    padding-bottom: 15px;
+  }
+  .typeWarning {
+    font-size: 0.75em;
+    color:#AA0000;
+    margin-top: -15px;
+  }
+  .question {
+    padding-bottom:10px;
+    padding-right: 10px;
+  }
+  mat-panel-title{
+    font-weight: bold;
+  }
+  .requiredText{
+    color: #AA0000 !important;
+  }
+  .gapCut{
+    margin-top: -15px !important;
+  }
+  .optionalText{
+    font-style: italic;
+  }
+  .normalText{
+    font-weight: bold;
+  }
+  .cancel-button{
+    background-color: white !important;
+    color: black !important;
+  }
+  
+  .error-label{
+    color:#A00000 !important;
+  }
+  
+  .mat-error {
+    color:#A00000 !important;
+    margin-top: -20px;
+  }
+  
+  
+  #outerContainer{
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+  #createHeader{
+    top: 0px;
+    height: 40px;
+    background-color: #00416a;
+    color: white;
+  }
+  #midContainer{
+    padding: 20px 10px 10px 10px;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 42px;
+    bottom: 54px;
+  }
+  #footer{
+    width: 100%;
+    height: 55px;
+    position: absolute;
+    bottom: 0px;
+    background-color: lightgrey;
+  }
+  
+  .ctrTextPad {
+    padding-top: 5px;
+    width: 20%;
+    text-align: center;
+  }
+  .pad-content {
+    padding: 10px 0px 0px 0px;
+  }
+  .errorText {
+    color: #a00000;
+    font-size: 0.8em;
+    margin-top: -20px;
+    padding-left: 8px;
+  }
+  .messageInfo {
+    color: #004080;
+    font-size: 0.8em;
+    padding-top: 0px;
+  }
+  .minorButton {
+    background-color: lightgray !important;
+  }
+  ::ng-deep .customTooltip {
+    white-space: pre-line;
+    max-width: unset !important;
+  }
+  .clearIcon {
+    font-size: 16px;
+    background-color: #00416a !important;
+    color: white;
+  }
+  ::ng-deep .noSpacing{
+    max-height: 20px !important;
+  }
+  ::ng-deep .mat-select-placeholder {
+    color: #666 !important;
+  }
+  .label{
+    font-weight: bold;
+    margin-top: 6px;
+  }
+  mat-dialog-actions{
+    background-color: #eee;
+  }
+  ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+    padding: 0.1em 0px !important;
+    width: 100% !important;
+  }
+  
+  .required-text{
+    float: right !important;
+    margin-top:-20px;
+  }
+  ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline-thick{
+    color: #a00000 !important;
+    opacity: 0.6 !important;
+  }
+  
+  .mat-icon {
+    font-size: 18px;
+  }
+
+  .questionRow {
+    border-bottom: 1px solid #615e5e; 
+    padding-top: 5px;
+  }
+  .radio-answer{
+    padding-bottom: 20px;
+  }
+  
+  .profileWarning{
+    font-weight: bold;
+    background-color: #FFF1D2;
+    padding: 5px 20px;
+  }
+  
+  .bigIcon{
+    font-size: 26px;
+  }
+  
+  .mat-expansion-panel-header-title{
+    font-weight: 500;
+  }
+  
+  hr{
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+  
+  .spinner-container {
+    background: #cfc6c6;
+    opacity: 0.5;
+    height:100%;
+    width:100%;
+    top: 0%;
+    left: 0%;
+    display: flex;
+    align-items: top;
+    padding-top: 200px;
+    justify-content: center;
+    position: absolute;
+  }
+  
+  .actionButtons{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #eeeeff;
+  }
+  
+  a:hover {
+    cursor: pointer;
+  }
+  a {
+    text-decoration: underline;
+    color: blue;
+  }
+  
+  mat-expansion-panel-header, mat-panel-title{
+    padding-top: 5px !important;
+    height: fit-content !important;
+  }
+  
+  td {
+    padding: 5px !important;
+    word-break: normal;
+    background-color: white;
+    max-height: fit-content !important;
+  }
+  
+  tr.mat-header-row, tr.mat-row {
+    height: fit-content !important;
+  }
+  
+  .mat-column-answer {
+    flex: 0 0 15% !important;
+    width: 15% !important;
+  }
+  
+  :host ::ng-deep .mat-radio-container{
+    height: 15px;
+    width: 15px;
+  }
+  :host ::ng-deep .mat-radio-outer-circle{
+    height: 15px;
+    width: 15px;
+  }
+  :host ::ng-deep .mat-radio-inner-circle{
+    height: 15px;
+    width: 15px;
+  }
+  

@@ -1,0 +1,59 @@
+<div id="outerContainer">
+
+
+  <div fxLayout="row" id="header">
+    <h3 mat-dialog-title class="dialog-header">Document History</h3>
+    <div fxFlex></div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;" aria-label="clear">
+      <mat-icon>clear</mat-icon>
+    </button>
+    <mat-divider class="divider"></mat-divider>
+  </div><br>
+  <div id="midContainer">
+    <mat-dialog-content>
+      <div fxLayout="column">
+
+        <div fxLayout="row" class="item">
+          <span class="itemHeader2">Document Name</span>
+          <span>Internal_text_doc.docx</span>
+        </div>
+
+        <div fxLayout="row" class="item">
+          <span class="itemHeader2">Document Type</span>
+          <span>ITRAC</span>
+        </div>
+
+        <div fxLayout="column" class="versionTable">
+          <div fxLayout="row">
+            <div fxLayout="column" fxFlex="70" class="versionHeader versionCell itemHeader1">
+              Version
+            </div>
+            <div fxLayout="column" fxFlex="30" class="versionHeader versionCell itemHeader1">
+              View
+            </div>
+          </div>
+          <div *ngFor="let version of dataVersions; let i=index">
+            <div fxLayout="row" class="versionRow">
+              <div fxLayout="column" fxFlex="70" class="versionCell">
+                {{version.version}}
+              </div>
+              <div fxLayout="column" fxFlex="30" class="versionCell">
+                <button class="versionButton versionButtonActive">View</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </mat-dialog-content>
+  </div>
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="cancel()" accesskey="C"
+        aria-label="Close">Close</button>
+    </mat-dialog-actions>
+  </div>
+
+</div>

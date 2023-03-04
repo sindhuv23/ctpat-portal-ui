@@ -7,6 +7,7 @@ import { UploadDocumentModalComponent } from 'src/app/core/modals/upload-documen
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { DocumentHistoryModalComponent } from 'src/app/core/modals/document-history-modal/document-history-modal.component';
 
 @Component({
   selector: 'app-internal-document-tab',
@@ -18,7 +19,7 @@ export class InternalDocumentTabComponent implements OnInit, OnDestroy, AfterVie
   private subscriptions = new Subscription();
   public companyId = 'doc222';
 
-  displayedColumns: string[] = ['fileName', 'type', 'fileSize', 'uploadedBy', 'uploadedDateTime', 'entryId'];
+  displayedColumns: string[] = ['fileName', 'type', 'fileSize', 'uploadedBy', 'uploadedDateTime', 'version', 'entryId'];
   private dataDocuments: any[] = [];
   public dataSourceDocuments = new MatTableDataSource<any>();
 
@@ -52,11 +53,11 @@ export class InternalDocumentTabComponent implements OnInit, OnDestroy, AfterVie
   // upload datetime will be date object and sorted by datetime
   ngAfterViewInit(): void{
     this.dataDocuments.push({fileName: 'someInternalFile.pdf', type: 'TC Type1', fileSize: '116.35kb', uploadedBy: 'John Doe',
-    uploadedDateTime: new Date('06-02-2022 15:33'), documentCat: 'T', entryId: 0});
+    uploadedDateTime: new Date('06-02-2022 15:33'), documentCat: 'T', version: '1', entryId: 0});
     this.dataDocuments.push({fileName: 'someInternalFile2.doc', type: 'ACCT Type', fileSize: '222.3kb', uploadedBy: 'Sam Partner',
-    uploadedDateTime: new Date('05-22-2021 08:21'), documentCat: 'A', entryId: 1});
+    uploadedDateTime: new Date('05-22-2021 08:21'), documentCat: 'A', version: '1', entryId: 1});
     this.dataDocuments.push({fileName: 'someInternalFile3.jpg', type: 'TC Type2', fileSize: '455.25kb', uploadedBy: 'Someone',
-    uploadedDateTime: new Date('01-12-2022 09:21'), documentCat: 'T', entryId: 2});
+    uploadedDateTime: new Date('01-12-2022 09:21'), documentCat: 'T', version: '2',  entryId: 2});
     this.dataSourceDocuments = new MatTableDataSource<any>(this.dataDocuments);
     this.dataSourceDocuments.paginator = this.paginator;
     this.dataSourceDocuments.sort = this.matSort;
@@ -115,6 +116,17 @@ export class InternalDocumentTabComponent implements OnInit, OnDestroy, AfterVie
     this.dataSourceDocuments.sort = this.matSort;
     this.addFilterPredicate();
     this.doFilter();
+  }
+
+  openDocumentHistory(version: any): void{
+    if (version > 1){
+      const dialogRef = this.dialog.open(DocumentHistoryModalComponent, {
+        data: {},
+        width: '500px',
+        height: '300px',
+        disableClose: true
+      });
+    }
   }
 
   ngOnDestroy(): void {

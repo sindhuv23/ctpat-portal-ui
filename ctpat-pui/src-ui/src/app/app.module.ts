@@ -113,6 +113,8 @@ import { SubmitToSupervisorModalComponent } from './core/modals/validation-tab-m
 import { ValidationDetailsNoVisitComponent } from './details/validation-tab/validation-summary/validation-details-no-visit/validation-details-no-visit.component';
 import { ValidationDetailsWithVisitComponent } from './details/validation-tab/validation-summary/validation-details-with-visit/validation-details-with-visit.component';
 import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/advance-search-modal.component';
+import { EligibilityModalComponent } from './core/modals/eligibility-modal/eligibility-modal.component';
+import { DocumentHistoryModalComponent } from './core/modals/document-history-modal/document-history-modal.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +151,7 @@ import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/
       PartnerDocumentTabComponent,
       InternalDocumentTabComponent,
       UploadDocumentModalComponent,
+      DocumentHistoryModalComponent,
       ConfirmationDialogModalComponent,
       VettingTabComponent,
       VettingHistoryComponent,
@@ -159,6 +162,7 @@ import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/
       BeiListComponent,
       CompanyContactListComponent,
       EligibilityComponent,
+      EligibilityModalComponent,
       SignaturesComponent,
       IntelligenceGatheringComponent,
       ValidationTabComponent,
