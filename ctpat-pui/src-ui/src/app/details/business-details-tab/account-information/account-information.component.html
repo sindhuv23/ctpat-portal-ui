@@ -3,53 +3,53 @@
   <div style="overflow: auto;" class="headerItem25">
     <div class="item">
       <span class="itemHeader1">CTPAT Account #</span>
-      <span>12345678</span>
+      <span>{{accountData?.companyName}}</span>
     </div>
     <div class="item">
       <span class="itemHeader1">CTPAT Account Name</span>
-      <span>Apple Ltd.</span>
+      <span>{{accountData?.companyName}}</span>
     </div>
     <div class="item">
       <span class="itemHeader1">Business Type</span>
-      <span>Importer</span>
+      <span>{{accountData?.businessType}}</span>
     </div>
   </div>
 
   <div style="overflow: auto; padding-left: 3px" class="headerItem30">
     <div class="item">
       <span class="itemHeader2">CTPAT Account Status</span>
-      <span>Applicant</span>
+      <span>{{accountData?.status}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Security Profile Status</span>
-      <span>Incomplete</span>
+      <span>{{accountData?.securityStatus}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Certification Date</span>
-      <span>01/02/2018</span>
+      <span>{{accountData?.certificationDate}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Anniversary Date</span>
-      <span>01/02/2019</span>
+      <span>{{accountData?.anniversaryDate}}</span>
     </div>
   </div>
 
   <div style="overflow: auto; padding-left: 3px" class="headerItem45">
     <div class="item">
       <span class="itemHeader2">Assigned CTPAT Office</span>
-      <span>Buffalo</span>
+      <span>{{accountData?.assignedCTPATOffice}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Assigned CTPAT SCSS</span>
-      <span>John Doe</span>
+      <span>{{accountData?.assignedCTPATSCSS}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">SCSS Email</span>
-      <span>john.doe@cbp.dhs.gov</span>
+      <span>{{accountData?.scssEmail}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">SCSS Phone</span>
-      <span>222-333-4444</span>
+      <span>{{accountData?.scssPhone}}</span>
     </div>
   </div>
 </div>

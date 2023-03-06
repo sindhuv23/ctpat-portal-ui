@@ -1,3 +1,4 @@
+import { AccountService } from './../core/services/account.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
@@ -19,15 +20,41 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public buisiness_type_id = '5';
   public ctpat_account_id = '123124'
 
-  public accountName = 'Apples Ltd.';
+  public accountName = '';
+  public accountStatus = '';
+  public applicationStatus = '';
+  public anlStatus = '';
 
-  private subscriptions: Subscription[] = [];
+  private subscriptions = new Subscription();
+  public showDetails = false;
+  public isLoadingDetails = false;
 
-  constructor(public dialog: MatDialog, public detailsService: DetailsService) { }
+
+  constructor(public dialog: MatDialog, public detailsService: DetailsService, public accountService: AccountService) { }
 
   ngOnInit(): void {
     this.showActionMenu = true;
     this.setActionItems();
+
+    this.subscriptions.add(this.accountService.detailLoadingStatus$.subscribe((status: any) => {
+      this.isLoadingDetails = status;
+    }));
+
+    this.subscriptions.add(this.accountService.detailTitleBar$.subscribe((titleBar: any) => {
+      if (titleBar) {
+        this.accountName = titleBar.companyName;
+        this.accountStatus = titleBar.accountStatus;
+        this.applicationStatus = titleBar.applicationStatus;
+        this.anlStatus = titleBar.anlStatus;
+      }
+    }));
+
+    this.subscriptions.add(this.accountService.accountId$.subscribe((id: any) => {
+      if (id){
+        this.currentTabIndex = 0;
+        this.showDetails = true;
+      }
+    }));
   }
 
   setActionItems(): void {
@@ -83,6 +110,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptions.forEach((subscription) => subscription.unsubscribe());
+    this.subscriptions.unsubscribe();
   }
 }

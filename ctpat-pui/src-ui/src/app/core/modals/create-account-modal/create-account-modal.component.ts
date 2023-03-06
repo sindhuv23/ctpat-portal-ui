@@ -98,7 +98,7 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
   }
 
 
-  save(): void{
+  save(): void {
     this.submitted = true;
     // UI validation before this point
     if (this.createAccountForm.invalid){
@@ -107,6 +107,8 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
 
     this.accountService.saveAccountData(this.createAccountForm.getRawValue()).subscribe(res => {
       console.log('Ctpat Account data saved, response => '+ res);
+      this.accountService.broadcastDetailLoadingStatus(true);
+      this.accountService.broadcastAccountId(res.id);
       this.dialogRef.close();
     });
   }

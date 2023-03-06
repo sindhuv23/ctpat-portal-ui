@@ -14,3 +14,17 @@
   padding: 24px!important;
   margin: 3px!important;
  }
+
+ .spinner-container {
+   background: #cfc6c6;
+   opacity: 0.5;
+   height: 100%;
+   width: 100%;
+   top: 0%;
+   left: 0%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   position: absolute;
+   z-index: 10 !important;
+ }

@@ -1,8 +1,9 @@
-<div class="panel-spacing">
+<div class="panel-spacing" [ngClass]="{hideElement: !showDetails}">
   <mat-expansion-panel class="ctpat-panel" [expanded]="true">
     <mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="40px" expandedHeight="40px">
       <mat-panel-title class="ctpat-panel-title">
-        <h3 class="padHeading">Details: {{accountName}}
+        <h3 class="padHeading">Details: {{accountName}} |  Account Status: {{accountStatus}} |
+          Application Status: {{applicationStatus}} | ANL Status: {{anlStatus}}
         </h3>
       </mat-panel-title>
     </mat-expansion-panel-header>
@@ -98,3 +99,8 @@
       </mat-tab-group>
   </div>
   </mat-expansion-panel>
+</div>
+
+  <div class="spinner-container" *ngIf="isLoadingDetails">
+    <mat-spinner [diameter]="200"></mat-spinner>
+  </div>

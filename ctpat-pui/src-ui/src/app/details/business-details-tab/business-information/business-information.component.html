@@ -3,38 +3,38 @@
   <div style="overflow: auto;" class="headerItem25">
     <div class="item">
       <span class="itemHeader1">Company Name</span>
-      <span>Apples Ltd.</span>
+      <span>{{accountData?.companyName}}</span>
     </div>
     <div class="item">
       <span class="itemHeader1">Doing Business As</span>
-      <span>Fruit Company</span>
+      <span>{{accountData?.doingBusinessAs}}</span>
     </div>
     <div class="item">
       <span class="itemHeader1">Ownership Type</span>
-      <span>Corporation</span>
+      <span>{{accountData?.ownershipType}}</span>
     </div>
     <div class="item">
       <span class="itemHeader1">Business Start Date</span>
-      <span>01/02/2017</span>
+      <span>{{accountData?.businessStartDate | date:'MM/dd/yyyy'}}</span>
     </div>
   </div>
 
   <div style="overflow: auto; padding-left: 3px" class="headerItem30">
     <div class="item">
       <span class="itemHeader2">Telephone Number</span>
-      <span>213-992-0882</span>
+      <span>{{accountData?.telephoneNumber}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Fax Number</span>
-      <span>213-992-8888</span>
+      <span>{{accountData?.faxNumber}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Website</span>
-      <span>www.applesltd.com</span>
+      <span>{{accountData?.webSiteAddress}}</span>
     </div>
     <div class="item">
       <span class="itemHeader2">Number of Employees</span>
-      <span>150</span>
+      <span>{{accountData?.numberOfEmployees}}</span>
     </div>
   </div>
 
@@ -43,7 +43,7 @@
       <span class="itemHeader2">Brief Company History</span>
     </div>
     <div id="companyHistory">
-      Brief company history text goes here.
+      <span>{{accountData?.briefCompanyHistory}}</span>
     </div>
   </div>
 </div>
