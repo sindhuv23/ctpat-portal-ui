@@ -76,7 +76,7 @@ import { BusinessHistoryComponent } from './core/modals/new-vetting-modal/busine
 import { CompanyAddressListComponent } from './core/modals/new-vetting-modal/company-address-list/company-address-list.component';
 import { BeiListComponent } from './core/modals/new-vetting-modal/bei-list/bei-list.component';
 import { CompanyContactListComponent } from './core/modals/new-vetting-modal/company-contact-list/company-contact-list.component';
-import { EligibilityComponent } from './core/modals/new-vetting-modal/eligibility/eligibility.component';
+import { EligibilityComponent} from './core/modals/new-vetting-modal/eligibility/eligibility.component';
 import { SignaturesComponent } from './core/modals/new-vetting-modal/signatures/signatures.component';
 import { IntelligenceGatheringComponent } from './core/modals/new-vetting-modal/intelligence-gathering/intelligence-gathering.component';
 import { ValidationTabComponent } from './details/validation-tab/validation-tab.component';
@@ -113,8 +113,12 @@ import { SubmitToSupervisorModalComponent } from './core/modals/validation-tab-m
 import { ValidationDetailsNoVisitComponent } from './details/validation-tab/validation-summary/validation-details-no-visit/validation-details-no-visit.component';
 import { ValidationDetailsWithVisitComponent } from './details/validation-tab/validation-summary/validation-details-with-visit/validation-details-with-visit.component';
 import { AdvanceSearchModalComponent } from './core/modals/advance-search-modal/advance-search-modal.component';
-import { EligibilityModalComponent } from './core/modals/eligibility-modal/eligibility-modal.component';
+import { AddOrConfirmEmailComponent } from './details/business-details-tab/add-or-confirm-email/add-or-confirm-email.component';
+import { AddNewContactUserComponent } from './details/business-details-tab/add-new-contact-user/add-new-contact-user.component';
 import { DocumentHistoryModalComponent } from './core/modals/document-history-modal/document-history-modal.component';
+import { EligibilityModalComponent } from './core/modals/eligibility-modal/eligibility-modal.component';
+import { AccountStatusPipe } from './core/pipes/account-status.pipe';
+
 
 @NgModule({
   declarations: [
@@ -197,7 +201,10 @@ import { DocumentHistoryModalComponent } from './core/modals/document-history-mo
       AddMilestoneModalComponent,
       MilestonesTabComponent,
       MilestoneDetailsComponent,
-      AdvanceSearchModalComponent
+      AdvanceSearchModalComponent,
+      AddOrConfirmEmailComponent,
+      AddNewContactUserComponent,
+      AccountStatusPipe
    ],
   imports:[
     BrowserModule,

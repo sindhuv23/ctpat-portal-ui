@@ -1,0 +1,312 @@
+<div id="DialogOuterContainer">
+    <form [formGroup]="addNewContactOrUser" novalidate>
+    
+      <div fxLayout="row" id="DialogHeader">
+        <h3 mat-dialog-title class="dialog-header">{{title}}</h3>
+        <div fxFlex></div>
+        <button mat-icon-button class="close-button" [mat-dialog-close]="true"
+            aria-label="clear">
+            <mat-icon>clear</mat-icon>
+        </button>
+        
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div id="DialogMidContainer">
+        <div class="required required-text">* Required</div><br>
+            <mat-dialog-content>
+              
+                    <div fxLayout="row">
+                        <label fxFlex="10">Email<span class="required"> *</span></label>
+                        <div fxFlex="7"></div>
+                        <mat-form-field fxFlex="80" appearance="outline">
+                          <input matInput formControlName="email" id="email" aria-label="Email" placeholder="Email">
+                            </mat-form-field>
+                      </div>
+
+             
+                <div id="section4" fxLayout="row">
+
+                    <div fxLayout="column"  fxFlex="43">
+
+                      <div fxLayout="row">
+                        <label  fxFlex="30" class="label" for="salutation">Salutation<span class="required"> *</span></label>
+                        <div fxFlex="10"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <mat-select formControlName="salutationId" id="salutation" placeholder="--- Select ---" aria-label="Salutation">
+                              <mat-option  value = ''>--Select--</mat-option>
+                              <ng-container>
+                                <mat-option [value]="refData.id" *ngFor="let refData of salutations | async">
+                                  {{refData.description}}
+                                </mat-option>
+                              </ng-container>
+                          </mat-select>
+                         </mat-form-field>
+                      </div>
+            
+                      <div fxLayout="row">
+                        <label  fxFlex="35" class="label" for="lastName">Last Name<span class="required"> *</span></label>
+                        <div fxFlex="5"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <input matInput formControlName="lastName" id="lastName" aria-label="Last Name" placeholder="Last Name">
+                         </mat-form-field>
+                      </div>
+                      <div fxLayout="row">
+                        <label  fxFlex="35" class="label" for="middleInitial">Middle Inital</label>
+                        <div fxFlex="5"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <input matInput formControlName="middleNameInitial" id="middleInitial" aria-label="Middle Initial" placeholder="Middle Inital">
+                        </mat-form-field>
+                      </div>
+            
+                      <div fxLayout="row">
+                        <label  fxFlex="36" class="label" for="receiveCtpatEmailInd">Receive CTPAT Email?<span class="required"> *</span></label>
+                        <div fxFlex="5"></div>
+                       <mat-form-field fxFlex="60" appearance="outline">
+                          <mat-select formControlName="receiveCtpatEmailInd" id="receiveCtpatEmailInd" placeholder="--- Select ---" aria-label="receiveCtpatEmailInd">
+                              <mat-option  value = ''>--Select--</mat-option>
+                              <ng-container>
+                                <mat-option value="Y">Y</mat-option>
+                                <mat-option value="N">N</mat-option>
+                              </ng-container>
+                          </mat-select>
+                         </mat-form-field>
+                      </div>
+
+                           <div fxLayout="row">
+                            <label  fxFlex="30" class="label" for="contactType">Contact Type<span class="required"> *</span></label>
+                            <div fxFlex="10"></div>
+                           <mat-form-field fxFlex="60" appearance="outline">
+                              <mat-select formControlName="contactType" id="contactType" placeholder="--- Select ---" aria-label="contactType"
+                              [(ngModel)] = "selectedContactTypeValue"
+                              (selectionChange)="onContactTypeChange($event)">
+                                  <mat-option>--Select--</mat-option>
+                                  <ng-container>
+                                    <mat-option value="O">Company Officer
+                                    </mat-option>
+                                    <mat-option value="E">Employee
+                                    </mat-option>
+                                    <mat-option value="C">Consulatant
+                                    </mat-option>
+                                    <mat-option value="R">Read Only
+                                    </mat-option>
+                                  </ng-container>
+                              </mat-select>
+                             </mat-form-field>
+                          </div>
+     
+                    </div>
+            
+                    <div fxFlex="10"></div>
+                    <div fxLayout="column"  fxFlex="43">
+            
+
+                          
+                          <div fxLayout="row">
+                            <label  fxFlex="30" class="label" for="title">Title<span class="required"> *</span></label>
+                            <div fxFlex="10"></div>
+                            <mat-form-field fxFlex="60" appearance="outline">
+                              <input matInput formControlName="title" id="title" aria-label="Title" placeholder="Title">
+                               </mat-form-field>
+                          </div>
+
+                          <div fxLayout="row">
+                            <label  fxFlex="30" class="label" for="firstName">First Name<span class="required"> *</span></label>
+                            <div fxFlex="10"></div>
+                            <mat-form-field fxFlex="60" appearance="outline">
+                              <input matInput formControlName="firstName" id="firstName" aria-label="First Name" placeholder="First Name">
+                              </mat-form-field>
+                          </div>
+
+
+                     <div fxLayout="row">
+                        <label  fxFlex="30" class="label" for="phoneNumber">Phone Number<span class="required"> *</span></label>
+                        <div fxFlex="10"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <input matInput formControlName="phoneNumber" id="phoneNumber" aria-label="Phone Number" placeholder="Phone Number">
+                          <mat-error *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Phone Number is required</mat-error>
+                        </mat-form-field>
+                      </div>
+                      <div fxLayout="row">
+                        <label  fxFlex="36" class="label" for="receiveTcEmailInd">Receive Trade Comp Email?<span class="required"> *</span></label>
+                        <div fxFlex="5"></div>
+                       <mat-form-field fxFlex="60" appearance="outline">
+                          <mat-select formControlName="receiveTcEmailInd" id="receiveTcEmailInd" placeholder="--- Select ---" aria-label="receiveTcEmailInd">
+                              <mat-option  value = ''>--Select--</mat-option>
+                              <ng-container>
+                                <mat-option value="Y">Y</mat-option>
+                                <mat-option value="N">N</mat-option>
+                              </ng-container>
+                          </mat-select>
+                         </mat-form-field>
+                      </div>
+
+                      <div *ngIf="selectedContactTypeValue === 'C'">
+                        <div fxLayout="row" >
+                          <label  fxFlex="36" for="consultantCompany">Consultant Company</label>
+                          <div fxFlex="5"></div>
+                         <mat-form-field fxFlex="60" appearance="outline">
+                            <mat-select formControlName="consultantCompany" id="consultantCompany" placeholder="--- Select ---" aria-label="Consultant Company"
+                                [(ngModel)] = "selectedConsultantCompany"
+                                (selectionChange)="onCCSelectChange($event)">
+                                <mat-option value = ''>--Select--</mat-option>
+                                <ng-container>
+                                  <mat-option value="Add New">Add New</mat-option>
+                                  <mat-option value="Select Existing">Select Existing</mat-option>
+                                </ng-container>
+                            </mat-select>
+                           </mat-form-field>
+                        </div>
+                        </div>
+                    </div>
+            
+                  </div>
+                
+                  <div *ngIf="selectedContactTypeValue === 'C'">
+         
+            <div id="section5" fxLayout="row" *ngIf="selectedConsultantCompany === 'Add New' || selectedConsultantCompany === 'Select Existing'">
+
+                <div fxLayout="column"  fxFlex="43">
+
+                    <div fxLayout="row"  *ngIf="selectedConsultantCompany === 'Add New'" >
+                        <label  fxFlex="35" class="label" for="companyName">Company Name<span class="required"> *</span></label>
+                        <div fxFlex="5"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+
+                          <input matInput formControlName="consultantCompanyName" id="companyName" aria-label="Company Name" >
+                         
+                        
+                        </mat-form-field>
+                      </div>
+
+                      <div fxLayout="row"  *ngIf="selectedConsultantCompany === 'Select Existing'">
+          
+                   
+                   
+                        <label  fxFlex="30" class="label" for="companyNameDropDown">Company Name<span class="required"> *</span></label>
+                            <div fxFlex="10"></div>
+                            <mat-form-field fxFlex="60" appearance="outline">
+                              <mat-select formControlName="existingConsultantCompanyName"
+                               id="companyNameDropDown" placeholder="--- Select ---" aria-label="company Name" 
+                              (selectionChange)="onCompanySelectChange($event.value)">
+                                  <mat-option  value = ''>--Select--</mat-option>
+                                  <ng-container>
+                                     <mat-option [value]="refData.id" *ngFor="let refData of companyNames  | async">
+                                      {{refData.consultantCompanyName}}
+                                    </mat-option>
+                                  </ng-container>
+                              </mat-select>
+                             </mat-form-field>
+    
+    
+                       
+                      </div>
+
+
+                      
+                      <div fxLayout="row">
+                        <label  fxFlex="30" class="label" for="streetLine1">Street Line 1<span class="required"> *</span></label>
+                        <div fxFlex="10"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <input matInput formControlName="addressLine1" id="streetLine1" aria-label="Street Line 1" placeholder="Street Line 1">
+                          </mat-form-field>
+                      </div>
+
+
+                  <div fxLayout="row">
+                    <label  fxFlex="30" class="label" for="city">City<span class="required"> *</span></label>
+          <div fxFlex="10"></div>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="cityName" id="city" aria-label="City" placeholder="City">
+          </mat-form-field>
+                  </div>
+        
+                  <div fxLayout="row">
+                    <label  fxFlex="30" class="label" for="postalCode">Postal Code<span class="required"> *</span></label>
+                    <div fxFlex="10"></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                      <input matInput formControlName="postalCode" id="postalCode" aria-label="Postal Code" placeholder="Postal Code">
+                      </mat-form-field>
+                  </div>
+
+
+                </div>
+        
+                <div fxFlex="10"></div>
+                <div fxLayout="column"  fxFlex="43">
+        
+                    
+                      <div fxLayout="row">
+                        <label  fxFlex="30" class="label" for="businessId">Business Id<span class="required"> *</span></label>
+                        <div fxFlex="10"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <input matInput formControlName="consultantBusinessId" id="businessId" aria-label="Business Id" placeholder="Business Id">
+                           </mat-form-field>
+                      </div>
+
+                     
+                  <div fxLayout="row">
+                    <label  fxFlex="35" class="label" for="streetLine2">Street Line 2</label>
+                    <div fxFlex="5"></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                      <input matInput formControlName="addressLine2" id="streetLine2" aria-label="Street Line 2" placeholder="Street Line 2">
+                    </mat-form-field>
+                  </div>
+        
+                  <div fxLayout="row">
+          
+                   
+                   
+                    <label  fxFlex="30" class="label" for="country">Country<span class="required"> *</span></label>
+                        <div fxFlex="10"></div>
+                        <mat-form-field fxFlex="60" appearance="outline">
+                          <mat-select formControlName="countryId" id="country" placeholder="--- Select ---" aria-label="Country" 
+                          (selectionChange)="onCountryChange($event.value)">
+                              <mat-option  value = ''>--Select--</mat-option>
+                              <ng-container>
+                                <mat-option [value]="refData.id" *ngFor="let refData of countries  | async">
+                                  {{refData.countryName}}
+                                </mat-option>
+                              </ng-container>
+                          </mat-select>
+                         </mat-form-field>
+
+
+                   
+                  </div>
+
+                  <div fxLayout="row">
+                    <label  fxFlex="30" class="label" for="stateId">State<span class="required"> *</span></label>
+                    <div fxFlex="10"></div>
+
+                    <mat-form-field fxFlex="60" appearance="outline">
+                      <mat-select formControlName="stateId" id="stateId" placeholder="--- Select ---" aria-label="State">
+                          <mat-option value="">--Select--</mat-option>
+                          <ng-container>
+                            <mat-option [value]="refData.id" *ngFor="let refData of stateDisplayList">
+                              {{refData.stateName}}
+                            </mat-option>
+                          </ng-container>
+                      </mat-select>
+                    </mat-form-field>
+
+                      </div>
+                    </div>
+                </div>
+              </div>
+                       
+
+            </mat-dialog-content>
+    </div>
+    <mat-divider class="divider"></mat-divider>
+    <div id="DialogFooter">
+      
+      <mat-dialog-actions>
+        <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+        <div fxFlex></div>
+        <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="S" aria-label="Save">Save</button>
+      </mat-dialog-actions>
+    </div>
+    </form>
+    </div>
+    
+    

@@ -60,8 +60,8 @@
               (click)="businessTypeSelected($event)" (selectionChange)="businessTypeSelected($event.value)">
                 <mat-option value="-1">--Select--</mat-option>
                 <ng-container>
-                  <mat-option [value]="refData.businessTypeId" *ngFor="let refData of businessTypeList$ | async">
-                    {{refData.name}}
+                  <mat-option [value]="refData.id" *ngFor="let refData of businessTypeList$ | async">
+                    {{refData.businessType}}
                   </mat-option>
                 </ng-container>
             </mat-select>
@@ -362,9 +362,15 @@
           <div fxFlex="10"></div>
           <mat-form-field fxFlex="60" appearance="outline">
             <mat-select formControlName="contactType" id="contactType" placeholder="--- Select ---" aria-label="Contact Type">
-                <mat-option>--Select--</mat-option>
+              
                 <ng-container>
-                  <mat-option value="Officer">Officer
+                  <mat-option value="O">Company Officer
+                  </mat-option>
+                  <mat-option value="E">Employee
+                  </mat-option>
+                  <mat-option value="C">Consultant
+                  </mat-option>
+                  <mat-option value="R">Read Only
                   </mat-option>
                 </ng-container>
             </mat-select>

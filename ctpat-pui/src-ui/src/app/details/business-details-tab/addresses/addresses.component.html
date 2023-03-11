@@ -1,5 +1,7 @@
 <div name="addressDiv" id="addressDiv">
   <div>
+    <button mat-raised-button type="submit" color="primary"
+    class="create-btn"  accesskey="C" aria-label="Add New Address">Add New Address</button>
     <table mat-table title="Addresses" id="addressTable" [dataSource]="dataSource" name="addressTable" matSort matSortActive="type"
       matSortDirection="asc" [matSortDisableClear]="true" class="row mat-elevation-z0">
 
@@ -48,6 +50,13 @@
         <td mat-cell *matCellDef="let row">{{row.primaryIndicator}}</td>
       </ng-container>
 
+      <ng-container matColumnDef="entryId">
+        <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+        <td mat-cell *matCellDef="let row" style="text-align:center">
+          <mat-icon >delete_forever</mat-icon>
+          <mat-icon >edit</mat-icon></td>
+      </ng-container>
+      
       <tr mat-header-row *matHeaderRowDef="displayedColumns" name="addressTableHeader"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>

@@ -1,7 +1,8 @@
 import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-add-new-bei-modal',
@@ -13,9 +14,11 @@ export class AddNewBeiModalComponent implements OnInit, OnDestroy {
   public addNewBeiForm!: FormGroup;
   private subscriptions = new Subscription();
   public submitted = false;
+  //eligibilitycatalog list
+  public ecList$!: Observable<any>;
 
   constructor(public dialogRef: MatDialogRef<AddNewBeiModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.submitted = false;
@@ -24,6 +27,7 @@ export class AddNewBeiModalComponent implements OnInit, OnDestroy {
       beiType: new FormControl('', Validators.required),
       beiValue: new FormControl('', Validators.required)
     });
+    this.ecList$ = this.accountService.getAccountData('getRfEligibilityCatalogList'); 
   }
 
   public hasError = (controlName: string, errorName: string) => {

@@ -10,25 +10,36 @@
 			<form [formGroup]="searchForm" autocomplete="off" novalidate>
 
 				<div fxLayout="column">
-          <label for="accountName" class="searchByLabel">Account Name</label>
+          <label for="companyName" class="searchByLabel">Company Name</label>
           <mat-form-field appearance="outline" color="outline">
-            <input matInput formControlName="accountName" maxlength="30"
-                tid="account-name-field" id="accountName" aria-label="Account Name">
+            <input matInput formControlName="companyName" maxlength="30"
+                tid="account-name-field" id="companyName" aria-label="Company Name">
 					 </mat-form-field>
 
-           <label for="applicationStatus" class="searchByLabel">Application Status</label>
-           <mat-form-field appearance="outline">
-            <mat-select formControlName="applicationStatus" id="applicationStatus" placeholder="--Select--" aria-label="Application Status">
-                <mat-option>--Select--</mat-option>
-            </mat-select>
-          </mat-form-field>
+           <label for="ctpatAccountNumber" class="searchByLabel">CTPAT Account #</label>
+           <mat-form-field appearance="outline" color="outline">
+             <input matInput formControlName="ctpatAccountNumber" maxlength="30"
+                 tid="account-name-field" id="ctpatAccountNumber" aria-label="CTPAT Account #">
+            </mat-form-field>
+
+            <label for="beiValue" class="searchByLabel">BEI Value</label>
+            <mat-form-field appearance="outline" color="outline">
+              <input matInput formControlName="beiValue" maxlength="30"
+                  tid="account-name-field" id="beiValue" aria-label="BEI Value">
+            </mat-form-field>
+
+           <label for="tradeEmail" class="searchByLabel">Trade Email</label>
+           <mat-form-field appearance="outline" color="outline">
+              <input matInput formControlName="tradeEmail" maxlength="30"
+                  tid="account-name-field" id="tradeEmail" aria-label="Trade Email">
+           </mat-form-field>
 				</div>
 
 				<div fxLayout="row" fxLayoutAlign="space-between center">
-          <button mat-button type="submit"
-          (click)="clear()" accesskey="C" aria-label="Clear">Clear</button>
           <button mat-raised-button type="submit" color="primary"
           (click)="search()" accesskey="S" aria-label="Search">Search</button>
+          <button mat-button type="submit"
+          (click)="clear()" accesskey="C" aria-label="Clear">Clear</button>
 				</div>
         <div fxLayout="row" fxLayoutAlign="space-between center"><a (click)="openAdvanceSearchModal()" class="advance-search-link m-t-10" aria-label="Advance Search" role="button" tabindex="0">Advanced Search</a></div>
 			</form>

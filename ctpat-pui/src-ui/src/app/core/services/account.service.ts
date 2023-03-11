@@ -21,6 +21,12 @@ export class AccountService {
   private detailTitleBarSubject = new ReplaySubject<any>(1);
   public detailTitleBar$ = this.detailTitleBarSubject.asObservable();
 
+  private searchResultSubject = new Subject<string>();
+  public searchResult$ = this.searchResultSubject.asObservable();
+
+  private searchStatusSubject = new Subject<boolean>();
+  public searchStatus$ = this.searchStatusSubject.asObservable();
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -34,6 +40,10 @@ export class AccountService {
 
   saveAccountData(ctpatAccount: any): Observable<any> {
     return this.httpClient.post(this.baseUrl + `/service-portal/createOrUpdateCtpatAccount`, ctpatAccount) ;
+  }
+
+  createTcAccount(tcAccount: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + `/service-portal/createTradeComplianceAccount`, tcAccount);
   }
 
   getAccountDetails(ctpatAccountId: any): Observable<any> {
@@ -52,4 +62,15 @@ export class AccountService {
     this.detailTitleBarSubject.next({companyName, accountStatus, applicationStatus, anlStatus});
   }
 
+  public getSearchResult(searchCriteria: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/service-portal/portalSearch', searchCriteria);
+  }
+
+  public broadcastSearchResult(searchResult: any): void{
+    this.searchResultSubject.next(searchResult);
+  }
+
+  public broadcastSearchStatus(searchStatus: any): void{
+    this.searchStatusSubject.next(searchStatus);
+  }
 }

@@ -58,10 +58,10 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
       email: new FormControl('', Validators.required),
       lastName: new FormControl('', Validators.required),
       middleNameInitial: new FormControl('', Validators.maxLength(1)),
-      contactType: new FormControl('', Validators.required),
+      contactType: new FormControl('O', Validators.required),
       fax: new FormControl('')
     });
-    this.businessTypeList$ = this.accountService.getRefData('getBusinessTypeList');
+    this.businessTypeList$ = this.accountService.getAccountData('getBusinessTypeList');
     this.addressTypeList$ = this.accountService.getRefData('getAddressTypeList');
     this.accountService.getAccountData('getStateList').subscribe(states=> this.stateList = states);
     this.countryList$ = this.accountService.getAccountData('getCountryList'); 
@@ -96,7 +96,6 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
   get f(): {[key: string]: AbstractControl} {
     return this.createAccountForm.controls;
   }
-
 
   save(): void {
     this.submitted = true;

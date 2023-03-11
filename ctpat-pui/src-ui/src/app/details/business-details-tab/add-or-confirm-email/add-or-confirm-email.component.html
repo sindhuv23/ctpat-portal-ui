@@ -1,0 +1,53 @@
+<div id="DialogOuterContainer">
+    <form [formGroup]="addOrEditEmailForm" novalidate>
+    
+      <div fxLayout="row" id="DialogHeader">
+        <h3 mat-dialog-title class="dialog-header">Add / Confirm email</h3>
+        <div fxFlex></div>
+        <button mat-icon-button class="close-button" [mat-dialog-close]="true"
+            aria-label="clear">
+            <mat-icon>clear</mat-icon>
+        </button>
+        
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div id="DialogMidContainer">
+        <div class="required required-text">* Required</div><br>
+            <mat-dialog-content>
+              <div>
+                <div fxLayout="row">
+                    <label  fxFlex="30" class="label" for="email">Email<span class="required"> *</span></label>
+                    <div fxFlex="10"></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                      <input matInput formControlName="email" id="email" aria-label="Email" placeholder="Email">
+                     </mat-form-field>
+                     
+                  </div>
+
+                  <div fxLayout="row">
+                    <label  fxFlex="30" class="label" for="confirmEmail">Confirm Email<span class="required"> *</span></label>
+                    <div fxFlex="10"></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                      <input matInput formControlName="confirmEmail" id="confirmEmail" aria-label="confirmEmail" placeholder="confirmEmail">
+                     </mat-form-field>
+                  </div>
+                    
+                </div>
+               <!--    <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required</mat-error>
+                  <mat-error *ngIf="submitted && f.confirmEmail.errors && f.confirmEmail.errors.required">Confirm Email is required</mat-error> -->
+                  <mat-error *ngIf="submitted && f.email.value != f.confirmEmail.value">Emails doesn't match</mat-error>
+            </mat-dialog-content>
+    </div>
+    <mat-divider class="divider"></mat-divider>
+    <div id="DialogFooter">
+      
+      <mat-dialog-actions>
+        <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+        <div fxFlex></div>
+        <button mat-raised-button type="submit" color="primary" (click)="continue()" accesskey="P" aria-label="Continue">Continue</button>
+      </mat-dialog-actions>
+    </div>
+    </form>
+    </div>
+    
+    

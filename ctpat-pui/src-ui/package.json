@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port=4300",
+    "start": "ng serve",
     "build": "ng build",
     "build-dev": "ng build --configuration production=false --configuration=dev --stats-json",
     "build:proxyDev": "node --max_old_space_size=64384  ./node_modules/@angular/cli/bin/ng build --configuration=dev --build-optimizer --output-hashing=none",
@@ -13,7 +13,7 @@
     "bundle-analysis": "webpack-bundle-analyzer dist/ace-ctpat/stats.json",
     "test": "ng test",
     "lint": "ng lint",
-    "gc":"ng g c svi-certification-email-details-modal"
+    "gc": "ng g c svi-certification-email-details-modal"
   },
   "private": true,
   "dependencies": {
@@ -44,13 +44,13 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^14.0.2",
+    "@angular-devkit/build-angular": "^14.2.10",
     "@angular/cli": "^14.0.2",
     "@angular/compiler-cli": "^14.0.2",
     "@types/file-saver": "^2.0.3",
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.20.4",
-    "codelyzer": "^6.0.0",
+    "codelyzer": "^0.0.28",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~6.4.0",

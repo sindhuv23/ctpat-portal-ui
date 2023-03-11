@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AddMilestoneModalComponent } from '../core/modals/add-milestone-modal/add-milestone-modal.component';
 import { EligibilityModalComponent } from '../core/modals/eligibility-modal/eligibility-modal.component';
 import { DetailsService } from '../core/services/details.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-details',
@@ -24,6 +25,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public accountStatus = '';
   public applicationStatus = '';
   public anlStatus = '';
+  public tcInd = "E";
+  ctpatAccountId = "";
 
   private subscriptions = new Subscription();
   public showDetails = false;
@@ -50,9 +53,24 @@ export class DetailsComponent implements OnInit, OnDestroy {
     }));
 
     this.subscriptions.add(this.accountService.accountId$.subscribe((id: any) => {
-      if (id){
+      if (id) {
         this.currentTabIndex = 0;
         this.showDetails = true;
+        this.ctpatAccountId = id;
+        this.accountService.getAccountDetails(id).subscribe((data: any) => {
+          if (data) {
+            this.tcInd = data.tcInd;
+
+          }
+        }, error => {
+
+        });
+      }
+    }));
+
+    this.subscriptions.add(this.accountService.searchStatus$.subscribe((status: any) => {
+      if (status) {
+        this.showDetails = false;
       }
     }));
   }
@@ -101,12 +119,17 @@ export class DetailsComponent implements OnInit, OnDestroy {
     this.openEligibilityModal();
   }
   openEligibilityModal(): void {
-    const dialogRef = this.dialog.open(EligibilityModalComponent, {
-      data: {},
-      width: '850px',
-      height: '830px',
-      disableClose: true
-    });
+    if (this.tcInd == "E"){
+      const dialogRef = this.dialog.open(EligibilityModalComponent, {
+        data: {},
+        width: '850px',
+        height: '830px',
+        disableClose: true
+      });
+    }else if (this.tcInd == "Y"){
+      window.open(environment.tcLinkUrl + this.ctpatAccountId, '_blank')
+    }
+    
   }
 
   ngOnDestroy(): void {

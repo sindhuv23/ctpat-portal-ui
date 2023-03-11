@@ -21,7 +21,8 @@
           <mat-select formControlName="beiType" id="beiType" placeholder="--- Select ---" aria-label="BEI Type">
               <mat-option>--Select--</mat-option>
               <ng-container>
-                <mat-option value="test">test
+                <mat-option [value]="refData.beiType" *ngFor="let refData of ecList$  | async">
+                  {{refData.beiType}}
                 </mat-option>
               </ng-container>
           </mat-select>

@@ -2,10 +2,97 @@
   <mat-expansion-panel class="ctpat-panel" [expanded]="true">
     <mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="40px" expandedHeight="40px">
       <mat-panel-title class="ctpat-panel-title">
-        <h3 class="padHeading">Results</h3>
+        <h3 class="padHeading">Search Results</h3>
       </mat-panel-title>
     </mat-expansion-panel-header>
 
+    <div *ngIf="dataSource.data.length >= 500" class="errorText">
+      500 or more records were found. Please refine search criteria.
+     </div>
     <br>
-    <h4>Results Placeholder Text</h4>
+    <div name="accountDiv" id="accountDiv">
+      <div>
+        <mat-form-field class="filter-pos">
+          <input matInput (keyup)="applyFilter($event)" [(ngModel)]="filterText" placeholder="Filter" />
+        </mat-form-field>
+        <div class="clear"></div>
+      </div>
+      <div>
+        <table mat-table title="Accounts" id="accountTable" [dataSource]="dataSource" name="accountTable" matSort matSortActive="accountNumber"
+          matSortDirection="asc" [matSortDisableClear]="true" class="row mat-elevation-z0">
+
+          <ng-container matColumnDef="ctpatAccountId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">CTPAT Account #</th>
+            <td mat-cell *matCellDef="let row"><a href="#" (click)="showDetails(row.ctpatAccountId)">{{row.ctpatAccountId}}</a></td>
+          </ng-container>
+
+          <ng-container matColumnDef="companyName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Partner Name</th>
+            <td mat-cell *matCellDef="let row">{{row.companyName}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="doingBusinessAs">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Doing Business As</th>
+            <td mat-cell *matCellDef="let row">{{row.doingBusinessAs}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="businessType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Business Type</th>
+            <td mat-cell *matCellDef="let row">{{row.businessType}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="ctpatStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">CTPAT Status</th>
+            <td mat-cell *matCellDef="let row">{{row.ctpatStatus}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="subStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Sub-Status</th>
+            <td mat-cell *matCellDef="let row">{{row.subStatus}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="vettingStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Vetting Status</th>
+            <td mat-cell *matCellDef="let row">{{row.vettingStatus}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="harmonizationStatus">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Harmonization Status</th>
+            <td mat-cell *matCellDef="let row">{{row.harmonizationStatus}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="certificationDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Certification Date</th>
+            <td mat-cell *matCellDef="let row">{{row.certificationDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="lastValidationDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Last Validation Date</th>
+            <td mat-cell *matCellDef="let row">{{row.lastValidationDate}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="fieldOffice">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Field Office</th>
+            <td mat-cell *matCellDef="let row">{{row.fieldOffice}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="assignedScss">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Assigned SCSS</th>
+            <td mat-cell *matCellDef="let row">{{row.assignedScss}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns" name="accountTableHeader"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <div *ngIf="dataSource.data.length===0&&showNoRecordMessage" class="no-results">&mdash; No Account Returned &mdash; </div>
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 50]" [showFirstLastButtons]="true"></mat-paginator>
+      </div>
+
+      <div class="spinner-container" *ngIf="isSearchResultLoading">
+        <mat-spinner [diameter]="200"></mat-spinner>
+      </div>
+
+    </div>
+
   </mat-expansion-panel>

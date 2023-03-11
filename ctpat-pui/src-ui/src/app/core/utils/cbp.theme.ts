@@ -13,6 +13,38 @@ export class CBPUser {
     userId: string | undefined;
     preferences: any;
 }
+
+export class TradeUser {
+  firstName: string | undefined;
+  lastName: string | undefined;
+  email: string | undefined;
+  title: string | undefined;
+  phoneNumber: string | undefined;
+  contactType: string | undefined;
+  middleNameInitial: string | undefined;
+  salutationId: number | undefined;
+  receiveCtpatEmailInd : string | undefined;
+  receiveTcEmailInd : string | undefined;
+  addressLine1 : string | undefined;
+	addressLine2 : string | undefined;
+	cityName : string | undefined;
+	stateId: number | undefined;
+	countryId: number | undefined;
+	consultantBusinessId: number | undefined;
+	consultantCompanyName : string | undefined;
+  existingConsultantCompanyName : string | undefined;
+	postalCode: string | undefined;
+	tradeUserId: number | undefined;
+  consultantId : number |  undefined;
+  ctpatAccountId : number | undefined;
+  tradeUserXRefId : number | undefined;
+}
+
+export class Salutation {
+  id : string | undefined;
+  description: string | undefined;
+}
+
 /**
  * The implementation is beyond the scope of this library since it involves fetching the authenticated
  *  user who is accessing your application.

@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   envName: 'local',
   CONTEXT_PATH: '/ctpat-portal-ui/',
-  baseUrl: 'http://localhost:9002/service/portal',
+  baseUrl: 'http://localhost:9002',
+  tcLinkUrl: 'http://localhost:4200/ctpat/ctpat-tc-ui/?id=',
   refBaseUrl: 'https://ctpat-service-ref-data.dev.k8s.cbp.dhs.gov/ctpat-service-ref-data'
 };
 
