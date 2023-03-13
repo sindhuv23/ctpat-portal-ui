@@ -1,9 +1,11 @@
+import { MatDialog } from '@angular/material/dialog';
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { AccountService } from 'src/app/core/services/account.service';
+import { CreateAddressModalComponent } from 'src/app/core/modals/create-address-modal/create-address-modal.component';
 
 @Component({
   selector: 'app-addresses',
@@ -23,7 +25,7 @@ export class AddressesComponent implements OnInit, OnDestroy, AfterViewInit {
 
   displayedColumns: string[] = ['type', 'addressLine1', 'addressLine2', 'city', 'state', 'postalCode', 'country', 'mailAddrIndicator', 'primaryIndicator', 'entryId'];
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.subscriptions.add(this.accountService.accountId$.subscribe((id: any) => {
@@ -53,6 +55,20 @@ export class AddressesComponent implements OnInit, OnDestroy, AfterViewInit {
   stopSpinner(): void{
     this.accountService.broadcastDetailLoadingStatus(false);
   }
+
+  addEditAddress(address?: any) {
+    const dialogRef = this.dialog.open(CreateAddressModalComponent, {
+      data: {address},
+      width: '800px',
+      height: '380px',
+      disableClose: true
+    });
+  }
+
+  deleteAddress(id: any) {
+    this.accountService.deleteAccountAddress(id).subscribe(res => console.log("CTPAT Account address deleted"))
+  }
+
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();

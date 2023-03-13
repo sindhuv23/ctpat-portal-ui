@@ -118,6 +118,7 @@ import { AddNewContactUserComponent } from './details/business-details-tab/add-n
 import { DocumentHistoryModalComponent } from './core/modals/document-history-modal/document-history-modal.component';
 import { EligibilityModalComponent } from './core/modals/eligibility-modal/eligibility-modal.component';
 import { AccountStatusPipe } from './core/pipes/account-status.pipe';
+import { CreateAddressModalComponent } from './core/modals/create-address-modal/create-address-modal.component';
 
 
 @NgModule({
@@ -204,7 +205,8 @@ import { AccountStatusPipe } from './core/pipes/account-status.pipe';
       AdvanceSearchModalComponent,
       AddOrConfirmEmailComponent,
       AddNewContactUserComponent,
-      AccountStatusPipe
+      AccountStatusPipe,
+      CreateAddressModalComponent
    ],
   imports:[
     BrowserModule,

@@ -50,6 +50,14 @@ export class AccountService {
     return this.httpClient.get(this.baseUrl + `/service-portal/getCtpatAccount/${ctpatAccountId}`) ;
   }
 
+  saveAccountAddress(ctpatAccountAddress: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + `/service-portal/createOrUpdateCtpatAccountAddress`, ctpatAccountAddress) ;
+  }
+
+  deleteAccountAddress(id: any): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + `/service-portal/deleteCtpatAccountAddress/${id}`) ;
+  }
+
   public broadcastDetailLoadingStatus(detailLoadingStatus: any): void{
     this.detailLoadingStatusSubject.next(detailLoadingStatus);
   }

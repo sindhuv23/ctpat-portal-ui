@@ -1,0 +1,132 @@
+<div id="outerContainer">
+
+    <form [formGroup]="createAccountAddressForm" novalidate>
+  
+    <div fxLayout="row" id="createHeader">
+      <h3 mat-dialog-title class="dialog-header">Create New CTPAT Account Address</h3>
+      <div fxFlex></div>
+                <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+                    aria-label="clear">
+                    <mat-icon>clear</mat-icon>
+                </button>
+    <mat-divider class="divider"></mat-divider>
+    </div>
+  
+  <div id="midContainer">
+  <mat-dialog-content>
+    <div class="required required-text">* Required</div><br>
+    <div fxLayout="column">
+      <div id="section3" fxLayout="row">
+        <div fxLayout="column"  fxFlex="50">
+  
+          <div fxLayout="row">
+            <label  fxFlex="30" class="label" for="typeName">Type<span class="required"> *</span></label>
+            <div fxFlex="10"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <mat-select formControlName="typeName" id="typeName" placeholder="--- Select ---" aria-label="Type">
+                  <mat-option value="-1">--Select--</mat-option>
+                  <ng-container>
+                    <mat-option [value]="refData.id" *ngFor="let refData of addressTypeList$ | async">
+                      {{refData.type}}
+                    </mat-option>
+                  </ng-container>
+              </mat-select>
+              <mat-error *ngIf="submitted && f.typeName.errors && f.typeName.errors.required">Type is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="30" class="label" for="street1">Address Line 1<span class="required"> *</span></label>
+            <div fxFlex="10"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="street1" id="street1" aria-label="Address Line 1" placeholder="Address Line 1">
+              <mat-error *ngIf="submitted && f.street1.errors && f.street1.errors.required">Address Line 1 is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="30" class="label" for="city">City<span class="required"> *</span></label>
+            <div fxFlex="10"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="city" id="city" aria-label="City" placeholder="City">
+              <mat-error *ngIf="submitted && f.city.errors && f.city.errors.required">City is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="30" class="label" for="postalCode">Postal Code<span class="required"> *</span></label>
+            <div fxFlex="10"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="postalCode" id="postalCode" aria-label="Postal Code" placeholder="Postal Code">
+              <mat-error *ngIf="submitted && f.postalCode.errors && f.postalCode.errors.required">Postal Code is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+        </div>
+        <div fxFlex="5"></div>
+        <div fxLayout="column"  fxFlex="45">
+  
+          <div fxLayout="row" style="margin-bottom:25px">
+            <label  fxFlex="35" class="label" for="mailingaddressIndicator">Mailing Address</label>
+            <div fxFlex="5"></div>
+            <div fxFlex="60" style="margin-top:5px">
+              <mat-checkbox formControlName="isMailingAddress" id="mailingaddressIndicator" color="primary" aria-label="Mailing Address"></mat-checkbox>
+            </div>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="35" class="label" for="street2">Address Line 2</label>
+            <div fxFlex="5"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="street2" id="street2" aria-label="Address Line 2" placeholder="Address Line 2">
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="35" class="label" for="countryId">Country<span class="required"> *</span></label>
+            <div fxFlex="5"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <mat-select formControlName="countryId" id="countryId" placeholder="--- Select ---" aria-label="Country" (selectionChange)="populateStates($event.value)">
+                  <mat-option value="-1">--Select--</mat-option>
+                  <ng-container>
+                    <mat-option [value]="refData.id" *ngFor="let refData of countryList$  | async">
+                      {{refData.countryName}}
+                    </mat-option>
+                  </ng-container>
+              </mat-select>
+              <mat-error *ngIf="submitted && f.countryId.errors && f.countryId.errors.required">Country is required</mat-error>
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="35" class="label" for="stateId">State</label>
+            <div fxFlex="5"></div>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <mat-select formControlName="stateId" id="stateId" placeholder="--- Select ---" aria-label="State">
+                  <mat-option value="-1">--Select--</mat-option>
+                  <ng-container>
+                    <mat-option [value]="refData.id" *ngFor="let refData of stateDisplayList">
+                      {{refData.stateName}}
+                    </mat-option>
+                  </ng-container>
+              </mat-select>
+            </mat-form-field>
+          </div>
+  
+        </div>
+  
+      </div>
+    </div>
+  </mat-dialog-content></div>
+  
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" [disabled]="createAccountAddressForm.invalid" aria-label="Save" accesskey="P">Save</button>
+    </mat-dialog-actions>
+  </div>
+  </form>
+  </div>
+  

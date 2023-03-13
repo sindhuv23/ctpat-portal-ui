@@ -51,6 +51,7 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
       street2: new FormControl(''),
       countryId: new FormControl('', Validators.required),
       stateId: new FormControl(''),
+      isMailingAddress: new FormControl(''),
       salutationId: new FormControl('', Validators.required),
       firstName: new FormControl('', Validators.required),
       title: new FormControl('', Validators.required),
@@ -103,8 +104,9 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
     if (this.createAccountForm.invalid){
       return;
    }
-
-    this.accountService.saveAccountData(this.createAccountForm.getRawValue()).subscribe(res => {
+   const account = this.createAccountForm.getRawValue();
+   account.isMailingAddress = account.isMailingAddress ? 'Y' : 'N';
+    this.accountService.saveAccountData(account).subscribe(res => {
       console.log('Ctpat Account data saved, response => '+ res);
       this.accountService.broadcastDetailLoadingStatus(true);
       this.accountService.broadcastAccountId(res.id);
