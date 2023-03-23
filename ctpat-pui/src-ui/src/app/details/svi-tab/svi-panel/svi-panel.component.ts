@@ -26,7 +26,10 @@ export class SviPanelComponent implements OnInit, AfterViewInit {
   constructor(public dialog: MatDialog) { }
   isJoinSVI = false;
 
+  show = false;
+  
   ngOnInit(): void {
+    this.show = true;
   }
   ngAfterViewInit(): void {
     this.requestsData.push({
@@ -49,6 +52,7 @@ export class SviPanelComponent implements OnInit, AfterViewInit {
       height: '600px',
       disableClose: true
     });
+    this.show = false;
   }
 
   viewSviAgreement(): void {

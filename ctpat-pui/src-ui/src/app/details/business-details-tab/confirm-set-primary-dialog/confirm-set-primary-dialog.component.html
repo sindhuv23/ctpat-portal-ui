@@ -1,0 +1,33 @@
+<div id="DialogOuterContainer">
+    <form [formGroup]="confirmSetPrimaryDialogForm" novalidate>
+    
+      <div fxLayout="row" id="DialogHeader">
+        <h3 mat-dialog-title class="dialog-header">{{data.title}}</h3>
+        <div fxFlex></div>
+        <button mat-icon-button class="close-button" [mat-dialog-close]="true"
+            aria-label="clear">
+            <mat-icon>clear</mat-icon>
+        </button>
+        
+      </div>
+      <mat-divider class="divider"></mat-divider>
+      <div id="DialogMidContainer">
+            <mat-dialog-content>
+              <div class="mat-dialog-content">
+                {{data.message}}
+              </div>
+            </mat-dialog-content>
+    </div>
+    <mat-divider class="divider"></mat-divider>
+    <div id="DialogFooter">
+      
+      <mat-dialog-actions>
+        <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+        <div fxFlex></div>
+        <button mat-raised-button type="submit" color="primary" (click)="continue()" accesskey="P" aria-label="Continue">OK</button>
+      </mat-dialog-actions>
+    </div>
+    </form>
+    </div>
+    
+    

@@ -20,10 +20,10 @@
         <div fxLayout="column"  fxFlex="50">
   
           <div fxLayout="row">
-            <label  fxFlex="30" class="label" for="typeName">Type<span class="required"> *</span></label>
+            <label  fxFlex="30" class="label" for="typeNameId">Type<span class="required"> *</span></label>
             <div fxFlex="10"></div>
             <mat-form-field fxFlex="60" appearance="outline">
-              <mat-select formControlName="typeName" id="typeName" placeholder="--- Select ---" aria-label="Type">
+              <mat-select formControlName="typeNameId" id="typeNameId" placeholder="--- Select ---" aria-label="Type">
                   <mat-option value="-1">--Select--</mat-option>
                   <ng-container>
                     <mat-option [value]="refData.id" *ngFor="let refData of addressTypeList$ | async">
@@ -31,7 +31,7 @@
                     </mat-option>
                   </ng-container>
               </mat-select>
-              <mat-error *ngIf="submitted && f.typeName.errors && f.typeName.errors.required">Type is required</mat-error>
+              <mat-error *ngIf="submitted && f.typeNameId.errors && f.typeNameId.errors.required">Type is required</mat-error>
             </mat-form-field>
           </div>
   

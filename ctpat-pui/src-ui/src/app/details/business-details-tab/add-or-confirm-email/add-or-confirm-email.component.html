@@ -13,13 +13,14 @@
       <mat-divider class="divider"></mat-divider>
       <div id="DialogMidContainer">
         <div class="required required-text">* Required</div><br>
-            <mat-dialog-content>
-              <div>
+            <mat-dialog-content style="overflow: hidden;">
+              
                 <div fxLayout="row">
                     <label  fxFlex="30" class="label" for="email">Email<span class="required"> *</span></label>
                     <div fxFlex="10"></div>
                     <mat-form-field fxFlex="60" appearance="outline">
                       <input matInput formControlName="email" id="email" aria-label="Email" placeholder="Email">
+                      <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">Required field</mat-error>
                      </mat-form-field>
                      
                   </div>
@@ -29,13 +30,11 @@
                     <div fxFlex="10"></div>
                     <mat-form-field fxFlex="60" appearance="outline">
                       <input matInput formControlName="confirmEmail" id="confirmEmail" aria-label="confirmEmail" placeholder="confirmEmail">
-                     </mat-form-field>
+                      <mat-error *ngIf="submitted && f.confirmEmail.errors && f.confirmEmail.errors.required">Required field</mat-error> 
+                    </mat-form-field>
                   </div>
-                    
-                </div>
-               <!--    <mat-error *ngIf="submitted && f.email.errors && f.email.errors.required">Email is required</mat-error>
-                  <mat-error *ngIf="submitted && f.confirmEmail.errors && f.confirmEmail.errors.required">Confirm Email is required</mat-error> -->
-                  <mat-error *ngIf="submitted && f.email.value != f.confirmEmail.value">Emails doesn't match</mat-error>
+                
+               <mat-error *ngIf="submitted && f.email.value != f.confirmEmail.value">Emails doesn't match</mat-error>
             </mat-dialog-content>
     </div>
     <mat-divider class="divider"></mat-divider>

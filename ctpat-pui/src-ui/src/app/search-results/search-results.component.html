@@ -18,12 +18,12 @@
         <div class="clear"></div>
       </div>
       <div>
-        <table mat-table title="Accounts" id="accountTable" [dataSource]="dataSource" name="accountTable" matSort matSortActive="accountNumber"
+        <table mat-table title="Accounts" id="accountTable" [dataSource]="dataSource" name="accountTable" matSort matSortActive="ctpatAccountId"
           matSortDirection="asc" [matSortDisableClear]="true" class="row mat-elevation-z0">
 
           <ng-container matColumnDef="ctpatAccountId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">CTPAT Account #</th>
-            <td mat-cell *matCellDef="let row"><a href="#" (click)="showDetails(row.ctpatAccountId)">{{row.ctpatAccountId}}</a></td>
+            <td mat-cell *matCellDef="let row"><a href="#" (click)="showDetails(row)">{{row.ctpatAccountId}}</a></td>
           </ng-container>
 
           <ng-container matColumnDef="companyName">

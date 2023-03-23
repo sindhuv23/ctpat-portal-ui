@@ -27,19 +27,24 @@ export class CreateAddressModalComponent implements OnInit {
     this.createAccountAddressForm = this.formBuilder.group({
       id: new FormControl(address?.id),
       ctpatAccountId: new FormControl(address?.ctpatAccountId),
-      typeName: new FormControl(address?.typeName, Validators.required),
+      typeNameId: new FormControl(address?.typeNameId, Validators.required),
       street1: new FormControl(address?.street1, Validators.required),
       street2: new FormControl(address?.street2),
       city: new FormControl(address?.city, Validators.required),
       postalCode: new FormControl(address?.postalCode, Validators.required),
       countryId: new FormControl(address?.countryId, Validators.required),
       stateId: new FormControl(address?.stateId),
-      isPrimaryAddress: new FormControl(address?.isPrimaryAddress),
+      isPrimaryAddress: new FormControl(address?.isPrimaryAddress === 'Y' ? true: false),
       isMailingAddress: new FormControl(address?.isMailingAddress === 'Y' ? true: false)
     });
     this.addressTypeList$ = this.accountService.getRefData('getAddressTypeList');
     this.countryList$ = this.accountService.getAccountData('getCountryList'); 
-    this.accountService.getAccountData('getStateList').subscribe(states=> this.stateList = states);
+    this.accountService.getAccountData('getStateList').subscribe(states=> {
+        this.stateList = states;
+        if(address?.countryId){
+            this.populateStates(address?.countryId);
+        }
+    });
   }
 
   get f(): {[key: string]: AbstractControl} {
@@ -54,10 +59,14 @@ export class CreateAddressModalComponent implements OnInit {
     this.submitted = true;
     const address = this.createAccountAddressForm.getRawValue();
     address.isMailingAddress = address.isMailingAddress ? 'Y' : 'N';
+    address.isPrimaryAddress = address.isPrimaryAddress ? 'Y' : 'N';
     if (this.createAccountAddressForm.invalid) {
       return;
     }
-    this.accountService.saveAccountAddress(address).subscribe(res => console.log('Ctpat Account Address saved, response => '+ res));
+    this.accountService.saveAccountAddress(address).subscribe(res => {
+        console.log('Ctpat Account Address saved, response => '+ res);
+        this.dialogRef.close(res.ctpatAccountId);
+    });
   }
 
   cancel(): void {

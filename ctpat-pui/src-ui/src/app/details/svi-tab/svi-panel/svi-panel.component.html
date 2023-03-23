@@ -7,19 +7,24 @@
         and
         monitoring business partners, while at the same time enhance the effectiveness of your partner screening process
     </div>
-    <ng-container *ngIf="isJoinSVI">
-        <div fxLayout="row">
+    <ng-container *ngIf="!isJoinSVI">
+        <div fxLayout="row" *ngIf="show">
             To participate in SVI Partner Monitoring, click on Join SVI
-        </div>
+        </div> 
         <div fxLayout="row" style="margin-bottom: 10px;"></div>
-        <div fxLayout="row">
+        <!--<div fxLayout="row" *ngIf="show">
             <button mat-raised-button type="submit" color="primary" (click)="joinSvi()" aria-label="Join SVI"
                 accesskey="U" class="svi-button">Join SVI</button>
-        </div>
+        </div> -->
     </ng-container>
 
     <ng-container *ngIf="!isJoinSVI">
         <div fxLayout="row" style="margin-top: 15px;">
+            <div fxLayout="row" style="margin-bottom: 10px;"></div>
+        <div fxLayout="row" *ngIf="show" class="margin-right-20">
+            <button mat-raised-button type="submit" color="primary" (click)="joinSvi()" aria-label="Join SVI"
+                accesskey="U" class="svi-button">Join SVI</button>
+        </div> 
             <div class="margin-right-20">
                 <button mat-raised-button type="submit" color="primary" (click)="viewSviAgreement()" aria-label="Join SVI"
                 class="svi-button" accesskey="U">View SVI Agreement</button>
@@ -34,47 +39,4 @@
             </div>
         </div>
     </ng-container>
-
-    <div name="requestsTableDiv" id="requestsTableDiv">
-        <table mat-table title="Requests" id="requestsTable" [dataSource]="requests" name="requestsTable"
-            class="row mat-elevation-z0" matSort matSortActive="companyName" matSortDirection="desc"
-            [matSortDisableClear]="true">
-
-            <ng-container matColumnDef="companyName">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Company Name, Doing Business As</th>
-                <td mat-cell *matCellDef="let row">{{row.companyName}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="businessType">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Business Type</th>
-                <td mat-cell *matCellDef="let row">{{row.businessType}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="accountStatus">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Account Status</th>
-                <td mat-cell *matCellDef="let row">{{row.accountStatus}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="requestStatus">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Request Status</th>
-                <td mat-cell *matCellDef="let row">{{row.requestStatus}}</td>
-            </ng-container>
-
-            <ng-container matColumnDef="requestDate">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Request Date</th>
-                <td mat-cell *matCellDef="let row">{{row.requestDate | date:'medium'}}</td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns" name="documentsTableHeader"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-
-            <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="6">No records, Click "Send Request" Button and enter a Partner Search
-                    ctiteria</td>
-            </tr>
-
-        </table>
-        <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]" [showFirstLastButtons]="true">
-        </mat-paginator>
-    </div>
 </div>

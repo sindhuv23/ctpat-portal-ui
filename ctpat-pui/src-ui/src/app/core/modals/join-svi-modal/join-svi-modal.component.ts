@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
+import { SviPanelComponent } from 'src/app/details/svi-tab/svi-panel/svi-panel.component';
 
 @Component({
   selector: 'app-join-svi-modal',
@@ -27,7 +28,15 @@ export class JoinSviModalComponent implements OnInit {
   }
 
   joinSVI(): void {
+
+    if(true){
+
+// some logic for registering or joining
     this.dialogRef.close();
-  }
+    }
 
 }
+    
+  }
+
+//}

@@ -46,7 +46,7 @@
 
       <ng-container matColumnDef="primaryIndicator">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Primary</th>
-        <td mat-cell *matCellDef="let row">{{row.primaryIndicator}}</td>
+        <td mat-cell *matCellDef="let row">{{row.primaryIndicator}} <span *ngIf="row.primaryIndicator ==='N'"><a href="javascript:void(0)" style="outline: blue;" (click)="setPrimaryConfirmDialog(row.entryId)">Set Primary</a></span></td>
       </ng-container>
 
       <ng-container matColumnDef="lastLogin">
@@ -56,7 +56,7 @@
       <ng-container matColumnDef="entryId">
         <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
         <td mat-cell *matCellDef="let row" style="text-align:center">
-          <mat-icon >delete_forever</mat-icon>
+          <mat-icon (click)=deleteUser(row.entryId) *ngIf="row.primaryIndicator ==='N'">delete_forever</mat-icon>
           <mat-icon (click)="editUser(row.email)" id="editUser">edit</mat-icon></td>
       </ng-container>
   

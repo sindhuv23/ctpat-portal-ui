@@ -2,8 +2,7 @@
   <mat-expansion-panel class="ctpat-panel" [expanded]="true">
     <mat-expansion-panel-header class="ctpat-panel-heading" collapsedHeight="40px" expandedHeight="40px">
       <mat-panel-title class="ctpat-panel-title">
-        <h3 class="padHeading">Details: {{accountName}} |  Account Status: {{accountStatus}} |
-          Application Status: {{applicationStatus}} | ANL Status: {{anlStatus}}
+        <h3 class="padHeading">Details: {{accountName}}
         </h3>
       </mat-panel-title>
     </mat-expansion-panel-header>
@@ -32,20 +31,20 @@
                 <app-business-details-tab></app-business-details-tab>
               </ng-template>
           </mat-tab>
-          <mat-tab #vettingTab>
-            <ng-template mat-tab-label>
-                <span>Vetting</span>
-            </ng-template>
-            <ng-template matTabContent>
-              <app-vetting-tab></app-vetting-tab>
-            </ng-template>
-        </mat-tab>
           <mat-tab #businessEntityInfoTab>
             <ng-template mat-tab-label>
                 <span>Business Entity Info</span>
             </ng-template>
             <ng-template matTabContent>
                 <app-business-entity-info-tab></app-business-entity-info-tab>
+            </ng-template>
+          </mat-tab>
+          <mat-tab #vettingTab>
+            <ng-template mat-tab-label>
+                <span>Vetting</span>
+            </ng-template>
+            <ng-template matTabContent>
+              <app-vetting-tab></app-vetting-tab>
             </ng-template>
           </mat-tab>
           <mat-tab #securityProfileTab>

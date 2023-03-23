@@ -48,7 +48,7 @@ export class AddOrConfirmEmailComponent implements OnInit {
         width : '1200px'
       });
       
-      
+      dialogRef.afterOpened().subscribe(() => {this.dialogRef.close()});
 
   }
  

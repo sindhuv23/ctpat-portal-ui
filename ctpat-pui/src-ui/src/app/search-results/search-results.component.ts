@@ -21,6 +21,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   private dataAccountList: any[] = [];
   public dataSource = new MatTableDataSource<any>();
+  public businessTypeList: any;
+  public fieldOfficeList: any;
+  public statusList: any;
+  public subStatusList: any;
 
   displayedColumns: string[] = ['ctpatAccountId', 'companyName', 'doingBusinessAs', 'businessType', 'ctpatStatus', 'subStatus',
                                 'vettingStatus', 'harmonizationStatus', 'certificationDate', 'lastValidationDate', 'fieldOffice', 'assignedScss'];
@@ -32,9 +36,28 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.subscriptions.add(this.accountService.getAccountData('getBusinessTypeList').subscribe((data: any) => {
+      this.businessTypeList = data;
+    }));
+    this.subscriptions.add(this.accountService.getAccountData('getFieldOffices').subscribe((data: any) => {
+      this.fieldOfficeList = data;
+    }));
+    this.subscriptions.add(this.accountService.getAccountData('getRfStatus').subscribe((data: any) => {
+      this.statusList = data;
+    }));
+    this.subscriptions.add(this.accountService.getAccountData('getRfSubStatus').subscribe((data: any) => {
+      this.subStatusList = data;
+    }));
+
     this.subscriptions.add(this.accountService.searchResult$.subscribe((data: any) => {
       data.forEach((record: any) => {
-        // record.submittedDate = UtilFunctions.toCbpDateFormat(record.submittedDate);
+        record.businessTypeId = record.businessType; //need the id for bei
+        record.businessType = this.getBusinessTypeById(record.businessType);
+        record.fieldOffice = this.getFieldOfficeById(record.fieldOffice);
+        record.ctpatStatus = this.getStatusById(record.ctpatStatus);
+        record.subStatus = this.getSubStatusById(record.subStatus);
+        record.certificationDate = UtilFunctions.toCbpDateFormat(record.certificationDate);
+        record.lastValidationDate = UtilFunctions.toCbpDateFormat(record.lastValidationDate);
       });
 
       this.dataAccountList = data;
@@ -49,7 +72,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.dataSource.paginator.firstPage();
       }
       if (data && data.length === 1){
-        this.showDetails(data[0].ctpatAccountId);
+        this.showDetails(data[0]);
       }
     }));
 
@@ -59,9 +82,12 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
 
   }
 
-  showDetails(ctpatAccountId: number): void{
-    this.accountService.broadcastDetailLoadingStatus(true);
-    this.accountService.broadcastAccountId(ctpatAccountId);
+  showDetails(ctpatAccount: any): void{
+    
+     this.accountService.broadcastDetailLoadingStatus(true);
+     this.accountService.broadcastAccountId(ctpatAccount.ctpatAccountId);
+     this.accountService.broadcastBusinessTypeId(ctpatAccount.businessTypeId);
+    
   }
 
   applyFilter(event: Event): void {
@@ -70,6 +96,54 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
+  }
+
+  getBusinessTypeById(id: any): string{
+    let businessType = id;
+    if (this.businessTypeList){
+      this.businessTypeList.forEach((typeRecord: any) => {
+        if (typeRecord.id == id){
+          businessType = typeRecord.businessType;
+        }
+      });
+    }
+    return businessType;
+  }
+
+  getFieldOfficeById(id: any): string{
+    let officeName = id;
+    if (this.fieldOfficeList){
+      this.fieldOfficeList.forEach((record: any) => {
+        if (record.id == id){
+          officeName = record.officeName;
+        }
+      });
+    }
+    return officeName;
+  }
+
+  getStatusById(id: any): string{
+    let status = id;
+    if (this.statusList){
+      this.statusList.forEach((record: any) => {
+        if (record.id == id){
+          status = record.status;
+        }
+      });
+    }
+    return status;
+  }
+
+  getSubStatusById(id: any): string{
+    let subStatus = id;
+    if (this.subStatusList){
+      this.subStatusList.forEach((record: any) => {
+        if (record.id == id){
+          subStatus = record.subStatus;
+        }
+      });
+    }
+    return subStatus;
   }
 
   ngOnDestroy(): void {

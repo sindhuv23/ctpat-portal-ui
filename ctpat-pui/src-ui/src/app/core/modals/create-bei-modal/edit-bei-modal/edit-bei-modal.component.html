@@ -39,7 +39,7 @@
       <div fxLayout="row">
         <label  fxFlex="40" class="label" for="beiValue">BEI Value<span class="required"> *</span></label>
         <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput formControlName="beiValue" id="beiValue" aria-label="BEI Value" placeholder="BEI Value">
+          <input matInput formControlName="beiValue" id="beiValue" aria-label="BEI Value" >
           <mat-error *ngIf="submitted && f.beiValue.errors && f.beiValue.errors.required">BEI Value is required</mat-error>
         </mat-form-field>
       </div>
@@ -58,18 +58,19 @@
         </mat-form-field>
       </div>
 
-      <div fxLayout="row">
-        <label fxFlex="40" class="label" for="tradeComplianceIndicator">Trade Compliance</label>
-        <mat-form-field fxFlex="60" appearance="outline">
-          <mat-select formControlName="tradeComplianceIndicator" id="tradeComplianceIndicator" placeholder="--- Select ---" aria-label="Trade Compliance">
-              <mat-option>--Select--</mat-option>
-              <ng-container>
-                <mat-option value="Y">Yes</mat-option>
-                <mat-option value="N">No</mat-option>
-              </ng-container>
-          </mat-select>
-        </mat-form-field>
-      </div>
+      
+        <div *ngIf="showDropDown" fxLayout="row">
+          <label fxFlex="40" class="label" for="tradeComplianceIndicator">Trade Compliance</label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="tradeComplianceIndicator" id="tradeComplianceIndicator" placeholder="--- Select ---" aria-label="Trade Compliance">
+                <mat-option>--Select--</mat-option>
+                <ng-container>
+                  <mat-option value="Y">Yes</mat-option>
+                  <mat-option value="N">No</mat-option>
+                </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
   </div>
 </mat-dialog-content>

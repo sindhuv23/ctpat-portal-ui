@@ -44,7 +44,7 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
       webSiteAddress: new FormControl(''),
       numberOfEmployees: new FormControl('', [Validators.required, Validators.maxLength(10)]),
       briefCompanyHistory: new FormControl('', Validators.required),
-      typeName: new FormControl('', Validators.required),
+      typeNameId: new FormControl('', Validators.required),
       street1: new FormControl('', Validators.required),
       city: new FormControl('', Validators.required),
       postalCode: new FormControl('', Validators.required),
@@ -110,6 +110,7 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
       console.log('Ctpat Account data saved, response => '+ res);
       this.accountService.broadcastDetailLoadingStatus(true);
       this.accountService.broadcastAccountId(res.id);
+      this.accountService.broadcastBusinessTypeId(res.businessTypeId);
       this.dialogRef.close();
     });
   }

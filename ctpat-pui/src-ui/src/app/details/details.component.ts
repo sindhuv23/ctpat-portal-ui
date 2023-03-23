@@ -17,15 +17,13 @@ export class DetailsComponent implements OnInit, OnDestroy {
   currentTabIndex = 0;
   showActionMenu!: boolean;
   actionMenuItems: any;
-  //to be replaced with ctpat_account.business_type_id from the database
-  public buisiness_type_id = '5';
-  public ctpat_account_id = '123124'
+  public ctpat_account_id = ''
 
   public accountName = '';
   public accountStatus = '';
   public applicationStatus = '';
   public anlStatus = '';
-  public tcInd = "E";
+  public tcInd = "";
   ctpatAccountId = "";
 
   private subscriptions = new Subscription();
@@ -37,7 +35,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.showActionMenu = true;
-    this.setActionItems();
 
     this.subscriptions.add(this.accountService.detailLoadingStatus$.subscribe((status: any) => {
       this.isLoadingDetails = status;
@@ -60,7 +57,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         this.accountService.getAccountDetails(id).subscribe((data: any) => {
           if (data) {
             this.tcInd = data.tcInd;
-
+            this.setActionItems();
           }
         }, error => {
 
@@ -77,7 +74,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   setActionItems(): void {
     var baseActionMenuItems = [{ name: 'Generate PDF', action: 'viewPDF' }, { name: 'Add Milestone/Note', action: 'addMilestone' }];
-    if (this.buisiness_type_id == "5") {
+    if (this.tcInd != "N") {
       baseActionMenuItems.push({ name: 'Launch Trade Compliance', action: 'launchTradeCompliance' });
     }
     this.actionMenuItems = baseActionMenuItems;

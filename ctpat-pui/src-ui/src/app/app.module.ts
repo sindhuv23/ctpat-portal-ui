@@ -119,6 +119,7 @@ import { DocumentHistoryModalComponent } from './core/modals/document-history-mo
 import { EligibilityModalComponent } from './core/modals/eligibility-modal/eligibility-modal.component';
 import { AccountStatusPipe } from './core/pipes/account-status.pipe';
 import { CreateAddressModalComponent } from './core/modals/create-address-modal/create-address-modal.component';
+import { ConfirmSetPrimaryDialogComponent } from './details/business-details-tab/confirm-set-primary-dialog/confirm-set-primary-dialog.component';
 
 
 @NgModule({
@@ -206,7 +207,8 @@ import { CreateAddressModalComponent } from './core/modals/create-address-modal/
       AddOrConfirmEmailComponent,
       AddNewContactUserComponent,
       AccountStatusPipe,
-      CreateAddressModalComponent
+      CreateAddressModalComponent,
+      ConfirmSetPrimaryDialogComponent
    ],
   imports:[
     BrowserModule,
@@ -260,4 +262,3 @@ export function get_settings(ctpatUserService: CtpatUserService, ctpatEnvService
              .then(() => ctpatUserService.loadUserInfo())
              .then(() => apiTokenService.loadApiCtpatToken(environment.baseUrl + '/authenticate'));
 }
-

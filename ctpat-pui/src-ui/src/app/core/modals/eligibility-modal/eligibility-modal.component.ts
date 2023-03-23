@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -25,12 +25,10 @@ export class EligibilityModalComponent implements OnInit, OnDestroy {
   private dataEligibilityQuestions: any[] = [];
   public dataSourceEligibilityQuestions = new MatTableDataSource<any>();
 
-  constructor(private formBuilder: FormBuilder, public dialog: MatDialog, public accountService: AccountService) { }
+  constructor(public dialogRef: MatDialogRef<EligibilityModalComponent>,
+    private formBuilder: FormBuilder, public accountService: AccountService) { }
 
   ngOnInit(): void {
-    // this.subscriptions.add(this.searchService.ctpatAccountId$.subscribe((id: any) => {
-    //   
-    // }));
     this.subscriptions.add(this.accountService.accountId$.subscribe((id: any) => {
       if (id) {
         this.ctpatAccountId = id;
@@ -115,46 +113,64 @@ export class EligibilityModalComponent implements OnInit, OnDestroy {
 
   createTcAccount(): any {
     this.tcAccount = {
-      id: "",
-      accountName: "",
-      acctStatus: "",
-      activatedDate: "",
-      activeCode: "",
-      agreementSignedDate: "", //timestamptz in db
-      agreementSignedTrdUsrId: "", //numeric in db
-      anlCmpltInd: "",
-      applStatus: "",
-      assignedHqUser: "", //numeric in db
-      assignedNamSpvsrUser: "", //numeric in db
-      assignedNamUser: "", //numeric in db
-      assignedRaUser: "", //numeric in db
-      contactCmpltInd: "",
-      ctpatAccountId: "", //numeric in db
-      etlDttm: "", //timestamptz in db
-      iorCmpltInd: "",
-      questionnaireCmpltInd: "",
-      rqrdDocCmpltInd: "",
-      submittedDate: "",
-      tradeOrganizationId: "", //numeric in db
-      trdCmplncAccountNumber: "", //numeric in db
-      ctpatAccount: this.accountData
+      //ids and misc
+
+      accountName: this.accountData.companyName,
+      ctpatAccountId: this.accountData.id,
+      //agreementSignedTrdUsrId: "null",
+      activeCode: "A",
+      tradeOrganizationId: "11111",
+      trdCmplncAccountNumber: "22222",
+
+      //status
+      //acctStatus: this.accountData.status,
+      applStatus: "Not Submitted",
+
+      //dates
+      //activatedDate: "",
+      //agreementSignedDate: "",
+      //etlDttm: "",
+      //submittedDate: "",
+
+
+      //indicators
+      anlCmpltInd: "N",
+      iorCmpltInd: "N",
+      questionnaireCmpltInd: "N",
+      rqrdDocCmpltInd: "N",
+      contactCmpltInd: "N",
+
+      //assigned user
+      //assignedHqUser: "",
+      //assignedNamSpvsrUser: "",
+      //assignedNamUser: "",
+      //assignedRaUser: "",
+
+      //whole ctpat account
+      // ctpatAccount: this.accountData
     }
-    //this.accountService.createTcAccount(this.tcAccount);
+    this.subscriptions.add(this.accountService.createTcAccount(this.tcAccount).subscribe(res => {
+      console.log('tc account created, response => '+ res);
+    }));
+
     //change tc indicator after creating an account
-   // this.accountData.tcInd = "Y"
-   // this.accountService.saveAccountData(this.accountData);
+    this.accountData.tcInd = "Y"
+    this.subscriptions.add(this.accountService.updateCtpatAccountTcInd(this.accountData).subscribe(res => {
+      console.log('ctpat account tcInd updated, response => '+ res);
+
+    }));
   }
 
 
   onSubmit() {
-    console.log(this.eligibilityForm);
     this.validAnswer = this.validAnswerCheck();
     this.isSubmitted = true;
     if (!this.eligibilityForm.valid) {
       return false;
     } else {
-     // this.createTcAccount();
-      //window.open(environment.tcLinkUrl + this.ctpatAccountId, '_blank')
+      this.createTcAccount();
+      window.open(environment.tcLinkUrl + this.ctpatAccountId, '_blank')
+      this.dialogRef.close();
       return true;
     }
   }

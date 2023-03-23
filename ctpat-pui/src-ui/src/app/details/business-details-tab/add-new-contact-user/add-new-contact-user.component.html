@@ -12,11 +12,12 @@
       </div>
       <mat-divider class="divider"></mat-divider>
       <div id="DialogMidContainer">
-        <div class="required required-text">* Required</div><br>
+        
             <mat-dialog-content>
-              
+              <div fxLayout="row" class="required required-text">* Required</div>
+              <br>
                     <div fxLayout="row">
-                        <label fxFlex="10">Email<span class="required"> *</span></label>
+                        <label class="label" fxFlex="10">Email<span class="required"> *</span></label>
                         <div fxFlex="7"></div>
                         <mat-form-field fxFlex="80" appearance="outline">
                           <input matInput formControlName="email" id="email" aria-label="Email" placeholder="Email">
@@ -40,6 +41,7 @@
                                 </mat-option>
                               </ng-container>
                           </mat-select>
+                          <mat-error *ngIf="submitted && f.salutationId.errors && f.salutationId.errors.required">Required field</mat-error>
                          </mat-form-field>
                       </div>
             
@@ -48,7 +50,8 @@
                         <div fxFlex="5"></div>
                         <mat-form-field fxFlex="60" appearance="outline">
                           <input matInput formControlName="lastName" id="lastName" aria-label="Last Name" placeholder="Last Name">
-                         </mat-form-field>
+                          <mat-error *ngIf="submitted && f.lastName.errors && f.lastName.errors.required">Required field</mat-error>
+                        </mat-form-field>
                       </div>
                       <div fxLayout="row">
                         <label  fxFlex="35" class="label" for="middleInitial">Middle Inital</label>
@@ -69,30 +72,11 @@
                                 <mat-option value="N">N</mat-option>
                               </ng-container>
                           </mat-select>
+                          <mat-error *ngIf="submitted && f.receiveCtpatEmailInd.errors && f.receiveCtpatEmailInd.errors.required">Required field</mat-error>
                          </mat-form-field>
                       </div>
 
-                           <div fxLayout="row">
-                            <label  fxFlex="30" class="label" for="contactType">Contact Type<span class="required"> *</span></label>
-                            <div fxFlex="10"></div>
-                           <mat-form-field fxFlex="60" appearance="outline">
-                              <mat-select formControlName="contactType" id="contactType" placeholder="--- Select ---" aria-label="contactType"
-                              [(ngModel)] = "selectedContactTypeValue"
-                              (selectionChange)="onContactTypeChange($event)">
-                                  <mat-option>--Select--</mat-option>
-                                  <ng-container>
-                                    <mat-option value="O">Company Officer
-                                    </mat-option>
-                                    <mat-option value="E">Employee
-                                    </mat-option>
-                                    <mat-option value="C">Consulatant
-                                    </mat-option>
-                                    <mat-option value="R">Read Only
-                                    </mat-option>
-                                  </ng-container>
-                              </mat-select>
-                             </mat-form-field>
-                          </div>
+                           
      
                     </div>
             
@@ -106,7 +90,8 @@
                             <div fxFlex="10"></div>
                             <mat-form-field fxFlex="60" appearance="outline">
                               <input matInput formControlName="title" id="title" aria-label="Title" placeholder="Title">
-                               </mat-form-field>
+                              <mat-error *ngIf="submitted && f.title.errors && f.title.errors.required">Required field</mat-error>   
+                            </mat-form-field>
                           </div>
 
                           <div fxLayout="row">
@@ -114,7 +99,8 @@
                             <div fxFlex="10"></div>
                             <mat-form-field fxFlex="60" appearance="outline">
                               <input matInput formControlName="firstName" id="firstName" aria-label="First Name" placeholder="First Name">
-                              </mat-form-field>
+                              <mat-error *ngIf="submitted && f.firstName.errors && f.firstName.errors.required">Required field</mat-error>  
+                            </mat-form-field>
                           </div>
 
 
@@ -123,10 +109,10 @@
                         <div fxFlex="10"></div>
                         <mat-form-field fxFlex="60" appearance="outline">
                           <input matInput formControlName="phoneNumber" id="phoneNumber" aria-label="Phone Number" placeholder="Phone Number">
-                          <mat-error *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Phone Number is required</mat-error>
+                          <mat-error *ngIf="submitted && f.phoneNumber.errors && f.phoneNumber.errors.required">Required field</mat-error>
                         </mat-form-field>
                       </div>
-                      <div fxLayout="row">
+                      <div fxLayout="row"  *ngIf="tcInd === 'Y'" >
                         <label  fxFlex="36" class="label" for="receiveTcEmailInd">Receive Trade Comp Email?<span class="required"> *</span></label>
                         <div fxFlex="5"></div>
                        <mat-form-field fxFlex="60" appearance="outline">
@@ -137,30 +123,68 @@
                                 <mat-option value="N">N</mat-option>
                               </ng-container>
                           </mat-select>
+                          <mat-error *ngIf="submitted && f.receiveTcEmailInd.errors && f.receiveTcEmailInd.errors.required">Required field</mat-error>
                          </mat-form-field>
                       </div>
 
-                      <div *ngIf="selectedContactTypeValue === 'C'">
-                        <div fxLayout="row" >
-                          <label  fxFlex="36" for="consultantCompany">Consultant Company</label>
-                          <div fxFlex="5"></div>
-                         <mat-form-field fxFlex="60" appearance="outline">
-                            <mat-select formControlName="consultantCompany" id="consultantCompany" placeholder="--- Select ---" aria-label="Consultant Company"
-                                [(ngModel)] = "selectedConsultantCompany"
-                                (selectionChange)="onCCSelectChange($event)">
-                                <mat-option value = ''>--Select--</mat-option>
-                                <ng-container>
-                                  <mat-option value="Add New">Add New</mat-option>
-                                  <mat-option value="Select Existing">Select Existing</mat-option>
-                                </ng-container>
-                            </mat-select>
-                           </mat-form-field>
-                        </div>
-                        </div>
+                      
                     </div>
             
                   </div>
                 
+
+                  <div >
+                      
+                    <div fxLayout="column"  fxFlex="43">
+                    <div fxLayout="row">
+                      <label  fxFlex="30" class="label" for="contactType">Contact Type<span class="required"> *</span></label>
+                      <div fxFlex="10"></div>
+                     <mat-form-field fxFlex="60" appearance="outline">
+                        <mat-select formControlName="contactType" id="contactType" placeholder="--- Select ---" aria-label="contactType"
+                        [(ngModel)] = "selectedContactTypeValue"
+                        (selectionChange)="onContactTypeChange($event.value)">
+                            <mat-option>--Select--</mat-option>
+                            <ng-container>
+                              <mat-option value="O">Company Officer
+                              </mat-option>
+                              <mat-option value="E">Employee
+                              </mat-option>
+                              <mat-option value="C">Consulatant
+                              </mat-option>
+                              <mat-option value="R">Read Only
+                              </mat-option>
+                            </ng-container>
+                        </mat-select>
+                        <mat-error *ngIf="submitted && f.contactType.errors && f.contactType.errors.required">Required field</mat-error>
+                       </mat-form-field>
+                    </div>
+                  </div>
+                  <div fxFlex="10"></div>
+                  <div fxLayout="column"  fxFlex="43">
+                    <div *ngIf="selectedContactTypeValue === 'C'">
+                      <div fxLayout="row" >
+                        <label  fxFlex="36" class="label" for="consultantCompany">Consultant Company<span class="required"> *</span></label>
+                        <div fxFlex="5"></div>
+                       <mat-form-field fxFlex="60" appearance="outline">
+                          <mat-select formControlName="consultantCompany" id="consultantCompany" placeholder="--- Select ---" aria-label="Consultant Company"
+                              [(ngModel)] = "selectedConsultantCompany"
+                              (selectionChange)="onCCSelectChange($event.value)">
+                              <mat-option value = ''>--Select--</mat-option>
+                              <ng-container>
+                                <mat-option value="Add New">Add New</mat-option>
+                                <mat-option value="Select Existing">Select Existing</mat-option>
+                              </ng-container>
+                          </mat-select>
+                          <mat-error *ngIf="submitted && f.consultantCompany.errors && f.consultantCompany.errors.required">Required field</mat-error>
+                         </mat-form-field>
+                      </div>
+                      </div>
+                    </div>
+
+                  </div>
+
+
+
                   <div *ngIf="selectedContactTypeValue === 'C'">
          
             <div id="section5" fxLayout="row" *ngIf="selectedConsultantCompany === 'Add New' || selectedConsultantCompany === 'Select Existing'">
@@ -173,7 +197,7 @@
                         <mat-form-field fxFlex="60" appearance="outline">
 
                           <input matInput formControlName="consultantCompanyName" id="companyName" aria-label="Company Name" >
-                         
+                          <mat-error *ngIf="submitted && f.consultantCompanyName.errors && f.consultantCompanyName.errors.required">Required field</mat-error>
                         
                         </mat-form-field>
                       </div>
@@ -195,6 +219,7 @@
                                     </mat-option>
                                   </ng-container>
                               </mat-select>
+                              <mat-error *ngIf="submitted && f.existingConsultantCompanyName.errors && f.existingConsultantCompanyName.errors.required">Required field</mat-error>
                              </mat-form-field>
     
     
@@ -208,7 +233,8 @@
                         <div fxFlex="10"></div>
                         <mat-form-field fxFlex="60" appearance="outline">
                           <input matInput formControlName="addressLine1" id="streetLine1" aria-label="Street Line 1" placeholder="Street Line 1">
-                          </mat-form-field>
+                          <mat-error *ngIf="submitted && f.addressLine1.errors && f.addressLine1.errors.required">Required field</mat-error>  
+                        </mat-form-field>
                       </div>
 
 
@@ -217,6 +243,7 @@
           <div fxFlex="10"></div>
           <mat-form-field fxFlex="60" appearance="outline">
             <input matInput formControlName="cityName" id="city" aria-label="City" placeholder="City">
+            <mat-error *ngIf="submitted && f.cityName.errors && f.cityName.errors.required">Required field</mat-error>
           </mat-form-field>
                   </div>
         
@@ -225,6 +252,7 @@
                     <div fxFlex="10"></div>
                     <mat-form-field fxFlex="60" appearance="outline">
                       <input matInput formControlName="postalCode" id="postalCode" aria-label="Postal Code" placeholder="Postal Code">
+                      <mat-error *ngIf="submitted && f.postalCode.errors && f.postalCode.errors.required">Required field</mat-error>
                       </mat-form-field>
                   </div>
 
@@ -240,7 +268,8 @@
                         <div fxFlex="10"></div>
                         <mat-form-field fxFlex="60" appearance="outline">
                           <input matInput formControlName="consultantBusinessId" id="businessId" aria-label="Business Id" placeholder="Business Id">
-                           </mat-form-field>
+                          <mat-error *ngIf="submitted && f.consultantBusinessId.errors && f.consultantBusinessId.errors.required">Required field</mat-error>   
+                        </mat-form-field>
                       </div>
 
                      
@@ -268,6 +297,7 @@
                                 </mat-option>
                               </ng-container>
                           </mat-select>
+                          <mat-error *ngIf="submitted && f.countryId.errors && f.countryId.errors.required">Required field</mat-error>
                          </mat-form-field>
 
 
@@ -287,6 +317,7 @@
                             </mat-option>
                           </ng-container>
                       </mat-select>
+                      <mat-error *ngIf="submitted && f.stateId.errors && f.stateId.errors.required">Required field</mat-error>
                     </mat-form-field>
 
                       </div>

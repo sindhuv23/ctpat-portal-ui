@@ -27,6 +27,15 @@ export class AccountService {
   private searchStatusSubject = new Subject<boolean>();
   public searchStatus$ = this.searchStatusSubject.asObservable();
 
+  private fieldOfficesSubject = new ReplaySubject<any>(1);
+  public fieldOffices$ = this.fieldOfficesSubject.asObservable();
+
+  private businessTypeIdSubject = new ReplaySubject<any>(1);
+  public businessTypeId$ = this.businessTypeIdSubject.asObservable();
+
+  private ctpatContactSubject = new ReplaySubject<any>(1);
+  public ctpatContact$ = this.ctpatContactSubject.asObservable();
+
   constructor(private httpClient: HttpClient) {
   }
 
@@ -37,17 +46,18 @@ export class AccountService {
   getAccountData(refType: string): Observable<any> {
     return this.httpClient.get(this.baseUrl + `/service-portal/${refType}`) ;
   }
+  
+
+  getRfEligibilityByBusinessId(id: string): Observable<any> {
+    return this.httpClient.get(this.baseUrl + `/service-portal/getRfEligibilityCatalogList/${id}`) ;
+  }
 
   saveAccountData(ctpatAccount: any): Observable<any> {
     return this.httpClient.post(this.baseUrl + `/service-portal/createOrUpdateCtpatAccount`, ctpatAccount) ;
   }
 
   createTcAccount(tcAccount: any): Observable<any> {
-    return this.httpClient.post(this.baseUrl + `/service-portal/createTradeComplianceAccount`, tcAccount);
-  }
-
-  getAccountDetails(ctpatAccountId: any): Observable<any> {
-    return this.httpClient.get(this.baseUrl + `/service-portal/getCtpatAccount/${ctpatAccountId}`) ;
+    return this.httpClient.post(this.baseUrl + `/service-portal/tradeComplianceAccount/createTradeComplianceAccount`, tcAccount) ;
   }
 
   saveAccountAddress(ctpatAccountAddress: any): Observable<any> {
@@ -58,12 +68,44 @@ export class AccountService {
     return this.httpClient.delete(this.baseUrl + `/service-portal/deleteCtpatAccountAddress/${id}`) ;
   }
 
+  getCtpatAccountAddress(ctpatAccountId: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + `/service-portal/getCtpatAccountAddress/${ctpatAccountId}`) ;
+  }
+
+  updateCtpatAccountTcInd(ctpatAccount: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + `/service-portal/updateCtpatAccountTcInd`, ctpatAccount) ;
+  }
+
+  getAccountDetails(ctpatAccountId: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + `/service-portal/getCtpatAccount/${ctpatAccountId}`) ;
+  }
+
+  updateAddressPrimaryInd(ctpatAccountId : any, id: any): Observable<any> {
+       return this.httpClient.get(this.baseUrl + `/service-portal/updateAddressPrimaryInd/${ctpatAccountId}/${id}`);
+  }
+
+  updateUsersPrimaryInd(ctpatAccountId : any, id : any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + `/service-portal/updateUsersPrimaryInd/${ctpatAccountId}/${id}`);
+  }
+
+public getTcAccountContactsByCtpatId(ctpatAccountId: any): Observable<any> {
+    return this.httpClient.get(environment.tcBaseUrl + '/getTcAccountContactsByCtpatId/' + ctpatAccountId);
+  }
+
+public deleteCtpatAccountUser(id:any, ctpatAccountId: any): Observable<any> {
+    return this.httpClient.delete(this.baseUrl + `/service-portal/deleteCtpatAccountUser/${id}/${ctpatAccountId}`);
+  }
+
   public broadcastDetailLoadingStatus(detailLoadingStatus: any): void{
     this.detailLoadingStatusSubject.next(detailLoadingStatus);
   }
 
   public broadcastAccountId(id: number): void{
     this.acountIdSubject.next(id);
+  }
+
+  public broadcastBusinessTypeId(id: number): void{
+    this.businessTypeIdSubject.next(id);
   }
 
   public broadcastDetailTitleBar(companyName: string, accountStatus: string, applicationStatus: string, anlStatus: string): void{
@@ -81,4 +123,13 @@ export class AccountService {
   public broadcastSearchStatus(searchStatus: any): void{
     this.searchStatusSubject.next(searchStatus);
   }
+
+  public broadcastFieldOffices(data: any): void{
+    this.fieldOfficesSubject.next(data);
+  }
+
+  public refreshCtpatContact(data: any): void{
+    this.ctpatContactSubject.next(data);
+  }
+
 }

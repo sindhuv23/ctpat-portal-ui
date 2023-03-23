@@ -5,19 +5,19 @@
     <table mat-table title="Addresses" id="addressTable" [dataSource]="dataSource" name="addressTable" matSort matSortActive="type"
       matSortDirection="asc" [matSortDisableClear]="true" class="row mat-elevation-z0">
 
-      <ng-container matColumnDef="type">
+      <ng-container matColumnDef="typeName">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Type</th>
-        <td mat-cell *matCellDef="let row">{{row.type}}</td>
+        <td mat-cell *matCellDef="let row">{{row.typeName}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="addressLine1">
+      <ng-container matColumnDef="street1">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Address Line 1</th>
-        <td mat-cell *matCellDef="let row">{{row.addressLine1}}</td>
+        <td mat-cell *matCellDef="let row">{{row.street1}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="addressLine2">
+      <ng-container matColumnDef="street2">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Address Line 2</th>
-        <td mat-cell *matCellDef="let row">{{row.addressLine2}}</td>
+        <td mat-cell *matCellDef="let row">{{row.street2}}</td>
       </ng-container>
 
       <ng-container matColumnDef="city">
@@ -40,14 +40,14 @@
         <td mat-cell *matCellDef="let row">{{row.country}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="mailAddrIndicator">
+      <ng-container matColumnDef="isMailingAddress">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Mail Addr</th>
-        <td mat-cell *matCellDef="let row">{{row.mailAddrIndicator}}</td>
+        <td mat-cell *matCellDef="let row">{{row.isMailingAddress}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="primaryIndicator">
+      <ng-container matColumnDef="isPrimaryAddress">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Primary</th>
-        <td mat-cell *matCellDef="let row">{{row.primaryIndicator}}</td>
+        <td mat-cell *matCellDef="let row">{{row.isPrimaryAddress}} <span *ngIf="row.isPrimaryAddress ==='N'"><a href="javascript:void(0)" style="outline: blue;" (click)="setPrimaryConfirmDialog(row.id)">Set Primary</a></span></td>
       </ng-container>
 
       <ng-container matColumnDef="entryId">
