@@ -1,32 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 import { CreateBeiModalComponent } from 'src/app/core/modals/create-bei-modal/create-bei-modal.component';
+import { AccountService } from 'src/app/core/services/account.service';
+import { DetailsService } from 'src/app/core/services/details.service';
 
 @Component({
   selector: 'app-business-details-tab',
   templateUrl: './business-details-tab.component.html',
   styleUrls: ['./business-details-tab.component.scss']
 })
-export class BusinessDetailsTabComponent implements OnInit {
+export class BusinessDetailsTabComponent implements OnInit, OnDestroy {
 
-  hideProfileWarning = false;
+  private subscriptions = new Subscription();
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public detailsService: DetailsService, public accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.detailsService.broadcastCurrentTabIndex(0);
   }
 
-  addBusinessEntityInfo(): void{
-    const dialogRef = this.dialog.open(CreateBeiModalComponent, {
-      data: {},
-      width: '1200px',
-      height: '900px',
-      disableClose: true
-    });
-  }
-
-  addMrInfo(): void{
-    console.log('add MR');
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
 }

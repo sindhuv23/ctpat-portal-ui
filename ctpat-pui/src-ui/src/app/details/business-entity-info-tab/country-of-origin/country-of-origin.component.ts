@@ -2,8 +2,8 @@ import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/co
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { AddCountryOfOriginModalComponent } from 'src/app/core/modals/create-bei-modal/add-country-of-origin-modal/add-country-of-origin-modal.component';
-import { EditCountryOfOriginModalComponent } from 'src/app/core/modals/create-bei-modal/edit-country-of-origin-modal/edit-country-of-origin-modal.component';
+import { AddCountryOfOriginModalComponent } from 'src/app/core/modals/business-type-specific-modals/add-country-of-origin-modal/add-country-of-origin-modal.component';
+import { EditCountryOfOriginModalComponent } from 'src/app/core/modals/business-type-specific-modals/edit-country-of-origin-modal/edit-country-of-origin-modal.component';
 import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmation-dialog-modal/confirmation-dialog-modal.component';
 
 @Component({

@@ -1,0 +1,64 @@
+.errorText {
+  color: #a00000;
+  font-size: 0.8em;
+  margin-top: -20px;
+  padding-left: 8px;
+}
+
+.minorButton {
+  background-color: lightgray !important;
+}
+
+#header{
+  height: 40px;
+  background-color: #00416a;
+  color: white;
+  cursor: move;
+}
+
+#footer{
+  width: 100%;
+  height: 52px;
+  margin-bottom: 0px;
+}
+
+.label{
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+mat-dialog-actions{
+  background-color: #eee;
+}
+
+.required-text{
+  float: right !important;
+  padding: 5px 5px;
+}
+
+#outerContainer{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+#createHeader{
+  top: 0px;
+  height: 40px;
+  background-color: #00416a;
+  color: white;
+}
+#midContainer{
+  max-height: 100%;
+  width: 100%;
+  overflow: auto;
+  position: absolute;
+  top: 42px;
+  bottom: 25px;
+}
+#footer{
+  width: 100%;
+  height: 55px;
+  position: absolute;
+  bottom: 0px;
+  background-color: lightgrey;
+}

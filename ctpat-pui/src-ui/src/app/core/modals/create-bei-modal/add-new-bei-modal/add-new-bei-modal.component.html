@@ -1,5 +1,5 @@
 <div id="outerContainer">
-<form [formGroup]="addNewBeiForm" novalidate>
+<form [formGroup]="addNewBeiForm">
 
   <div fxLayout="row" id="createHeader">
     <h3 mat-dialog-title class="dialog-header">Add New BEI</h3>
@@ -18,7 +18,8 @@
       <div fxLayout="row">
         <label fxFlex="40" class="label" for="beiType">BEI Type<span class="required"> *</span></label>
         <mat-form-field fxFlex="60" appearance="outline">
-          <mat-select formControlName="beiType" id="beiType" placeholder="--- Select ---" aria-label="BEI Type">
+          <mat-select formControlName="beiType" [(ngModel)]="selectedOption" id="beiType" placeholder="--- Select ---" aria-label="BEI Type"
+                (selectionChange)="updateInputPlaceholder()">
               <mat-option>--Select--</mat-option>
               <ng-container>
                 <mat-option [value]="{id: refData.id, beiType: refData.beiType, version: refData.versionNumber}" *ngFor="let refData of ecList$  | async">
@@ -33,11 +34,13 @@
       <div fxLayout="row">
         <label  fxFlex="40" class="label" for="beiValue">BEI Value<span class="required"> *</span></label>
         <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput formControlName="beiValue" id="beiValue" aria-label="BEI Value" placeholder="BEI Value">
-          <mat-error *ngIf="submitted && f.beiValue.errors && f.beiValue.errors.required">BEI Value is required</mat-error>
+          <input matInput formControlName="beiValue" id="beiValue" 
+          aria-label="BEI Value" placeholder="{{inputPlaceholder}}"
+          [(ngModel)] = "inputValue">
         </mat-form-field>
+        
       </div>
-
+      <div fxLayout="row" style="color :#A0001E" *ngIf="showError">{{errorMessage}}</div>
   </div>
 </mat-dialog-content>
 </div>

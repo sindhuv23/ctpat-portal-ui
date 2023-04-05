@@ -1,0 +1,79 @@
+<div id="outerContainer">
+<form [formGroup]="editCeeForm" novalidate>
+
+  <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <h3 mat-dialog-title class="dialog-header">Edit CEE</h3>
+    <div fxFlex></div>
+    <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+        aria-label="clear">
+        <mat-icon>clear</mat-icon>
+    </button>
+    <mat-divider class="divider"></mat-divider>
+  </div>
+
+  <div id="midContainer">
+    <mat-dialog-content>
+      <div class="required required-text">* Required</div><br>
+      <div fxLayout="column">
+
+        <div fxLayout="row">
+          <label fxFlex="40" class="label" for="approvedIndicator">Approved Participant of US CBP CEE</label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="approvedIndicator" id="approvedIndicator" placeholder="--- Select ---" aria-label="Approved Participant of US CBP CEE">
+                <mat-option>--Select--</mat-option>
+                <ng-container>
+                  <mat-option value="Y">Yes</mat-option>
+                  <mat-option value="N">No</mat-option>
+                </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label fxFlex="40" class="label" for="cee">CEE<span class="required"> *</span></label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="cee" id="cee" placeholder="--Select--" aria-label="CEE">
+                <mat-option>--Select--</mat-option>
+                <ng-container *ngFor="let center of esCenterList">
+                  <mat-option [value]="center.centerId">
+                    {{center.centerId}} &mdash; {{center.descriptionText}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.cee.errors && f.cee.errors.required">CEE is required</mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <div fxLayout="row">
+          <label fxFlex="40" class="label" for="commodities">Commodities of Import<span class="required"> *</span></label>
+          <div fxFlex="60" fxLayout="column" style="overflow:hidden">
+
+            <ng-container formArrayName="commodities" *ngFor="let commodity of commodityArray.controls, let i = index">
+              <div>
+                <mat-checkbox color="primary" [formControlName] = 'i' (change)="populateCommodities()">
+                  <span style="font-weight: lighter;">{{checkboxDataList[i].descriptionText}}</span></mat-checkbox>
+              </div>
+            </ng-container>
+
+            <div *ngIf="submitted&&!isAnyCommoditySelected()" class="errorText">
+              At least 1 commodity must be selected
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </mat-dialog-content>
+  </div>
+
+<div id="footer">
+  <mat-divider class="divider"></mat-divider>
+  <mat-dialog-actions>
+    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+    <div fxFlex></div>
+    <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+  </mat-dialog-actions>
+</div>
+</form>
+</div>

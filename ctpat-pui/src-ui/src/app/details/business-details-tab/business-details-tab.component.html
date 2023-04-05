@@ -1,11 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="start center" [ngClass]="{hideElement: hideProfileWarning}" class="profileWarning">
-  <div><mat-icon class="bigIcon">warning</mat-icon></div><div fxFlex="1"></div>
-  <div>Warning: Complete your profile.</div><div fxFlex="2"></div>
-  <div><a (click)="addBusinessEntityInfo()" aria-label="Add Business Entity Info"
-    (keyup.enter)="addBusinessEntityInfo()" role="button" tabindex="0">Add Business Entity Info</a></div><div fxFlex="2"></div>
-  <div><a (click)="addMrInfo()" aria-label="Add MR Info"
-    (keyup.enter)="addMrInfo()" role="button" tabindex="1"> Add MR Info (Optional)</a></div>
-</div>
+<app-profile-incomplete-error-message></app-profile-incomplete-error-message>
 
 <mat-accordion multi>
   <mat-expansion-panel class="mat-elevation-z0" #panelA expanded tid="panel-account-info">

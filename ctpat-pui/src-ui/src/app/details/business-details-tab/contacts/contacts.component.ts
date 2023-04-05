@@ -22,11 +22,11 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
   private subscriptions = new Subscription();
   public isLoading = false;
   private ctpatAccountId!: any;
+  public tcInd = 'N';
 
-  private dataContactList: any[] = [];
   public dataSource = new MatTableDataSource<any>();
 
-  displayedColumns: string[] = ['salutation', 'firstName', 'lastName', 'title', 'type', 'email', 'telephone', 'primaryIndicator', 'lastLogin', 'entryId'];
+  displayedColumns: string[] = ['salutation', 'firstName', 'lastName', 'title', 'type', 'email', 'telephone', 'primaryIndicator', 'emailNotificatonPortal', 'lastLogin', 'entryId'];
 
   constructor(public dialog : MatDialog, private accountService: AccountService) { }
 
@@ -38,17 +38,31 @@ export class ContactsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     }));
 
+    this.subscriptions.add(this.accountService.detailTitleBar$.subscribe((data: any) => {
+      if (data) {
+       this.tcInd = data.tcInd;
+       const index = this.displayedColumns.indexOf('emailNotificatonTC');
+       console.log
+       if( this.tcInd === 'Y' && index < 0){ 
+        this.displayedColumns.splice(9, 0, 'emailNotificatonTC');
+       }else if(this.tcInd !== 'Y' && index > 0){
+        this.displayedColumns.splice(index, 1);
+       }
+      }
+    }));
+
     this.subscriptions.add(this.accountService.ctpatContact$.subscribe(() => {
       this.fetchContactDetails();
     }));
   }
 
 fetchContactDetails(){
-  this.dataContactList = [];
+  this.dataSource = new MatTableDataSource<any>([]);
   this.accountService.getTcAccountContactsByCtpatId(this.ctpatAccountId).subscribe((contacts: any[]) => {
     if (contacts) {
+      const records: any[] = [];
       contacts.forEach(contact => {
-        this.dataContactList.push({
+        records.push({
           salutation: contact.salutation,
           firstName: contact.firstName,
           lastName: contact.lastName,
@@ -62,7 +76,7 @@ fetchContactDetails(){
           entryId: contact.id
         });
       });
-      this.dataSource = new MatTableDataSource<any>(this.dataContactList);
+      this.dataSource = new MatTableDataSource<any>(records);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.matSort;
     }

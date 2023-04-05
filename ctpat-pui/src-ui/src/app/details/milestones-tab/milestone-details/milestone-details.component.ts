@@ -6,7 +6,7 @@ import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmati
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { AddMilestoneModalComponent } from 'src/app/core/modals/add-milestone-modal/add-milestone-modal.component';
-
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-milestone-details',
@@ -20,24 +20,51 @@ export class MilestoneDetailsComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['noteType', 'noteText', 'createdBy', 'createdDate', 'action'];
   private milestones: any[] = [];
   public dataSource = new MatTableDataSource<any>();
+  public ctpatAccountId!: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) matSort!: MatSort;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.subscriptions.add(this.accountService.accountId$.subscribe((id: any) => {
+      if (id) {
+        this.ctpatAccountId = id;
+       this.fetchMilestoneDetails();
+      }
+    }));
+    this.subscriptions.add(this.accountService.milestoneResult$.subscribe((milestones: any) => {
+      this.milestones = [];
+      if (milestones) {
+        milestones.forEach((milestone: any) => {
+          this.milestones.push({
+            noteType: milestone.noteTypeValue,
+            noteText: milestone.noteText,
+            createdBy: milestone.createdBy,
+            createdDate: milestone.createdDate,
+            entryId: milestone.id,
+            noteTypeId: milestone.noteType
+          });
+        });
+        this.dataSource = new MatTableDataSource<any>(this.milestones);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.matSort;
+      }
+    }));
   }
 
   ngAfterViewInit(): void {
-    this.milestones.push({
-      noteType: 'Validation', noteText: 'Validation related note', createdBy: 'John Doe', createdDate: new Date('10-01-2022'),
-      detete: ''
-    });
 
-    this.dataSource = new MatTableDataSource<any>(this.milestones);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.matSort;
   }
+
+
+fetchMilestoneDetails(){
+  this.accountService.getMileStoneDets(this.ctpatAccountId).subscribe((milestones: any[]) => {
+    if (milestones) {
+      this.accountService.broadcastMilestoneResult(milestones);
+    }
+  })
+}
 
   confirmDeletion(id: any): void{
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
@@ -56,21 +83,23 @@ export class MilestoneDetailsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  editMileStoneActionEntry(id: any): void{
+  editMileStoneActionEntry(id: any, noteTypeId: any, noteText:any): void{
     const dialogRef = this.dialog.open(AddMilestoneModalComponent, {
-      data: {id},
+      data: {id, title: "Edit Milestone", noteTypeId, noteText},
       width: '600px',
       height: '400px',
       disableClose: true
     });
+    dialogRef.afterClosed().subscribe((result)=> {this.fetchMilestoneDetails();});
   }
-  // this method is not needed when backend is connected. retrieval of updated data deletes the record.
+
   deleteMileStoneEntry(id: any): void{
-    this.milestones.splice(id, 1);
-    for (let i = 0; i < this.milestones.length; i++) {
-     this.milestones[i].entryId = i;
+
+    this.accountService.deleteMilestone(id).subscribe((result : any) => {
+      this.fetchMilestoneDetails();
     }
-    this.dataSource = new MatTableDataSource<any>(this.milestones);
+    );
+    
   }
 
 

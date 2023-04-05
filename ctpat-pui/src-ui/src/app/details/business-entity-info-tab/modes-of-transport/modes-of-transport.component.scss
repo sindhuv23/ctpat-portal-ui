@@ -1,0 +1,38 @@
+button{
+  height: 26px !important;
+  font-size: small;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item {
+  padding: 0px 10px 3px 0px;
+  display: flex;
+}
+
+.itemHeader1 {
+  font-weight: bold;
+  padding-right: 5px;
+  display: inline-block;
+  width: 200px;
+}
+
+.blockText {
+  display: inline-block;
+  width: 200px;
+}
+
+i{
+  color:darkblue;
+}
+
+.tab{
+  tab-size: 1;
+}
+
+.error-text {
+  color: #a00000;
+  margin-bottom: 3px;
+}
+

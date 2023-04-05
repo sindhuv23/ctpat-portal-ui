@@ -1,368 +1,76 @@
 <form [formGroup]="intelligenceGatheringForm" novalidate>
-<div fxLayout="column" fxLayoutGap="5px">
+  <div fxLayout="column" fxLayoutGap="5px">
 
-  <div class="title">Portal Queries (Was Derogatory Information Identified? Yes/No)</div>
+    <ng-container *ngFor="let intelligenceQue of intelligenceGatheringQuestionnaire">
+      <div class="title">{{intelligenceQue.name}}</div>
+      <div fxLayout="row wrap">
+        <div fxFlex="33" *ngFor="let que of intelligenceQue.questions">
+          <div fxFlex="60">{{que.question}}</div>
+          <mat-radio-group [formControlName]="que.formControlName" [ariaLabel]="que.question">
+            <mat-radio-button color="primary" value="Y"><span
+                style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
+          </mat-radio-group>
+        </div>
+      </div>
 
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Portal Milestones</div>
-      <mat-radio-group formControlName="portalMilestonesIndicator" aria-label="Portal Milestones">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Portal Company History</div>
-      <mat-radio-group formControlName="portalCompanyHistoryIndicator" aria-label="Portal Company History">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Portal Document Exchange</div>
-      <mat-radio-group formControlName="portalDocumentExchangeIndicator" aria-label="Portal Document Exchange">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
+      <ng-container *ngIf="intelligenceQue.freetextquestion.show">
+        <div>Mandatory if any of the responses is "Yes"</div>
+        <mat-form-field fxFlex appearance="outline" [id]="intelligenceQue.freetextquestion.formControlName">
+          <textarea matInput class="response" [formControlName]="intelligenceQue.freetextquestion.formControlName" rows="3"></textarea>
+        </mat-form-field>
+      </ng-container>
 
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Portal Company Name(s) / DBAs Search - Include Withdrawn Accounts</div>
-      <mat-radio-group formControlName="portalCompanyNameIndicator" aria-label="Portal Company Name(s) / DBAs Search - Include Withdrawn Accounts">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Portal BEI Search</div>
-      <mat-radio-group formControlName="portalBeiSearchIndicator" aria-label="Portal BEI Search">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">POC Portal User ID</div>
-      <mat-radio-group formControlName="portalUserIdIndicator" aria-label="POC Portal User ID">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
+      <ng-container *ngIf="intelligenceQue.name === 'Portal Queries (Was Derogatory Information Identified? Yes/No)'">
+        <div fxLayout="row">
+          <div fxFlex="75">Does this company have a previous CTPAT account with derogatory information or action against
+            it?
+          </div>
+          <mat-radio-group formControlName="derogatoryIndicator" aria-label="derogatory information or action against">
+            <mat-radio-button color="primary" value="Y"><span
+                style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
+          </mat-radio-group>
+        </div>
 
-  <div>Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="portalQueryResponse">
-    <textarea matInput class="response" formControlName="portalQueryResponse" rows="3"></textarea>
-  </mat-form-field>
+        <div fxLayout="row">
+          <div fxFlex="15" style="margin-top:5px">Previous Account #</div>
+          <mat-form-field fxFlex="25" appearance="outline">
+            <input matInput formControlName="prevAccountNum" id="prevAccountNum" aria-label="Previous Account Number">
+          </mat-form-field>
+          <div fxFlex="5"></div>
+          <div fxFlex="20" style="margin-top:5px">Previous Account Name</div>
+          <mat-form-field fxFlex="25" appearance="outline">
+            <input matInput formControlName="prevAccountName" id="prevAccountName" aria-label="Previous Account Name">
+          </mat-form-field>
+        </div>
 
-  <div fxLayout="row">
-    <div fxFlex="75">Does this company have a previous CTPAT account with derogatory information or action against it?</div>
-    <mat-radio-group formControlName="derogatoryIndicator" aria-label="derogatory information or action against">
-      <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-      <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-    </mat-radio-group>
-  </div>
+        <div>Previous Account Derogatory Information. Mandatory if any of the responses is "Yes"</div>
+        <mat-form-field fxFlex appearance="outline" id="prevDerogatoryInformation">
+          <textarea matInput class="response" formControlName="prevDerogatoryInformation" rows="3"></textarea>
+        </mat-form-field>
+      </ng-container>
+      <hr>
+    </ng-container>
 
-  <div fxLayout="row">
-    <div fxFlex="15" style="margin-top:5px">Previous Account #</div>
-    <mat-form-field  fxFlex="25" appearance="outline">
-      <input matInput formControlName="prevAccountNum" id="prevAccountNum" aria-label="Previous Account Number">
-    </mat-form-field>
-    <div fxFlex="5"></div>
-    <div fxFlex="20" style="margin-top:5px">Previous Account Name</div>
-    <mat-form-field fxFlex="25" appearance="outline">
-      <input matInput formControlName="prevAccountName" id="prevAccountName" aria-label="Previous Account Name">
-    </mat-form-field>
-  </div>
+    <div class="title">Additional Vetting, If Needed or Required by Subject Matter Expert (SME)</div>
 
-  <div>Previous Account Derogatory Information. Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="prevDerogatoryInformation">
-    <textarea matInput class="response" formControlName="prevDerogatoryInformation" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">ATS BEI Query</div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">ATS-Advanced IOR Search</div>
-      <mat-radio-group formControlName="atsAdvIorSearchIndicator" aria-label="ATS - Advanced IOR Search">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="37" fxLayout="row">
-      <div fxFlex="60">ATS-Number of Import Records</div>
-      <mat-form-field fxFlex="35" appearance="outline" style="margin-top:-5px">
-        <input matInput formControlName="atsNumImportRecords" id="atsNumImportRecords" aria-label="ATS - Number of Import Records">
+    <div fxLayout="row">
+      <div fxFlex="30" style="margin-top:5px">Queries Run</div>
+      <mat-form-field fxFlex="25" appearance="outline">
+        <input matInput formControlName="queriesRun1" id="queriesRun1" aria-label="Queries Run 1">
+      </mat-form-field>
+      <div fxFlex="5"></div>
+      <mat-form-field fxFlex="25" appearance="outline">
+        <input matInput formControlName="queriesRun2" id="queriesRun2" aria-label="Queries Run 2">
       </mat-form-field>
     </div>
-    <div fxFlex="30" fxLayout="row">
-      <div fxFlex="55">ATS-Search Range</div>
-      <mat-radio-group formControlName="atsSearchRange" aria-label="ATS - Search Range">
-        <mat-radio-button color="primary" value="3"><span style="font-weight: lighter;">3 Months&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="12"><span style="font-weight: lighter;">1 year</span></mat-radio-button>
-      </mat-radio-group>
+    <div fxLayout="row">
+      <div fxFlex="30" style="margin-top:-10px">Name of SME who Conducted Query</div>
+      <mat-form-field style="margin-top:-15px" fxFlex="25" appearance="outline">
+        <input matInput formControlName="nameSme" id="nameSme" aria-label="Name of SME who Conducted Query1">
+      </mat-form-field>
     </div>
+
   </div>
-
-  <div>Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="atsBeiQueryResponse">
-    <textarea matInput class="response" formControlName="atsBeiQueryResponse" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">Open Source (OS) Queries (Was Derogatory Information Identified? Yes/No)</div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">OS Company Name(s)</div>
-      <mat-radio-group formControlName="osCompanyNameIndicator" aria-label="OS Company Name(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">OS Company Name(s) News</div>
-      <mat-radio-group formControlName="osCompanyNameNewsIndicator" aria-label="OS Company Name(s) News">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">OS Company DBA</div>
-      <mat-radio-group formControlName="osCompanyDbaIndicator" aria-label="OS Company DBA">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">OS Website</div>
-      <mat-radio-group formControlName="osWebsiteIndicator" aria-label="OS Website">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">OS Phone Number(s)</div>
-      <mat-radio-group formControlName="osPhoneNumberIndicator" aria-label="OS Phone Number(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">OS Company Address(es)</div>
-      <mat-radio-group formControlName="osCompanyAddressIndicator" aria-label="OS Company Address(es)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div>Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="osQueryResponse">
-    <textarea matInput class="response" formControlName="osQueryResponse" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">Lexis Nexis Accurint Queries (Was Derogatory Information Identified? Yes/No)</div>
-
-  <div fxLayout="row">
-    <div fxFlex="40" fxLayout="row">
-      <div fxFlex="60">US Company Name(s)</div>
-      <mat-radio-group formControlName="usCompanyNameIndicator" aria-label="US Company Name(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="27" fxLayout="row">
-      <div fxFlex="45">US Address</div>
-      <mat-radio-group formControlName="usAddressIndicator" aria-label="US Address">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">US Phone Number</div>
-      <mat-radio-group formControlName="usPhoneNumberIndicator" aria-label="US Phone Number">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div fxLayout="row">
-    <div fxFlex="40" fxLayout="row">
-      <div fxFlex="60">Company Owner(s) and POC(s)</div>
-      <mat-radio-group formControlName="companyOwnerIndicator" aria-label="Company Owner(s) and POC(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div>Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="nexisQueryResponse">
-    <textarea matInput class="response" formControlName="nexisQueryResponse" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">Analytical Framework for Intelligence (AFI) (Was Derogatory Information Identified? Yes/No)</div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">BEI(s)</div>
-      <mat-radio-group formControlName="afiBeiIndicator" aria-label="BEI(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Company Name(s)</div>
-      <mat-radio-group formControlName="afiCompanyNameIndicator" aria-label="Company Name(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Company Address(es)</div>
-      <mat-radio-group formControlName="afiCompanyAddressIndicator" aria-label="Company Address(es)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Company Phone Number(s)</div>
-      <mat-radio-group formControlName="afiCompanyPhoneNumberIndicator" aria-label="Company Phone Number(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Owner(s) & POC(s) Email(s)</div>
-      <mat-radio-group formControlName="afiOwnerEmailIndicator" aria-label="Owner(s) & POC(s) Email(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Owner(s) & POC(s) Phone(s)</div>
-      <mat-radio-group formControlName="afiOwnerPhoneIndicator" aria-label="Owner(s) & POC(s) Phone(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Company Owner(s) and POC(s)</div>
-      <mat-radio-group formControlName="afiCompanyOwnerIndicator" aria-label="Company Owner(s) and POC(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div>Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="afiResponse">
-    <textarea matInput class="response" formControlName="afiResponse" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">IRS-NG Standalone Super Query (Was Derogatory Information Identified? Yes/No)</div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Super Query Business Name(s)</div>
-      <mat-radio-group formControlName="sqBusinessNameIndicator" aria-label="Super Query Business Name(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Super Query Address(es)</div>
-      <mat-radio-group formControlName="sqAddressIndicator" aria-label="Super Query Address(es)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Super Query Owner(s) & POC(s)</div>
-      <mat-radio-group formControlName="sqOwnerIndicator" aria-label="Super Query Owner(s) & POC(s)">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Criminal History Results</div>
-      <mat-radio-group formControlName="sqCriminalHistoryIndicator" aria-label="Criminal History Results">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">Global Enrollment Sys Results</div>
-      <mat-radio-group formControlName="sqGlobalEnrollmentIndicator" aria-label="Global Enrollment Sys Results">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div>Mandatory if any of the responses is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="sqResponse">
-    <textarea matInput class="response" formControlName="sqResponse" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">DICE (Required for All New Applicants, Optional for Annual Vetting) (Was Derogatory Information Identified? Yes/No)</div>
-
-  <div fxLayout="row">
-    <div fxFlex="33" fxLayout="row">
-      <div fxFlex="60">DICE Query</div>
-      <mat-radio-group formControlName="diceQueryIndicator" aria-label="DICE Query">
-        <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-        <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-      </mat-radio-group>
-    </div>
-  </div>
-
-  <div>Mandatory if any of the response is "Yes"</div>
-  <mat-form-field fxFlex appearance="outline" id="diceQueryResponse">
-    <textarea matInput class="response" formControlName="diceQueryResponse" rows="3"></textarea>
-  </mat-form-field>
-  <hr>
-
-  <div class="title">Additional Vetting, If Needed or Required by Subject Matter Expert (SME)</div>
-
-  <div fxLayout="row">
-    <div fxFlex="30" style="margin-top:5px">Queries Run</div>
-    <mat-form-field  fxFlex="25" appearance="outline">
-      <input matInput formControlName="queriesRun1" id="queriesRun1" aria-label="Queries Run 1">
-    </mat-form-field>
-    <div fxFlex="5"></div>
-    <mat-form-field fxFlex="25" appearance="outline">
-      <input matInput formControlName="queriesRun2" id="queriesRun2" aria-label="Queries Run 2">
-    </mat-form-field>
-  </div>
-  <div fxLayout="row">
-    <div fxFlex="30" style="margin-top:-10px">Name of SME who Conducted Query</div>
-    <mat-form-field style="margin-top:-15px" fxFlex="25" appearance="outline">
-      <input matInput formControlName="nameSme" id="nameSme" aria-label="Name of SME who Conducted Query1">
-    </mat-form-field>
-  </div>
-
-</div>
 </form>
-

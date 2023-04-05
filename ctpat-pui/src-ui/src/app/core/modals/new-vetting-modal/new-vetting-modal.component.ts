@@ -14,6 +14,7 @@ export class NewVettingModalComponent implements OnInit,  OnDestroy {
   public newVettingForm!: FormGroup;
   private subscriptions = new Subscription();
   public submitted = false;
+  public businessType!: string;
 
   displayedColumns: string[] = [];
   public dataSourceQuestions = new MatTableDataSource<any>();
@@ -23,7 +24,7 @@ export class NewVettingModalComponent implements OnInit,  OnDestroy {
 
   ngOnInit(): void {
     this.submitted = false;
-
+    this.businessType = this.data.businessType;
     this.newVettingForm = this.formBuilder.group({
       // companyName: new FormControl('')
     });

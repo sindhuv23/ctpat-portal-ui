@@ -1,11 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="start center" [ngClass]="{hideElement: hideProfileWarning}" class="profileWarning">
-  <div><mat-icon class="bigIcon">warning</mat-icon></div><div fxFlex="1"></div>
-  <div>Warning: Complete your profile.</div><div fxFlex="2"></div>
-  <div><a (click)="addBusinessEntityInfo()" aria-label="Add Business Entity Info"
-    (keyup.enter)="addBusinessEntityInfo()" role="button" tabindex="0">Add Business Entity Info</a></div><div fxFlex="2"></div>
-  <div><a (click)="addMrInfo()" aria-label="Add MR Info"
-    (keyup.enter)="addMrInfo()" role="button" tabindex="1"> Add MR Info (Optional)</a></div>
-</div>
+<app-profile-incomplete-error-message></app-profile-incomplete-error-message>
 
 <mat-accordion multi>
   <mat-expansion-panel class="mat-elevation-z0" #panelA expanded tid="panel-account-info">
@@ -34,7 +27,7 @@
 
   </mat-expansion-panel><hr>
 
-  <mat-expansion-panel class="mat-elevation-z0" #panelC expanded tid="panel-center-excellence-expertise">
+  <mat-expansion-panel *ngIf="!hideCeeSection" class="mat-elevation-z0" #panelC expanded tid="panel-center-excellence-expertise">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon *ngIf=!panelC.expanded>chevron_right</mat-icon>
@@ -44,22 +37,47 @@
     </mat-expansion-panel-header>
 
     <app-center-excellence-expertise></app-center-excellence-expertise>
+    <hr>
+  </mat-expansion-panel>
 
-  </mat-expansion-panel><hr>
-
-  <mat-expansion-panel class="mat-elevation-z0" #panelD expanded tid="panel-account-info">
+  <mat-expansion-panel *ngIf="!hideCoSection" class="mat-elevation-z0" #panelD expanded tid="panel-account-info">
     <mat-expansion-panel-header>
       <mat-panel-title>
         <mat-icon *ngIf=!panelD.expanded>chevron_right</mat-icon>
         <mat-icon *ngIf=panelD.expanded>expand_more</mat-icon>
-        Country of Origin (COO). Top Five Countries of Origin by Value
+        Country of Origin (CO). Top Five Countries of Origin by Value
       </mat-panel-title>
     </mat-expansion-panel-header>
 
     <app-country-of-origin></app-country-of-origin>
 
-  </mat-expansion-panel><hr>
+  </mat-expansion-panel>
 
+  <mat-expansion-panel *ngIf="!hideTransportSection" class="mat-elevation-z0" #panelE expanded tid="panel-modes-transport">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelE.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelE.expanded>expand_more</mat-icon>
+        Transportation
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-modes-of-transport></app-modes-of-transport>
+
+  </mat-expansion-panel>
+
+  <mat-expansion-panel *ngIf="!hideHwyCarrierSection" class="mat-elevation-z0" #panelE expanded tid="panel-hwy-carrier">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon *ngIf=!panelE.expanded>chevron_right</mat-icon>
+        <mat-icon *ngIf=panelE.expanded>expand_more</mat-icon>
+        Border Crossings & Services Information
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <app-highway-carriers></app-highway-carriers>
+
+  </mat-expansion-panel>
 
 </mat-accordion>
 

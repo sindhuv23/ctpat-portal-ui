@@ -6,6 +6,9 @@ import { AddMilestoneModalComponent } from '../core/modals/add-milestone-modal/a
 import { EligibilityModalComponent } from '../core/modals/eligibility-modal/eligibility-modal.component';
 import { DetailsService } from '../core/services/details.service';
 import { environment } from 'src/environments/environment';
+import { BusinessEntityInformationComponent } from './business-entity-info-tab/business-entity-information/business-entity-information.component';
+import { ModesOfTransportComponent } from './business-entity-info-tab/modes-of-transport/modes-of-transport.component';
+import { CenterExcellenceExpertiseComponent } from './business-entity-info-tab/center-excellence-expertise/center-excellence-expertise.component';
 
 @Component({
   selector: 'app-details',
@@ -31,7 +34,10 @@ export class DetailsComponent implements OnInit, OnDestroy {
   public isLoadingDetails = false;
 
 
-  constructor(public dialog: MatDialog, public detailsService: DetailsService, public accountService: AccountService) { }
+  constructor(public dialog: MatDialog, public detailsService: DetailsService, public accountService: AccountService,
+              private businessEntityInformationComponent: BusinessEntityInformationComponent,
+              private modesOfTransportComponent: ModesOfTransportComponent,
+              private centerExcellenceExpertiseComponent: CenterExcellenceExpertiseComponent) { }
 
   ngOnInit(): void {
     this.showActionMenu = true;
@@ -60,8 +66,11 @@ export class DetailsComponent implements OnInit, OnDestroy {
             this.setActionItems();
           }
         }, error => {
-
         });
+
+        this.businessEntityInformationComponent.ngOnInit();
+        this.modesOfTransportComponent.ngOnInit();
+        this.centerExcellenceExpertiseComponent.ngOnInit();
       }
     }));
 
@@ -70,10 +79,16 @@ export class DetailsComponent implements OnInit, OnDestroy {
         this.showDetails = false;
       }
     }));
+
+    this.subscriptions.add(this.detailsService.currentTab$.subscribe((index: any) => {
+      if (index) {
+        this.currentTabIndex = index;
+      }
+    }));
   }
 
   setActionItems(): void {
-    var baseActionMenuItems = [{ name: 'Generate PDF', action: 'viewPDF' }, { name: 'Add Milestone/Note', action: 'addMilestone' }];
+    var baseActionMenuItems = [{ name: 'Generate PDF', action: 'viewPDF' }, { name: 'Add Milestone', action: 'addMilestone' }];
     if (this.tcInd != "N") {
       baseActionMenuItems.push({ name: 'Launch Trade Compliance', action: 'launchTradeCompliance' });
     }
@@ -96,10 +111,17 @@ export class DetailsComponent implements OnInit, OnDestroy {
 
   openAddMilestoneModal(): void {
     const dialogRef = this.dialog.open(AddMilestoneModalComponent, {
-      data: {},
+      data: {title: "Add Milestone"},
       width: '560px',
       height: '300px',
       disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((result)=> {
+      this.accountService.getMileStoneDets(this.ctpatAccountId).subscribe((milestones: any[]) => {
+        if (milestones) {
+          this.accountService.broadcastMilestoneResult(milestones);
+        }
+      })
     });
   }
   launchTradeCompliance(): void {
@@ -126,7 +148,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
     }else if (this.tcInd == "Y"){
       window.open(environment.tcLinkUrl + this.ctpatAccountId, '_blank')
     }
-    
+
   }
 
   ngOnDestroy(): void {

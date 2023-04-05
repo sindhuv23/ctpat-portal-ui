@@ -1,0 +1,10 @@
+<div fxLayout="row" fxLayoutAlign="start center" *ngIf="!hideProfileWarning" class="profileWarning">
+  <div><mat-icon class="bigIcon">warning</mat-icon></div><div fxFlex="1"></div>
+  <div *ngIf="currentTabIndex==0||currentTabIndex==3">
+    Warning: Please provide <a (click)="addBusinessEntityInfo()" aria-label="Add Business Entity Info"
+    (keyup.enter)="addBusinessEntityInfo()" role="button" tabindex="0">
+    additional required information </a> to complete your profile.</div>
+
+  <div *ngIf="currentTabIndex==1">
+    Warning: Please provide additional required information to complete your profile.</div>
+</div>

@@ -1,17 +1,19 @@
-<button (click)="editCee(ceeId)" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+<div *ngIf="!this.cee || !this.commodities" class="error-text">Please enter U.S. Customs and Border Protection's Centers for Excellence and Expertise (CEE) Data </div>
+
+<button (click)="editCee()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
 aria-label="Edit CEE" accesskey="E">Edit CEE</button>
 
 <div fxLayout="column">
   <div class="item">
     <span class="itemHeader1">Approved Participant of US CBP CEE</span>
-    <span>Yes</span>
+    <span>{{approval}}</span>
   </div>
   <div class="item">
     <span class="itemHeader1">CEE</span>
-    <span>Base Metals</span>
+    <span>{{cee}}</span>
   </div>
   <div class="item">
     <span class="itemHeader1">What Commodities do you Import</span>
-    <span>Base Metals</span>
+    <span>{{commodities}}</span>
   </div>
 </div>

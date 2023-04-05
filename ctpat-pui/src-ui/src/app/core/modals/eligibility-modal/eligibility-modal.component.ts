@@ -34,7 +34,7 @@ export class EligibilityModalComponent implements OnInit, OnDestroy {
         this.ctpatAccountId = id;
         this.accountService.getAccountDetails(id).subscribe((data: any) => {
           if (data) {
-            this.accountService.broadcastDetailTitleBar(data.companyName, data.tcStatus, data.applicationStatus, data.anlStatus);
+            this.accountService.broadcastDetailTitleBar(data);
             this.accountData = new Object();
             Object.assign(this.accountData, data);
           }

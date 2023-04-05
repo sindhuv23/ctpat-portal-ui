@@ -4,6 +4,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { AccountService } from '../core/services/account.service';
+import { ReferenceService } from '../core/services/reference.service';
 import { UtilFunctions } from '../core/utils/ctpat.function';
 
 @Component({
@@ -33,7 +34,7 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   public showNoRecordMessage = false;
   public filterText = '';
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private referenceService: ReferenceService) { }
 
   ngOnInit(): void {
     this.subscriptions.add(this.accountService.getAccountData('getBusinessTypeList').subscribe((data: any) => {
@@ -83,11 +84,11 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   }
 
   showDetails(ctpatAccount: any): void{
-    
+
      this.accountService.broadcastDetailLoadingStatus(true);
      this.accountService.broadcastAccountId(ctpatAccount.ctpatAccountId);
      this.accountService.broadcastBusinessTypeId(ctpatAccount.businessTypeId);
-    
+
   }
 
   applyFilter(event: Event): void {

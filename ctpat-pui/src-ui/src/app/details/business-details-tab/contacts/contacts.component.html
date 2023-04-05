@@ -31,7 +31,7 @@
 
       <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Type</th>
-        <td mat-cell *matCellDef="let row">{{row.type}}</td>
+        <td mat-cell *matCellDef="let row">{{row.type | contactTypes}}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">
@@ -53,6 +53,17 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Last Login</th>
         <td mat-cell *matCellDef="let row">{{row.lastLogin}}</td>
       </ng-container>
+
+      <ng-container matColumnDef="emailNotificatonPortal">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Email Notification (Portal)</th>
+        <td mat-cell *matCellDef="let row">{{row.emailNotificatonPortal}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="emailNotificatonTC" *ngIf="tcInd === 'Y'">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header scope="col">Email Notification (Trade Compliance)</th>
+        <td mat-cell *matCellDef="let row">{{row.emailNotificatonTC}}</td>
+      </ng-container>
+
       <ng-container matColumnDef="entryId">
         <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
         <td mat-cell *matCellDef="let row" style="text-align:center">

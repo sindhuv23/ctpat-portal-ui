@@ -1,0 +1,11 @@
+<div *ngIf="!modesTransport" class="error-text">Please select the mode of transportation you use</div>
+
+<button (click)="editModesTransport()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+aria-label="Edit Mode(s) of Transport" accesskey="E">Edit Mode(s) of Transport</button>
+
+<div fxLayout="column">
+  <div class="item" *ngIf="modesTransport">
+    <span class="itemHeader1">Mode(s) of Transport</span>
+    <span>{{modesTransport}}</span>
+  </div>
+</div>

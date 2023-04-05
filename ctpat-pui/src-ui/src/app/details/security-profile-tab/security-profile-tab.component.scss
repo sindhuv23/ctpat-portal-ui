@@ -40,3 +40,11 @@ hr{
   padding-bottom: 5px;
   background-color: #eeeeff;
 }
+
+a:hover {
+  cursor: pointer;
+}
+a {
+  text-decoration: underline;
+  color: blue;
+}

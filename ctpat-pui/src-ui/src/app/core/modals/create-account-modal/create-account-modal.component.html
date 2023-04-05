@@ -57,10 +57,10 @@
           <div fxFlex="10"></div>
           <mat-form-field fxFlex="60" appearance="outline">
             <mat-select formControlName="businessTypeId" id="businessTypeId" placeholder="--- Select ---" aria-label="Business Type"
-              (click)="businessTypeSelected($event)" (selectionChange)="businessTypeSelected($event.value)">
+               (selectionChange)="businessTypeSelected($event.value)">
                 <mat-option value="-1">--Select--</mat-option>
                 <ng-container>
-                  <mat-option [value]="refData.id" *ngFor="let refData of businessTypeList$ | async">
+                  <mat-option [value]="refData.id" *ngFor="let refData of businessTypeList">
                     {{refData.businessType}}
                   </mat-option>
                 </ng-container>
@@ -243,21 +243,33 @@
 
     <div *ngIf="showEligibilityQuestions" fxLayout="column" id="eligibilityQuestions">
       <div class="label" style="margin-bottom: 15px">
-        Eligibility Questions
+        Eligibility Questions<span class="required"> *</span>
+      </div>
+      <div style="margin-bottom: 15px" *ngIf="wrongSelection">
+        <mat-error>
+          U.S. Customs and Border Protection thanks you for your interest in CTPAT. Based on your response to the
+          eligibility questionnaire, your organization is
+          not currently eligible for CTPAT certification.
+          <br/>
+          If you have any questions regarding CTPAT eligibility please visit the following address:
+          <a href="https://www.cbp.gov/border-security/ports-entry/cargo-security/c-tpat-customs-trade-partnership-against-terrorism/apply/security-criteria" target="_blank">https://www.cbp.gov/border-security/ports-entry/cargo-security/c-tpat-customs-trade-partnership-against-terrorism/apply/security-criteria</a>
+          <br/>
+          For further CTPAT program information please email CTPAT support at <a href="mailto:industry.partnership@cbp.dhs.gov">industry.partnership@cbp.dhs.gov</a>.
+        </mat-error>
       </div>
       <div style="margin-bottom: 15px">
         <table mat-table title="eligibilityQuestions" id="eligibilityQuestionsTable" [dataSource]="dataSourceQuestions" name="eligibilityQuestionsTable" class="row mat-elevation-z0">
 
-          <ng-container matColumnDef="selectionId">
+          <ng-container matColumnDef="eligibilityCatalogId">
             <td mat-cell *matCellDef="let row">
               <fieldset style="display:inline; border:none">
                 <div fxLayout="row" style="margin-left: -20px">
                   <div fxLayout="row">
-                    <div><input type="radio" value="{{row.selectionId}}true" name="{{row.selectionId}}" aria-label="Yes"></div>
+                    <div><input type="radio" value="Yes" name="{{row.eligibilityCatalogId}}" aria-label="Yes" (click)="verifiSelection(row, radioYes.value)" #radioYes></div>
                     <div><label for="radioYes">&nbsp;Yes&nbsp;&nbsp;&nbsp;</label></div>
                   </div>
                   <div fxLayout="row">
-                    <div><input type="radio" value="{{row.selectionId}}false" name="{{row.selectionId}}" aria-label="No"></div>
+                    <div><input type="radio" value="No" name="{{row.eligibilityCatalogId}}" aria-label="No" (click)="verifiSelection(row, radioNo.value)" #radioNo></div>
                     <div><label for="radioNo">&nbsp;No</label></div>
                   </div>
                 </div>
@@ -397,7 +409,7 @@
   <mat-dialog-actions>
     <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
     <div fxFlex></div>
-    <button mat-raised-button type="submit" color="primary" (click)="save()" aria-label="Save" accesskey="P" [disabled]="createAccountForm.invalid">Save</button>
+    <button mat-raised-button type="submit" color="primary" (click)="save()" aria-label="Save" accesskey="P" [disabled]="isFormInvalid()">Save</button>
   </mat-dialog-actions>
 </div>
 </form>

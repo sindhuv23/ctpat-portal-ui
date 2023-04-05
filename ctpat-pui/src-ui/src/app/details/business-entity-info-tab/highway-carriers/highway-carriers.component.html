@@ -1,0 +1,31 @@
+<div *ngIf="!borderCrossed" class="error-text">Border Crossed (Highway Carrier) is not valid</div>
+<div *ngIf="!numBorderCrossings" class="error-text">Number of Border Crossings (Highway Carrier) cannot be 0 or null</div>
+<div *ngIf="!borderCrossings" class="error-text">Border Crossings (Highway Carrier) is not valid</div>
+<div *ngIf="!servicesOffered" class="error-text">Services Offered is required</div>
+<div *ngIf="!driverSources" class="error-text">Driver Sources is required</div>
+
+<button (click)="editHwyCarrier()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+aria-label="Edit Highway Carrier" accesskey="E">Edit Border Crossings & Services Information</button>
+
+<div fxLayout="column">
+  <div class="item" *ngIf="borderCrossed">
+    <span class="itemHeader1">Border Crossed</span>
+    <span>{{borderCrossed}}</span>
+  </div>
+  <div class="item" *ngIf="numBorderCrossings">
+    <span class="itemHeader1">Number of Border Crossings</span>
+    <span>{{numBorderCrossings}}</span>
+  </div>
+  <div class="item" *ngIf="borderCrossings">
+    <span class="itemHeader1">Border Crossings</span>
+    <span>{{borderCrossings}}</span>
+  </div>
+  <div class="item" *ngIf="servicesOffered">
+    <span class="itemHeader1">Services Offered</span>
+    <span>{{servicesOffered}}</span>
+  </div>
+  <div class="item" *ngIf="driverSources">
+    <span class="itemHeader1">Driver Sources</span>
+    <span>{{driverSources}}</span>
+  </div>
+</div>

@@ -1,6 +1,6 @@
 <div id="outerContainer">
     <div fxLayout="row" id="createHeader">
-        <h3 mat-dialog-title class="dialog-header">Add Milestone / Notes</h3>
+        <h3 mat-dialog-title class="dialog-header">{{title}}</h3>
         <div fxFlex></div>
         <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
             aria-label="clear">
@@ -11,36 +11,36 @@
 
     <div id="midContainer">
         <mat-dialog-content>
+            <div fxLayout="row" class="required required-text">* Required</div>
             <form [formGroup]="milestoneForm" novalidate>
                 <div fxLayout="column">
                     <div class="m-t-10">
                         <div fxLayout="row">
-                            <label fxFlex="20" class="label" for="subject">Note Type<span class="required">
+                            <label fxFlex="20" class="label" for="subject">Type<span class="required">
                                     *</span></label>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Note Type</mat-label>
+                            <mat-form-field appearance="outline">
+                                
                                 <mat-select formControlName="noteType">
-                                    <mat-option *ngFor="let note of noteTypes" [value]="note.value">
+                                    <mat-option value=''>--Select--</mat-option>
+                                    <mat-option *ngFor="let note of noteTypes | async" [value]="note.id">
                                         {{note.name}}
                                     </mat-option>
                                 </mat-select>
-                                <mat-error *ngIf="f.noteType.errors && f.noteType.errors.required">Note type
-                                    is required</mat-error>
+                                <mat-error *ngIf="submitted && f.noteType.errors">Required field</mat-error>
                             </mat-form-field>
                         </div>
 
                         <div fxLayout="row">
-                            <label class="label" for="noteType">Note Text<span class="required">
+                            <label class="label" for="noteType">Text<span class="required">
                                     *</span></label>
                         </div>
-                        <div fxLayout="row">
+                        <div fxLayout="row" class="text-area-row">
                             <mat-form-field fxFlex appearance="outline">
                                 <textarea matInput formControlName="noteText" id="noteText" aria-label="Email Body"
                                     placeholder="" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
                                     cdkAutosizeMinRows="3" cdkAutosizeMaxRows="5"></textarea>
 
-                                <mat-error *ngIf="f.noteText.errors && f.noteText.errors.required">Note Text
-                                    is required</mat-error>
+                                <mat-error *ngIf="submitted && f.noteText.errors && f.noteText.errors.required">Required field</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
             <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="C"
             aria-label="Cancel">Cancel</button>
             <div fxFlex></div>
-            <button mat-raised-button type="submit" color="primary" (click)="cancel()" accesskey="S"
+            <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P"
                 aria-label="Save">Save</button>
         </mat-dialog-actions>
     </div>

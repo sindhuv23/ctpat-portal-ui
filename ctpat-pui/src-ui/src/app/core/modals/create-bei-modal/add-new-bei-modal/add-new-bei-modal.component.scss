@@ -63,3 +63,38 @@ mat-dialog-actions{
   bottom: 0px;
   background-color: lightgrey;
 }
+
+#beiValueContainer{
+  font: 400 14px/20px Roboto, "Helvetica Neue", sans-serif;
+  pointer-events: auto;
+  color: rgba(0,0,0,.87);
+  font-size: inherit;
+  font-weight: 400;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+  line-height: 1.225em !important;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  flex: 1 1 100%;
+  box-sizing: border-box;
+  max-width: 60%;
+}
+#beiValue{
+  pointer-events: auto;
+  font: inherit;
+  background: rgba(0,0,0,0);
+  color: currentColor;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  vertical-align: bottom;
+  text-align: inherit;
+  box-sizing: content-box;
+  margin-top: -0.0625em;
+  animation: cdk-text-field-autofill-end 0s 1ms;
+  caret-color: #f44336;
+}

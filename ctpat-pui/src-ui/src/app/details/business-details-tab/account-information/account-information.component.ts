@@ -21,7 +21,7 @@ export class AccountInformationComponent implements OnInit {
       if (id){
         this.accountService.getAccountDetails(id).subscribe((data: any) => {
           if (data){
-            this.accountService.broadcastDetailTitleBar(data.companyName, data.tcStatus, data.applicationStatus, data.anlStatus);
+            this.accountService.broadcastDetailTitleBar(data);
             this.accountData = new Object();
             Object.assign(this.accountData, data);
             this.accountData.businessStartDate = UtilFunctions.toCbpDateFormat(this.accountData.businessStartDate);

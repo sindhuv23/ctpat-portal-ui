@@ -1,0 +1,99 @@
+<div id="outerContainer">
+  <form [formGroup]="editBorderCrossingForm" novalidate>
+
+    <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h3 mat-dialog-title class="dialog-header">Border Crossings and Services Information</h3>
+      <div fxFlex></div>
+      <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+          aria-label="clear">
+          <mat-icon>clear</mat-icon>
+      </button>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+
+    <div id="midContainer">
+      <mat-dialog-content>
+        <div class="required required-text">* Required</div><br>
+        <div fxLayout="row">
+
+          <div fxFlex="45" fxLayout="column">
+
+              <label class="label" for="borderCrossed">Border Crossed<span class="required"> *</span></label>
+              <mat-form-field appearance="outline">
+                <mat-select formControlName="borderCrossed" id="borderCrossed" placeholder="--- Select ---" aria-label="Border Crossed"
+                (selectionChange)="borderCrossedSelected($event.value)">
+                    <mat-option>--Select--</mat-option>
+                    <ng-container>
+                      <mat-option value="CAN">U.S. / Canadian Border</mat-option>
+                      <mat-option value="MEX">U.S. / Mexican Border</mat-option>
+                      <mat-option value="BOTH">Both U.S. / Canadian & U.S. / Mexican Borders</mat-option>
+                    </ng-container>
+                </mat-select>
+                <mat-error *ngIf="submitted && f.borderCrossed.errors && f.borderCrossed.errors.required">Border Crossed is required</mat-error>
+              </mat-form-field>
+
+              <label class="label" for="numBorderCrossings">Number of Border Crossings<span class="required"> *</span></label>
+              <mat-form-field appearance="outline">
+                <input matInput formControlName="numBorderCrossings" id="numBorderCrossings" aria-label="Number of Border Crossings">
+                <mat-error *ngIf="submitted && f.numBorderCrossings.errors && f.numBorderCrossings.errors.required">Number of Border Crossings is required</mat-error>
+                <mat-error *ngIf="submitted && f.numBorderCrossings.errors && f.numBorderCrossings.errors.pattern ">Numbers and letters only</mat-error>
+              </mat-form-field>
+
+              <label class="label" for="borderCrossings">Border Crossings<span class="required"> *</span></label>
+              <mat-form-field appearance="outline">
+                <mat-select formControlName="borderCrossings" id="borderCrossings" placeholder="--Select--" aria-label="Border Crossings" multiple>
+                    <ng-container *ngFor="let border of borderCrossingList">
+                      <mat-option [value]="border.id">
+                       {{border.border_crossing_description}}
+                      </mat-option>
+                    </ng-container>
+                </mat-select>
+                <mat-error *ngIf="submitted && f.borderCrossings.errors && f.borderCrossings.errors.required">Border Crossings is required</mat-error>
+              </mat-form-field>
+
+          </div>
+          <div fxFlex="10"></div>
+          <div fxFlex="45" fxLayout="column">
+
+                <div><label class="label" for="servicesOffered">Services Offered<span class="required"> *</span></label></div>
+
+                <ng-container formArrayName="servicesOffered" *ngFor="let service of servicesOfferedArray.controls, let i = index">
+                  <div>
+                    <mat-checkbox color="primary" [formControlName] = 'i' (change)="populateServicesOffered()">
+                      <span style="font-weight: lighter;">{{servicesOfferedList[i].service_offered_description}}</span></mat-checkbox>
+                  </div>
+                </ng-container>
+
+                <div *ngIf="submitted&&!isAnyServicesOfferedSelected()" class="errorText">
+                  At least 1 service must be selected
+                </div>
+
+                <div fxFlex="5"></div>
+                <div><label class="label" for="driverSources">Driver Sources<span class="required"> *</span></label></div>
+
+                <ng-container formArrayName="driverSources" *ngFor="let source of driverSourcesArray.controls, let i = index">
+                  <div>
+                    <mat-checkbox color="primary" [formControlName] = 'i' (change)="populateDriverSources()">
+                      <span style="font-weight: lighter;">{{driverSourcesList[i].driver_source_description}}</span></mat-checkbox>
+                  </div>
+                </ng-container>
+
+                <div *ngIf="submitted&&!isAnyDriverSourcesSelected()" class="errorText">
+                  At least 1 driver source must be selected
+                </div>
+
+          </div>
+        </div>
+      </mat-dialog-content>
+    </div>
+
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+    </mat-dialog-actions>
+  </div>
+  </form>
+  </div>

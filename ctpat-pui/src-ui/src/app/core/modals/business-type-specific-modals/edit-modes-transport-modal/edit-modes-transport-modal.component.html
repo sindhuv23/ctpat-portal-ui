@@ -1,0 +1,54 @@
+<div id="outerContainer">
+  <form [formGroup]="modesTransportForm" novalidate>
+
+    <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h3 mat-dialog-title class="dialog-header">Transportation</h3>
+      <div fxFlex></div>
+      <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+          aria-label="clear">
+          <mat-icon>clear</mat-icon>
+      </button>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+
+    <div id="midContainer">
+      <mat-dialog-content>
+          <br>
+          <div fxLayout="row">
+            <label fxFlex="50" class="label" for="commodities">Select the mode(s) of transport you use<span class="required"> *</span></label>
+            <div fxFlex="5"></div>
+            <div fxFlex="45" fxLayout="column" style="overflow:hidden">
+
+              <div>
+                <mat-checkbox color="primary" formControlName="airIndicator" aria-label="Air"
+                for="air indicator"><span style="font-weight: lighter;">Air</span></mat-checkbox>
+              </div>
+              <div>
+                <mat-checkbox color="primary" formControlName="seaIndicator" aria-label="Sea"
+                for="sea indicator"><span style="font-weight: lighter;">Sea</span></mat-checkbox>
+              </div>
+              <div>
+                <mat-checkbox color="primary" formControlName="landIndicator" aria-label="Land"
+                for="land indicator"><span style="font-weight: lighter;">Land</span></mat-checkbox>
+              </div>
+              <div *ngIf="submitted&&!isAnyTransportModeSelected()" class="errorText">
+                At least 1 transport mode must be selected
+              </div>
+            </div>
+
+          </div>
+
+
+      </mat-dialog-content>
+    </div>
+
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+    </mat-dialog-actions>
+  </div>
+  </form>
+  </div>

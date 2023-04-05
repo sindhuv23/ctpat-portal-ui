@@ -16,10 +16,12 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
   private subscriptions = new Subscription();
   public submitted = false;
   public showEligibilityQuestions = false;
+  public eligibilityQuestions: any[] = [];
+  public wrongSelection = false;
 
-  displayedColumns: string[] = ['selectionId', 'question'];
+  displayedColumns: string[] = ['eligibilityCatalogId', 'question'];
   public dataSourceQuestions = new MatTableDataSource<any>();
-  public businessTypeList$!: Observable<any>;
+  public businessTypeList: Array<any> = [];
   public addressTypeList$!: Observable<any>;
   public stateList!: Array<any>;
   public stateDisplayList: Array<any> = [];
@@ -62,7 +64,7 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
       contactType: new FormControl('O', Validators.required),
       fax: new FormControl('')
     });
-    this.businessTypeList$ = this.accountService.getAccountData('getBusinessTypeList');
+    this.accountService.getAccountData('getBusinessTypeList').subscribe(res => this.businessTypeList = res);
     this.addressTypeList$ = this.accountService.getRefData('getAddressTypeList');
     this.accountService.getAccountData('getStateList').subscribe(states=> this.stateList = states);
     this.countryList$ = this.accountService.getAccountData('getCountryList'); 
@@ -71,20 +73,38 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
   }
 
   businessTypeSelected(event: any): void {
-    const businessType = this.createAccountForm.get('businessType')?.value;
-    if (!businessType) {
-      this.showEligibilityQuestions = false;
-    }
-    else if (businessType === 'importer'){ // pull corresponding questions based on type
-      this.showEligibilityQuestions = true;
+  let businessTypeId = this.createAccountForm.get('businessTypeId')?.value;
+   const businessType =  this.businessTypeList.find(obj => obj.id === businessTypeId).businessType;
+   if(businessType === 'Highway Carrier - U.S. / Mexico' || businessType === 'Highway Carrier - U.S. / Canada'){
+    businessTypeId = this.businessTypeList.find(obj => obj.businessType === 'Highway Carrier').id;
+   }
+    this.populateEligibilityQuestions(businessTypeId);
+  }
 
-      const data: any[] = [{selectionId: 'qid01', question: 'Question 1 from database Question 1 from database Question 1 from database Question 1 from database Question 1 from database Question 1 from database'},
-      {selectionId: 'qid02', question: 'Question 2 from database Question 2 from database Question 2 from database'},
-      {selectionId: 'qid03', question: 'Question 3 from database Question 3 from database Question 3 from database'},
-      {selectionId: 'qid04', question: 'Question 4 from database Question 4 from database Question 4 from database'},
-      {selectionId: 'qid05', question: 'Question 5 from database Question 5 from database Question 5 from database'}];
-      this.dataSourceQuestions = new MatTableDataSource<any>(data);
+  populateEligibilityQuestions(businessTypeId: any){
+    this.showEligibilityQuestions = false;
+    this.wrongSelection = false;
+    this.accountService.getEligibilityQuestionsByBusinessTypeId(businessTypeId).subscribe((res: any[])=>{
+      if(res && res.length>0){
+        this.showEligibilityQuestions = true;
+      }
+      this.eligibilityQuestions = res;
+      this.dataSourceQuestions = new MatTableDataSource<any>(res);
+    })
+  }
+
+  verifiSelection(row: any, selection: string){
+    const objIndex = this.eligibilityQuestions.findIndex((obj => obj.eligibilityCatalogId === row.eligibilityCatalogId));
+    this.eligibilityQuestions[objIndex].answer = selection;
+    if(this.eligibilityQuestions
+      .filter(obj => !(obj.answer === undefined || obj.answer === null))
+      .filter(obj => obj.answerToProceed !== obj.answer).length >0){
+        this.wrongSelection = true;
+    } else {
+      this.wrongSelection = false;
     }
+    
+    
   }
   
   populateStates(countryId: any): void {
@@ -98,14 +118,19 @@ export class CreateAccountModalComponent implements OnInit,  OnDestroy {
     return this.createAccountForm.controls;
   }
 
+  isFormInvalid(): boolean{
+    return (this.createAccountForm.invalid || this.wrongSelection || this.eligibilityQuestions.filter(obj => obj.answerToProceed !== obj.answer).length > 0)
+  }
+
   save(): void {
     this.submitted = true;
     // UI validation before this point
-    if (this.createAccountForm.invalid){
+    if (this.isFormInvalid()){
       return;
    }
    const account = this.createAccountForm.getRawValue();
    account.isMailingAddress = account.isMailingAddress ? 'Y' : 'N';
+   account.eligibilityInd ='Y';
     this.accountService.saveAccountData(account).subscribe(res => {
       console.log('Ctpat Account data saved, response => '+ res);
       this.accountService.broadcastDetailLoadingStatus(true);

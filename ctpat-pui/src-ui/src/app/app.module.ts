@@ -61,9 +61,9 @@ import { CenterExcellenceExpertiseComponent } from './details/business-entity-in
 import { CountryOfOriginComponent } from './details/business-entity-info-tab/country-of-origin/country-of-origin.component';
 import { AddNewBeiModalComponent } from './core/modals/create-bei-modal/add-new-bei-modal/add-new-bei-modal.component';
 import { EditBeiModalComponent } from './core/modals/create-bei-modal/edit-bei-modal/edit-bei-modal.component';
-import { EditCeeModalComponent } from './core/modals/create-bei-modal/edit-cee-modal/edit-cee-modal.component';
-import { AddCountryOfOriginModalComponent } from './core/modals/create-bei-modal/add-country-of-origin-modal/add-country-of-origin-modal.component';
-import { EditCountryOfOriginModalComponent } from './core/modals/create-bei-modal/edit-country-of-origin-modal/edit-country-of-origin-modal.component';
+import { EditCeeModalComponent } from './core/modals/business-type-specific-modals/edit-cee-modal/edit-cee-modal.component';
+import { AddCountryOfOriginModalComponent } from './core/modals/business-type-specific-modals/add-country-of-origin-modal/add-country-of-origin-modal.component';
+import { EditCountryOfOriginModalComponent } from './core/modals/business-type-specific-modals/edit-country-of-origin-modal/edit-country-of-origin-modal.component';
 import { PartnerDocumentTabComponent } from './details/documents-tab/partner-document-tab/partner-document-tab.component';
 import { InternalDocumentTabComponent } from './details/documents-tab/internal-document-tab/internal-document-tab.component';
 import { UploadDocumentModalComponent } from './core/modals/upload-document-modal/upload-document-modal.component';
@@ -118,8 +118,14 @@ import { AddNewContactUserComponent } from './details/business-details-tab/add-n
 import { DocumentHistoryModalComponent } from './core/modals/document-history-modal/document-history-modal.component';
 import { EligibilityModalComponent } from './core/modals/eligibility-modal/eligibility-modal.component';
 import { AccountStatusPipe } from './core/pipes/account-status.pipe';
+import { ContactTypesPipe } from './core/pipes/contact-types.pipe';
 import { CreateAddressModalComponent } from './core/modals/create-address-modal/create-address-modal.component';
 import { ConfirmSetPrimaryDialogComponent } from './details/business-details-tab/confirm-set-primary-dialog/confirm-set-primary-dialog.component';
+import { ModesOfTransportComponent } from './details/business-entity-info-tab/modes-of-transport/modes-of-transport.component';
+import { EditModesTransportModalComponent } from './core/modals/business-type-specific-modals/edit-modes-transport-modal/edit-modes-transport-modal.component';
+import { ProfileIncompleteErrorMessageComponent } from './details/business-entity-info-tab/profile-incomplete-error-message/profile-incomplete-error-message.component';
+import { HighwayCarriersComponent } from './details/business-entity-info-tab/highway-carriers/highway-carriers.component';
+import { EditHwyCarrierModalComponent } from './core/modals/business-type-specific-modals/edit-hwy-carrier-modal/edit-hwy-carrier-modal.component';
 
 
 @NgModule({
@@ -207,8 +213,14 @@ import { ConfirmSetPrimaryDialogComponent } from './details/business-details-tab
       AddOrConfirmEmailComponent,
       AddNewContactUserComponent,
       AccountStatusPipe,
+      ContactTypesPipe,
       CreateAddressModalComponent,
-      ConfirmSetPrimaryDialogComponent
+      ConfirmSetPrimaryDialogComponent,
+      ModesOfTransportComponent,
+      EditModesTransportModalComponent,
+      ProfileIncompleteErrorMessageComponent,
+      HighwayCarriersComponent,
+      EditHwyCarrierModalComponent
    ],
   imports:[
     BrowserModule,
