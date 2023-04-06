@@ -45,7 +45,7 @@ aria-label="Add New BEI" accesskey="B">Add New</button>
       <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
       <td mat-cell *matCellDef="let row" style="text-align:center">
         <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
-        <mat-icon (click)="editBeiEntry(row.entryId)">edit</mat-icon></td>
+        <mat-icon (click)="editBeiEntry(row)">edit</mat-icon></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumnsBeiList" name="beiListTableHeader"></tr>

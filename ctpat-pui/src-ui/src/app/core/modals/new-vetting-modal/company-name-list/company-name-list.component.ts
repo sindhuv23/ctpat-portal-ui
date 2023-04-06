@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { AddCompanyModalComponent } from '../../add-company-modal/add-company-modal.component';
 
 @Component({
   selector: 'app-company-name-list',
@@ -32,7 +33,13 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   addNewCompanyName(): void{
-    console.log('open add company name modal');
+    console.log('open add company name modal'); 
+    const confirmRef = this.dialog.open(AddCompanyModalComponent, {
+      disableClose: true,
+      width: '820px',
+      height: '360px',
+      data: {}
+    });
   }
 
   confirmDeletion(id: any): void{
@@ -61,8 +68,14 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
   }
 
   // open edit company name modal
-  editCompanyNameEntry(id: any): void{
-    console.log('edit ID ' + id);
+  editCompanyNameEntry(row: any): void{
+    console.log('edit row ' + row);
+    const confirmRef = this.dialog.open(AddCompanyModalComponent, {
+      disableClose: true,
+      width: '820px',
+      height: '360px',
+      data: {companyInfo: row}
+    });
   }
 
   ngOnDestroy(): void {

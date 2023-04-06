@@ -38,8 +38,32 @@
           aria-label="BEI Value" placeholder="{{inputPlaceholder}}"
           [(ngModel)] = "inputValue">
         </mat-form-field>
-        
       </div>
+      <ng-container *ngIf="data.parentType === 'Vetting'">
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="vettedApproved">Vetted Approved</label>
+          <div fxFlex="60">
+            <mat-checkbox formControlName="vettedApproved" id="vettedApproved" color="primary" aria-label="Vetted Approved"></mat-checkbox>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="duplicateAccountName">Duplicate Account Name</label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="duplicateAccountName" id="duplicateAccountName" 
+            aria-label="Duplicate Account Name">
+          </mat-form-field>
+        </div>
+
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="duplicateAccountNumber">Duplicate Account #</label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="duplicateAccountNumber" id="duplicateAccountNumber" 
+            aria-label="Duplicate Account">
+          </mat-form-field>
+        </div>
+    </ng-container>
+
       <div fxLayout="row" style="color :#A0001E" *ngIf="showError">{{errorMessage}}</div>
   </div>
 </mat-dialog-content>

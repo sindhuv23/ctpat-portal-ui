@@ -1,0 +1,125 @@
+<div id="outerContainer">
+
+    <form [formGroup]="createCompanyForm" novalidate>
+  
+    <div fxLayout="row" id="createHeader">
+      <h3 mat-dialog-title class="dialog-header">Add New Company</h3>
+      <div fxFlex></div>
+                <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+                    aria-label="clear">
+                    <mat-icon>clear</mat-icon>
+                </button>
+    <mat-divider class="divider"></mat-divider>
+    </div>
+  
+  <div id="midContainer">
+    <mat-dialog-content>
+        <div fxLayout="column" fxFlex>
+            <div fxLayout="row" fxLayoutAlign="end center">
+                <div class="required required-text">* Required</div>
+            </div>
+            <div fxLayout="row">
+                <div fxFlex="45">
+                    <label fxFlex="45" class="label" for="typeNameId">Company Name<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="companyName" id="companyName" aria-label="Company Name">
+                        <mat-error *ngIf="submitted && f.companyName.errors && f.companyName.errors.required">Company Name is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="5"></div>
+                <div fxFlex>
+                    <label fxFlex="45" class="label" for="typeNameId">Doing Business As<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <div fxFlex>
+                        <mat-checkbox formControlName="doingBusinessAs" id="doingBusinessAs" color="primary" aria-label="Doing Business As"></mat-checkbox>
+                        <mat-error *ngIf="submitted && f.doingBusinessAs.errors && f.doingBusinessAs.errors.required">Doing Business As is required</mat-error>
+                    </div>
+                </div>
+            </div>
+
+            <div fxLayout="row">
+                <div fxFlex="45">
+                    <label fxFlex="45" class="label" for="typeNameId">Business Phone<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <mat-form-field fxFlex appearance="outline">
+                        <input matInput formControlName="businessPhone" id="businessPhone" aria-label="Business Phone">
+                        <mat-error *ngIf="submitted && f.businessPhone.errors && f.businessPhone.errors.required">Business Phone is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="5"></div>
+                <div fxFlex>
+                    <label fxFlex="45" class="label" for="typeNameId">Business Fax<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <div fxFlex></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                        <input matInput formControlName="businessFax" id="businessFax" aria-label="Business Fax">
+                        <mat-error *ngIf="submitted && f.businessFax.errors && f.businessFax.errors.required">Business Fax is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row">
+                <div fxFlex="45">
+                    <label fxFlex="45" class="label" for="typeNameId">Ownership Type<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <mat-form-field fxFlex appearance="outline">
+                        <mat-select formControlName="ownershipTypeId" id="ownershipTypeId" placeholder="--- Select ---" aria-label="Ownership Type">       
+                        <mat-option value="-1">--Select--</mat-option>
+                          <ng-container>
+                            <mat-option [value]="refData.id" *ngFor="let refData of ownershipType$ | async">
+                              {{refData.ownerType}}
+                            </mat-option>
+                          </ng-container>
+                      </mat-select>
+                        <mat-error *ngIf="submitted && f.ownershipTypeId.errors && f.ownershipTypeId.errors.required">Ownership Type is required</mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div fxFlex="5"></div>
+                <div fxFlex>
+                    <label fxFlex="45" class="label" for="typeNameId">Years in Experience<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <div fxFlex></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                        <input matInput formControlName="yearsInBusiness" id="yearsInBusiness" aria-label="Years in Experience">
+                        <mat-error *ngIf="submitted && f.yearsInBusiness.errors && f.yearsInBusiness.errors.required">Years in Experience is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div fxLayout="row">
+                <div fxFlex="45">
+                    <label fxFlex="45" class="label" for="typeNameId">Number of Employees<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <mat-form-field fxFlex appearance="outline">
+                        <input matInput formControlName="numberOfEmployess" id="numberOfEmployess" aria-label="Number of Employees">
+                        <mat-error *ngIf="submitted && f.numberOfEmployess.errors && f.numberOfEmployess.errors.required">Number of Employees is required</mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxFlex="5"></div>
+                <div fxFlex>
+                    <label fxFlex="45" class="label" for="typeNameId">Business Website Address<span class="required"> *</span></label>
+                    <div fxFlex="5"></div>
+                    <div fxFlex></div>
+                    <mat-form-field fxFlex="60" appearance="outline">
+                        <input matInput formControlName="businessWebsiteAddress" id="businessWebsiteAddress" aria-label="Business Website Address">
+                        <mat-error *ngIf="submitted && f.businessWebsiteAddress.errors && f.businessWebsiteAddress.errors.required">Business Website Address is required</mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+    </div>
+    </mat-dialog-content>
+</div>
+  
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" aria-label="Save" accesskey="P">Save</button>
+    </mat-dialog-actions>
+  </div>
+  </form>
+  </div>
+  

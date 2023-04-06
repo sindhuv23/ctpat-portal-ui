@@ -36,7 +36,7 @@ aria-label="Add Contact" accesskey="C">Add Contact</button>
 
     <ng-container matColumnDef="idNumbers">
       <th mat-header-cell *matHeaderCellDef scope="col">SSN / SIN / CURP /RFC</th>
-      <td mat-cell *matCellDef="let docRow" class="newLineInData">{{docRow.idNumbers}}</td>
+      <td mat-cell *matCellDef="let docRow" class="newLineInData">{{docRow.ssn}}<br/>{{docRow.sin}}<br/>{{docRow.rfc}}</td>
     </ng-container>
 
     <ng-container matColumnDef="email">
@@ -53,7 +53,7 @@ aria-label="Add Contact" accesskey="C">Add Contact</button>
       <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
       <td mat-cell *matCellDef="let row" style="text-align:center">
         <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
-        <mat-icon (click)="editCompanyContactEntry(row.entryId)">edit</mat-icon></td>
+        <mat-icon (click)="editCompanyContactEntry(row)">edit</mat-icon></td>
     </ng-container>
 
     <!-- doc info columns as a nested table -->
@@ -63,7 +63,7 @@ aria-label="Add Contact" accesskey="C">Add Contact</button>
           <table id="nestedTable" mat-table [dataSource]="row.docDetail" class="row mat-elevation-z0">
             <ng-container matColumnDef="passportInfo">
               <th mat-header-cell *matHeaderCellDef scope="col">Passport # and Country of Issuance</th>
-              <td mat-cell *matCellDef="let docRow">{{docRow.passportInfo}}
+              <td mat-cell *matCellDef="let docRow">{{docRow.passportNumber}}
                 <mat-icon class="countryName" matTooltip={{docRow.passportCountry}} matTooltipClass="customTooltip" matTooltipPosition="right">info</mat-icon>
               </td>
             </ng-container>
@@ -84,7 +84,7 @@ aria-label="Add Contact" accesskey="C">Add Contact</button>
 
             <ng-container matColumnDef="visaInfo">
               <th mat-header-cell *matHeaderCellDef scope="col">US Visa Type and Number)</th>
-              <td mat-cell *matCellDef="let docRow">{{docRow.visaInfo}}</td>
+              <td mat-cell *matCellDef="let docRow">{{docRow.visaType + ',' + docRow.visaNumber }}</td>
             </ng-container>
 
             <ng-container matColumnDef="alienNum">
@@ -99,7 +99,7 @@ aria-label="Add Contact" accesskey="C">Add Contact</button>
 
             <ng-container matColumnDef="dlnInfo">
               <th mat-header-cell *matHeaderCellDef scope="col">DLN and State of Issuance</th>
-              <td mat-cell *matCellDef="let docRow">{{docRow.dlnInfo}}
+              <td mat-cell *matCellDef="let docRow">{{docRow.dlnNumber}}
                 <mat-icon class="countryName" matTooltip={{docRow.dlnCountry}} matTooltipClass="customTooltip" matTooltipPosition="right">info</mat-icon>
               </td>
             </ng-container>
@@ -111,7 +111,7 @@ aria-label="Add Contact" accesskey="C">Add Contact</button>
 
             <ng-container matColumnDef="nexus">
               <th mat-header-cell *matHeaderCellDef scope="col">NEXUS / CENTRI / Global Entry</th>
-              <td mat-cell *matCellDef="let docRow" class="newLineInData">{{docRow.nexus}}</td>
+              <td mat-cell *matCellDef="let docRow" class="newLineInData">{{docRow.nexus}}<br/>{{docRow.centri}}<br/>{{docRow.globalEntry}}</td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumnsCompanyDocDetail"></tr>

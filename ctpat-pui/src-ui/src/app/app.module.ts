@@ -126,6 +126,9 @@ import { EditModesTransportModalComponent } from './core/modals/business-type-sp
 import { ProfileIncompleteErrorMessageComponent } from './details/business-entity-info-tab/profile-incomplete-error-message/profile-incomplete-error-message.component';
 import { HighwayCarriersComponent } from './details/business-entity-info-tab/highway-carriers/highway-carriers.component';
 import { EditHwyCarrierModalComponent } from './core/modals/business-type-specific-modals/edit-hwy-carrier-modal/edit-hwy-carrier-modal.component';
+import { AddCompanyModalComponent } from './core/modals/add-company-modal/add-company-modal.component';
+import { AddBusinessHistoryModalComponent } from './core/modals/add-business-history-modal/add-business-history-modal.component';
+import { AddCompanyContactModalComponent } from './core/modals/add-company-contact-modal/add-company-contact-modal.component';
 
 
 @NgModule({
@@ -220,7 +223,10 @@ import { EditHwyCarrierModalComponent } from './core/modals/business-type-specif
       EditModesTransportModalComponent,
       ProfileIncompleteErrorMessageComponent,
       HighwayCarriersComponent,
-      EditHwyCarrierModalComponent
+      EditHwyCarrierModalComponent,
+      AddCompanyModalComponent,
+      AddBusinessHistoryModalComponent,
+      AddCompanyContactModalComponent
    ],
   imports:[
     BrowserModule,

@@ -38,10 +38,14 @@ export class AddNewBeiModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.submitted = false;
-
+    const record = this.data.row;
+    this.inputValue = record?.beiValue;
     this.addNewBeiForm = this.formBuilder.group({
-      beiType: new FormControl('', Validators.required),
-      beiValue: new FormControl('', Validators.required)
+      beiType: new FormControl(record?.beiType, Validators.required),
+      beiValue: new FormControl(record?.beiValue, Validators.required),
+      vettedApproved: new FormControl(record?.vettedApproved === 'Y'),
+      duplicateAccountName: new FormControl(record?.duplicateAccountName),
+      duplicateAccountNumber: new FormControl(record?.duplicateAccountNumber)
     });
    
    //get hold of accounid

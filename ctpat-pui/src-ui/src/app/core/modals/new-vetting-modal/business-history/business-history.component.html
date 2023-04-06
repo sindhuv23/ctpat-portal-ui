@@ -1,16 +1,23 @@
-<div fxLayout="column">
+<button (click)="addBusinessHistory()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+aria-label="Add Business History" accesskey="N">Add Business History</button>
 
-  <button (click)="addBusinessHistory()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
-    aria-label="Add Business History" accesskey="N">Add Business History</button>
+<div name="businessHistoryListDiv" id="businessHistoryListDiv">
+  <table mat-table title="businessHistoryList" id="businessHistoryListTable" [dataSource]="dataSourcedataBusinessHistoryList" name="companyNameListTable" class="row mat-elevation-z0">
 
-  <div style="font-size:1.1em">
-    Partner Entered Business History
-  </div>
+    <ng-container matColumnDef="businessHistory">
+      <th mat-header-cell *matHeaderCellDef scope="col">Business History</th>
+      <td mat-cell *matCellDef="let row">{{row.businessHistory}}</td>
+    </ng-container>
 
-  <div id="companyHistory">
-    This business history info was entered by trade partner during application. Brief company history text goes here.
-    Brief company history text goes here. Brief company history text goes here. Brief company history text goes here.
-    Brief company history text goes here. Brief company history text goes here. Brief company history text goes here.
-  </div>
+    <ng-container matColumnDef="entryId">
+      <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+      <td mat-cell *matCellDef="let row" style="text-align:center">
+        <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+        <mat-icon (click)="editCompanyNameEntry(row)">edit</mat-icon></td>
+    </ng-container>
 
+    <tr mat-header-row *matHeaderRowDef="displayedColumnsCompanyNameList" name="companyNameListTableHeader"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumnsCompanyNameList"></tr>
+  </table>
 </div>
+

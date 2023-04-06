@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { AddCompanyContactModalComponent } from '../../add-company-contact-modal/add-company-contact-modal.component';
 
 @Component({
   selector: 'app-company-contact-list',
@@ -36,19 +37,20 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
 
   ngAfterViewInit(): void{
     this.dataCompanyContactList.push({showDocDetail: false, firstName: 'Garbriel', lastName: 'Wesserman', middleInitial: '',
-    dateOfBirth: '01/01/1950', idNumbers: 'SSN- 123-45-6789\nSIN- 222-333-444\nCURP- MAAR790213HMNRLF03\nRFC- HEGJ820506M10',
+    dateOfBirth: '01/01/1950', ssn: 'SSN- 123-45-6789', sin: 'SIN- 222-333-444\nCURP- MAAR790213HMNRLF03', rfc: 'RFC- HEGJ820506M10',
     email: 'someone@somedomain.com', phone: '123-456-7890', entryId: 0,
     docDetail: [{
-      passportInfo: 'G-1234567, MX', passportCountry: 'Mexico', countryOfBirthCd: 'MX', countryOfCitizenshipCd: 'MX', countryOfBirth: 'Mexico', countryOfCitizenship: 'Mexico',
-      visaInfo: 'B1,V1234567', alienNum: 'A-1234567', naturalizationNum: 'N123456', dlnInfo: 'DLN-1234, MX', dlnCountry: 'Mexico', lpr: 'A# 111-222-333', nexus: 'nexus11'
+      passportNumber: 'G-1234567, MX', passportCountry: 'Mexico', countryOfBirthCd: 'MX', countryOfCitizenshipCd: 'MX', countryOfBirth: 'Mexico', countryOfCitizenship: 'Mexico',
+      visaType: 'B1', visaNumber:'V1234567', alienNum: 'A-1234567', naturalizationNum: 'N123456', dlnNumber: 'DLN-1234, MX', dlnCountry: 'Mexico', lpr: 'A# 111-222-333', 
+      nexus: 'nexus11', centri: 'CENTRI- 777700575', globalEntry: 'Global Entry- 987654321'
       }]
     });
     this.dataCompanyContactList.push({showDocDetail: false, firstName: 'Robert', lastName: 'SomeLastName', middleInitial: 'M',
-    dateOfBirth: '03/01/1990', idNumbers: 'US- 222-45-6789', email: 'test2@somedomain.com', phone: '222-456-7890', entryId: 1,
+    dateOfBirth: '03/01/1990', ssn: 'US- 222-45-6789', sin: 'SIN- 555-666-777', rfc: 'RFC- HEGJ820506M10', email: 'test2@somedomain.com', phone: '222-456-7890', entryId: 1,
     docDetail: [{
-      passportInfo: 'J-2224567, CA',  passportCountry: 'Canada', countryOfBirthCd: 'CA', countryOfCitizenshipCd: 'CA',  countryOfBirth: 'Canada', countryOfCitizenship: 'Canada',
-      visaInfo: 'B2, V2224567', alienNum: 'A-222567', naturalizationNum: 'N222456', dlnInfo: 'DLN-2221, CA',  dlnCountry: 'Canada', lpr: 'A# 123-456-789',
-      nexus: 'NEXUS- 123456789S123C\nCENTRI- 777700575\nGlobal Entry- 987654321'
+      passportNumber: 'J-2224567, CA',  passportCountry: 'Canada', countryOfBirthCd: 'CA', countryOfCitizenshipCd: 'CA',  countryOfBirth: 'Canada', countryOfCitizenship: 'Canada',
+      visaType: 'B2', visaNumber:'V2224567', alienNum: 'A-222567', naturalizationNum: 'N222456', dlnNumber: 'DLN-2221, CA',  dlnCountry: 'Canada', lpr: 'A# 123-456-789',
+      nexus: 'NEXUS- 123456789S123C', centri: 'CENTRI- 777700575', globalEntry: 'Global Entry- 987654321'
       }]
     });
 
@@ -79,6 +81,12 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
 
   addContact(): void{
     console.log('open add contact modal');
+    const confirmRef = this.dialog.open(AddCompanyContactModalComponent, {
+      disableClose: true,
+      width: '950px',
+      height: '700px',
+      data: {}
+    });
   }
 
   confirmDeletion(id: any): void{
@@ -108,8 +116,14 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
   }
 
   // open edit company name modal
-  editCompanyContactEntry(id: any): void{
-    console.log('edit ID ' + id);
+  editCompanyContactEntry(row: any): void{
+    console.log('edit row ' + row);
+    const confirmRef = this.dialog.open(AddCompanyContactModalComponent, {
+      disableClose: true,
+      width: '950px',
+      height: '700px',
+      data: {row}
+    });
   }
 
   ngOnDestroy(): void {
