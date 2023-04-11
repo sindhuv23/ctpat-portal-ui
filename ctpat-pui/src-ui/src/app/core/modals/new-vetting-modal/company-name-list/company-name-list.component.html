@@ -11,7 +11,7 @@ aria-label="Add New Company Name" accesskey="N">Add New</button>
 
     <ng-container matColumnDef="doingBusinessAs">
       <th mat-header-cell *matHeaderCellDef scope="col">Doing Business As</th>
-      <td mat-cell *matCellDef="let row">{{row.doingBusinessAs}}</td>
+      <td mat-cell *matCellDef="let row">{{row.doingBusinessAs ? 'Yes' : 'No'}}</td>
     </ng-container>
 
     <ng-container matColumnDef="businessPhone">
@@ -46,9 +46,9 @@ aria-label="Add New Company Name" accesskey="N">Add New</button>
 
     <ng-container matColumnDef="entryId">
       <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
-      <td mat-cell *matCellDef="let row" style="text-align:center">
-        <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
-        <mat-icon (click)="editCompanyNameEntry(row)">edit</mat-icon></td>
+      <td mat-cell *matCellDef="let row;  let i = index;" style="text-align:center">
+        <mat-icon (click)="confirmDeletion(i)">delete_forever</mat-icon>
+        <mat-icon (click)="editCompanyNameEntry(row, i)">edit</mat-icon></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumnsCompanyNameList" name="companyNameListTableHeader"></tr>

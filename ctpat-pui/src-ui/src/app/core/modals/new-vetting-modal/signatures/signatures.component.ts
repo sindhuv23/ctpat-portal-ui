@@ -25,4 +25,8 @@ export class SignaturesComponent implements OnInit {
     });
   }
 
+  public getData(): any{
+    return this.signatureForm.getRawValue();
+  }
+
 }

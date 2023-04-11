@@ -41,6 +41,7 @@ export class AddCompanyModalComponent implements OnInit {
 
   save(): void {
     this.submitted = true;
+    this.dialogRef.close(this.createCompanyForm.getRawValue());
   }
 
   cancel(): void {

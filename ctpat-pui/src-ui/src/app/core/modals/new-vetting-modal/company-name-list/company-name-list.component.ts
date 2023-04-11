@@ -16,7 +16,7 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
 
   displayedColumnsCompanyNameList: string[] = ['companyName', 'doingBusinessAs', 'businessPhone', 'businessFax',
    'ownershipType', 'yearsInBusiness', 'numberOfEmployess', 'businessWebsiteAddress', 'entryId'];
-  private dataCompanyNameList: any[] = [];
+   public dataCompanyNameList: any[] = [];
   public dataSourceCompanyNameList = new MatTableDataSource<any>();
 
   constructor(public dialog: MatDialog) { }
@@ -32,6 +32,7 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
     this.dataSourceCompanyNameList = new MatTableDataSource<any>(this.dataCompanyNameList);
   }
 
+
   addNewCompanyName(): void{
     console.log('open add company name modal'); 
     const confirmRef = this.dialog.open(AddCompanyModalComponent, {
@@ -40,9 +41,16 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
       height: '360px',
       data: {}
     });
+    confirmRef.afterClosed().subscribe(newRecord => {
+      if (newRecord) {
+        console.log(newRecord);
+        this.dataCompanyNameList.push(newRecord);
+        this.dataSourceCompanyNameList.data = this.dataCompanyNameList;
+      }
+    });
   }
 
-  confirmDeletion(id: any): void{
+  confirmDeletion(index: any): void{
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
@@ -54,27 +62,31 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
     });
     confirmRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteCompanyNameListEntry(id);
+        this.deleteCompanyNameListEntry(index);
       }
     });
   }
 
-  deleteCompanyNameListEntry(id: any): void{
-    this.dataCompanyNameList.splice(id, 1);
-    for (let i = 0; i < this.dataCompanyNameList.length; i++) {
-     this.dataCompanyNameList[i].entryId = i;
-    }
-    this.dataSourceCompanyNameList = new MatTableDataSource<any>(this.dataCompanyNameList);
+  deleteCompanyNameListEntry(index: any): void{
+    this.dataCompanyNameList.splice(index, 1);
+    this.dataSourceCompanyNameList.data = this.dataCompanyNameList;
   }
 
   // open edit company name modal
-  editCompanyNameEntry(row: any): void{
+  editCompanyNameEntry(row: any, index: number): void{
     console.log('edit row ' + row);
     const confirmRef = this.dialog.open(AddCompanyModalComponent, {
       disableClose: true,
       width: '820px',
       height: '360px',
       data: {companyInfo: row}
+    });
+    confirmRef.afterClosed().subscribe(updatedRecord => {
+      if (updatedRecord) {
+        console.log(updatedRecord);
+        this.dataCompanyNameList[index] = updatedRecord;
+        this.dataSourceCompanyNameList.data = this.dataCompanyNameList;
+      }
     });
   }
 
