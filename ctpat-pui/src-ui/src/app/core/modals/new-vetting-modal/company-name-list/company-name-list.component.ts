@@ -26,12 +26,11 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
 
   ngAfterViewInit(): void{
     this.dataCompanyNameList.push({companyName: 'Apples Ltd', doingBusinessAs: '', businessPhone: '123-456-7890', businessFax: '123-456-7891',
-    ownershipType: 'Corporate', yearsInBusiness: '12', numberOfEmployess: '22', businessWebsiteAddress: 'www.applesltd.com', entryId: 0});
+    ownershipType: 'Corporate', yearsInBusiness: '12', numberOfEmployess: '22', businessWebsiteAddress: 'www.applesltd.com',partnerEntered: 'N', entryId: 0});
     this.dataCompanyNameList.push({companyName: 'Apples and Oranges Ltd', doingBusinessAs: '', businessPhone: '999-999-0000', businessFax: '',
-    ownershipType: 'Partenership', yearsInBusiness: '15', numberOfEmployess: '', businessWebsiteAddress: '', entryId: 1});
+    ownershipType: 'Partenership', yearsInBusiness: '15', numberOfEmployess: '', businessWebsiteAddress: '', partnerEntered: 'N', entryId: 1});
     this.dataSourceCompanyNameList = new MatTableDataSource<any>(this.dataCompanyNameList);
   }
-
 
   addNewCompanyName(): void{
     console.log('open add company name modal'); 
@@ -67,7 +66,7 @@ export class CompanyNameListComponent implements OnInit, OnDestroy, AfterViewIni
     });
   }
 
-  deleteCompanyNameListEntry(index: any): void{
+  deleteCompanyNameListEntry(index: number): void{
     this.dataCompanyNameList.splice(index, 1);
     this.dataSourceCompanyNameList.data = this.dataCompanyNameList;
   }

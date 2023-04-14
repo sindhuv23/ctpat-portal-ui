@@ -46,7 +46,7 @@ aria-label="Add New Company Name" accesskey="N">Add New</button>
 
     <ng-container matColumnDef="entryId">
       <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
-      <td mat-cell *matCellDef="let row;  let i = index;" style="text-align:center">
+      <td mat-cell *matCellDef="let row; let i = index" style="text-align:center">
         <mat-icon (click)="confirmDeletion(i)">delete_forever</mat-icon>
         <mat-icon (click)="editCompanyNameEntry(row, i)">edit</mat-icon></td>
     </ng-container>

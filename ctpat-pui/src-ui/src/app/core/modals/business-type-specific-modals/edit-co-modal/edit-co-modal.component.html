@@ -1,0 +1,123 @@
+<div id="outerContainer">
+  <form [formGroup]="editCoForm" novalidate>
+
+    <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+      <h3 mat-dialog-title class="dialog-header">Country of Origin - Please List your Top Five Countries of Origin by Value</h3>
+      <div fxFlex></div>
+      <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+          aria-label="clear">
+          <mat-icon>clear</mat-icon>
+      </button>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+
+    <div id="midContainer">
+      <mat-dialog-content>
+        <div class="required required-text">* Required</div><br>
+        <div fxLayout="row" style="margin-left:20px; margin-top:10px;">
+          <div fxFlex="20">
+            <div fxLayout="column">
+
+                <label class="label" for="percentageImports">% Imports<span class="required"> *</span></label>
+                <mat-form-field appearance="outline">
+                  <input matInput (input)="validatePercentageSum()" formControlName="percentageImports" id="percentageImports" aria-label="% Imports" placeholder="Whole number only">
+                  <mat-error *ngIf="f.percentageImports.errors && f.percentageImports.errors.required">Percentage of imports is required</mat-error>
+                </mat-form-field>
+                <div *ngIf="editCoForm.get('percentageImports')?.errors?.errorMessageFormat" class="errorText">
+                  {{editCoForm.get('percentageImports')?.errors?.errorMessageFormat}}</div>
+                <div *ngIf="showPercentageSumError" class="errorText">Total % cannot exceed 100%</div>
+
+                <div class="label">Country of Origin<span class="required"> *</span></div>
+                <mat-form-field appearance="outline">
+                  <mat-select formControlName="countryOfOrigin" id="countryOfOrigin" aria-label="Country of Origin" placeholder="--- Select Country ---"
+                  (click)="countrySelected($event)" (selectionChange)="countrySelected($event.value)">
+                    <mat-option value="">--- Select Country ---</mat-option>
+                    <ng-container *ngFor="let country of countryList">
+                      <mat-option [value]="country.id">{{country.countryName}}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                  <mat-error *ngIf="f.countryOfOrigin.errors && f.countryOfOrigin.errors.required">Country is required</mat-error>
+                </mat-form-field>
+
+                <div class="label">State of Origin<span class="required"> *</span></div>
+                <mat-form-field appearance="outline">
+                  <mat-select formControlName="stateOfOrigin" id="stateOfOrigin" aria-label="State/Province of Origin" placeholder="--- Select State ---"
+                  (click)="stateSelected($event)" (selectionChange)="stateSelected($event.value)">
+                    <mat-option value="">--- Select State/Province ---</mat-option>
+                    <ng-container *ngFor="let state of stateList">
+                      <mat-option [value]="state.id">{{state.stateName}}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                  <mat-error *ngIf="f.stateOfOrigin.errors && f.stateOfOrigin.errors.required">State is required</mat-error>
+                </mat-form-field>
+                <div *ngIf="showUniqueRecordError" class="errorText">Country and State must be unique</div>
+
+                <div class="label">City of Origin</div>
+                <mat-form-field appearance="outline">
+                  <mat-select formControlName="cityOfOrigin" id="cityOfOrigin" aria-label="City of Origin" placeholder="--- Select City ---">
+                    <mat-option value="">--- Select City ---</mat-option>
+                    <ng-container *ngFor="let city of cityList">
+                      <mat-option [value]="city.id">{{city.cityName}}</mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+
+                <div>
+                  <button mat-raised-button type="submit" color="primary" (click)="addCountryOfOrigin()" aria-label="Add Country of Origin" accesskey="C" class="deleteButton">+ Add</button>
+                </div>
+            </div>
+          </div>
+          <div fxFlex="5"></div>
+
+          <div fxFlex="70" fxLayout="column">
+            <div name="countriesOfOriginDiv" id="countriesOfOriginDiv">
+              <table mat-table title="CountriesOfOrigin" id="countriesOfOriginTable" [dataSource]="dataSourceCountriesOfOrigin" name="countriesOfOriginTable" class="row mat-elevation-z0"
+              matSort matSortActive="percentageImports" matSortDirection="desc" [matSortDisableClear]="true">
+
+                <ng-container matColumnDef="percentageImports">
+                  <th mat-header-cell *matHeaderCellDef scope="col">% Imports</th>
+                  <td mat-cell *matCellDef="let row">{{row.percentageImports}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="countryOfOrigin">
+                  <th mat-header-cell *matHeaderCellDef scope="col">Country of Origin</th>
+                  <td mat-cell *matCellDef="let row">{{referenceService.getCountryName(''+row.countryOfOrigin)}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="stateOfOrigin">
+                  <th mat-header-cell *matHeaderCellDef scope="col">State of Origin</th>
+                  <td mat-cell *matCellDef="let row">{{referenceService.getStateName(''+row.stateOfOrigin)}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="cityOfOrigin">
+                  <th mat-header-cell *matHeaderCellDef scope="col">City of Origin</th>
+                  <td mat-cell *matCellDef="let row"><span *ngIf="row.cityOfOrigin">{{referenceService.getCityName(''+row.cityOfOrigin)}}</span></td>
+                </ng-container>
+
+                <ng-container matColumnDef="entryId">
+                  <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Delete</th>
+                  <td mat-cell *matCellDef="let row" style="text-align:center">
+                    <mat-icon (click)="deleteCountryOfOriginEntry(row.entryId)">delete_forever</mat-icon></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumnsCountriesOfOrigin" name="countriesOfOriginTableHeader"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumnsCountriesOfOrigin"></tr>
+              </table>
+            </div>
+            <div *ngIf="showMinCoError" class="errorText" style="margin-top:50px;margin-left:200px;">At least 1 country must be entered</div>
+          </div>
+        </div>
+
+      </mat-dialog-content>
+    </div>
+
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+    </mat-dialog-actions>
+  </div>
+  </form>
+  </div>

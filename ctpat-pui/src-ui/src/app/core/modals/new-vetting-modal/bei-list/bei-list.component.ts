@@ -90,4 +90,3 @@ export class BeiListComponent implements OnInit, OnDestroy, AfterViewInit {
     this.subscriptions.unsubscribe();
   }
 }
-

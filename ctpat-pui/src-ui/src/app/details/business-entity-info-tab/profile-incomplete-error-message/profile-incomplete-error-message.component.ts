@@ -16,6 +16,7 @@ export class ProfileIncompleteErrorMessageComponent implements OnInit, OnDestroy
   private profileIndicatorTransport = true;
   private profileIndicatorCee = true;
   private profileIndicatorHwyCarrier = true;
+  private profileIndicatorCo = true;
   public currentTabIndex!: number;
   private subscriptions = new Subscription();
   public businessTypeId: any;
@@ -54,13 +55,19 @@ export class ProfileIncompleteErrorMessageComponent implements OnInit, OnDestroy
         this.updateProfileWarningStatus();
       })
      );
+    this.subscriptions.add(
+      this.accountService.profileIndicatorCo$.subscribe((status: boolean) => {
+        this.profileIndicatorCo = status;
+        this.updateProfileWarningStatus();
+      })
+     );
   }
 
   updateProfileWarningStatus(): void{
     if (this.businessTypeId == 9){ // consolidator
       this.hideProfileWarning = this.profileIndicatorBei && this.profileIndicatorTransport;
     } else if (this.businessTypeId == 5){ // importer
-      this.hideProfileWarning = this.profileIndicatorBei && this.profileIndicatorCee;
+      this.hideProfileWarning = this.profileIndicatorBei && this.profileIndicatorCee && this.profileIndicatorCo;
     } else if (this.businessTypeId == 4 || this.businessTypeId == 10 || this.businessTypeId == 11){ // highway carrier
       this.hideProfileWarning = this.profileIndicatorBei && this.profileIndicatorHwyCarrier;
     } else { // other business types

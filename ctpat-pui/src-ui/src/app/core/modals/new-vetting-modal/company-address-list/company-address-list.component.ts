@@ -16,7 +16,7 @@ export class CompanyAddressListComponent implements OnInit, OnDestroy, AfterView
 
   displayedColumnsCompanyAddressList: string[] = ['type', 'street1', 'street2', 'city', 'state', 'postalCode', 'country', 'id'];
 
-  private dataCompanyAddressList: any[] = [];
+  public dataCompanyAddressList: any[] = [];
   public dataSourceCompanyAddressList = new MatTableDataSource<any>();
 
   constructor(public dialog: MatDialog) { }
@@ -26,23 +26,30 @@ export class CompanyAddressListComponent implements OnInit, OnDestroy, AfterView
 
   ngAfterViewInit(): void{
     this.dataCompanyAddressList.push({type: 'Main Office', street1: '22 Some Road', street2: 'Suite 101',
-    city: 'Some City', state: 'Some State',  postalCode: '12345', country: 'France', id: 0});
+    city: 'Some City', stateId: 132,  postalCode: '12345', countryId: 275, id: null});
     this.dataCompanyAddressList.push({type: 'Associate', street1: 'Some Steet Name', street2: 'Number 202',
-    city: 'Alexandria', state: 'VA', postalCode: '22222', country: 'US', id: 1});
+    city: 'Alexandria', stateId: 133, postalCode: '22222', countryId: 275, id: null});
     this.dataSourceCompanyAddressList = new MatTableDataSource<any>(this.dataCompanyAddressList);
   }
 
   addAddress(): void{
     console.log('open add address modal');
     const dialogRef = this.dialog.open(CreateAddressModalComponent, {
-      data: {  },
+      data: { parent: 'Vetting' },
       width: '800px',
       height: '380px',
       disableClose: true
     });
+    dialogRef.afterClosed().subscribe(newRecord => {
+      if (newRecord && Object.keys(newRecord).length > 0 && Object.getPrototypeOf(newRecord) === Object.prototype) {
+        console.log(newRecord);
+        this.dataCompanyAddressList.push(newRecord);
+        this.dataSourceCompanyAddressList.data = this.dataCompanyAddressList;
+      }
+    });
   }
 
-  confirmDeletion(id: any): void{
+  confirmDeletion(index: number): void{
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
@@ -54,27 +61,32 @@ export class CompanyAddressListComponent implements OnInit, OnDestroy, AfterView
     });
     confirmRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteCompanyAddressListEntry(id);
+        this.deleteCompanyAddressListEntry(index);
       }
     });
   }
 
-  deleteCompanyAddressListEntry(id: any): void{
-    this.dataCompanyAddressList.splice(id, 1);
-    for (let i = 0; i < this.dataCompanyAddressList.length; i++) {
-     this.dataCompanyAddressList[i].id = i;
-    }
-    this.dataSourceCompanyAddressList = new MatTableDataSource<any>(this.dataCompanyAddressList);
+  deleteCompanyAddressListEntry(index: number): void{
+    this.dataCompanyAddressList.splice(index, 1);
+    this.dataSourceCompanyAddressList.data = this.dataCompanyAddressList;
   }
 
   // open edit company name modal
-  editCompanyAddressEntry(row: any): void{
+  editCompanyAddressEntry(row: any, index: number): void{
     console.log('edit row ' + row);
+    const address = {...row, parent: 'Vetting'}
     const dialogRef = this.dialog.open(CreateAddressModalComponent, {
-      data: { address: row},
+      data: { address },
       width: '800px',
       height: '380px',
       disableClose: true
+    });
+    dialogRef.afterClosed().subscribe(updatedRecord => {
+      if (updatedRecord && Object.keys(updatedRecord).length > 0  && Object.getPrototypeOf(updatedRecord) === Object.prototype) {
+        console.log(updatedRecord);
+        this.dataCompanyAddressList[index] = updatedRecord;
+        this.dataSourceCompanyAddressList.data = this.dataCompanyAddressList;
+      }
     });
   }
 

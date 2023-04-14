@@ -129,6 +129,7 @@ import { EditHwyCarrierModalComponent } from './core/modals/business-type-specif
 import { AddCompanyModalComponent } from './core/modals/add-company-modal/add-company-modal.component';
 import { AddBusinessHistoryModalComponent } from './core/modals/add-business-history-modal/add-business-history-modal.component';
 import { AddCompanyContactModalComponent } from './core/modals/add-company-contact-modal/add-company-contact-modal.component';
+import { EditCoModalComponent } from './core/modals/business-type-specific-modals/edit-co-modal/edit-co-modal.component';
 
 
 @NgModule({
@@ -226,7 +227,8 @@ import { AddCompanyContactModalComponent } from './core/modals/add-company-conta
       EditHwyCarrierModalComponent,
       AddCompanyModalComponent,
       AddBusinessHistoryModalComponent,
-      AddCompanyContactModalComponent
+      AddCompanyContactModalComponent,
+      EditCoModalComponent
    ],
   imports:[
     BrowserModule,

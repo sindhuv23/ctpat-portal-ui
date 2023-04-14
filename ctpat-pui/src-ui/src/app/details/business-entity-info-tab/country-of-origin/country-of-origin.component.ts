@@ -1,68 +1,99 @@
-import { AfterViewInit, Component, Inject, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Inject, Injectable, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { AddCountryOfOriginModalComponent } from 'src/app/core/modals/business-type-specific-modals/add-country-of-origin-modal/add-country-of-origin-modal.component';
 import { EditCountryOfOriginModalComponent } from 'src/app/core/modals/business-type-specific-modals/edit-country-of-origin-modal/edit-country-of-origin-modal.component';
 import { ConfirmationDialogModalComponent } from 'src/app/core/modals/confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { EditCoModalComponent } from 'src/app/core/modals/business-type-specific-modals/edit-co-modal/edit-co-modal.component';
+import { AccountService } from 'src/app/core/services/account.service';
+import { BeiTabService } from 'src/app/core/services/bei-tab.service';
+import { ReferenceService } from 'src/app/core/services/reference.service';
+import { MatSort } from '@angular/material/sort';
+import { DetailsService } from 'src/app/core/services/details.service';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-country-of-origin',
   templateUrl: './country-of-origin.component.html',
   styleUrls: ['./country-of-origin.component.scss']
 })
-export class CountryOfOriginComponent implements OnInit,  OnDestroy, AfterViewInit {
+export class CountryOfOriginComponent implements OnInit,  OnDestroy {
 
+  public ctpatAccountId = '';
   private subscriptions = new Subscription();
-  public accountId = 'id222';
+  public coData: any;
+  @ViewChild(MatSort) matSort!: MatSort;
 
-  displayedColumnsCooTrade: string[] = ['percentageImports', 'countryOfOrigin', 'stateOfOrigin', 'cityOfOrigin'];
-  displayedColumnsCooInternal: string[] =
-  ['percentageImports', 'countryOfOrigin', 'stateOfOrigin', 'cityOfOrigin', 'suggestedIndicator', 'entryId'];
+  displayedColumnsCoTrade: string[] = ['percentage_of_import', 'country_id', 'state_id', 'city_id'];
+  displayedColumnsCoInternal: string[] =
+  ['percentage_of_import', 'country_id', 'state_id', 'city_id', 'preferred_rank', 'id'];
   displayedColumnsPreviousVisits: string[] = ['countryVisited', 'visitDate', 'companyName'];
 
-  private dataCooTrade: any[] = [];
-  public dataSourceCooTrade = new MatTableDataSource<any>();
-  private dataCooInternal: any[] = [];
-  public dataSourceCooInternal = new MatTableDataSource<any>();
-  private dataPreviousVisits: any[] = [];
+  public dataCoTrade: any[] = [];
+  public dataSourceCoTrade = new MatTableDataSource<any>();
+  public dataCoInternal: any[] = [];
+  public dataSourceCoInternal = new MatTableDataSource<any>();
+  public dataPreviousVisits: any[] = [];
   public dataSourcePreviousVisits = new MatTableDataSource<any>();
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog, public accountService: AccountService, private beiTabService: BeiTabService,
+              public referenceService: ReferenceService, private detailsService: DetailsService) { }
 
   ngOnInit(): void {
+    this.subscriptions.add(
+      this.accountService.accountId$.subscribe(aid => {
+        this.ctpatAccountId = aid;
+
+        this.beiTabService.getCo(this.ctpatAccountId).subscribe(data => {
+          this.dataCoTrade = data;
+          this.dataSourceCoTrade = new MatTableDataSource<any>(this.dataCoTrade);
+          this.dataSourceCoTrade.sort = this.matSort;
+
+          if (this.dataCoTrade && this.dataCoTrade.length !== 0){
+            this.accountService.broadcastProfileIndicatorCo(true);
+          } else {
+            this.accountService.broadcastProfileIndicatorCo(false);
+          }
+        });
+
+        this.beiTabService.getCoInternal(this.ctpatAccountId).subscribe(data => {
+          this.dataCoInternal = data;
+          this.dataSourceCoInternal = new MatTableDataSource<any>(this.dataCoInternal);
+          this.dataSourceCoInternal.sort = this.matSort;
+        });
+
+      }));
   }
 
-  ngAfterViewInit(): void{ // mockup data below. data populated from database
-    this.dataCooTrade.push({percentageImports: 90, countryOfOrigin: 'Canada',
-    stateOfOrigin: 'ON', cityOfOrigin: 'Toronto'});
-    this.dataSourceCooTrade = new MatTableDataSource<any>(this.dataCooTrade);
-
-    this.dataCooInternal.push({percentageImports: 90, countryOfOrigin: 'Canada',
-      stateOfOrigin: 'ON', cityOfOrigin: 'Toronto', suggestedIndicator: 'Y', entryId: this.dataCooInternal.length});
-    this.dataSourceCooInternal = new MatTableDataSource<any>(this.dataCooInternal);
-
-    this.dataPreviousVisits.push({countryVisited: 'Canada', visitDate: '06/02/2021', companyName: 'Some Company'});
-    this.dataSourcePreviousVisits = new MatTableDataSource<any>(this.dataPreviousVisits);
-  }
-
-   // open add coo modal. if new coo saved, publish form the modal and update this display section from backend.
-  addCooInternal(id: any): void{
-    const dialogRef = this.dialog.open(AddCountryOfOriginModalComponent, {
-      data: {id},
-      width: '600px',
-      height: '390px',
+  editCo(): void{
+    const dialogRef = this.dialog.open(EditCoModalComponent, {
+      data: {ctpatAccountId: this.ctpatAccountId,
+        dataCoTrade: this.dataCoTrade},
+      width: '1000px',
+      height: '500px',
       disableClose: true
     });
   }
 
-  // open edit coo modal. if new coo saved, publish from the modal and update this display section from backend.
-  // id for edit include account ID and country ID
-  editCooInternal(id: any): void{
-    const dialogRef = this.dialog.open(EditCountryOfOriginModalComponent, {
-      data: {id},
+  addCoInternal(id: any): void{
+    const dialogRef = this.dialog.open(AddCountryOfOriginModalComponent, {
+      data: {ctpatAccountId: this.ctpatAccountId,
+        dataCoInternal: this.dataCoInternal},
       width: '600px',
-      height: '395px',
+      height: '400px',
+      disableClose: true
+    });
+  }
+
+  editCoInternal(id: any): void{
+    const dialogRef = this.dialog.open(EditCountryOfOriginModalComponent, {
+      data: {id, ctpatAccountId: this.ctpatAccountId,
+        dataCoInternal: this.dataCoInternal},
+      width: '600px',
+      height: '400px',
       disableClose: true
     });
   }
@@ -79,18 +110,12 @@ export class CountryOfOriginComponent implements OnInit,  OnDestroy, AfterViewIn
     });
     confirmRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteCooInternal(id);
+        this.beiTabService.deleteCoInternal(id).subscribe(data =>{
+          this.accountService.broadcastAccountId(parseInt(this.ctpatAccountId, 10));
+          this.detailsService.broadcastCurrentTabIndex(1);
+        });
       }
     });
-  }
-
-   // this method is not needed when backend is connected. retrieval of updated data deletes the record.
-  deleteCooInternal(id: any): void{
-    this.dataCooInternal.splice(id, 1);
-    for (let i = 0; i < this.dataCooInternal.length; i++) {
-     this.dataCooInternal[i].entryId = i;
-    }
-    this.dataSourceCooInternal = new MatTableDataSource<any>(this.dataCooInternal);
   }
 
   ngOnDestroy(): void {

@@ -63,10 +63,14 @@ export class CreateAddressModalComponent implements OnInit {
     if (this.createAccountAddressForm.invalid) {
       return;
     }
-    this.accountService.saveAccountAddress(address).subscribe(res => {
+    if(this.data.parent === 'Vetting'){
+      this.dialogRef.close({address, addressLine1: address.street1, addressLine2: address.street2});
+    }else {
+      this.accountService.saveAccountAddress(address).subscribe(res => {
         console.log('Ctpat Account Address saved, response => '+ res);
         this.dialogRef.close(res.ctpatAccountId);
     });
+    }
   }
 
   cancel(): void {

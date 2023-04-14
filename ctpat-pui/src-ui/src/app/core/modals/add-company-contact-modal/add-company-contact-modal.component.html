@@ -42,7 +42,7 @@
                     <div fxFlex="5"></div>
                     <div fxFlex>
                         <mat-form-field appearance="outline">
-                            <input matInput formControlName="middleInitial" id="middleInitial" aria-label="Middle Initial">
+                            <input matInput formControlName="middleNameInitial" id="middleNameInitial" aria-label="Middle Initial">
                         </mat-form-field>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <label fxFlex="45" class="label" for="typeNameId">Country of Birth</label>
                     <div fxFlex="5"></div>
                     <mat-form-field fxFlex appearance="outline">
-                        <mat-select formControlName="countryOfBirthId" id="countryOfBirthId" placeholder="--- Select ---" aria-label="Country of Birth">       
+                        <mat-select formControlName="birthCountryId" id="birthCountryId" placeholder="--- Select ---" aria-label="Country of Birth">       
                         <mat-option value="-1">--Select--</mat-option>
                           <ng-container>
                             <mat-option [value]="refData.id" *ngFor="let refData of countryList$  | async">
@@ -76,7 +76,7 @@
                     <div fxFlex="5"></div>
                     <div fxFlex>
                         <mat-form-field fxFlex appearance="outline">
-                            <mat-select formControlName="countryOfCitizenshipId" id="countryOfCitizenshipId" placeholder="--- Select ---" aria-label="Country of Citizenship">       
+                            <mat-select formControlName="citizenshipCountryId" id="citizenshipCountryId" placeholder="--- Select ---" aria-label="Country of Citizenship">       
                             <mat-option value="-1">--Select--</mat-option>
                                 <ng-container>
                                 <mat-option [value]="refData.id" *ngFor="let refData of countryList$  | async">
@@ -102,7 +102,7 @@
                     <div fxFlex="5"></div>
                     <div fxFlex></div>
                     <mat-form-field fxFlex="60" appearance="outline">
-                        <input matInput formControlName="phone" id="phone" aria-label="Phone">
+                        <input matInput formControlName="telephoneNumber" id="telephoneNumber" aria-label="Phone">
                     </mat-form-field>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                     <label fxFlex="45" class="label" for="typeNameId">Passport #</label>
                     <div fxFlex="5"></div>
                     <mat-form-field fxFlex="60" appearance="outline">
-                        <input matInput formControlName="passportNumber" id="passportNumber" aria-label="Passport">
+                        <input matInput formControlName="passportNum" id="passportNum" aria-label="Passport">
                     </mat-form-field>
                 </div>
                 <div fxFlex="5"></div>
@@ -125,7 +125,7 @@
                     <div fxFlex="5"></div>
                     <div fxFlex></div>
                     <mat-form-field fxFlex="60" appearance="outline">
-                        <input matInput formControlName="passportCountry" id="passportCountry" aria-label="Passport- Conuntry of Issurance">
+                        <input matInput formControlName="passportIssuanceCountryId" id="passportIssuanceCountryId" aria-label="Passport- Conuntry of Issurance">
                     </mat-form-field>
                 </div>
             </div>
@@ -134,7 +134,7 @@
                     <label fxFlex="45" class="label" for="typeNameId">US Visa Type</label>
                     <div fxFlex="5"></div>
                     <mat-form-field fxFlex appearance="outline">
-                        <input matInput formControlName="visaType" id="visaType" aria-label="US Visa Type">
+                        <input matInput formControlName="usVisaType" id="usVisaType" aria-label="US Visa Type">
                     </mat-form-field>
                 </div>
                 <div fxFlex="5"></div>
@@ -143,7 +143,7 @@
                     <div fxFlex="5"></div>
                     <div fxFlex></div>
                     <mat-form-field fxFlex="60" appearance="outline">
-                        <input matInput formControlName="visaNumber" id="visaNumber" aria-label="Visa">
+                        <input matInput formControlName="usVisaNum" id="usVisaNum" aria-label="Visa">
                     </mat-form-field>
                 </div>
             </div>
@@ -157,7 +157,7 @@
                     <label fxFlex="45" class="label" for="typeNameId">Alien Reg #</label>
                     <div fxFlex="5"></div>
                     <mat-form-field appearance="outline">
-                        <input matInput formControlName="alienNum" id="alienNum" aria-label="Alien Reg">
+                        <input matInput formControlName="alienRegNum" id="alienRegNum" aria-label="Alien Reg">
                     </mat-form-field>
                 </div>
                 <div fxFlex="5"></div>
@@ -184,7 +184,7 @@
                     <label fxFlex="45" class="label" for="typeNameId">DLN</label>
                     <div fxFlex="5"></div>
                     <mat-form-field appearance="outline">
-                        <input matInput formControlName="dlnNumber" id="dlnNumber" aria-label="DLN">
+                        <input matInput formControlName="dlnNum" id="dlnNum" aria-label="DLN">
                     </mat-form-field>
                 </div>
                 <div fxFlex="5"></div>
@@ -192,7 +192,7 @@
                     <label fxFlex="45" class="label" for="typeNameId">DLN- Country of issuance</label>
                     <div fxFlex="5"></div>
                     <mat-form-field fxFlex appearance="outline">
-                        <mat-select formControlName="dlnCountryId" id="dlnCountryId" placeholder="--- Select ---" aria-label="DLN- Country of issuance">       
+                        <mat-select formControlName="dlnIssuanceCountryId" id="dlnIssuanceCountryId" placeholder="--- Select ---" aria-label="DLN- Country of issuance">       
                         <mat-option value="-1">--Select--</mat-option>
                           <ng-container>
                             <mat-option [value]="refData.id" *ngFor="let refData of countryList$  | async">
@@ -208,7 +208,7 @@
                     <div fxFlex="5"></div>
                     <div fxFlex>
                         <mat-form-field fxFlex appearance="outline">
-                            <mat-select formControlName="dlnStateId" id="dlnStateId" placeholder="--- Select ---" aria-label="DLN- State of issuance">       
+                            <mat-select formControlName="dlnIssuanceStId" id="dlnIssuanceStId" placeholder="--- Select ---" aria-label="DLN- State of issuance">       
                             <mat-option value="-1">--Select--</mat-option>
                                 <ng-container>
                                 <mat-option [value]="refData.id" *ngFor="let refData of countryList$  | async">
@@ -270,6 +270,14 @@
                     <div fxFlex="5"></div>
                     <mat-form-field appearance="outline">
                         <input matInput formControlName="rfc" id="rfc" aria-label="RFC">
+                    </mat-form-field>
+                </div>
+                <div fxFlex="5"></div>
+                <div fxFlex="30">
+                    <label fxFlex="45" class="label" for="typeNameId">CURP</label>
+                    <div fxFlex="5"></div>
+                    <mat-form-field appearance="outline">
+                        <input matInput formControlName="curp" id="curp" aria-label="CURP">
                     </mat-form-field>
                 </div>
             </div>

@@ -1,14 +1,14 @@
 <div id="DialogOuterContainer">
   <form [formGroup]="editCooForm" novalidate>
 
-  <div fxLayout="row" id="DialogHeader">
+  <div fxLayout="row" id="header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
     <h3 mat-dialog-title class="dialog-header">Edit Country of Origin</h3>
     <div fxFlex></div>
                 <button mat-icon-button class="close-button" [mat-dialog-close]="true"
                     aria-label="clear">
                     <mat-icon>clear</mat-icon>
                 </button>
-    
+
   </div>
 
   <mat-divider class="divider"></mat-divider>
@@ -18,10 +18,16 @@
   <div fxLayout="column">
 
     <div fxLayout="row">
-      <label fxFlex="35" class="label" for="percentageImports">% Imports</label>
-      <mat-form-field fxFlex="30" appearance="outline" style="width:100px">
-        <input matInput formControlName="percentageImports" id="percentageImports" aria-label="% Imports" placeholder="% Imports">
-      </mat-form-field>
+      <label  fxFlex="35" class="label" for="percentageImports">% Imports<span class="required"> *</span></label>
+      <div fxLayout="column">
+        <mat-form-field appearance="outline">
+          <input matInput (input)="validatePercentageSum()" formControlName="percentageImports" id="percentageImports" aria-label="% Imports" placeholder="Whole number only">
+          <mat-error *ngIf="f.percentageImports.errors && f.percentageImports.errors.required">Percentage of imports is required</mat-error>
+        </mat-form-field>
+        <div *ngIf="editCooForm.get('percentageImports')?.errors?.errorMessageFormat" class="errorText">
+          {{editCooForm.get('percentageImports')?.errors?.errorMessageFormat}}</div>
+        <div *ngIf="showPercentageSumError" class="errorText">Total % cannot exceed 100%</div>
+      </div>
     </div>
 
     <div fxLayout="row" style="margin-bottom:30px">
@@ -32,31 +38,35 @@
     <div fxLayout="row">
       <div fxFlex="35" class="label">Country of Origin</div>
       <mat-form-field  fxFlex="60" appearance="outline">
-        <mat-select formControlName="countryOfOrigin" id="countryOfOrigin" aria-label="Country of Origin" placeholder="--- Select Country ---"
-        (selectionChange)="countrySelected($event.value)">
+        <mat-select formControlName="countryOfOrigin" id="countryOfOrigin" aria-label="Country of Origin" placeholder="--- Select Country ---">
           <mat-option value="">--- Select Country ---</mat-option>
-          <mat-option value="CA">Canada</mat-option>
+          <ng-container *ngFor="let country of countryList">
+            <mat-option [value]="''+country.id">{{country.countryName}}</mat-option>
+          </ng-container>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div fxLayout="row">
-      <div fxFlex="35" class="label">State/Province of Origin</div>
+      <div fxFlex="35" class="label">State of Origin</div>
       <mat-form-field  fxFlex="60" appearance="outline">
-        <mat-select formControlName="stateOfOrigin" id="stateOfOrigin" aria-label="State/Province of Origin" placeholder="--- Select State ---"
-        (selectionChange)="stateSelected($event.value)">
+        <mat-select formControlName="stateOfOrigin" id="stateOfOrigin" aria-label="State/Province of Origin" placeholder="--- Select State ---">
           <mat-option value="">--- Select State/Province ---</mat-option>
-          <mat-option value="stateId">Some State</mat-option>
+          <ng-container *ngFor="let state of stateList">
+            <mat-option [value]="''+state.id">{{state.stateName}}</mat-option>
+          </ng-container>
         </mat-select>
       </mat-form-field>
     </div>
 
     <div fxLayout="row">
       <div fxFlex="35" class="label">City of Origin</div>
-      <mat-form-field  fxFlex="60" appearance="outline">
+      <mat-form-field fxFlex="60" appearance="outline">
         <mat-select formControlName="cityOfOrigin" id="cityOfOrigin" aria-label="City of Origin" placeholder="--- Select City ---">
           <mat-option value="">--- Select City ---</mat-option>
-          <mat-option value="cityId">Some City</mat-option>
+          <ng-container *ngFor="let city of cityList">
+            <mat-option [value]="''+city.id">{{city.cityName}}</mat-option>
+          </ng-container>
         </mat-select>
       </mat-form-field>
     </div>

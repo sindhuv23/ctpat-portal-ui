@@ -1,21 +1,21 @@
-<div *ngIf="businessTypeId==1&&!hasIata" class="error-text">Please enter an IATA for Air Carrier</div>
-<div *ngIf="businessTypeId==1&&!hasBond" class="error-text">Please enter a BOND for Air Carrier</div>
-<div *ngIf="businessTypeId==3&&!hasMid" class="error-text">Please enter a MID for Foreign Manufacturer</div>
-<div *ngIf="businessTypeId==5&&!hasBond" class="error-text">Please enter a BOND for Importer</div>
-<div *ngIf="businessTypeId==5&&!hasIor" class="error-text">Please enter an IOR for Importer</div>
-<div *ngIf="businessTypeId==6&&!hasBrokerLicenseNumber" class="error-text">Please enter a Broker License Number for Licensed U.S. Customs Broker</div>
-<div *ngIf="businessTypeId==6&&!hasFilerCode" class="error-text">Please enter a Filer Code for Licensed U.S. Customs Broker</div>
-<div *ngIf="businessTypeId==7&&!hasScac" class="error-text">Please enter a SCAC for Rail Carrier</div>
-<div *ngIf="businessTypeId==7&&!hasBond" class="error-text">Please enter a BOND for Rail Carrier</div>
-<div *ngIf="businessTypeId==8&&!hasScac" class="error-text">Please enter a SCAC for Sea Carrier</div>
-<div *ngIf="businessTypeId==8&&!hasBond" class="error-text">Please enter a BOND for Sea Carrier</div>
-<div *ngIf="businessTypeId==9&&!hasFmc&&!hasIata" class="error-text">Please enter a FMC or IATA number for Consolidator</div>
-<div *ngIf="businessTypeId==9&&!hasBond" class="error-text">Please enter a BOND for Consolidator</div>
-<div *ngIf="businessTypeId==15&&!hasSctNumber" class="error-text">Please enter a SCT Number for Mexican Long Haul Highway Carrier</div>
-<div *ngIf="businessTypeId==17&&!hasCbp&&!hasDot&&!hasFmc&&!hasTsa" class="error-text">Please enter at least one BEI for Third Party Logistics Provider</div>
-<div *ngIf="businessTypeId==18&&!hasDuns&&!hasEin" class="error-text">Please enter a DUNS or EIN number for Exporter</div>
-<div *ngIf="(businessTypeId==4||businessTypeId==10||businessTypeId==11)&&!hasScac" class="error-text">Please enter a SCAC for Highway Carrier</div>
-<div *ngIf="(businessTypeId==4||businessTypeId==10||businessTypeId==11)&&!hasDot" class="error-text">Please enter a DOT for Highway Carrier</div>
+<div *ngIf="businessTypeId==1&&!hasIata" class="error-text">Please Enter an IATA for Air Carrier</div>
+<div *ngIf="businessTypeId==1&&!hasBond" class="error-text">Please Enter a BOND for Air Carrier</div>
+<div *ngIf="businessTypeId==3&&!hasMid" class="error-text">Please Enter a MID for Foreign Manufacturer</div>
+<div *ngIf="businessTypeId==5&&!hasBond" class="error-text">Please Enter a BOND for Importer</div>
+<div *ngIf="businessTypeId==5&&!hasIor" class="error-text">Please Enter an IOR for Importer</div>
+<div *ngIf="businessTypeId==6&&!hasBrokerLicenseNumber" class="error-text">Please Enter a Broker License Number for Licensed U.S. Customs Broker</div>
+<div *ngIf="businessTypeId==6&&!hasFilerCode" class="error-text">Please Enter a Filer Code for Licensed U.S. Customs Broker</div>
+<div *ngIf="businessTypeId==7&&!hasScac" class="error-text">Please Enter a SCAC for Rail Carrier</div>
+<div *ngIf="businessTypeId==7&&!hasBond" class="error-text">Please Enter a BOND for Rail Carrier</div>
+<div *ngIf="businessTypeId==8&&!hasScac" class="error-text">Please Enter a SCAC for Sea Carrier</div>
+<div *ngIf="businessTypeId==8&&!hasBond" class="error-text">Please Enter a BOND for Sea Carrier</div>
+<div *ngIf="businessTypeId==9&&!hasFmc&&!hasIata" class="error-text">Please Enter a FMC or IATA number for Consolidator</div>
+<div *ngIf="businessTypeId==9&&!hasBond" class="error-text">Please Enter a BOND for Consolidator</div>
+<div *ngIf="businessTypeId==15&&!hasSctNumber" class="error-text">Please Enter a SCT Number for Mexican Long Haul Highway Carrier</div>
+<div *ngIf="businessTypeId==17&&!hasCbp&&!hasDot&&!hasFmc&&!hasTsa" class="error-text">Please Enter at least one BEI for Third Party Logistics Provider</div>
+<div *ngIf="businessTypeId==18&&!hasDuns&&!hasEin" class="error-text">Please Enter a DUNS or EIN number for Exporter</div>
+<div *ngIf="(businessTypeId==4||businessTypeId==10||businessTypeId==11)&&!hasScac" class="error-text">Please Enter a SCAC for Highway Carrier</div>
+<div *ngIf="(businessTypeId==4||businessTypeId==10||businessTypeId==11)&&!hasDot" class="error-text">Please Enter a DOT for Highway Carrier</div>
 
 <button (click)="addNewBeiRecord()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
 aria-label="Add New BEI Record" accesskey="N">Add New</button>

@@ -10,8 +10,8 @@
       <ng-container matColumnDef="answer">
         <td mat-cell *matCellDef="let row" style="text-align:center">
           <mat-radio-group value="">
-            <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-            <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
+            <mat-radio-button color="primary" value="Y"  (click)="saveSelection(row, radioYes.value)" #radioYes><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="N"  (click)="saveSelection(row, radioNo.value)" #radioNo><span style="font-weight: lighter;">No</span></mat-radio-button>
           </mat-radio-group>
         </td>
       </ng-container>

@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { BusinessEntityInformationComponent } from './business-entity-info-tab/business-entity-information/business-entity-information.component';
 import { ModesOfTransportComponent } from './business-entity-info-tab/modes-of-transport/modes-of-transport.component';
 import { CenterExcellenceExpertiseComponent } from './business-entity-info-tab/center-excellence-expertise/center-excellence-expertise.component';
+import { CountryOfOriginComponent } from './business-entity-info-tab/country-of-origin/country-of-origin.component';
 
 @Component({
   selector: 'app-details',
@@ -37,7 +38,8 @@ export class DetailsComponent implements OnInit, OnDestroy {
   constructor(public dialog: MatDialog, public detailsService: DetailsService, public accountService: AccountService,
               private businessEntityInformationComponent: BusinessEntityInformationComponent,
               private modesOfTransportComponent: ModesOfTransportComponent,
-              private centerExcellenceExpertiseComponent: CenterExcellenceExpertiseComponent) { }
+              private centerExcellenceExpertiseComponent: CenterExcellenceExpertiseComponent,
+              private countryOfOriginComponent: CountryOfOriginComponent) { }
 
   ngOnInit(): void {
     this.showActionMenu = true;
@@ -71,6 +73,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
         this.businessEntityInformationComponent.ngOnInit();
         this.modesOfTransportComponent.ngOnInit();
         this.centerExcellenceExpertiseComponent.ngOnInit();
+        this.countryOfOriginComponent.ngOnInit();
       }
     }));
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { AccountService } from 'src/app/core/services/account.service';
 
 @Component({
   selector: 'app-signatures',
@@ -10,19 +12,23 @@ export class SignaturesComponent implements OnInit {
 
   public signatureForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  public statusList$!: Observable<any>;
+
+  constructor(private formBuilder: FormBuilder, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.signatureForm = this.formBuilder.group({
-      scssNameSignature: new FormControl(''),
-      vettingDecision: new FormControl(''),
+      scssName: new FormControl(''),
+      scssDecision: new FormControl(''),
       subStatus: new FormControl(''),
-      vettingThreshold: new FormControl(''),
+      threshold: new FormControl(''),
       scssComments: new FormControl(''),
-      supervisorNameSignature: new FormControl(''),
-      supervisorSelection: new FormControl(''),
+      supervisorName: new FormControl(''),
+      supervisorDecision: new FormControl(''),
       supervisorComments: new FormControl('')
     });
+
+    this.statusList$ = this.accountService.getAccountData('getRfStatusList'); 
   }
 
   public getData(): any{

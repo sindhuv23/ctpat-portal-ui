@@ -1,64 +1,64 @@
 <div fxLayout="column">
 
-<button (click)="addBei()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
-aria-label="Add New BEI" accesskey="B">Add New</button>
-
-<div name="beiListDiv" id="beiListDiv">
-  <table mat-table title="BeiList" id="beiListTable" [dataSource]="dataSourceBeiList" name="beiListTable" class="row mat-elevation-z0">
-
-    <ng-container matColumnDef="beiType">
-      <th mat-header-cell *matHeaderCellDef scope="col">BEI Type</th>
-      <td mat-cell *matCellDef="let row">{{row.beiType}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="beiValue">
-      <th mat-header-cell *matHeaderCellDef scope="col">BEI Value</th>
-      <td mat-cell *matCellDef="let row">{{row.beiValue}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="vettedApproved">
-      <th mat-header-cell *matHeaderCellDef scope="col">Vetted Approved</th>
-      <td mat-cell *matCellDef="let row">{{row.vettedApproved}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="duplicateAccountName">
-      <th mat-header-cell *matHeaderCellDef scope="col">Duplicate Account Name</th>
-      <td mat-cell *matCellDef="let row">{{row.duplicateAccountName}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="duplicateAccountNumber">
-      <th mat-header-cell *matHeaderCellDef scope="col">Duplicate Account #</th>
-      <td mat-cell *matCellDef="let row">{{row.duplicateAccountNumber}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="derogatoryIndicator">
-      <th mat-header-cell *matHeaderCellDef scope="col">Derogatory Info Found?</th>
-      <td mat-cell *matCellDef="let row" style="text-align:center">
-        <mat-radio-group value="{{row.derogatoryIndicator}}">
-          <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
-          <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
-        </mat-radio-group>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="entryId">
-      <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
-      <td mat-cell *matCellDef="let row" style="text-align:center">
-        <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
-        <mat-icon (click)="editBeiEntry(row)">edit</mat-icon></td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumnsBeiList" name="beiListTableHeader"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumnsBeiList"></tr>
-  </table>
-</div>
-
-<div style="font-size:1.1em; margin-top:10px">
-  BEI List Findings
-</div>
-<form [formGroup]="beiListForm" autocomplete="off" novalidate>
-  <mat-form-field fxFlex appearance="outline" id="beiFindings">
-    <textarea matInput id="beiFindings" formControlName="beiFindings" rows="3"></textarea>
-  </mat-form-field>
-</form>
-</div>
+  <button (click)="addBei()" mat-raised-button type="button" color="primary" style="margin-bottom:10px;"
+  aria-label="Add New BEI" accesskey="B">Add New</button>
+  
+  <div name="beiListDiv" id="beiListDiv">
+    <table mat-table title="BeiList" id="beiListTable" [dataSource]="dataSourceBeiList" name="beiListTable" class="row mat-elevation-z0">
+  
+      <ng-container matColumnDef="beiType">
+        <th mat-header-cell *matHeaderCellDef scope="col">BEI Type</th>
+        <td mat-cell *matCellDef="let row">{{row.beiType}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="beiValue">
+        <th mat-header-cell *matHeaderCellDef scope="col">BEI Value</th>
+        <td mat-cell *matCellDef="let row">{{row.beiValue}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="vettedApproved">
+        <th mat-header-cell *matHeaderCellDef scope="col">Vetted Approved</th>
+        <td mat-cell *matCellDef="let row">{{row.vettedApproved}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="duplicateAccountName">
+        <th mat-header-cell *matHeaderCellDef scope="col">Duplicate Account Name</th>
+        <td mat-cell *matCellDef="let row">{{row.duplicateAccountName}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="duplicateAccountNumber">
+        <th mat-header-cell *matHeaderCellDef scope="col">Duplicate Account #</th>
+        <td mat-cell *matCellDef="let row">{{row.duplicateAccountNumber}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="derogatoryIndicator">
+        <th mat-header-cell *matHeaderCellDef scope="col">Derogatory Info Found?</th>
+        <td mat-cell *matCellDef="let row" style="text-align:center">
+          <mat-radio-group value="{{row.derogatoryIndicator}}">
+            <mat-radio-button color="primary" value="Y"><span style="font-weight: lighter;">Yes&nbsp;&nbsp;&nbsp;</span></mat-radio-button>
+            <mat-radio-button color="primary" value="N"><span style="font-weight: lighter;">No</span></mat-radio-button>
+          </mat-radio-group>
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="entryId">
+        <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
+        <td mat-cell *matCellDef="let row" style="text-align:center">
+          <mat-icon (click)="confirmDeletion(row.entryId)">delete_forever</mat-icon>
+          <mat-icon (click)="editBeiEntry(row)">edit</mat-icon></td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsBeiList" name="beiListTableHeader"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsBeiList"></tr>
+    </table>
+  </div>
+  
+  <div style="font-size:1.1em; margin-top:10px">
+    BEI List Findings
+  </div>
+  <form [formGroup]="beiListForm" autocomplete="off" novalidate>
+    <mat-form-field fxFlex appearance="outline" id="beiFindings">
+      <textarea matInput id="beiFindings" formControlName="beiFindings" rows="3"></textarea>
+    </mat-form-field>
+  </form>
+  </div>

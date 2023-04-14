@@ -1,80 +1,80 @@
 <div id="outerContainer">
-<form [formGroup]="addNewBeiForm">
-
-  <div fxLayout="row" id="createHeader">
-    <h3 mat-dialog-title class="dialog-header">Add New BEI</h3>
-    <div fxFlex></div>
-    <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
-        aria-label="clear">
-        <mat-icon>clear</mat-icon>
-    </button>
-    <mat-divider class="divider"></mat-divider>
-  </div>
-  <div id="midContainer">
-<mat-dialog-content>
-  <div class="required required-text">* Required</div><br>
-  <div fxLayout="column">
-
-      <div fxLayout="row">
-        <label fxFlex="40" class="label" for="beiType">BEI Type<span class="required"> *</span></label>
-        <mat-form-field fxFlex="60" appearance="outline">
-          <mat-select formControlName="beiType" [(ngModel)]="selectedOption" id="beiType" placeholder="--- Select ---" aria-label="BEI Type"
-                (selectionChange)="updateInputPlaceholder()">
-              <mat-option>--Select--</mat-option>
-              <ng-container>
-                <mat-option [value]="{id: refData.id, beiType: refData.beiType, version: refData.versionNumber}" *ngFor="let refData of ecList$  | async">
-                  {{refData.beiType}}
-                </mat-option>
-              </ng-container>
-          </mat-select>
-          <mat-error *ngIf="submitted && f.beiType.errors && f.beiType.errors.required">BEI Type is required</mat-error>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row">
-        <label  fxFlex="40" class="label" for="beiValue">BEI Value<span class="required"> *</span></label>
-        <mat-form-field fxFlex="60" appearance="outline">
-          <input matInput formControlName="beiValue" id="beiValue" 
-          aria-label="BEI Value" placeholder="{{inputPlaceholder}}"
-          [(ngModel)] = "inputValue">
-        </mat-form-field>
-      </div>
-      <ng-container *ngIf="data.parentType === 'Vetting'">
+  <form [formGroup]="addNewBeiForm">
+  
+    <div fxLayout="row" id="createHeader">
+      <h3 mat-dialog-title class="dialog-header">Add New BEI</h3>
+      <div fxFlex></div>
+      <button mat-icon-button class="close-button" [mat-dialog-close]="true" style="float: right;"
+          aria-label="clear">
+          <mat-icon>clear</mat-icon>
+      </button>
+      <mat-divider class="divider"></mat-divider>
+    </div>
+    <div id="midContainer">
+  <mat-dialog-content>
+    <div class="required required-text">* Required</div><br>
+    <div fxLayout="column">
+  
         <div fxLayout="row">
-          <label  fxFlex="40" class="label" for="vettedApproved">Vetted Approved</label>
-          <div fxFlex="60">
-            <mat-checkbox formControlName="vettedApproved" id="vettedApproved" color="primary" aria-label="Vetted Approved"></mat-checkbox>
+          <label fxFlex="40" class="label" for="beiType">BEI Type<span class="required"> *</span></label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <mat-select formControlName="beiType" [(ngModel)]="selectedOption" id="beiType" placeholder="--- Select ---" aria-label="BEI Type"
+                  (selectionChange)="updateInputPlaceholder()">
+                <mat-option>--Select--</mat-option>
+                <ng-container>
+                  <mat-option [value]="{id: refData.id, beiType: refData.beiType, version: refData.versionNumber}" *ngFor="let refData of ecList$  | async">
+                    {{refData.beiType}}
+                  </mat-option>
+                </ng-container>
+            </mat-select>
+            <mat-error *ngIf="submitted && f.beiType.errors && f.beiType.errors.required">BEI Type is required</mat-error>
+          </mat-form-field>
+        </div>
+  
+        <div fxLayout="row">
+          <label  fxFlex="40" class="label" for="beiValue">BEI Value<span class="required"> *</span></label>
+          <mat-form-field fxFlex="60" appearance="outline">
+            <input matInput formControlName="beiValue" id="beiValue" 
+            aria-label="BEI Value" placeholder="{{inputPlaceholder}}"
+            [(ngModel)] = "inputValue">
+          </mat-form-field>
+        </div>
+        <ng-container *ngIf="data.parentType === 'Vetting'">
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="vettedApproved">Vetted Approved</label>
+            <div fxFlex="60">
+              <mat-checkbox formControlName="vettedApproved" id="vettedApproved" color="primary" aria-label="Vetted Approved"></mat-checkbox>
+            </div>
           </div>
-        </div>
-
-        <div fxLayout="row">
-          <label  fxFlex="40" class="label" for="duplicateAccountName">Duplicate Account Name</label>
-          <mat-form-field fxFlex="60" appearance="outline">
-            <input matInput formControlName="duplicateAccountName" id="duplicateAccountName" 
-            aria-label="Duplicate Account Name">
-          </mat-form-field>
-        </div>
-
-        <div fxLayout="row">
-          <label  fxFlex="40" class="label" for="duplicateAccountNumber">Duplicate Account #</label>
-          <mat-form-field fxFlex="60" appearance="outline">
-            <input matInput formControlName="duplicateAccountNumber" id="duplicateAccountNumber" 
-            aria-label="Duplicate Account">
-          </mat-form-field>
-        </div>
-    </ng-container>
-
-      <div fxLayout="row" style="color :#A0001E" *ngIf="showError">{{errorMessage}}</div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="duplicateAccountName">Duplicate Account Name</label>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="duplicateAccountName" id="duplicateAccountName" 
+              aria-label="Duplicate Account Name">
+            </mat-form-field>
+          </div>
+  
+          <div fxLayout="row">
+            <label  fxFlex="40" class="label" for="duplicateAccountNumber">Duplicate Account #</label>
+            <mat-form-field fxFlex="60" appearance="outline">
+              <input matInput formControlName="duplicateAccountNumber" id="duplicateAccountNumber" 
+              aria-label="Duplicate Account">
+            </mat-form-field>
+          </div>
+      </ng-container>
+  
+        <div fxLayout="row" style="color :#A0001E" *ngIf="showError">{{errorMessage}}</div>
+    </div>
+  </mat-dialog-content>
   </div>
-</mat-dialog-content>
-</div>
-<div id="footer">
-  <mat-divider class="divider"></mat-divider>
-  <mat-dialog-actions>
-    <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
-    <div fxFlex></div>
-    <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
-  </mat-dialog-actions>
-</div>
-</form>
-</div>
+  <div id="footer">
+    <mat-divider class="divider"></mat-divider>
+    <mat-dialog-actions>
+      <button mat-raised-button type="button" class="minorButton" (click)="cancel()" accesskey="I" aria-label="Cancel">Cancel</button>
+      <div fxFlex></div>
+      <button mat-raised-button type="submit" color="primary" (click)="save()" accesskey="P" aria-label="Save">Save</button>
+    </mat-dialog-actions>
+  </div>
+  </form>
+  </div>

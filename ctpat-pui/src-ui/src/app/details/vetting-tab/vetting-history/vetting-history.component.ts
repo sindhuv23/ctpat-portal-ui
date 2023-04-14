@@ -14,6 +14,8 @@ export class VettingHistoryComponent implements OnInit, OnDestroy, AfterViewInit
 
   private subscriptions = new Subscription();
   private businessType!: string;
+  private businessTypeId!: number;
+  private ctpatAccountId!: string;
   displayedColumnsVettingHistory: string[] = ['vettingDate', 'scss', 'results', 'docId'];
   private dataVettingHistory: any[] = [];
   public dataSourceVettingHistory = new MatTableDataSource<any>();
@@ -24,6 +26,13 @@ export class VettingHistoryComponent implements OnInit, OnDestroy, AfterViewInit
     this.subscriptions.add(this.accountService.detailTitleBar$.subscribe((data: any) => {
       if (data) {
         this.businessType = data.businessType;
+        this.businessTypeId = data.businessTypeId;
+      }
+    }));
+
+    this.subscriptions.add(this.accountService.accountId$.subscribe((id: any) => {
+      if (id) {
+        this.ctpatAccountId = id;
       }
     }));
   }
@@ -36,7 +45,7 @@ export class VettingHistoryComponent implements OnInit, OnDestroy, AfterViewInit
 
   newVetting(): void {
     const dialogRef = this.dialog.open(NewVettingModalComponent, {
-      data: { businessType: this.businessType },
+      data: { businessType: this.businessType, businessTypeId: this.businessTypeId, ctpatAccountId: this.ctpatAccountId },
       width: '1000px',
       height: '1200px',
       disableClose: true

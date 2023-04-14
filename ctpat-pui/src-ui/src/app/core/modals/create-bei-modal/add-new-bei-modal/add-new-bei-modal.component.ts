@@ -240,4 +240,3 @@ export class AddNewBeiModalComponent implements OnInit, OnDestroy {
 
 
 }
-

@@ -10,18 +10,19 @@
       <div fxLayout="row">
         <div fxFlex="40" class="title">SCSS Name/Signature</div>
         <mat-form-field fxFlex="40" appearance="outline">
-          <input matInput formControlName="scssNameSignature" aria-label="SCSS Name/Signature">
+          <input matInput formControlName="scssName" aria-label="SCSS Name/Signature">
         </mat-form-field>
       </div>
 
       <div fxLayout="row">
-        <label fxFlex="25" class="title" for="vettingDecision">Vetting Decision</label>
+        <label fxFlex="25" class="title" for="scssDecision">Vetting Decision</label>
         <mat-form-field fxFlex="25" appearance="outline">
-          <mat-select formControlName="vettingDecision" id="vettingDecision" placeholder="--- Select ---" aria-label="Vetting Decision">
+          <mat-select formControlName="scssDecision" id="scssDecision" placeholder="--- Select ---" aria-label="Vetting Decision">
               <mat-option>--Select--</mat-option>
               <ng-container>
-                <mat-option value="test">test
-                </mat-option>
+                <mat-option [value]="refData.id" *ngFor="let refData of statusList$  | async">
+                  {{refData.status}}
+              </mat-option>
               </ng-container>
           </mat-select>
         </mat-form-field>
@@ -31,7 +32,7 @@
           <mat-select formControlName="subStatus" id="subStatus" placeholder="--- Select ---" aria-label="Sub Status">
               <mat-option>--Select--</mat-option>
               <ng-container>
-                <mat-option value="test">test
+                <mat-option value="1">test
                 </mat-option>
               </ng-container>
           </mat-select>
@@ -39,13 +40,13 @@
       </div>
 
       <div fxLayout="row">
-        <label fxFlex="30" class="title" for="vettingThreshold">Vetting Threshold</label>
+        <label fxFlex="30" class="title" for="threshold">Vetting Threshold</label>
         <mat-form-field fxFlex="70" appearance="outline">
-          <mat-select formControlName="vettingThreshold" id="vettingThreshold" placeholder="Options appear based on sub status" aria-label="Vetting Threshold">
+          <mat-select formControlName="threshold" id="threshold" placeholder="Options appear based on sub status" aria-label="Vetting Threshold">
               <mat-option>--Select--</mat-option>
               <ng-container>
-                <mat-option value="test">test
-                </mat-option>
+                <mat-option value="10">10</mat-option>
+                <mat-option value="20">20</mat-option>
               </ng-container>
           </mat-select>
         </mat-form-field>
@@ -63,16 +64,16 @@
       <div fxLayout="row">
         <div fxFlex="50" class="title">Supervisor Name/Signature</div>
         <mat-form-field appearance="outline">
-          <input matInput formControlName="supervisorNameSignature" aria-label="Supervisor Name/Signature">
+          <input matInput formControlName="supervisorName" aria-label="Supervisor Name/Signature">
         </mat-form-field>
       </div>
 
       <div fxLayout="row">
         <div fxFlex="50" class="title">Supervisor Selection</div>
-        <mat-radio-group formControlName="supervisorSelection" aria-label="Supervisor Selection">
-          <mat-radio-button color="primary" value="A"><span style="font-weight: lighter;">Agree with SCSS Decision</span></mat-radio-button>
-          <mat-radio-button color="primary" value="O"><span style="font-weight: lighter;">Overide SCSS Decision</span></mat-radio-button>
-          <mat-radio-button color="primary" value="R"><span style="font-weight: lighter;">Return to SCSS</span></mat-radio-button>
+        <mat-radio-group formControlName="supervisorDecision" aria-label="Supervisor Selection">
+          <mat-radio-button color="primary" value="1"><span style="font-weight: lighter;">Agree with SCSS Decision</span></mat-radio-button>
+          <mat-radio-button color="primary" value="2"><span style="font-weight: lighter;">Overide SCSS Decision</span></mat-radio-button>
+          <mat-radio-button color="primary" value="3"><span style="font-weight: lighter;">Return to SCSS</span></mat-radio-button>
         </mat-radio-group>
       </div>
 

@@ -31,6 +31,30 @@ export class BeiTabService {
     return this.httpClient.get(this.baseUrl + '/service-portal/bei/getCee/' + ctpatAccountId) ;
   }
 
+  getCo(ctpatAccountId: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/service-portal/bei/getCo/' + ctpatAccountId) ;
+  }
+
+  saveCo(coData: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/service-portal/bei/updateCo', coData);
+  }
+
+  getCoInternal(ctpatAccountId: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/service-portal/bei/getCoInternal/' + ctpatAccountId) ;
+  }
+
+  deleteCoInternal(id: any): Observable<any> {
+    return this.httpClient.get(this.baseUrl + '/service-portal/bei/deleteCoInternal/' + id) ;
+  }
+
+  saveCoInternal(coData: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/service-portal/bei/saveCoInternal', coData);
+  }
+
+  updateCoInternal(coData: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + '/service-portal/bei/updateCoInternal', coData);
+  }
+
   saveHwyCarrier(hwyCarrierData: any): Observable<any> {
     return this.httpClient.post(this.baseUrl + '/service-portal/bei/updateHwyCarrier', hwyCarrierData);
   }

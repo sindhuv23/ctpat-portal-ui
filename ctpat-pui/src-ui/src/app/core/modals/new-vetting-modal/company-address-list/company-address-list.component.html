@@ -41,9 +41,9 @@ aria-label="Add Address" accesskey="D">Add Address</button>
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef scope="col" style="text-align:center">Action</th>
-      <td mat-cell *matCellDef="let row" style="text-align:center">
-        <mat-icon (click)="confirmDeletion(row.id)">delete_forever</mat-icon>
-        <mat-icon (click)="editCompanyAddressEntry(row)">edit</mat-icon></td>
+      <td mat-cell *matCellDef="let row; let i = index" style="text-align:center">
+        <mat-icon (click)="confirmDeletion(i)">delete_forever</mat-icon>
+        <mat-icon (click)="editCompanyAddressEntry(row, i)">edit</mat-icon></td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumnsCompanyAddressList" name="companyAddressListTableHeader"></tr>

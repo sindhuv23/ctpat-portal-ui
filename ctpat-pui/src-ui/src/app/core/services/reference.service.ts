@@ -16,6 +16,8 @@ export class ReferenceService implements OnDestroy  {
   private countryMap = new Map<string, string>();
   private stateList: any;
   private stateMap = new Map<string, string>();
+  private cityList: any;
+  private cityMap = new Map<string, string>();
 
   private esCenterList: any;
   private esCenterMap = new Map<string, string>();
@@ -34,6 +36,7 @@ export class ReferenceService implements OnDestroy  {
   public retreivedRefData(): void{
     this.retrieveCountryList();
     this.retrieveStateList();
+    this.retrieveCityList();
     this.retrieveEsCenterList();
 
     this.retrieveBorderCrossingList();
@@ -55,6 +58,15 @@ export class ReferenceService implements OnDestroy  {
       this.subscriptions.add(this.httpClient.get(this.baseUrl + '/service-portal/getStateList').subscribe(data =>
         { this.stateList = data;
           this.buildStateMap();
+        }));
+    }
+  }
+
+  private retrieveCityList(): void{
+    if (!this.cityList || this.cityList.length === 0){
+      this.subscriptions.add(this.httpClient.get(this.baseUrl + '/service-portal/getCityList').subscribe(data =>
+        { this.cityList = data;
+          this.buildCityMap();
         }));
     }
   }
@@ -107,6 +119,12 @@ export class ReferenceService implements OnDestroy  {
     });
   }
 
+  private buildCityMap(): void{
+    this.cityList.forEach((element: any) => {
+      this.cityMap.set(element.id.toString(), element.cityName);
+    });
+  }
+
   private buildEsCenterMap(): void{
     this.esCenterList.forEach((element: any) => {
       this.esCenterMap.set(element.centerId, element.descriptionText);
@@ -139,6 +157,33 @@ export class ReferenceService implements OnDestroy  {
   public getStateName(id: string): string{
     const stateName = this.stateMap.get(id);
     return stateName ? stateName : id;
+  }
+
+  public getCityName(id: string): string{
+    const cityName = this.cityMap.get(id);
+    return cityName ? cityName : id;
+  }
+
+  public getCountryList(): any{
+    if (this.countryList && this.countryList.length !== 0){
+      return this.countryList.sort((r1: any, r2: any) => r1.countryName.localeCompare(r2.countryName));
+    }
+  }
+
+  public getStateListByCountry(id: string): any {
+    if (!this.stateList || this.stateList.length === 0){
+      this.retrieveStateList();
+    }
+    return this.stateList.filter((r: any) => r.countryId == id)
+    .sort((r1: any, r2: any) => r1.stateName.localeCompare(r2.stateName));
+  }
+
+  public getCityListByState(id: string): any {
+    if (!this.cityList || this.cityList.length === 0){
+      this.retrieveCityList();
+    }
+    return this.cityList.filter((r: any) => r.stateId == id)
+    .sort((r1: any, r2: any) => r1.cityName.localeCompare(r2.cityName));
   }
 
   public getEsCenterName(centerId: string): string{

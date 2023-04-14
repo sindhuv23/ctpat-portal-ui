@@ -22,15 +22,16 @@ export class AddCompanyModalComponent implements OnInit {
     const companyInfo  = this.data.companyInfo;
     this.submitted = false;
     this.createCompanyForm = this.formBuilder.group({
-      entryId: new FormControl(companyInfo?.entryId),
-      companyName: new FormControl(companyInfo?.companyName),
+      id: new FormControl(companyInfo?.id),
+      companyName: new FormControl(companyInfo?.companyName, Validators.required),
       doingBusinessAs: new FormControl(companyInfo?.doingBusinessAs, Validators.required),
       businessPhone: new FormControl(companyInfo?.businessPhone, Validators.required),
       businessFax: new FormControl(companyInfo?.businessFax, Validators.required),
       ownershipTypeId: new FormControl(companyInfo?.ownershipType, Validators.required),
       yearsInBusiness: new FormControl(companyInfo?.yearsInBusiness, Validators.required),
       numberOfEmployess: new FormControl(companyInfo?.numberOfEmployess, Validators.required),
-      businessWebsiteAddress: new FormControl(companyInfo?.businessWebsiteAddress, Validators.required)
+      businessWebsiteAddress: new FormControl(companyInfo?.businessWebsiteAddress, Validators.required),
+      partnerEntered: new FormControl('N')
     });
     this.ownershipType$ = this.accountService.getAccountData('getOwnershipTypeLkpList'); 
   }

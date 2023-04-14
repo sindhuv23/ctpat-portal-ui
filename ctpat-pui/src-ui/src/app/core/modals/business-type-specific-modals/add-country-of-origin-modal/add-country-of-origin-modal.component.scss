@@ -62,3 +62,7 @@ mat-dialog-actions{
   bottom: 0px;
   background-color: lightgrey;
 }
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid .mat-form-field-outline-thick{
+  color: #a00000 !important;
+  opacity: 0.6 !important;
+}

@@ -26,7 +26,7 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
     'dateOfBirth', 'idNumbers', 'email', 'phone', 'entryId'];
   displayedColumnsCompanyDocDetail: string[] = ['passportInfo', 'countryOfBirth', 'countryOfCitizenship', 'visaInfo', 'alienNum',
     'naturalizationNum', 'dlnInfo', 'lpr', 'nexus'];
-  private dataCompanyContactList: any[] = []; // for communication with backend
+  public dataCompanyContactList: any[] = []; // for communication with backend
   private dataCompanyContactListDisplay: any[] = []; // for frontend display only
   public dataSourceCompanyContactList = new MatTableDataSource<any>();
 
@@ -36,25 +36,36 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
   }
 
   ngAfterViewInit(): void{
-    this.dataCompanyContactList.push({showDocDetail: false, firstName: 'Garbriel', lastName: 'Wesserman', middleInitial: '',
-    dateOfBirth: '01/01/1950', ssn: 'SSN- 123-45-6789', sin: 'SIN- 222-333-444\nCURP- MAAR790213HMNRLF03', rfc: 'RFC- HEGJ820506M10',
-    email: 'someone@somedomain.com', phone: '123-456-7890', entryId: 0,
+    this.dataCompanyContactList.push({showDocDetail: false, firstName: 'Garbriel', lastName: 'Wesserman', middleNameInitial: '',
+    dateOfBirth: new Date(), ssn: '123-45-6789', sin: '222-333-444', rfc: 'HEGJ820506M10', curp: 'MAAR79021RLF03',
+    email: 'someone@somedomain.com', telephoneNumber: '123-456-7890', id: null,
     docDetail: [{
-      passportNumber: 'G-1234567, MX', passportCountry: 'Mexico', countryOfBirthCd: 'MX', countryOfCitizenshipCd: 'MX', countryOfBirth: 'Mexico', countryOfCitizenship: 'Mexico',
-      visaType: 'B1', visaNumber:'V1234567', alienNum: 'A-1234567', naturalizationNum: 'N123456', dlnNumber: 'DLN-1234, MX', dlnCountry: 'Mexico', lpr: 'A# 111-222-333', 
-      nexus: 'nexus11', centri: 'CENTRI- 777700575', globalEntry: 'Global Entry- 987654321'
+      passportNum: 'G-1234567', passportIssuanceCountryId: 275, passportCountry: 'Mexico', birthCountryId: 275, countryOfBirthCd: 'MX', citizenshipCountryId: 275, countryOfCitizenshipCd: 'MX', countryOfBirth: 'Mexico', countryOfCitizenship: 'Mexico',
+      usVisaType: 'B1', usVisaNum:'V1234567', alienRegNum: 'A-1234567', naturalizationNum: 'N123456', dlnNum: 'DLN-1234, MX', dlnIssuanceCountryId: 275, dlnCountry: 'Mexico', dlnIssuanceStId: 132,  lpr: 'A# 111-222-333', 
+      nexus: 'nexus11', centri: '777700575', globalEntry: '987654321'
       }]
     });
-    this.dataCompanyContactList.push({showDocDetail: false, firstName: 'Robert', lastName: 'SomeLastName', middleInitial: 'M',
-    dateOfBirth: '03/01/1990', ssn: 'US- 222-45-6789', sin: 'SIN- 555-666-777', rfc: 'RFC- HEGJ820506M10', email: 'test2@somedomain.com', phone: '222-456-7890', entryId: 1,
+    this.dataCompanyContactList.push({showDocDetail: false, firstName: 'Robert', lastName: 'SomeLastName', middleNameInitial: 'M',
+    dateOfBirth:  new Date(), ssn: 'US- 222-45', sin: '555-666-777', rfc: 'HEGJ820506M10', curp: 'MAAR79021RLF03', email: 'test2@somedomain.com', telephoneNumber: '222-456-7890', id: null,
     docDetail: [{
-      passportNumber: 'J-2224567, CA',  passportCountry: 'Canada', countryOfBirthCd: 'CA', countryOfCitizenshipCd: 'CA',  countryOfBirth: 'Canada', countryOfCitizenship: 'Canada',
-      visaType: 'B2', visaNumber:'V2224567', alienNum: 'A-222567', naturalizationNum: 'N222456', dlnNumber: 'DLN-2221, CA',  dlnCountry: 'Canada', lpr: 'A# 123-456-789',
-      nexus: 'NEXUS- 123456789S123C', centri: 'CENTRI- 777700575', globalEntry: 'Global Entry- 987654321'
+      passportNum: 'J-2224567',  passportIssuanceCountryId: 275, passportCountry: 'Canada', birthCountryId: 275, countryOfBirthCd: 'CA',  citizenshipCountryId: 275, countryOfCitizenshipCd: 'CA',  countryOfBirth: 'Canada', countryOfCitizenship: 'Canada',
+      usVisaType: 'B2', usVisaNum:'V2224567', alienRegNum: 'A-222567', naturalizationNum: 'N222456', dlnNum: 'DLN-2221, CA',  dlnIssuanceCountryId: 275, dlnCountry: 'Canada', dlnIssuanceStId: 133, lpr: 'A# 123-456-789',
+      nexus: 'nexus12', centri: '777700575', globalEntry: '987654321'
       }]
     });
 
     this.processNestedTableDataForDisplay();
+  }
+
+  getData() : any[]{
+    const list: any[] = [];
+    this.dataCompanyContactList.forEach(contact =>{
+      const docDetail ={...contact.docDetail[0]}
+      const ct = {...contact, ...docDetail};
+      delete ct.docDetail;
+      list.push(ct);
+    });
+    return list;
   }
 
   processNestedTableDataForDisplay(): void{
@@ -87,9 +98,16 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
       height: '700px',
       data: {}
     });
+    confirmRef.afterClosed().subscribe(newRecord => {
+      if (newRecord) {
+        console.log(newRecord);
+        this.dataCompanyContactList.push(newRecord);
+        this.dataSourceCompanyContactList.data = this.dataCompanyContactList;
+      }
+    });
   }
 
-  confirmDeletion(id: any): void{
+  confirmDeletion(index: number): void{
     const confirmRef = this.dialog.open(ConfirmationDialogModalComponent, {
       disableClose: true,
       width: '460px',
@@ -101,28 +119,33 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
     });
     confirmRef.afterClosed().subscribe(result => {
       if (result) {
-        this.deleteCompanyContactListEntry(id);
+        this.deleteCompanyContactListEntry(index);
       }
     });
   }
 
-  deleteCompanyContactListEntry(id: any): void{
-    this.dataCompanyContactList.splice(id, 1);
-    for (let i = 0; i < this.dataCompanyContactList.length; i++) {
-     this.dataCompanyContactList[i].entryId = i;
-    }
+  deleteCompanyContactListEntry(index: number): void{
+    console.log('delete row index' , index);
+    this.dataCompanyContactList.splice(index, 1);
 
     this.processNestedTableDataForDisplay();
   }
 
   // open edit company name modal
-  editCompanyContactEntry(row: any): void{
-    console.log('edit row ' + row);
+  editCompanyContactEntry(index: number): void{
+    console.log('edit row index' , index);
     const confirmRef = this.dialog.open(AddCompanyContactModalComponent, {
       disableClose: true,
       width: '950px',
       height: '700px',
-      data: {row}
+      data: {row: this.dataCompanyContactList[index]}
+    });
+    confirmRef.afterClosed().subscribe(updatedRecord => {
+      if (updatedRecord) {
+        console.log(updatedRecord);
+        this.dataCompanyContactList[index] = updatedRecord;
+        this.dataSourceCompanyContactList.data = this.dataCompanyContactList;
+      }
     });
   }
 
@@ -130,4 +153,3 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
     this.subscriptions.unsubscribe();
   }
 }
-

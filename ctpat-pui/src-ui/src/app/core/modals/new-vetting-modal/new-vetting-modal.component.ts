@@ -1,9 +1,13 @@
-import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild  } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import { VettingService } from '../../services/vetting-service';
+import { CompanyAddressListComponent } from './company-address-list/company-address-list.component';
+import { CompanyContactListComponent } from './company-contact-list/company-contact-list.component';
 import { CompanyNameListComponent } from './company-name-list/company-name-list.component';
+import { EligibilityComponent } from './eligibility/eligibility.component';
 import { SignaturesComponent } from './signatures/signatures.component';
 
 @Component({
@@ -22,10 +26,13 @@ export class NewVettingModalComponent implements OnInit,  OnDestroy {
   public dataSourceQuestions = new MatTableDataSource<any>();
 
   @ViewChild(CompanyNameListComponent) companyNameListComponent!: CompanyNameListComponent;
+  @ViewChild(CompanyAddressListComponent) CompanyAddressListComponent!: CompanyAddressListComponent;
+  @ViewChild(CompanyContactListComponent) companyContactListComponent!: CompanyContactListComponent;
   @ViewChild(SignaturesComponent) signaturesComponent!: SignaturesComponent;
+  @ViewChild(EligibilityComponent) eligibilityComponent!: EligibilityComponent;
 
   constructor(public dialogRef: MatDialogRef<NewVettingModalComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder) { }
+              @Inject(MAT_DIALOG_DATA) public data: any, private formBuilder: FormBuilder, private vettingService: VettingService) { }
 
   ngOnInit(): void {
     this.submitted = false;
@@ -54,10 +61,21 @@ export class NewVettingModalComponent implements OnInit,  OnDestroy {
   }
 
   submit(): void {
-    console.log('vetting submit ');
-    console.log('companyNames ' , this.companyNameListComponent.dataCompanyNameList);
-    console.log('signature data ' , this.signaturesComponent.getData());
     this.submitted = true;
+
+    console.log('vetting submit ');
+
+    const vetting = {...this.signaturesComponent.getData() };
+    vetting.vettingCompanyNames = this.companyNameListComponent.dataCompanyNameList;
+    vetting.vettingCompanyAddresses = this.CompanyAddressListComponent.dataCompanyAddressList;
+    vetting.vettingCompanyContacts = this.companyContactListComponent.getData();
+    vetting.vettingEligibilities = this.eligibilityComponent.getData();
+    vetting.ctpatAccountId = this.data.ctpatAccountId;
+
+    console.log('vetting model ', vetting);
+
+    this.vettingService.saveVettingData(vetting).subscribe(res => console.log('Vetting saved', res));
+
     // UI validation before this point
     if (this.newVettingForm.invalid){
       return;

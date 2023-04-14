@@ -45,6 +45,9 @@ export class AccountService {
   private profileIndicatorHwyCarrierSubject = new ReplaySubject<any>(1);
   public profileIndicatorHwyCarrier$ = this.profileIndicatorHwyCarrierSubject.asObservable();
 
+  private profileIndicatorCoSubject = new ReplaySubject<any>(1);
+  public profileIndicatorCo$ = this.profileIndicatorCoSubject.asObservable();
+
   private milestoneResultSubject = new Subject<string>();
   public milestoneResult$ = this.milestoneResultSubject.asObservable();
 
@@ -105,6 +108,10 @@ export class AccountService {
 
   getEligibilityQuestionsByBusinessTypeId(businessTypeId: any): Observable<any> {
     return this.httpClient.get(this.baseUrl + `/service-portal/getEligibilityQuestionsByBusinessTypeId/${businessTypeId}`);
+  }
+
+  getEligibilityQuestionsByBusinessTypeIdAndSubject(queryModel: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + `/service-portal/getEligibilityQuestionsByBusinessTypeIdAndSubject/`, queryModel);
   }
 
 public getTcAccountContactsByCtpatId(ctpatAccountId: any): Observable<any> {
@@ -178,6 +185,10 @@ public deleteCtpatAccountUser(id:any, ctpatAccountId: any): Observable<any> {
 
   public broadcastProfileIndicatorHwyCarrier(data: boolean): void{
     this.profileIndicatorHwyCarrierSubject.next(data);
+  }
+
+  public broadcastProfileIndicatorCo(data: boolean): void{
+    this.profileIndicatorCoSubject.next(data);
   }
 
   public broadcastMilestoneResult(milestoneResult: any): void{

@@ -22,7 +22,7 @@ export class AddBusinessHistoryModalComponent implements OnInit {
     this.submitted = false;
     this.addBusinessHistoryForm = this.formBuilder.group({
       entryId: new FormControl(row?.entryId),
-      businessHistory: new FormControl(row?.businessHistory)
+      businessHistory: new FormControl(row?.businessHistory, Validators.required)
     });
   }
 

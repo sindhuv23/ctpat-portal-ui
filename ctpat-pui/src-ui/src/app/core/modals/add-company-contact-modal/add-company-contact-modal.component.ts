@@ -25,37 +25,43 @@ export class AddCompanyContactModalComponent implements OnInit {
     const row  = this.data.row;
     this.submitted = false;
     this.createCompanyContactForm = this.formBuilder.group({
-      entryId: new FormControl(row?.entryId),
-      firstName: new FormControl(row?.firstName),
+      id: new FormControl(row?.id),
+      firstName: new FormControl(row?.firstName, Validators.required),
       lastName: new FormControl(row?.lastName, Validators.required),
-      middleInitial: new FormControl(row?.middleInitial),
+      middleNameInitial: new FormControl(row?.middleNameInitial),
       dateOfBirth: new FormControl(row?.dateOfBirth),
-      countryOfBirthId: new FormControl(row?.countryOfBirth),
-      countryOfCitizenshipId: new FormControl(row?.countryOfCitizenship),
+      birthCountryId: new FormControl(row?.docDetail[0]?.birthCountryId),
+      citizenshipCountryId: new FormControl(row?.docDetail[0]?.citizenshipCountryId),
       email: new FormControl(row?.email),
-      phone: new FormControl(row?.phone),
+      telephoneNumber: new FormControl(row?.telephoneNumber),
 
-      passportNumber: new FormControl(row?.passportNumber),
-      passportCountry: new FormControl(row?.passportCountry),
-      visaType: new FormControl(row?.visaType),
-      visaNumber: new FormControl(row?.visaNumber),
+      passportNum: new FormControl(row?.docDetail[0]?.passportNum),
+      passportIssuanceCountryId: new FormControl(row?.docDetail[0]?.passportIssuanceCountryId),
+      usVisaType: new FormControl(row?.docDetail[0]?.usVisaType),
+      usVisaNum: new FormControl(row?.docDetail[0]?.usVisaNum),
 
-      alienNum: new FormControl(row?.alienNum),
-      naturalizationNum: new FormControl(row?.naturalizationNum),
-      lpr: new FormControl(row?.lpr),
-      dlnNumber: new FormControl(row?.dlnNumber),
-      dlnCountryId: new FormControl(row?.dlnCountry),
-      dlnStateId: new FormControl(row?.dlnState),
-      nexus: new FormControl(row?.nexus),
-      centri: new FormControl(row?.centri),
-      globalEntry: new FormControl(row?.globalEntry),
+      alienRegNum: new FormControl(row?.docDetail[0]?.alienRegNum),
+      naturalizationNum: new FormControl(row?.docDetail[0]?.naturalizationNum),
+      lpr: new FormControl(row?.docDetail[0]?.lpr),
+      dlnNum: new FormControl(row?.docDetail[0]?.dlnNum),
+      dlnIssuanceCountryId: new FormControl(row?.docDetail[0]?.dlnIssuanceCountryId),
+      dlnIssuanceStId: new FormControl(row?.docDetail[0]?.dlnIssuanceStId),
+      nexus: new FormControl(row?.docDetail[0]?.nexus),
+      centri: new FormControl(row?.docDetail[0]?.centri),
+      globalEntry: new FormControl(row?.docDetail[0]?.globalEntry),
       ssn: new FormControl(row?.ssn),
       sin: new FormControl(row?.sin),
-      rfc: new FormControl(row?.rfc)
+      rfc: new FormControl(row?.rfc),
+      curp: new FormControl(row?.curp)
 
     });
-    this.accountService.getAccountData('getStateList').subscribe(states=> this.stateList = states);
     this.countryList$ = this.accountService.getAccountData('getCountryList'); 
+    this.accountService.getAccountData('getStateList').subscribe(states=> {
+      this.stateList = states;
+      if(row?.docDetail[0]?.dlnIssuanceCountryId){
+          this.populateStates(row?.docDetail[0]?.dlnIssuanceCountryId);
+      }
+  });
   }
 
   get f(): {[key: string]: AbstractControl} {
@@ -68,6 +74,31 @@ export class AddCompanyContactModalComponent implements OnInit {
 
   save(): void {
     this.submitted = true;
+    const updatedRecord = this.createCompanyContactForm.getRawValue();
+    updatedRecord.docDetail = [{
+      passportNum: updatedRecord.passportNum,  
+      passportIssuanceCountryId: updatedRecord.passportIssuanceCountryId,
+      passportCountry: 'Canada', 
+      birthCountryId: updatedRecord.birthCountryId,
+      countryOfBirthCd: 'CA', 
+      citizenshipCountryId: updatedRecord.citizenshipCountryId,
+      countryOfCitizenshipCd: 'CA',  
+      countryOfBirth: 'Canada', 
+      countryOfCitizenship: 'Canada',
+      usVisaType: updatedRecord.usVisaType,
+      usVisaNum: updatedRecord.usVisaNum,
+      alienRegNum: updatedRecord.alienRegNum,
+      naturalizationNum: updatedRecord.naturalizationNum,
+      dlnNum: updatedRecord.dlnNum,
+      dlnIssuanceCountryId: updatedRecord.dlnIssuanceCountryId,
+      dlnCountry: 'Canada', 
+      dlnIssuanceStId: updatedRecord.dlnIssuanceStId,
+      lpr: updatedRecord.lpr,
+      nexus: updatedRecord.nexus,
+      centri: updatedRecord.centri,
+      globalEntry: updatedRecord.globalEntry,
+      }];
+      this.dialogRef.close(updatedRecord);
   }
 
   cancel(): void {
