@@ -3,148 +3,148 @@ const INTELLIGENCE_GATHERING_QUESTIONNAIRE = {
         name: 'Portal Queries (Was Derogatory Information Identified? Yes/No)',
         questions: [{
             question: 'Portal Milestones',
-            formControlName: 'portalMilestonesIndicator',
+            formControlName: 'portalMilestones',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Portal Company History',
-            formControlName: 'portalMilestonesIndicator',
+            formControlName: 'portalCompanyHist',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Portal Document Exchange',
-            formControlName: 'portalDocumentExchangeIndicator',
+            formControlName: 'portalDocExchange',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Portal Company Name(s)/DBAs Search – Include Withdrawn Accounts in Search',
-            formControlName: 'portalCompanyNameIndicator',
+            formControlName: 'portalCompanySearch',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Portal BEI Search',
-            formControlName: 'portalBeiSearchIndicator',
+            formControlName: 'portalBeiSearch',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'POC Portal User ID Email checked in Admin. Portal',
-            formControlName: 'portalUserIdIndicator',
+            formControlName: 'portalPocCheck',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'portalQueryResponse'
+            formControlName: 'portalAdditionalText'
         }
     },
     openSourceQueries: {
         name: 'Open Source (OS) Queries (Was Derogatory Information Identified? Yes/No)',
         questions: [{
             question: 'OS Company Name(s)',
-            formControlName: 'opensourceCompanyName',
+            formControlName: 'osCompanyName',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'OS Website (cached)',
-            formControlName: 'opensourceWebsite',
+            formControlName: 'osWebsite',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'OS Company Name(s) News',
-            formControlName: 'opensourceCompanyNameNews',
+            formControlName: 'osCompanyNews',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'OS Phone Number(s)',
-            formControlName: 'opensourcePhone',
+            formControlName: 'osPhone',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'OS Company DBA',
-            formControlName: 'opensourceDBA',
+            formControlName: 'osCompanyDba',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'OS Company   Address(s)',
-            formControlName: 'opensourceAddress',
+            formControlName: 'osCompanyAddress',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'opensourceQueryResponse'
+            formControlName: 'osAdditionalText'
         }
     },
     bondQueries: {
         name: 'Bond Query',
         questions: [{
             question: 'Bond (Bond Number)',
-            formControlName: 'bondIndicator',
+            formControlName: 'bqBond',
             allowedBusinessTypes: ['Air Carrier']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'bondQueryResponse'
+            formControlName: 'bqAdditionalText'
         }
     },
     fmcBondQueries: {
         name: 'FMC and Bond Query',
         questions: [{
             question: 'NVOCC (Companynames(s) or license)',
-            formControlName: 'fmcBondCompanyName',
+            formControlName: 'fmcbqNvocc',
             allowedBusinessTypes: ['Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)']
         }, {
             question: 'Bond (Bond Number)',
-            formControlName: 'fmcBondNumber',
+            formControlName: 'fmcbqBond',
             allowedBusinessTypes: ['Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'fmcBondQueryResponse'
+            formControlName: 'fmcBondAdditionalText'
         }
     },
     atsExportQueries: {
         name: 'ATS Export Queries',
         questions: [{
             question: 'EIN No. (Go to Export Cargo – Trade Entity)',
-            formControlName: 'atsEinNumber',
+            formControlName: 'atsExportEin',
             allowedBusinessTypes: ['Exporter']
         }, {
             question: 'ATS-AT number of Export records:',
-            formControlName: 'atsExportRecords',
+            formControlName: 'atsExportNumber',
             allowedBusinessTypes: ['Exporter']
         }, {
             question: 'DUNS No.',
-            formControlName: 'atsDunsNo',
+            formControlName: 'atsExportDuns',
             allowedBusinessTypes: ['Exporter']
         }, {
             question: 'ATS-AT Search Range',
-            formControlName: 'atsSearchRange',
+            formControlName: 'atsExportSearchRange',
             allowedBusinessTypes: ['Exporter']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'atsQueryResponse'
+            formControlName: 'atsExportAdditionalText'
         }
     },
     midQueries: {
         name: 'MID Queries',
         questions: [{
             question: 'MID Number Query',
-            formControlName: 'midQueryNumber',
+            formControlName: 'midNumQuery',
             allowedBusinessTypes: ['Foreign Manufacturer']
         }, {
             question: 'MID Company Name(s)',
-            formControlName: 'midQueryCompanyName',
+            formControlName: 'midCompanyName',
             allowedBusinessTypes: ['Foreign Manufacturer']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'midQueryResponse'
+            formControlName: 'midAdditionalText'
         }
     },
     dotQueries: {
         name: 'DOT Queries',
         questions: [{
             question: 'DOT (Company Name)',
-            formControlName: 'dotQueryCompanyName',
+            formControlName: 'dotCompanyName',
             allowedBusinessTypes: ['Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico']
         }, {
             question: 'DOT (USDOT number)',
-            formControlName: 'dotQueryNumber',
+            formControlName: 'dotUsdotNum',
             allowedBusinessTypes: ['Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'dotQueryResponse'
+            formControlName: 'dotAdditionalText'
         }
     },
     satQueries: {
@@ -156,122 +156,122 @@ const INTELLIGENCE_GATHERING_QUESTIONNAIRE = {
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'satQueryResponse'
+            formControlName: 'satAdditionalText'
         }
     },
     fmcQueries: {
         name: 'FMC Queries',
         questions: [{
             question: '6-digit FMC/MTO number',
-            formControlName: 'fmcNumber',
+            formControlName: 'fmcMtoNum',
             allowedBusinessTypes: ['U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'fmcQueryResponse'
+            formControlName: 'fmcAddtionalText'
         }
     },
     bondScacQueries: {
         name: 'Bond And SCAC Queries',
         questions: [{
             question: 'SCAC Code',
-            formControlName: 'bondScacCode',
+            formControlName: 'scacCode',
             allowedBusinessTypes: ['Rail Carrier']
         }, {
             question: 'Bond (Bond Number)',
-            formControlName: 'bondScacNumber',
+            formControlName: 'bondscacQuery',
             allowedBusinessTypes: ['Rail Carrier']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'bondScacQueryResponse'
+            formControlName: 'bondscacAdditionalText'
         }
     },
     bondFmcQuery: {
         name: 'Bond And FMC Query',
         questions: [{
             question: 'Bond (Bond Number)',
-            formControlName: 'bondFmcNumber',
+            formControlName: 'bondFmcQuery',
             allowedBusinessTypes: ['Sea Carrier']
         }, {
             question: '6-digit FMC/MTO number',
-            formControlName: 'bondFmcMtoNumber',
+            formControlName: 'bondFmcMtoNum',
             allowedBusinessTypes: ['Sea Carrier']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'bondFmcQueryResponse'
+            formControlName: 'bondFmcAdditionalText'
         }
     },
     lexisQueries: {
         name: 'Lexis Nexis Accurint Queries (Was Derogatory Information Identified? Yes/No)',
         questions: [{
             question: 'US Company Name(s)',
-            formControlName: 'lexisCompanyName',
+            formControlName: 'lexisnexisCompanyName',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Company Owner(s) & POC Names',
-            formControlName: 'lexisCompanyOwner',
+            formControlName: 'lexisnexisPocs',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'US Address',
-            formControlName: 'lexisAddress',
+            formControlName: 'lexisnexisUsAddress',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'US Phone Number',
-            formControlName: 'lexisPhone',
+            formControlName: 'lexisnexisPhone',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'lexisQueryResponse'
+            formControlName: 'lexisnexisAdditionalText'
         }
     },
     analyticalQueries: {
         name: 'Analytical Framework For Intelligence (AFI) (Was Derogatory Information Identified? Yes/No)',
         questions: [{
             question: 'Business Entity Identifier(s)',
-            formControlName: 'analyticalBusinessIdentifier',
+            formControlName: 'afiBei',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Company Phone Number(s)',
-            formControlName: 'analyticalPhone',
+            formControlName: 'afiCompanyPhone',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Owner(s) & POC Name(s)',
-            formControlName: 'analyticalOwner',
+            formControlName: 'afiOwnerPocsName',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Company Name(s)',
-            formControlName: 'analyticalCompanyName',
+            formControlName: 'afiCompanyName',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Owner(s) & POC Email(s)',
-            formControlName: 'analyticalOwnerEmail',
+            formControlName: 'afiOwnerPocsEmail',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Company Address',
-            formControlName: 'analyticalCompanyAddress',
+            formControlName: 'afiCompanyAddress',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Owner(s) & POC Phone(s)',
-            formControlName: 'analyticalOwnerPhone',
+            formControlName: 'afiOwnerPocsPhone',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'analyticalQueryResponse'
+            formControlName: 'afiAdditionalText'
         }
     },
     atsBeiQuery: {
         name: 'ATS BEI Query',
         questions: [{
             question: 'ATS-Advance Search',
-            formControlName: 'atsBeiAdvanceSearch',
+            formControlName: 'atsBeiSearch',
             allowedBusinessTypes: ['Importer', 'Licensed U.S. Customs Broker', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Rail Carrier', 'Sea Carrier']
         }, {
             question: 'ATS- number of import records:',
-            formControlName: 'atsBeiImportRecords',
+            formControlName: 'atsBeiImports',
             allowedBusinessTypes: ['Importer', 'Licensed U.S. Customs Broker', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Rail Carrier', 'Sea Carrier']
         }, {
             question: 'ATS- Search Range',
@@ -280,35 +280,35 @@ const INTELLIGENCE_GATHERING_QUESTIONNAIRE = {
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'atsBeiQueryResponse'
+            atsBeiAdditionalText: 'atsBeiQueryResponse'
         }
     },
     irsQuery: {
         name: 'IRS-NG Standalone Super Query (Was Derogatory Information Identified? Yes/No)',
         questions: [{
             question: 'Super Query Business Name(s)',
-            formControlName: 'irsBusinessName',
+            formControlName: 'irsNgBusinessName',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Criminal History Results',
-            formControlName: 'irsCriminalHistoryResults',
+            formControlName: 'irsNgCriminalHist',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Super Query Address(s)',
-            formControlName: 'irsQueryAddress',
+            formControlName: 'irsNgAddresses',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Global Enrollment System Results',
-            formControlName: 'irsEnrollmentResults',
+            formControlName: 'irsNgGlobal',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }, {
             question: 'Super Query Owner(s) & POC(s)',
-            formControlName: 'irsQueryOwner',
+            formControlName: 'irsNgOwnerPocs',
             allowedBusinessTypes: ['Importer', 'Air Carrier', 'Consolidator', 'Consolidator, Air Freight Consolidators', 'Consolidator, Ocean Transportation Intermediaries', 'Consolidator, Non-Vessel Operating Common Carriers (NVOCC)', 'Licensed U.S. Customs Broker', 'Exporter', 'Foreign Manufacturer', 'Highway Carrier', 'Highway Carrier - U.S. / Canada', 'Highway Carrier - U.S. / Mexico', 'Mexican Long Haul Highway Carrier', 'U.S. Marine Port or Terminal Operator', 'Foreign Based Marine Port Terminal Operator', 'Rail Carrier', 'Sea Carrier', 'Third Party Logistics Provider']
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'irsQueryResponse'
+            formControlName: 'irsNgAditionalText'
         }
     },
     diceQuery: {
@@ -320,7 +320,7 @@ const INTELLIGENCE_GATHERING_QUESTIONNAIRE = {
         }],
         freetextquestion: {
             show: true,
-            formControlName: 'diceQueryResponse'
+            formControlName: 'diceAddtionalText'
         }
     }
    /*  additionalQuery: {

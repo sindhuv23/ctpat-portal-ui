@@ -99,7 +99,7 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
       data: {}
     });
     confirmRef.afterClosed().subscribe(newRecord => {
-      if (newRecord) {
+      if (newRecord && Object.keys(newRecord).length > 0 && Object.getPrototypeOf(newRecord) === Object.prototype) {
         console.log(newRecord);
         this.dataCompanyContactList.push(newRecord);
         this.dataSourceCompanyContactList.data = this.dataCompanyContactList;
@@ -141,7 +141,7 @@ export class CompanyContactListComponent implements OnInit, OnDestroy, AfterView
       data: {row: this.dataCompanyContactList[index]}
     });
     confirmRef.afterClosed().subscribe(updatedRecord => {
-      if (updatedRecord) {
+      if (updatedRecord && Object.keys(updatedRecord).length > 0 && Object.getPrototypeOf(updatedRecord) === Object.prototype) {
         console.log(updatedRecord);
         this.dataCompanyContactList[index] = updatedRecord;
         this.dataSourceCompanyContactList.data = this.dataCompanyContactList;
